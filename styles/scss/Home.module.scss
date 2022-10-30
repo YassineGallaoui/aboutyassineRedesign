@@ -1,0 +1,39 @@
+.meBkgrdTxt{
+    color: rgba(0,0,0,0.03);
+    font-size: 100vh;
+    position: fixed;
+    pointer-events: none;
+    user-select: none;
+}
+.meContainer{
+    position: relative;
+    &__txt{
+        font-size: 2rem;
+        line-height: 4rem;
+        &__big{
+            font-size: 4rem;
+            &__welcome {
+                position: absolute;
+                display: block;
+                overflow: visible;
+                font-size: 4rem;
+                > span {
+                    position: relative;
+                    top: 2rem;
+                    opacity: 0;
+                    animation: flip 3s infinite;
+                    animation-iteration-count: 1;
+                    animation-fill-mode: forwards;
+                    animation-delay: calc(0.1s * var(--i))
+                }
+                @keyframes flip {
+                    0% {top: 2rem; opacity: 0;}
+                    25% {top: 0rem; opacity: 1;}
+                    60% {top: 0rem; opacity: 1;}
+                    90% {top: -3rem; opacity: 0;}
+                    100% {top: -3rem; opacity: 0;}
+                  }
+            }
+        }
+    }
+}

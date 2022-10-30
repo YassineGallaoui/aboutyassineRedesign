@@ -1,0 +1,84 @@
+.meBkgrdTxt {
+  color: rgba(0, 0, 0, 0.03);
+  font-size: 100vh;
+  position: fixed;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.meContainer {
+  position: relative;
+}
+.meContainer__txt {
+  font-size: 2rem;
+  line-height: 4rem;
+}
+.meContainer__txt__big {
+  font-size: 4rem;
+}
+.meContainer__txt__big__welcome {
+  position: absolute;
+  display: block;
+  overflow: visible;
+  font-size: 4rem;
+}
+.meContainer__txt__big__welcome > span {
+  position: relative;
+  top: 2rem;
+  opacity: 0;
+  -webkit-animation: flip 3s infinite;
+          animation: flip 3s infinite;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-delay: calc(0.1s * var(--i));
+          animation-delay: calc(0.1s * var(--i));
+}
+@-webkit-keyframes flip {
+  0% {
+    top: 2rem;
+    opacity: 0;
+  }
+  25% {
+    top: 0rem;
+    opacity: 1;
+  }
+  60% {
+    top: 0rem;
+    opacity: 1;
+  }
+  90% {
+    top: -3rem;
+    opacity: 0;
+  }
+  100% {
+    top: -3rem;
+    opacity: 0;
+  }
+}
+@keyframes flip {
+  0% {
+    top: 2rem;
+    opacity: 0;
+  }
+  25% {
+    top: 0rem;
+    opacity: 1;
+  }
+  60% {
+    top: 0rem;
+    opacity: 1;
+  }
+  90% {
+    top: -3rem;
+    opacity: 0;
+  }
+  100% {
+    top: -3rem;
+    opacity: 0;
+  }
+}

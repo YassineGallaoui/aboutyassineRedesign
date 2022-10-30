@@ -1,6 +1,8 @@
 import {useEffect} from "react";
 import styles from '../../styles/Frame.module.css'
+import Link from 'next/link'
 import Image from 'next/image'
+import logo from '../../public/logo.svg'
 import lightIcon from '../../public/icons/light_mode.svg'
 import darkIcon from '../../public/icons/dark_mode.svg'
 import cvIcon from '../../public/icons/CV.svg'
@@ -28,11 +30,25 @@ export default function Frame() {
             body.classList.add("darkMode");
           });
       }, [])
+
     return (
         <div className={styles.frameContainer}>
             <div className={styles.frameContainer__left}>
-                <div className={styles.frameContainer__left__logo}>logo</div>
-                <div className={styles.frameContainer__left__lastUpdate}>Last update: 23 Oct 2022</div>
+                <Link href="/">
+                    <div className={styles.frameContainer__left__logo}>
+                        <Image
+                            src={logo}
+                            layout='fill'
+                            sizes="(max-width: 768px) 100vw,
+                                    (max-width: 1200px) 50vw,
+                                    33vw"
+                            alt="logo"
+                        />
+                    </div>
+                </Link>
+                <div className={styles.frameContainer__left__lastUpdate}>
+                    Last update: 23 Oct 2022
+                </div>
             </div>
             <div className={styles.frameContainer__right}>
                 <div className={styles.frameContainer__right__theme}>
