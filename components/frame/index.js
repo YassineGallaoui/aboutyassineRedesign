@@ -1,5 +1,6 @@
 import {useEffect} from "react";
 import styles from '../../styles/Frame.module.css'
+import { createSpanStructure } from '../../utility'
 import Link from 'next/link'
 import Image from 'next/image'
 import logo from '../../public/logo.svg'
@@ -29,6 +30,13 @@ export default function Frame() {
             body.classList.remove("lightMode");
             body.classList.add("darkMode");
           });
+
+        const liTags = body.querySelectorAll('.sectionsNav li div');
+        const sectionNames = ['Who am I','What I do','How I do it'];
+        console.log(liTags)
+        liTags.forEach((element, index) => {
+            element.innerHTML = createSpanStructure(sectionNames[index]);
+        })
       }, [])
 
     return (
@@ -73,16 +81,16 @@ export default function Frame() {
                         />
                     </div>
                 </div>
-                <div className={styles.frameContainer__right__nav}>
+                <div className={styles.frameContainer__right__nav + ' sectionsNav'}>
                     <ul>
                         <li>
-                            <span>Who am I</span>
+                            <div></div>
                         </li>
                         <li>
-                            <span>What I do</span>
+                            <div></div>
                         </li>
                         <li>
-                            <span>How I do it</span>
+                            <div></div>
                         </li>
                     </ul>
                 </div>

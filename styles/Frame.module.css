@@ -62,15 +62,29 @@
   text-align: right;
 }
 .frameContainer__right__nav ul li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   box-sizing: border-box;
   opacity: 1;
   margin: 0.5rem 0rem;
 }
-.frameContainer__right__nav ul li span {
+.frameContainer__right__nav ul li div {
   position: absolute;
-  display: none;
-  opacity: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  overflow: hidden;
   transition: all 0.3s linear 0.3s;
+}
+.frameContainer__right__nav ul li div span {
+  position: relative;
+  display: block;
+  top: 1.5rem;
+  opacity: 0;
+  white-space: break-spaces;
+  font-size: 1rem;
+  line-height: 1rem;
 }
 .frameContainer__right__nav ul li:after {
   display: block;
@@ -84,14 +98,44 @@
   margin-left: auto;
   transition: all 0.3s;
 }
-.frameContainer__right__nav:hover ul > li span {
+.frameContainer__right__nav:hover ul > li div {
   opacity: 1;
-  margin-top: 0.1rem;
-  margin-left: 0.3rem;
+  margin-left: 0.6rem;
   transition: all 0s linear 0s;
 }
+.frameContainer__right__nav:hover ul > li div span {
+  opacity: 1;
+  -webkit-animation: flip 0.1s 1;
+          animation: flip 0.1s 1;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-delay: calc(0.05s * var(--i));
+          animation-delay: calc(0.05s * var(--i));
+}
+@-webkit-keyframes flip {
+  0% {
+    top: 1.5rem;
+  }
+  40% {
+    top: 0rem;
+  }
+  100% {
+    top: 0rem;
+  }
+}
+@keyframes flip {
+  0% {
+    top: 1.5rem;
+  }
+  40% {
+    top: 0rem;
+  }
+  100% {
+    top: 0rem;
+  }
+}
 .frameContainer__right__nav:hover ul > li:after {
-  width: 5.5rem;
+  width: 6.2rem;
   height: 1.4rem;
   border-radius: 0.7rem;
   background-color: transparent;

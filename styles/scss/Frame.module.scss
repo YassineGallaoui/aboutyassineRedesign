@@ -21,7 +21,7 @@ $gray: #00000088;
             height: 40px;
             cursor: pointer;
         }
-    }
+    } 
     &__right {
         align-items: flex-end;
         &__theme{
@@ -60,14 +60,28 @@ $gray: #00000088;
                 padding-left: 0;
                 text-align: right;
                 li {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
                     box-sizing: border-box;
                     opacity: 1;
                     margin: 0.5rem 0rem;
-                    span{
+                    div{
                         position: absolute;
-                        display: none;
-                        opacity: 0;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        overflow: hidden;
                         transition: all 0.3s linear 0.3s;
+                        span{
+                            position: relative;
+                            display: block;
+                            top: 1.5rem;
+                            opacity: 0;
+                            white-space: break-spaces;
+                            font-size: 1rem;
+                            line-height: 1rem;
+                        }
                     }
                     &:after {
                         display: block;
@@ -85,14 +99,24 @@ $gray: #00000088;
             }
             &:hover{
                 ul > li{
-                    span{
+                    div{
                         opacity: 1;
-                        margin-top: 0.1rem;
-                        margin-left: 0.3rem;
+                        margin-left: 0.6rem;
                         transition: all 0s linear 0s;
+                        span {
+                            opacity: 1;
+                            animation: flip 0.1s 1;
+                            animation-fill-mode: forwards;
+                            animation-delay: calc(0.05s * var(--i));
+                        }
+                        @keyframes flip {
+                            0% {top: 1.5rem}
+                            40% {top: 0rem}
+                            100% {top: 0rem}
+                        } 
                     }
                     &:after {
-                        width: 5.5rem;
+                        width: 6.2rem;
                         height: 1.4rem;
                         border-radius: 0.7rem;
                         background-color: transparent;
