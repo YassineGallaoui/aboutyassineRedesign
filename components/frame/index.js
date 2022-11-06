@@ -33,7 +33,6 @@ export default function Frame() {
 
         const liTags = body.querySelectorAll('.sectionsNav li div');
         const sectionNames = ['Who am I','What I do','How I do it'];
-        console.log(liTags)
         liTags.forEach((element, index) => {
             element.innerHTML = createSpanStructure(sectionNames[index]);
         })
@@ -83,19 +82,25 @@ export default function Frame() {
                 </div>
                 <div className={styles.frameContainer__right__nav + ' sectionsNav'}>
                     <ul>
-                        <li>
-                            <div></div>
-                        </li>
-                        <li>
-                            <div></div>
-                        </li>
-                        <li>
-                            <div></div>
-                        </li>
+                        <Link href="/">
+                            <li>
+                                <div></div>
+                            </li>
+                        </Link>
+                        <Link href="/exp">
+                            <li>
+                                <div></div>
+                            </li>
+                        </Link>
+                        <Link href="/skills">
+                            <li>
+                                <div></div>
+                            </li>
+                        </Link>
                     </ul>
                 </div>
                 <div className={styles.frameContainer__right__contacts}>
-                    <a href="https://en.wikipedia.org/wiki/Next.js">
+                    <a href="https://en.wikipedia.org/wiki/Next.js" rel="noreferrer noopener" target="_blank">
                         <div className={styles.frameContainer__right__contacts__social}>
                             <Image
                                 src={cvIcon}
@@ -119,7 +124,7 @@ export default function Frame() {
                             />
                         </div>
                     </a>
-                    <a href="https://www.linkedin.com/in/mohamed-yassine-gallaoui/">
+                    <a href="https://www.linkedin.com/in/mohamed-yassine-gallaoui/" rel="noreferrer noopener" target="_blank">
                         <div className={styles.frameContainer__right__contacts__social}>
                             <Image
                                 src={linkedinIcon}
@@ -131,7 +136,7 @@ export default function Frame() {
                             />
                         </div>
                     </a>
-                    <a href="https://github.com/YassineGallaoui">
+                    <a href="https://github.com/YassineGallaoui" rel="noreferrer noopener" target="_blank">
                         <div className={styles.frameContainer__right__contacts__social}>
                             <Image
                                 src={githubIcon}

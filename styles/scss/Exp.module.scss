@@ -1,0 +1,23 @@
+.expBkgrdTxt{
+    color: rgba(0,0,0,0.03);
+    font-size: 100vh;
+    position: fixed;
+    pointer-events: none;
+    user-select: none;
+}
+.expContainer{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    section{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    &__desc{
+        font-size: 1.4rem;
+    }
+}

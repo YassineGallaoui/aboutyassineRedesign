@@ -1,0 +1,18 @@
+.skillsBkgrdTxt{
+    color: rgba(0,0,0,0.03);
+    font-size: 100vh;
+    position: fixed;
+    pointer-events: none;
+    user-select: none;
+}
+.skillsContainer{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100vh;
+    section {
+        padding-top: 20vh;
+    }
+}

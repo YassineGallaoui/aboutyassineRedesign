@@ -1,0 +1,27 @@
+.expBkgrdTxt {
+  color: rgba(0, 0, 0, 0.03);
+  font-size: 100vh;
+  position: fixed;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.expContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+}
+.expContainer section {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.expContainer__desc {
+  font-size: 1.4rem;
+}

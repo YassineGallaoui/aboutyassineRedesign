@@ -8,6 +8,7 @@ $gray: #00000088;
     flex-direction: row;
     justify-content: space-between;
     padding: 1rem 1.25rem;
+    z-index: 5;
     &__left, &__right{
         display: flex;
         flex-direction: column;
@@ -66,6 +67,7 @@ $gray: #00000088;
                     box-sizing: border-box;
                     opacity: 1;
                     margin: 0.5rem 0rem;
+                    cursor: pointer;
                     div{
                         position: absolute;
                         display: flex;

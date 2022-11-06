@@ -6,3 +6,15 @@ export function createSpanStructure(w) {
     });
     return returnString;
 }
+
+
+export function scrollHorizontal(event) {
+  event.preventDefault();
+  if (!event.deltaY) {
+    return;
+  }
+  if (!event.shiftKey) {
+    event.preventDefault();
+    event.currentTarget.scrollLeft += (event.deltaY + event.deltaX)*10;
+  }
+}

@@ -6,6 +6,7 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 1rem 1.25rem;
+  z-index: 5;
 }
 .frameContainer__left, .frameContainer__right {
   display: flex;
@@ -68,6 +69,7 @@
   box-sizing: border-box;
   opacity: 1;
   margin: 0.5rem 0rem;
+  cursor: pointer;
 }
 .frameContainer__right__nav ul li div {
   position: absolute;
