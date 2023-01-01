@@ -23,12 +23,9 @@ export default function Skills() {
           <div>
             <h2>Expertise</h2>
             <div className={styles.skillsList}>
-              <div>Javascript</div>
+              <div>JavaScript/TypeScript</div>
               <div>HTML</div>
               <div>CSS/SCSS</div>
-              <div>Bootstrap</div>
-              <div>jQuery</div>
-              <div>git</div>
             </div>
           </div>
           <div>
@@ -36,6 +33,9 @@ export default function Skills() {
             <div className={styles.skillsList}>
               <div>React</div>
               <div>NextJS</div>
+              <div>git</div>
+              <div>jQuery</div>
+              <div>Bootstrap</div>
             </div>
           </div>
           <div>
@@ -59,13 +59,13 @@ export default function Skills() {
             <div className={styles.skillsList}>
               <div>Android Studio</div>
               <div>PhoneGap</div>
-              <div>Java</div>
             </div>
           </div>
           <div>
             <h2>General Knowledge</h2>
             <div className={styles.skillsList}>
               <div>C</div>
+              <div>Java</div>
             </div>
           </div>
         </section>
@@ -95,7 +95,6 @@ export default function Skills() {
             <h2>Native Language</h2>
             <div className={styles.skillsList}>
               <div>Italian</div>
-              <div>Arabic</div>
             </div>
           </div>
           <div>
@@ -108,6 +107,7 @@ export default function Skills() {
             <h2>Conversational Knowledge</h2>
             <div className={styles.skillsList}>
               <div>French</div>
+              <div>Arabic</div>
             </div>
           </div>
         </section>

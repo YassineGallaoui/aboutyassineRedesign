@@ -22,6 +22,12 @@
   flex-direction: row;
   justify-content: flex-start;
 }
+.expContainer section .expSliderContainer {
+  pointer-events: all;
+  -webkit-user-select: all;
+     -moz-user-select: all;
+          user-select: all;
+}
 .expContainer__desc {
   font-size: 1.4rem;
 }

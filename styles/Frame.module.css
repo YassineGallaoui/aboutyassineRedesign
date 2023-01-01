@@ -35,22 +35,31 @@
   align-items: center;
   cursor: pointer;
   opacity: 1;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s, transform 1s;
+  top: -1rem;
+  right: -1.25rem;
+  transform: rotate(0deg);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .frameContainer__right__theme:hover {
   opacity: 0.5;
 }
 .frameContainer__right__theme__light {
-  position: relative;
-  display: block;
+  position: absolute;
   width: 1.5rem;
   height: 1.5rem;
+  top: -1rem;
+  right: -1.25rem;
 }
 .frameContainer__right__theme__dark {
-  position: relative;
-  display: none;
+  position: absolute;
   width: 1.2rem;
   height: 1.2rem;
+  top: 1rem;
+  right: 1.25rem;
 }
 .frameContainer__right__nav {
   padding: 1rem 2rem 1rem 1rem;
@@ -66,9 +75,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-end;
   box-sizing: border-box;
   opacity: 1;
   margin: 0.5rem 0rem;
+  background-color: red;
   cursor: pointer;
 }
 .frameContainer__right__nav ul li div {
@@ -87,6 +98,7 @@
   white-space: break-spaces;
   font-size: 1rem;
   line-height: 1rem;
+  transition: font-size 0.4s;
 }
 .frameContainer__right__nav ul li:after {
   display: block;
@@ -100,9 +112,22 @@
   margin-left: auto;
   transition: all 0.3s;
 }
+.frameContainer__right__nav ul li:hover {
+  color: #dadba3;
+  background-color: #17182e;
+  border-radius: 0.7rem;
+}
+.frameContainer__right__nav ul li:hover:after {
+  width: 10rem !important;
+  height: 2.8rem !important;
+}
+.frameContainer__right__nav ul li:hover > div > span {
+  font-size: 2rem;
+  line-height: 2rem;
+}
 .frameContainer__right__nav:hover ul > li div {
   opacity: 1;
-  margin-left: 0.6rem;
+  margin-right: 0.8rem;
   transition: all 0s linear 0s;
 }
 .frameContainer__right__nav:hover ul > li div span {
@@ -141,6 +166,7 @@
   height: 1.4rem;
   border-radius: 0.7rem;
   background-color: transparent;
+  transition: width 0.6s, height 0.6s, background-color 0.6s;
 }
 .frameContainer__right__contacts {
   display: flex;

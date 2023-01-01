@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import styles from '../../styles/Frame.module.css'
 import { createSpanStructure } from '../../utility'
 import Link from 'next/link'
@@ -12,31 +12,41 @@ import linkedinIcon from '../../public/icons/linkedin.svg'
 import githubIcon from '../../public/icons/github.svg'
 
 export default function Frame() {
+    const [themeIconRot, setThemeIconRot] = useState(0);
+    const [firstTime, setFirstTime] = useState(true);
+
+    const themeChange = () => {
+        setThemeIconRot(themeIconRot+180);
+    }
+    
     useEffect(() => {
-        const body = document.querySelector("body");
+        const body = document.querySelector("body");  
         const lightModeIcon = document.querySelector(".lightModeIcon");
         const darkModeIcon = document.querySelector(".darkModeIcon");
-        lightModeIcon.addEventListener('click', (event) => {
-            console.log('hai cliccato su light icon');
-            lightModeIcon.style.display = 'none';
-            darkModeIcon.style.display = 'block';
-            body.classList.add("lightMode");
-            body.classList.remove("darkMode");
-          });
-        darkModeIcon.addEventListener('click', (event) => {
-            console.log('hai cliccato su dark icon')
-            lightModeIcon.style.display = 'block';
-            darkModeIcon.style.display = 'none';
-            body.classList.remove("lightMode");
-            body.classList.add("darkMode");
-          });
 
+        function themeHandle(option) {
+            if(option === 'light'){
+                body.classList.add("lightMode");
+                body.classList.remove("darkMode");
+            } else {
+                body.classList.add("darkMode");
+                body.classList.remove("lightMode");
+            }
+            document.documentElement.setAttribute("color-scheme", option);
+        }
+        if(firstTime) {
+            lightModeIcon.addEventListener('click', () => themeHandle('light'));
+            darkModeIcon.addEventListener('click', () => themeHandle('dark'));
+            setFirstTime(false);
+        }
+        
+        //menu navigation
         const liTags = body.querySelectorAll('.sectionsNav li div');
         const sectionNames = ['Who am I','What I do','How I do it'];
         liTags.forEach((element, index) => {
             element.innerHTML = createSpanStructure(sectionNames[index]);
         })
-      }, [])
+      }, [firstTime])
 
     return (
         <div className={styles.frameContainer}>
@@ -58,8 +68,9 @@ export default function Frame() {
                 </div>
             </div>
             <div className={styles.frameContainer__right}>
-                <div className={styles.frameContainer__right__theme}>
-                    <div className={styles.frameContainer__right__theme__light+" lightModeIcon"}>
+                <div className={styles.frameContainer__right__theme+' themeContainer'} style={{ transform: 'rotate('+themeIconRot+'deg)' }}>
+                    <div className={styles.frameContainer__right__theme__light+" lightModeIcon"}
+                            onClick={themeChange}>
                         <Image
                             src={lightIcon}
                             layout='fill'
@@ -69,7 +80,8 @@ export default function Frame() {
                             alt="light mode"
                         />
                     </div>
-                    <div className={styles.frameContainer__right__theme__dark+" darkModeIcon"}>
+                    <div className={styles.frameContainer__right__theme__dark+" darkModeIcon"}
+                            onClick={themeChange}>
                         <Image
                             src={darkIcon}
                             layout='fill'
