@@ -1,0 +1,66 @@
+.meBkgrdTxt {
+  color: rgba(0, 0, 0, 0.03);
+  font-size: 100vh;
+  position: fixed;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.meContainer {
+  position: relative;
+}
+.meContainer__txt {
+  font-size: 2rem;
+  line-height: 4rem;
+  letter-spacing: 5px;
+}
+.meContainer__txt__standard {
+  opacity: 0.4;
+}
+.meContainer__txt__big {
+  font-size: 4rem;
+  opacity: 1;
+  letter-spacing: 2px;
+}
+.meContainer__txt__big__welcome {
+  position: absolute;
+  display: block;
+  overflow: visible;
+  font-size: 6rem;
+  top: -40px;
+  left: -80px;
+  opacity: 0.3;
+}
+.meContainer__txt__big__welcome > span {
+  position: relative;
+  top: 2rem;
+  opacity: 0;
+  animation: flip 3s infinite;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: calc(0.1s * var(--i));
+}
+@keyframes flip {
+  0% {
+    top: 2rem;
+    opacity: 0;
+  }
+  25% {
+    top: 0rem;
+    opacity: 1;
+  }
+  60% {
+    top: 0rem;
+    opacity: 1;
+  }
+  90% {
+    top: -3rem;
+    opacity: 0;
+  }
+  100% {
+    top: -3rem;
+    opacity: 0;
+  }
+}

@@ -18,3 +18,12 @@ export function scrollHorizontal(event) {
     event.currentTarget.scrollLeft += (event.deltaY + event.deltaX)*10;
   }
 }
+
+export function parallax(event) {
+  this.querySelectorAll(".sectionBkgrdTxt").forEach((el) => {
+      const x = (window.innerWidth - event.pageX * 1) / 90;
+      const y = (window.innerHeight - event.pageY * 2) / 90;
+
+      el.style.transform = `translateX(${x}px) translateY(${y}px)`;
+  });
+}

@@ -7,6 +7,7 @@
   justify-content: space-between;
   padding: 1rem 1.25rem;
   z-index: 5;
+  pointer-events: none;
 }
 .frameContainer__left, .frameContainer__right {
   display: flex;
@@ -18,9 +19,43 @@
 }
 .frameContainer__left__logo {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 70px;
+  height: 70px;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+.frameContainer__left__logo span {
+  position: absolute !important;
+  width: 40px !important;
+  height: 40px !important;
+  overflow: visible !important;
+}
+.frameContainer__left__logo .letterY {
+  opacity: 1;
+}
+.frameContainer__left__logo .letterA {
+  opacity: 0;
+  left: 0px;
+  transition: all 0.5s cubic-bezier(0.16, -0.05, 0.53, 0.02);
+}
+.frameContainer__left__logo .letterS {
+  opacity: 0;
+  left: 24px;
+  transition: all 0.5s cubic-bezier(0.16, -0.05, 0.53, 0.02);
+}
+.frameContainer__left__logo:hover .letterA {
+  opacity: 1;
+  left: 24px !important;
+  transition: all 0.5s cubic-bezier(0.21, 1.02, 0.7, 1.01);
+}
+.frameContainer__left__logo:hover .letterS {
+  opacity: 1;
+  left: 48px !important;
+  transition: all 0.5s cubic-bezier(0.21, 1.02, 0.7, 1.01);
 }
 .frameContainer__right {
   align-items: flex-end;
@@ -41,8 +76,8 @@
   transform: rotate(0deg);
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
+  pointer-events: auto;
 }
 .frameContainer__right__theme:hover {
   opacity: 0.5;
@@ -54,6 +89,25 @@
   top: -1rem;
   right: -1.25rem;
 }
+@keyframes rotateFirstSun {
+  from {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(30deg) rotateY(360deg);
+  }
+}
+.frameContainer__right__theme__light .firstSun {
+  animation: rotateFirstSun 20s linear infinite alternate;
+}
+.frameContainer__right__theme__light .secondSun {
+  animation: rotateFirstSun 20s linear infinite alternate;
+  animation-delay: 2.5s;
+}
+.frameContainer__right__theme__light .thirdSun {
+  animation: rotateFirstSun 20s linear infinite alternate;
+  animation-delay: 5s;
+}
 .frameContainer__right__theme__dark {
   position: absolute;
   width: 1.2rem;
@@ -61,10 +115,29 @@
   top: 1rem;
   right: 1.25rem;
 }
+@keyframes showStars {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.frameContainer__right__theme__dark .moonStars1 {
+  opacity: 0;
+  animation: showStars 5s linear infinite alternate;
+  animation-delay: 1s;
+}
+.frameContainer__right__theme__dark .moonStars2 {
+  opacity: 0;
+  animation: showStars 5s linear infinite alternate;
+  animation-delay: 4s;
+}
 .frameContainer__right__nav {
   padding: 1rem 2rem 1rem 1rem;
   transform: translateX(2rem);
   box-sizing: content-box;
+  pointer-events: auto;
 }
 .frameContainer__right__nav ul {
   list-style: none;
@@ -79,7 +152,6 @@
   box-sizing: border-box;
   opacity: 1;
   margin: 0.5rem 0rem;
-  background-color: red;
   cursor: pointer;
 }
 .frameContainer__right__nav ul li div {
@@ -122,8 +194,8 @@
   height: 2.8rem !important;
 }
 .frameContainer__right__nav ul li:hover > div > span {
-  font-size: 2rem;
-  line-height: 2rem;
+  font-size: 1.7rem;
+  line-height: 1.7rem;
 }
 .frameContainer__right__nav:hover ul > li div {
   opacity: 1;
@@ -132,23 +204,9 @@
 }
 .frameContainer__right__nav:hover ul > li div span {
   opacity: 1;
-  -webkit-animation: flip 0.1s 1;
-          animation: flip 0.1s 1;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-delay: calc(0.05s * var(--i));
-          animation-delay: calc(0.05s * var(--i));
-}
-@-webkit-keyframes flip {
-  0% {
-    top: 1.5rem;
-  }
-  40% {
-    top: 0rem;
-  }
-  100% {
-    top: 0rem;
-  }
+  animation: flip 0.1s 1;
+  animation-fill-mode: forwards;
+  animation-delay: calc(0.05s * var(--i));
 }
 @keyframes flip {
   0% {
@@ -162,7 +220,7 @@
   }
 }
 .frameContainer__right__nav:hover ul > li:after {
-  width: 6.2rem;
+  width: 10rem;
   height: 1.4rem;
   border-radius: 0.7rem;
   background-color: transparent;
@@ -172,6 +230,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  pointer-events: auto;
 }
 .frameContainer__right__contacts__social {
   position: relative;

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Livello_1" data-name="Livello 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#Sfumatura_senza_nome_8);
+      }
+
+      .cls-2 {
+        fill: url(#Sfumatura_senza_nome_5);
+      }
+
+      .cls-3 {
+        fill: #1d1d1b;
+      }
+    </style>
+    <linearGradient id="Sfumatura_senza_nome_8" data-name="Sfumatura senza nome 8" x1="69.42" y1="148.04" x2="125.1" y2="128.57" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#000"/>
+      <stop offset=".82" stop-color="#868686" stop-opacity=".47"/>
+      <stop offset=".97" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="Sfumatura_senza_nome_5" data-name="Sfumatura senza nome 5" x1="55.05" y1="109.62" x2="109.43" y2="86.18" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#000"/>
+      <stop offset=".86" stop-color="#777" stop-opacity=".53"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <polygon class="cls-1" points="130.56 146.81 65.49 146.81 72.49 126.81 123 126.81 130.56 146.81"/>
+  <polygon class="cls-2" points="99.2 62.11 59.98 166.62 39.98 166.62 89.06 35.84 99.2 62.11"/>
+  <polygon class="cls-3" points="110.02 33.38 90.02 33.38 140.02 166.62 160.02 166.62 110.02 33.38"/>
+</svg>

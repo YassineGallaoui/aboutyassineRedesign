@@ -1,39 +1,88 @@
-.meBkgrdTxt{
+.expBkgrdTxt{
     color: rgba(0,0,0,0.03);
     font-size: 100vh;
     position: fixed;
     pointer-events: none;
     user-select: none;
 }
-.meContainer{
+.currentPrjHovered{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100vh;
+    width: 100vw;
+    transform: translate(0) !important;
+    img{
+        object-fit: cover;
+        filter: brightness(0.7);
+        mix-blend-mode:difference;
+    }
+}
+.expContainer{
     position: relative;
-    &__txt{
-        font-size: 2rem;
-        line-height: 4rem;
-        &__big{
-            font-size: 4rem;
-            &__welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    .triangleProjectRow{
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1vw;
+        margin: 9vw;
+        .triangleProjectWrapper, .triangleProjectWrapper__NoProj {
+            position:absolute;
+            background: transparent;
+            padding: 0px;
+            border: 9vw solid transparent;
+            border-top: 0;
+            border-bottom: 18vw solid transparent;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            >div{
                 position: absolute;
-                display: block;
-                overflow: visible;
-                font-size: 4rem;
-                > span {
-                    position: relative;
-                    top: 2rem;
-                    opacity: 0;
-                    animation: flip 3s infinite;
-                    animation-iteration-count: 1;
-                    animation-fill-mode: forwards;
-                    animation-delay: calc(0.1s * var(--i))
+                height: 17vw;
+                width: 17vw;
+                background-color: rgba(0,0,0,0.1);
+                img{
+                    object-fit: cover;
+                    pointer-events: auto;
                 }
-                @keyframes flip {
-                    0% {top: 2rem; opacity: 0;}
-                    25% {top: 0rem; opacity: 1;}
-                    60% {top: 0rem; opacity: 1;}
-                    90% {top: -3rem; opacity: 0;}
-                    100% {top: -3rem; opacity: 0;}
-                  }
+            }
+            &:nth-child(odd) {
+                border-top: 18vw solid transparent;
+                border-bottom: 0px solid transparent;
+                left: calc(-9vw*var(--index));
+                > div {
+                    bottom: 0.7vw;
+                    clip-path: polygon(50% 100%, 0 0, 100% 0);
+                }
+            }
+            &:nth-child(even) {
+                left: calc(-9vw*var(--index));
+                > div {
+                    top: 0.7vw;
+                    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                }
             }
         }
+        .triangleProjectWrapper__NoProj {
+            &:nth-child(odd) {
+                border-top: 18vw solid transparent;
+            }
+            &:nth-child(even) {
+                border-bottom: 18vw solid transparent;
+            }
+        }
+    }
+    .noProjRow:nth-child(even){
+        transform: translateX(9vw);
     }
 }

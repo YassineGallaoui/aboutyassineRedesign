@@ -5,11 +5,13 @@ body {
   font-family: "Playfair Display", serif;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  max-height: 100vh;
+  max-width: 100vw;
+  overflow: hidden;
   box-sizing: border-box;
   transition: all 0.2s;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 html::-webkit-scrollbar,
@@ -25,18 +27,11 @@ html .lightMode,
 body .lightMode {
   color: #17182e;
   background: #dadba3;
-}
-html .lightMode img,
-body .lightMode img {
   filter: invert(0);
 }
 html .darkMode,
 body .darkMode {
-  color: #dadba3;
   background: #17182e;
-}
-html .darkMode img,
-body .darkMode img {
   filter: invert(1);
 }
 html .customCursor,
@@ -54,18 +49,9 @@ body .customCursor.mouseHover {
   height: 1.4rem;
   width: 1.4rem;
   border-radius: 20%;
-  -webkit-animation: rotateCursor 4s linear infinite;
-          animation: rotateCursor 4s linear infinite;
+  animation: rotateCursor 4s linear infinite;
   transform: translate(-50%, -50%) rotate(10deg);
   background-color: red;
-}
-@-webkit-keyframes rotateCursor {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
 }
 @keyframes rotateCursor {
   0% {
@@ -102,6 +88,9 @@ a {
     color: #17182e;
     background: #dadba3;
   }
+  body ::after {
+    filter: invert(0);
+  }
 }
 @media (prefers-color-scheme: dark) {
   html {
@@ -110,5 +99,8 @@ a {
   body {
     color: #dadba3;
     background: #17182e;
+  }
+  body ::after {
+    filter: invert(1);
   }
 }

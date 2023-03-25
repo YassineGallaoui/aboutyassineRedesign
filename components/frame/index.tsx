@@ -1,11 +1,16 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState, useRef} from "react";
 import styles from '../../styles/Frame.module.css'
 import { createSpanStructure } from '../../utility'
 import Link from 'next/link'
 import Image from 'next/image'
-import logo from '../../public/logo.svg'
+import logoY from '../../public/logo/logo-Y.svg'
+import logoA from '../../public/logo/logo-A.svg'
+import logoS from '../../public/logo/logo-S.svg'
 import lightIcon from '../../public/icons/light_mode.svg'
+import lightIconBase from '../../public/icons/light_mode_base.svg'
 import darkIcon from '../../public/icons/dark_mode.svg'
+import darkIconStars1 from '../../public/icons/dark_mode_stars_1.svg'
+import darkIconStars2 from '../../public/icons/dark_mode_stars_2.svg'
 import cvIcon from '../../public/icons/CV.svg'
 import mailIcon from '../../public/icons/mail.svg'
 import linkedinIcon from '../../public/icons/linkedin.svg'
@@ -18,7 +23,7 @@ export default function Frame() {
     const themeChange = () => {
         setThemeIconRot(themeIconRot+180);
     }
-    
+
     useEffect(() => {
         const body = document.querySelector("body");  
         const lightModeIcon = document.querySelector(".lightModeIcon");
@@ -42,7 +47,7 @@ export default function Frame() {
         
         //menu navigation
         const liTags = body.querySelectorAll('.sectionsNav li div');
-        const sectionNames = ['Who am I','What I do','How I do it'];
+        const sectionNames = ['About','Career'];
         liTags.forEach((element, index) => {
             element.innerHTML = createSpanStructure(sectionNames[index]);
         })
@@ -53,14 +58,9 @@ export default function Frame() {
             <div className={styles.frameContainer__left}>
                 <Link href="/">
                     <div className={styles.frameContainer__left__logo}>
-                        <Image
-                            src={logo}
-                            layout='fill'
-                            sizes="(max-width: 768px) 100vw,
-                                    (max-width: 1200px) 50vw,
-                                    33vw"
-                            alt="logo"
-                        />
+                        <Image src={logoY} alt={`YAS`} className={styles.letterY}/>
+                        <Image src={logoA} alt={`YAS`} className={styles.letterA}/>
+                        <Image src={logoS} alt={`YAS`} className={styles.letterS}/>
                     </div>
                 </Link>
                 <div className={styles.frameContainer__left__lastUpdate}>
@@ -72,6 +72,33 @@ export default function Frame() {
                     <div className={styles.frameContainer__right__theme__light+" lightModeIcon"}
                             onClick={themeChange}>
                         <Image
+                            src={lightIconBase}
+                            layout='fill'
+                            sizes="(max-width: 768px) 100vw,
+                                    (max-width: 1200px) 50vw,
+                                    33vw"
+                            alt="light mode"
+                        />
+                        <Image
+                            className={styles.firstSun}
+                            src={lightIcon}
+                            layout='fill'
+                            sizes="(max-width: 768px) 100vw,
+                                    (max-width: 1200px) 50vw,
+                                    33vw"
+                            alt="light mode"
+                        />
+                        <Image
+                            className={styles.secondSun}
+                            src={lightIcon}
+                            layout='fill'
+                            sizes="(max-width: 768px) 100vw,
+                                    (max-width: 1200px) 50vw,
+                                    33vw"
+                            alt="light mode"
+                        />
+                        <Image
+                            className={styles.thirdSun}
                             src={lightIcon}
                             layout='fill'
                             sizes="(max-width: 768px) 100vw,
@@ -90,21 +117,35 @@ export default function Frame() {
                                     33vw"
                             alt="dark mode"
                         />
+                        <Image
+                            className={styles.moonStars1}
+                            src={darkIconStars1}
+                            layout='fill'
+                            sizes="(max-width: 768px) 100vw,
+                                    (max-width: 1200px) 50vw,
+                                    33vw"
+                            alt="dark mode"
+                        />
+                        
+                        <Image
+                            className={styles.moonStars2}
+                            src={darkIconStars2}
+                            layout='fill'
+                            sizes="(max-width: 768px) 100vw,
+                                    (max-width: 1200px) 50vw,
+                                    33vw"
+                            alt="dark mode"
+                        />
                     </div>
                 </div>
                 <div className={styles.frameContainer__right__nav + ' sectionsNav'}>
                     <ul>
+                        <Link href="/about">
+                            <li>
+                                <div></div>
+                            </li>
+                        </Link>
                         <Link href="/">
-                            <li>
-                                <div></div>
-                            </li>
-                        </Link>
-                        <Link href="/exp">
-                            <li>
-                                <div></div>
-                            </li>
-                        </Link>
-                        <Link href="/skills">
                             <li>
                                 <div></div>
                             </li>
@@ -112,7 +153,7 @@ export default function Frame() {
                     </ul>
                 </div>
                 <div className={styles.frameContainer__right__contacts}>
-                    <a href="https://en.wikipedia.org/wiki/Next.js" rel="noreferrer noopener" target="_blank">
+                    <a href="/cv.pdf" rel="noreferrer noopener" target="_blank">
                         <div className={styles.frameContainer__right__contacts__social}>
                             <Image
                                 src={cvIcon}

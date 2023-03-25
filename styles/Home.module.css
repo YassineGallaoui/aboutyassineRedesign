@@ -1,84 +1,94 @@
-.meBkgrdTxt {
+.expBkgrdTxt {
   color: rgba(0, 0, 0, 0.03);
   font-size: 100vh;
   position: fixed;
   pointer-events: none;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 
-.meContainer {
+.currentPrjHovered {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 100vw;
+  transform: translate(0) !important;
+}
+.currentPrjHovered img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  filter: brightness(0.7);
+  mix-blend-mode: difference;
+}
+
+.expContainer {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
 }
-.meContainer__txt {
-  font-size: 2rem;
-  line-height: 4rem;
+.expContainer .triangleProjectRow {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1vw;
+  margin: 9vw;
 }
-.meContainer__txt__big {
-  font-size: 4rem;
-}
-.meContainer__txt__big__welcome {
+.expContainer .triangleProjectRow .triangleProjectWrapper, .expContainer .triangleProjectRow .triangleProjectWrapper__NoProj {
   position: absolute;
-  display: block;
-  overflow: visible;
-  font-size: 4rem;
+  background: transparent;
+  padding: 0px;
+  border: 9vw solid transparent;
+  border-top: 0;
+  border-bottom: 18vw solid transparent;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
 }
-.meContainer__txt__big__welcome > span {
-  position: relative;
-  top: 2rem;
-  opacity: 0;
-  -webkit-animation: flip 3s infinite;
-          animation: flip 3s infinite;
-  -webkit-animation-iteration-count: 1;
-          animation-iteration-count: 1;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-  -webkit-animation-delay: calc(0.1s * var(--i));
-          animation-delay: calc(0.1s * var(--i));
+.expContainer .triangleProjectRow .triangleProjectWrapper > div, .expContainer .triangleProjectRow .triangleProjectWrapper__NoProj > div {
+  position: absolute;
+  height: 17vw;
+  width: 17vw;
+  background-color: rgba(0, 0, 0, 0.1);
 }
-@-webkit-keyframes flip {
-  0% {
-    top: 2rem;
-    opacity: 0;
-  }
-  25% {
-    top: 0rem;
-    opacity: 1;
-  }
-  60% {
-    top: 0rem;
-    opacity: 1;
-  }
-  90% {
-    top: -3rem;
-    opacity: 0;
-  }
-  100% {
-    top: -3rem;
-    opacity: 0;
-  }
+.expContainer .triangleProjectRow .triangleProjectWrapper > div img, .expContainer .triangleProjectRow .triangleProjectWrapper__NoProj > div img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  pointer-events: auto;
 }
-@keyframes flip {
-  0% {
-    top: 2rem;
-    opacity: 0;
-  }
-  25% {
-    top: 0rem;
-    opacity: 1;
-  }
-  60% {
-    top: 0rem;
-    opacity: 1;
-  }
-  90% {
-    top: -3rem;
-    opacity: 0;
-  }
-  100% {
-    top: -3rem;
-    opacity: 0;
-  }
+.expContainer .triangleProjectRow .triangleProjectWrapper:nth-child(odd), .expContainer .triangleProjectRow .triangleProjectWrapper__NoProj:nth-child(odd) {
+  border-top: 18vw solid transparent;
+  border-bottom: 0px solid transparent;
+  left: calc(-9vw * var(--index));
+}
+.expContainer .triangleProjectRow .triangleProjectWrapper:nth-child(odd) > div, .expContainer .triangleProjectRow .triangleProjectWrapper__NoProj:nth-child(odd) > div {
+  bottom: 0.7vw;
+  -webkit-clip-path: polygon(50% 100%, 0 0, 100% 0);
+          clip-path: polygon(50% 100%, 0 0, 100% 0);
+}
+.expContainer .triangleProjectRow .triangleProjectWrapper:nth-child(even), .expContainer .triangleProjectRow .triangleProjectWrapper__NoProj:nth-child(even) {
+  left: calc(-9vw * var(--index));
+}
+.expContainer .triangleProjectRow .triangleProjectWrapper:nth-child(even) > div, .expContainer .triangleProjectRow .triangleProjectWrapper__NoProj:nth-child(even) > div {
+  top: 0.7vw;
+  -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+          clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+.expContainer .triangleProjectRow .triangleProjectWrapper__NoProj:nth-child(odd) {
+  border-top: 18vw solid transparent;
+}
+.expContainer .triangleProjectRow .triangleProjectWrapper__NoProj:nth-child(even) {
+  border-bottom: 18vw solid transparent;
+}
+.expContainer .noProjRow:nth-child(even) {
+  transform: translateX(9vw);
 }
