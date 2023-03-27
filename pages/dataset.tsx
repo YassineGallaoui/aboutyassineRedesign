@@ -8,7 +8,8 @@ import smartFit1 from '../public/imgs/smartfit-1.png'
 import smartfit2 from '../public/imgs/smartfit-2.png'
 
 export const projectsDataset = [{
-        "id":"maserati",
+        "id":0,
+        "name":"maserati",
         "media":[
             imgMaserati1,
             imgMaserati2
@@ -16,21 +17,24 @@ export const projectsDataset = [{
         "workingFor": "Deloitte",
 
     },{
-        "id":"autotorino",
+        "id":1,
+        "name":"autotorino",
         "media":[
             autotorino1,
             autotorino2
         ],
         "workingFor": "Deloitte",
     },{
-        "id":"Bee Tickets",
+        "id":2,
+        "name":"Bee Tickets",
         "media":[
             imgBeeTickets1,
             imgBeeTickets2
         ],
         "workingFor": "Once Upon A Time SA",
     },{
-        "id":"SmartFit",
+        "id":3,
+        "name":"SmartFit",
         "media":[
             smartFit1,
             smartfit2

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "../../styles/About.module.css";
 import { createSpanStructure, parallax } from "../../utility.js";
 import Head from "next/head";
+import Layout from "../../components/layout";
 
 export default function About() {
     useEffect(() => {
@@ -31,9 +32,9 @@ export default function About() {
                     <div
                         className={styles.meContainer__txt__big__welcome + " welcomeWord"}
                     >
-                        <span style={{ '--i': 1 }}>H</span>
-                        <span style={{ '--i': 2 }}>i</span>
-                        <span style={{ '--i': 3 }}>!</span>
+                        <span style={{ '--i': 1 } as React.CSSProperties}>H</span>
+                        <span style={{ '--i': 2 } as React.CSSProperties}>i</span>
+                        <span style={{ '--i': 3 } as React.CSSProperties}>!</span>
                     </div>
                     <br />
                     <div>

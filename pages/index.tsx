@@ -1,15 +1,21 @@
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import styles from '../styles/Home.module.css'
 import { parallax, scrollHorizontal } from "../utility";
 import Head from "next/head";
 import Image, { StaticImageData } from "next/image";
 import { projectsDataset } from "./dataset";
+import gsap from 'gsap';
+import Layout from "../components/layout";
 
-export default function Home() {
+type HomeProps = {
+  updateCursorText: Function,
+  cursorIsHover: Function
+}
+
+export default function Home({updateCursorText, cursorIsHover}: HomeProps) {
   const [triangleRowsNumber, setTriangleRowsNumber] = useState<number>(0);
   const [trianglesPerRow, setTrianglesPerRow] = useState<number>(0);
-  const [imgContainerHover, setImgContainerHover] = useState<boolean>(false);
-  const [tempImgHover, setTempImageHover] = useState<StaticImageData|null>(null);
+  const [tempImgHover, setTempImageHover] = useState<StaticImageData>();
 
   useEffect(() => {
     const expContainer = document.scrollingElement || document.documentElement;
@@ -22,30 +28,52 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    console.log('UE');
     let projects = document.querySelectorAll('.triangleProjectImg');
-    console.log('projects', projects);
     projects.forEach((el, index) => {
-      console.log('el', el);
       el.addEventListener('mouseover', ()=>{
         const elementId = el.getAttribute('data-project-id');
         console.log(elementId);
         if(elementId != null) {
-          setImgContainerHover(true);
-          
-          const elementData = projectsDataset.find(el=>el.id === elementId);
-          console.log(elementId);
+          const elementData = projectsDataset.find(el=>el.id+'' === elementId);
           console.log(elementData);
-          setImgContainerHover(true);
           setTempImageHover(elementData.media[0]);
+          const tl1 = gsap.timeline({ delay: 0 });
+          tl1.fromTo(
+            '.bigBackgroundImage',
+            { scale: 1.1, opacity: 0, },
+            { scale: 1.02, opacity: 1, duration: 1, ease: 'power3.out' }
+          );
         }
       })
       el.addEventListener('mouseout', ()=>{
-        setImgContainerHover(false);
-        setTempImageHover(null);
+        const tl1 = gsap.timeline({ delay: 0 });
+        tl1.fromTo(
+          '.bigBackgroundImage',
+          { scale: 1.02, opacity: 1, },
+          { scale: 1.1, opacity: 0, duration: 1, ease: 'power3.out' }
+        );
       })
     })
   }, [trianglesPerRow])
+
+  const handleImageHover = (id: number) => {
+    gsap.to(`#image-${id}`, { duration: 0.5, scale: 1.1 });
+    gsap.to(`#see-more-even-${id}`, { duration: 0.5, delay: 0.8, opacity: 1 });
+    gsap.to(`#see-more-odd-${id}`, { duration: 0.5, delay: 0.8, opacity: 1 });
+    gsap.to(`.image:not(#image-${id})`, { duration: 0.5, scale: 0.95, opacity: 0, });
+    cursorIsHover(true);
+    updateCursorText('see more')
+  };
+
+  const handleImageLeave = (id: number) => {
+    gsap.to(`#image-${id}`, { duration: 0.5, scale: 1 });
+    gsap.to(`#see-more-even-${id}`, { duration: 0.5, delay: 0.8, opacity: 0, });
+    gsap.to(`#see-more-odd-${id}`, { duration: 0.5, delay: 0.8, opacity: 0, });
+    gsap.to('.image', { duration: 0.5, scale: 1, opacity: 1, });
+    cursorIsHover(true);
+    updateCursorText(null)
+  };
+  
   
   return (
     <>
@@ -53,9 +81,8 @@ export default function Home() {
         <title>Yassine | Software Engineer</title>
       </Head>
       <div className={styles.expBkgrdTxt+' sectionBkgrdTxt'}>Exp</div>
-      <div className={styles.currentPrjHovered+' currentPrjHovered'}>
-        {imgContainerHover && <Image src={tempImgHover} layout="fill" alt="project"></Image>}
-        {/* {imgContainerHover && <div className={styles.currentPrjHovered}></div>} */}
+      <div className={styles.currentPrjHovered+' currentPrjHovered '}>
+        <Image className={'bigBackgroundImage'} src={tempImgHover} layout="fill" alt="project"></Image>
       </div>
       <div className={styles.expContainer+' expContainer col-12'}>
         {triangleRowsNumber > 0 && [...Array(triangleRowsNumber).keys()].map((row, index) => {return(
@@ -64,7 +91,6 @@ export default function Home() {
               trianglesPerRow > 0 && [...Array(trianglesPerRow).keys()].map((cell, index2) => {return(
                 <div key={index2} className={styles.triangleProjectWrapper__NoProj} style={{ '--index': ((index2+2) - (trianglesPerRow/2)) } as React.CSSProperties}>
                   <div className={styles.triangleProjectContent}>
-                    {/* {imgContainerHover && <Image src={tempImgHover} layout="fill" alt="project"></Image>} */}
                   </div>
                 </div>
               )})
@@ -79,17 +105,25 @@ export default function Home() {
                 return(
                   <div key={index2} className={styles.triangleProjectWrapper__NoProj} style={{ '--index': ((index2+2) - (trianglesPerRow/2)) } as React.CSSProperties}>
                     <div className={styles.triangleProjectContent}>
-                      {/* {imgContainerHover && <Image src={tempImgHover} layout="fill" alt="project"></Image>} */}
                     </div>
                   </div>
                 )
               } else {
-                //setImgProjCount(imgProjCount+1);
                 return(
                   <div key={index2} className={styles.triangleProjectWrapper} style={{ '--index': ((index2+2) - (trianglesPerRow/2)) } as React.CSSProperties}>
                     <div className={styles.triangleProjectContent+' triangleProjectImg'}data-project-id={projectsDataset[index2-((trianglesPerRow-4)/2)]?.id}>
-                      {!imgContainerHover && <Image src={projectsDataset[index2-((trianglesPerRow-4)/2)]?.media[0]} layout="fill" alt="project"></Image>}
-                      {imgContainerHover && tempImgHover==projectsDataset[index2-((trianglesPerRow-4)/2)]?.media[0] && <Image src={tempImgHover} layout="fill" alt="project" />}
+                      <Image
+                        src={projectsDataset[index2-((trianglesPerRow-4)/2)]?.media[0]}
+                        id={`image-${projectsDataset[index2-((trianglesPerRow-4)/2)]?.id}`}
+                        className="image"
+                        layout="fill"
+                        alt="project"
+                        onMouseOver={() => handleImageHover(projectsDataset[index2-((trianglesPerRow-4)/2)]?.id)}
+                        onMouseLeave={() => handleImageLeave(projectsDataset[index2-((trianglesPerRow-4)/2)]?.id)}
+                        />
+                      <div id={`see-more-${index2%2===1 ? 'odd':'even'}-${projectsDataset[index2-((trianglesPerRow-4)/2)]?.id}`}
+                        className={styles.seeMoreText}>
+                      </div>
                     </div>
                   </div>
                 )
@@ -103,7 +137,6 @@ export default function Home() {
               trianglesPerRow > 0 && [...Array(trianglesPerRow).keys()].map((cell, index2) => {return(
                 <div key={index2} className={styles.triangleProjectWrapper__NoProj} style={{ '--index': ((index2+2) - (trianglesPerRow/2)) } as React.CSSProperties}>
                   <div className={styles.triangleProjectContent}>
-                    {/* {imgContainerHover && <Image src={tempImgHover} layout="fill" alt="project"></Image>} */}
                   </div>
                 </div>
               )})
