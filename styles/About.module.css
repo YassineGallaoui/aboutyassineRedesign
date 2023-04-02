@@ -3,9 +3,7 @@
   font-size: 100vh;
   position: fixed;
   pointer-events: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
 }
 
 .meContainer {

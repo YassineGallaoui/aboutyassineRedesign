@@ -74,9 +74,7 @@
   top: -1rem;
   right: -1.25rem;
   transform: rotate(0deg);
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   pointer-events: auto;
 }
 .frameContainer__right__theme:hover {

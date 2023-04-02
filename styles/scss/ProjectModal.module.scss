@@ -1,4 +1,61 @@
 .projectModalContainer{
-    height: 98vh;
-    width: 98vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: rgba(255,255,255,0);
+    opacity: 0;
+    .closeModalBtn{
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        height: 2rem;
+        width: 2rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        &:before,&:after {
+            content: "";
+            position: absolute;
+            width: 3px;
+            height: 24px;
+            background-color: black;
+        }
+    
+        &:before {
+            transform: rotate(45deg);
+        }
+    
+        &:after {
+            background-color: white;
+            transform: rotate(-45deg);
+        }
+    }
+    .projectCarousel{
+        background-color: rgba(109, 0, 0, 0.5);
+        width: 50%;
+        height: 96%;
+        position: relative;
+        top: 1rem;
+        left: 1rem;
+        border-radius: 22px;
+    }
+    .projectModalDescription{
+        position: relative;
+        left: 2rem;
+        width: 48%;
+        height: 96%;
+        .projectModalName{
+            font-size: 3rem;
+        }
+        .projectModalWorkingFor{
+            font-size: 1.8rem;
+            color: rgba(0,0,0,0.4);
+            span{
+                color: black;
+            }
+        }
+    }
 }

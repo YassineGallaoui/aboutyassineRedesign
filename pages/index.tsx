@@ -18,7 +18,9 @@ export default function Home({updateCursorText, cursorIsHover}: HomeProps) {
   const [trianglesPerRow, setTrianglesPerRow] = useState<number>(0);
   const [tempImgHover, setTempImageHover] = useState<StaticImageData>(defaultImg);
   //const [projectOpened, setProjectOpened] = useState<Boolean>(false);
-  const [projectOpened, setProjectOpened] = useState<any>(null);
+  const [projectOpened, setProjectOpened] = useState<any>(projectsDataset[0]);
+  const [projectOpenedBoolean, setProjectOpenedBoolean] = useState<boolean>(false);
+  
 
   useEffect(() => {
     const expContainer = document.scrollingElement || document.documentElement;
@@ -78,7 +80,7 @@ export default function Home({updateCursorText, cursorIsHover}: HomeProps) {
   const handleImageClick = (id: number) => {
     const currentPrj = projectsDataset.find(el => el.id === id);
     setProjectOpened(currentPrj);
-    let cph = document.querySelector('.currentPrjHovered');
+    setProjectOpenedBoolean(true);
     /* gsap.to(`#triangleProjectWrapper-${id}`, {
       position: 'fixed', width: '95vw', height:'95vh', backgroundColor:'white', 
       borderRadius: '30px', left: "50%", top: "50%", xPercent: -50, yPercent: -50, zIndex: '20'
@@ -91,6 +93,14 @@ export default function Home({updateCursorText, cursorIsHover}: HomeProps) {
     }); */
   }
 
+  useEffect(() => {
+    if(projectOpenedBoolean) {
+      gsap.to(`.modalMatteBkgrd`, {background: 'rgba(0,0,0,0.8'});
+    } else {
+      gsap.to(`.modalMatteBkgrd`, {background: 'rgba(0,0,0,0'});
+    }
+  },  [projectOpenedBoolean])
+
   return (
     <>
       <Head>
@@ -100,7 +110,7 @@ export default function Home({updateCursorText, cursorIsHover}: HomeProps) {
       <div className={styles.currentPrjHovered+' currentPrjHovered '}>
         <Image className={'bigBackgroundImage'} src={tempImgHover} layout="fill" alt="project"></Image>
       </div>
-      <div className={styles.prjOpened}>
+      <div className={styles.modalMatteBkgrd+' modalMatteBkgrd'}>
       </div>
       <div className={styles.expContainer+' expContainer col-12'}>
         {triangleRowsNumber > 0 && [...Array(triangleRowsNumber).keys()].map((row, index) => {return(
@@ -169,7 +179,7 @@ export default function Home({updateCursorText, cursorIsHover}: HomeProps) {
         )}
         )}
       </div>
-      <ProjectModal content={projectOpened} />
+      <ProjectModal content={projectOpened} open={projectOpenedBoolean} updateOpen={setProjectOpenedBoolean}/>
     </>
   )
 }

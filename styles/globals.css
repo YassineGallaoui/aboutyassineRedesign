@@ -11,9 +11,7 @@ body {
   cursor: none;
   box-sizing: border-box;
   transition: all 0.2s;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
 }
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
