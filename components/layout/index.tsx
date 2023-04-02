@@ -5,23 +5,19 @@ import Cursor from "../Cursor";
 
 type Props = {
     children?: ReactNode;
-    title?: string;
     cursorHover: boolean;
     cursorText: string|null;
+    updateCursorText: Function;
+    updateCursorStatus: Function;
 };
 
-const Layout = ({ cursorHover, cursorText, children, title = "My App" }: Props) => {
+const Layout = ({ updateCursorText, updateCursorStatus, cursorHover, cursorText, children }: Props) => {
     return (
-        <>
-            <Head>
-                <title>{title}</title>
-            </Head>
-            <main>
-                <Cursor hovered={cursorHover} txt={cursorText} />
-                <Frame />
-                {children}
-            </main>
-        </>
+        <main>
+            <Cursor updateCursorText={updateCursorText} updateCursorStatus={updateCursorStatus} hovered={cursorHover} txt={cursorText} />
+            <Frame updateCursorText={updateCursorText} updateCursorStatus={updateCursorStatus} />
+            {children}
+        </main>
     );
 };
 

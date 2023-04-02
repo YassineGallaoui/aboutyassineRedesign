@@ -9,7 +9,7 @@ import smartfit2 from '../public/imgs/smartfit-2.png'
 
 export const projectsDataset = [{
         "id":0,
-        "name":"maserati",
+        "name":"Maserati",
         "media":[
             imgMaserati1,
             imgMaserati2
@@ -18,7 +18,7 @@ export const projectsDataset = [{
 
     },{
         "id":1,
-        "name":"autotorino",
+        "name":"Autotorino",
         "media":[
             autotorino1,
             autotorino2

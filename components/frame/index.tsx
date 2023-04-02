@@ -16,7 +16,7 @@ import mailIcon from '../../public/icons/mail.svg'
 import linkedinIcon from '../../public/icons/linkedin.svg'
 import githubIcon from '../../public/icons/github.svg'
 
-export default function Frame() {
+export default function Frame({updateCursorText, updateCursorStatus}) {
     const [themeIconRot, setThemeIconRot] = useState(0);
     const [firstTime, setFirstTime] = useState(true);
 

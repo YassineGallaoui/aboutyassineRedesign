@@ -35,6 +35,10 @@ body .darkMode {
   background: #17182e;
   filter: invert(1);
 }
+html .darkMode img,
+body .darkMode img {
+  filter: invert(0);
+}
 
 main {
   height: 100vh;
@@ -76,5 +80,8 @@ a {
   }
   body ::after {
     filter: invert(1);
+  }
+  body img {
+    filter: invert(0);
   }
 }
