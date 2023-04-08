@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import styles from "../../styles/About.module.css";
+import styles from "../../styles/css/About.module.css";
 import { createSpanStructure, parallax } from "../../utility.js";
 import Head from "next/head";
-import Layout from "../../components/layout";
+import Layout from "../../components/Layout";
 
 export default function About() {
     useEffect(() => {

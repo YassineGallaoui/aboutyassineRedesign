@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import styles from "../../styles/ProjectModal.module.css"
+import styles from "./ProjectModal.module.scss"
 import gsap from 'gsap';
 
 export default function ProjectModal({ content, open, updateOpen }) {
@@ -9,17 +9,11 @@ export default function ProjectModal({ content, open, updateOpen }) {
                 position: 'fixed', width: '90vw', height:'90vh', backgroundColor:'rgba(255,255,255,1)', 
                 borderRadius: '30px', left: "50%", top: "50%", xPercent: -50, yPercent: -50, zIndex: '20', opacity: 1,
             });
-            /* gsap.to(`.projectCarousel`, {
-                width: '50%', height:'100%', clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", borderRadius: '30px'
-            }); */
         } else {
             gsap.to(`.projectModalContainer`, {
                 position: 'fixed', height:'0vh', backgroundColor:'rgba(255,255,255,0)', 
                 borderRadius: '0px', left: "50%", top: "-50%", xPercent: -50, yPercent: 0, zIndex: '20', opacity: 0,
             });
-            /* gsap.to(`.projectCarousel`, {
-                width: '50%', height:'100%', clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", borderRadius: '30px'
-            }); */
         }
     }, [open])
 

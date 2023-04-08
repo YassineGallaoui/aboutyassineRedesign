@@ -9,18 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/font": "^13.0.0",
-    "bootstrap": "^5.2.2",
+    "bootstrap": "^5.2.3",
     "gsap": "^3.11.5",
-    "next": "12.3.1",
+    "next": "^13.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "three": "^0.150.1"
+    "sass": "^1.61.0",
+    "typescript": "^5.0.4"
   },
   "devDependencies": {
-    "@types/node": "18.15.3",
-    "@types/react": "18.0.28",
-    "eslint": "8.26.0",
-    "eslint-config-next": "12.3.1"
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.33",
+    "eslint": "^8.38.0",
+    "eslint-config-next": "^13.3.0"
   }
 }

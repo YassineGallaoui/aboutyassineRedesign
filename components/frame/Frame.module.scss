@@ -1,6 +1,4 @@
-$gray: #00000088;
-$light-color: #dadba3;
-$dark-color: #17182e;
+@import "../../styles/scss/variables.scss";
 
 .frameContainer {
     position: fixed;
@@ -21,8 +19,8 @@ $dark-color: #17182e;
         align-items: flex-start;
         &__logo {
             position: relative;
-            width: 70px;
-            height: 70px;
+            width: 150px;
+            height: 35px;
             cursor: pointer;
             display: flex;
             flex-direction: row;
@@ -37,15 +35,16 @@ $dark-color: #17182e;
             }
             .letterY{
                 opacity: 1;
+                width: auto;
             }
             .letterA{
                 opacity: 0;
-                left: 0px;
+                left: 0px;width: auto;
                 transition: all 0.5s cubic-bezier(.16,-0.05,.53,.02);
             }
             .letterS{
                 opacity: 0;
-                left: 24px;
+                left: 24px;width: auto;
                 transition: all 0.5s cubic-bezier(.16,-0.05,.53,.02);
             }
             &:hover {
@@ -66,8 +65,8 @@ $dark-color: #17182e;
         align-items: flex-end;
         &__theme{
             position: relative;
-            width: 1.5rem;
-            height: 1.5rem;
+            width: 7rem;
+            height: 6.25rem;
             display: flex;
             flex-direction: row;
             justify-content: center;
@@ -75,8 +74,8 @@ $dark-color: #17182e;
             cursor: pointer;
             opacity: 1;
             transition: opacity 0.3s, transform 1s;
-            top: -1rem;
-            right: -1.25rem;
+            top: -4rem;
+            right: -4.75rem;
             transform: rotate(0deg);
             user-select: none;
             pointer-events: auto;
@@ -87,8 +86,8 @@ $dark-color: #17182e;
                 position: absolute;
                 width: 1.5rem;
                 height: 1.5rem;
-                top: -1rem;
-                right: -1.25rem;
+                top: 0.6rem;
+                right: 0.75rem;
                 
                 @keyframes rotateFirstSun {
                     from {
@@ -117,9 +116,9 @@ $dark-color: #17182e;
             &__dark{
                 position: absolute;
                 width: 1.2rem;
-                height: 1.2rem;
-                top: 1rem;
-                right: 1.25rem;
+                height: 1.6rem;
+                top: 4rem;
+                right: 5rem;
 
                 @keyframes showStars {
                     from{

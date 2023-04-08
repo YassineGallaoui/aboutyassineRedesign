@@ -1,10 +1,10 @@
 import {useCallback, useEffect, useState} from "react";
-import styles from '../styles/Home.module.css'
+import styles from '../styles/scss/Home.module.scss'
 import { parallax, scrollHorizontal } from "../utility";
 import Head from "next/head";
 import defaultImg from '../public/imgs/default.svg'
 import Image, { StaticImageData } from "next/image";
-import { projectsDataset } from "./dataset";
+import { projectsDataset } from "../dataset";
 import gsap from 'gsap';
 import ProjectModal from "../components/ProjectModal";
 
@@ -95,9 +95,9 @@ export default function Home({updateCursorText, cursorIsHover}: HomeProps) {
 
   useEffect(() => {
     if(projectOpenedBoolean) {
-      gsap.to(`.modalMatteBkgrd`, {background: 'rgba(0,0,0,0.8'});
+      gsap.to(`.modalMatteBkgrd`, {background: 'rgba(0,0,0,0.8)', zIndex: '5'});
     } else {
-      gsap.to(`.modalMatteBkgrd`, {background: 'rgba(0,0,0,0'});
+      gsap.to(`.modalMatteBkgrd`, {background: 'rgba(0,0,0,0)', zIndex: '-1'});
     }
   },  [projectOpenedBoolean])
 

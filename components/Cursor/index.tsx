@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import styles from "../../styles/Cursor.module.css"
+import styles from "./Cursor.module.scss"
 
 export default function Cursor({ hovered, txt, updateCursorText, updateCursorStatus }) {
     useEffect(() => {

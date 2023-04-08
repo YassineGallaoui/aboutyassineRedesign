@@ -1,5 +1,30 @@
-$light-color: #dadba3;
-$dark-color: #17182e;
+@import "./variables.scss";
+
+* {
+    box-sizing: border-box;
+}
+
+@mixin light-mode {
+    * {
+        filter: invert(0);
+    }
+    color: $dark-color;
+    background: $light-color;
+    .sectionBkgrdTxt {
+        color: $semitransparent1;
+    }
+}
+
+@mixin dark-mode {
+    /* * {
+        filter: invert(1);
+    } */
+    color: $light-color;
+    background: $dark-color;
+    .sectionBkgrdTxt {
+        color: $semitransparent2;
+    }
+}
 
 html,
 body {
@@ -22,20 +47,14 @@ body {
         pointer-events: none;
         user-drag: none;
     }
-    .lightMode{
-        color: $dark-color;
-        background: $light-color;
-        filter: invert(0);
+    &.lightMode{
+        @include light-mode;
     }
-    .darkMode{
-        //color: $light-color;
-        background: $dark-color;
-        filter: invert(1);
-        img {
-            filter: invert(0);
-        }
+    &.darkMode{
+        @include dark-mode;
     }
 }
+
 main {
     height: 100vh;
     max-height: 100vh;
@@ -44,42 +63,20 @@ main {
     flex-direction: row;
     align-items: center;
 }
+
 a {
     color: inherit;
     text-decoration: none;
 }
 
-* {
-    box-sizing: border-box;
-}
-
 @media (prefers-color-scheme: light) {
-    html {
-        color-scheme: light;
-    }
-
     body {
-        color: $dark-color;
-        background: $light-color;
-        ::after{
-            filter: invert(0);
-        }
+        @include light-mode;
     }
 }
 
 @media (prefers-color-scheme: dark) {
-    html {
-        color-scheme: dark;
-    }
-
     body {
-        color: $light-color;
-        background: $dark-color;
-        ::after{
-            filter: invert(1);
-        }
-        img {
-            filter: invert(0);
-        }
+        @include dark-mode;
     }
 }

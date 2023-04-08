@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import Head from "next/head";
-import Frame from "../frame";
+import Frame from "../Frame";
 import Cursor from "../Cursor";
 
 type Props = {
