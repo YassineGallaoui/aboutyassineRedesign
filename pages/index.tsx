@@ -108,7 +108,7 @@ export default function Home({updateCursorText, cursorIsHover}: HomeProps) {
       </Head>
       <div className={styles.expBkgrdTxt+' sectionBkgrdTxt'}>Exp</div>
       <div className={styles.currentPrjHovered+' currentPrjHovered '}>
-        <Image className={'bigBackgroundImage'} src={tempImgHover} layout="fill" alt="project"></Image>
+        <Image className={'bigBackgroundImage'} src={tempImgHover} fill alt="project"></Image>
       </div>
       <div className={styles.modalMatteBkgrd+' modalMatteBkgrd'}>
       </div>
@@ -149,7 +149,7 @@ export default function Home({updateCursorText, cursorIsHover}: HomeProps) {
                         src={projectsDataset[index2-((trianglesPerRow-4)/2)]?.media[0]}
                         id={`image-${projectsDataset[index2-((trianglesPerRow-4)/2)]?.id}`}
                         className={'image'}
-                        layout="fill"
+                        fill
                         alt="project"
                         onMouseOver={() => handleImageHover(projectsDataset[index2-((trianglesPerRow-4)/2)]?.id)}
                         onMouseLeave={() => handleImageLeave(projectsDataset[index2-((trianglesPerRow-4)/2)]?.id)}

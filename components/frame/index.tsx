@@ -68,7 +68,7 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                             onClick={()=>themeChange('light')}>
                         <Image
                             src={lightIconBase}
-                            layout='fill'
+                            fill
                             sizes="(max-width: 768px) 100vw,
                                     (max-width: 1200px) 50vw,
                                     33vw"
@@ -77,7 +77,7 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                         <Image
                             className={styles.firstSun}
                             src={lightIcon}
-                            layout='fill'
+                            fill
                             sizes="(max-width: 768px) 100vw,
                                     (max-width: 1200px) 50vw,
                                     33vw"
@@ -86,7 +86,7 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                         <Image
                             className={styles.secondSun}
                             src={lightIcon}
-                            layout='fill'
+                            fill
                             sizes="(max-width: 768px) 100vw,
                                     (max-width: 1200px) 50vw,
                                     33vw"
@@ -95,7 +95,7 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                         <Image
                             className={styles.thirdSun}
                             src={lightIcon}
-                            layout='fill'
+                            fill
                             sizes="(max-width: 768px) 100vw,
                                     (max-width: 1200px) 50vw,
                                     33vw"
@@ -106,7 +106,7 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                             onClick={()=>themeChange('dark')}>
                         <Image
                             src={darkIcon}
-                            layout='fill'
+                            fill
                             sizes="(max-width: 768px) 100vw,
                                     (max-width: 1200px) 50vw,
                                     33vw"
@@ -115,7 +115,7 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                         <Image
                             className={styles.moonStars1}
                             src={darkIconStars1}
-                            layout='fill'
+                            fill
                             sizes="(max-width: 768px) 100vw,
                                     (max-width: 1200px) 50vw,
                                     33vw"
@@ -125,7 +125,7 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                         <Image
                             className={styles.moonStars2}
                             src={darkIconStars2}
-                            layout='fill'
+                            fill
                             sizes="(max-width: 768px) 100vw,
                                     (max-width: 1200px) 50vw,
                                     33vw"
@@ -156,7 +156,7 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                             onMouseLeave={()=> updateCursorStatus(false)}>
                             <Image
                                 src={cvIcon}
-                                layout='fill'
+                                fill
                                 sizes="(max-width: 768px) 100vw,
                                         (max-width: 1200px) 50vw,
                                         33vw"
@@ -170,7 +170,7 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                             onMouseLeave={()=> updateCursorStatus(false)}>
                             <Image
                                 src={mailIcon}
-                                layout='fill'
+                                fill
                                 sizes="(max-width: 768px) 100vw,
                                         (max-width: 1200px) 50vw,
                                         33vw"
@@ -184,7 +184,7 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                             onMouseLeave={()=> updateCursorStatus(false)}>
                             <Image
                                 src={linkedinIcon}
-                                layout='fill'
+                                fill
                                 sizes="(max-width: 768px) 100vw,
                                         (max-width: 1200px) 50vw,
                                         33vw"
@@ -198,7 +198,7 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                             onMouseLeave={()=> updateCursorStatus(false)}>
                             <Image
                                 src={githubIcon}
-                                layout='fill'
+                                fill
                                 sizes="(max-width: 768px) 100vw,
                                         (max-width: 1200px) 50vw,
                                         33vw"
