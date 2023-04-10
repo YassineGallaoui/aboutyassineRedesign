@@ -3,14 +3,15 @@ import { useEffect, useRef, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import arrRight from "../../public/icons/arr.svg";
 import gsap from "gsap";
+import { Project } from "../../dataset";
 
 interface CarouselProps {
-  images: StaticImageData[];
-  w: number;
-  h: number;
+  content: Project;
 }
 
-function Carousel({ images, w, h }: CarouselProps) {
+function Carousel({ content }: CarouselProps) {
+  const images = content.media;
+  const altText = content.name+' for '+content.workingFor;
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [prevImgSrc, setPrevImgSrc] = useState<StaticImageData>(
     images[images.length - 1]
@@ -140,13 +141,13 @@ function Carousel({ images, w, h }: CarouselProps) {
     <div className={styles.component}>
       <div className={styles.currentImageContainer}>
         <div className={styles.prevImg}>
-          <Image ref={prevImageRef} src={prevImgSrc} alt={""} fill></Image>
+          <Image ref={prevImageRef} src={prevImgSrc} alt={altText} fill></Image>
         </div>
         <div className={styles.currentImg} ref={mainImageRef}>
-          <Image src={currentImgSrc} alt={""} fill></Image>
+          <Image src={currentImgSrc} alt={altText} fill></Image>
         </div>
         <div className={styles.nextImg}>
-          <Image ref={nextImageRef} src={nextImgSrc} alt={""} fill></Image>
+          <Image ref={nextImageRef} src={nextImgSrc} alt={altText} fill></Image>
         </div>
       </div>
       <div className={styles.thumbnailControls}>
@@ -161,11 +162,11 @@ function Carousel({ images, w, h }: CarouselProps) {
               }
               onClick={() => goToImageIndex(index)}
             >
-              <Image src={el} alt={""} fill></Image>
+              <Image src={el} alt={altText} fill></Image>
             </div>
           ))}
         </div>
-        <div className={styles.controls}>
+        <div className={styles.controls}> 
           <div
             className={styles.prevButton}
             onMouseOver={() => prevBtnMouseOver()}

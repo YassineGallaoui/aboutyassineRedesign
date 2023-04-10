@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import styles from "../../styles/css/About.module.css";
+import styles from "../../styles/scss/About.module.scss";
 import { createSpanStructure, parallax } from "../../utility";
 import Head from "next/head";
 

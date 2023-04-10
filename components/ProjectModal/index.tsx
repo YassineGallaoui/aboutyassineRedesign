@@ -2,8 +2,15 @@ import { useEffect, useState } from "react";
 import styles from "./ProjectModal.module.scss"
 import gsap from 'gsap';
 import ThreeCarousel from "../ThreeCarousel";
+import { Project } from "../../dataset";
 
-export default function ProjectModal({ content, open, updateOpen }) {
+type ModalProps = {
+  content: Project,
+  open: boolean,
+  updateOpen: Function;
+}
+
+export default function ProjectModal({ content, open, updateOpen }: ModalProps) {
     const [carouselSectionWidth, setCarouselSectionWidth] = useState<number|null>(null);
     const [carouselSectionHeight, setCarouselSectionHeight] = useState<number | null>(null);
 
@@ -47,18 +54,42 @@ export default function ProjectModal({ content, open, updateOpen }) {
           id="projectCarouselWrapper"
           className={styles.projectCarouselWrapper}
         >
-          <ThreeCarousel
-            images={content.media}
-            w={carouselSectionWidth}
-            h={carouselSectionHeight}
-          ></ThreeCarousel> 
+          <ThreeCarousel content={content}></ThreeCarousel>
         </div>
-        <div className={styles.projectModalDescription}>
+        <div className={styles.projectModalDescriptionWrapper}>
           <div className={styles.projectModalName}>{content.name}</div>
-          <div className={styles.projectModalWorkingFor}>
+          <table>
+            <tr>
+              <td>{"Working for"}</td>
+              <td>{content.workingFor}</td>
+            </tr>
+            <tr>
+              <td colSpan={2}>{content.description}</td>
+            </tr>
+            <tr>
+              <td>{"Frontend"}</td>
+              <td>{content.frontend}</td>
+            </tr>
+            <tr>
+              <td>{"Backend"}</td>
+              <td>{content.backend}</td>
+            </tr>
+          </table>
+          {/* <div className={styles.projectModalWorkingFor}>
             {"Working for : "}
             <span>{content.workingFor}</span>
           </div>
+          <div className={styles.projectModalDescription}>
+            <span>{content.description}</span>
+          </div>
+          <div className={styles.projectModalFrontend}>
+            <span>{"Frontend :"}</span>
+            <span>{content.frontend}</span>
+          </div>
+          <div className={styles.projectModalBackend}>
+            <span>{"Backend :"}</span>
+            <span>{content.backend}</span>
+          </div> */}
         </div>
         <div
           className={styles.closeModalBtn + " closeModalBtn"}

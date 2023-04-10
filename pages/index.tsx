@@ -4,7 +4,7 @@ import { parallax, scrollHorizontal } from "../utility";
 import Head from "next/head";
 import defaultImg from '../public/imgs/default.svg'
 import Image, { StaticImageData } from "next/image";
-import { projectsDataset } from "../dataset";
+import { Project, projectsDataset } from "../dataset";
 import gsap from 'gsap';
 import ProjectModal from "../components/ProjectModal";
 
@@ -18,7 +18,9 @@ export default function Home({updateCursorText, cursorIsHover}: HomeProps) {
   const [trianglesPerRow, setTrianglesPerRow] = useState<number>(0);
   const [tempImgHover, setTempImageHover] = useState<StaticImageData>(defaultImg);
   //const [projectOpened, setProjectOpened] = useState<Boolean>(false);
-  const [projectOpened, setProjectOpened] = useState<any>(projectsDataset[0]);
+  const [projectOpened, setProjectOpened] = useState<Project>(
+    projectsDataset[0]
+  );
   const [projectOpenedBoolean, setProjectOpenedBoolean] = useState<boolean>(false);
   
 

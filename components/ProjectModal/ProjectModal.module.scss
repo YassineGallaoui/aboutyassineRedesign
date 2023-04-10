@@ -45,10 +45,11 @@
         border-radius: 22px;
         padding: 1rem;
     }
-    .projectModalDescription{
+    .projectModalDescriptionWrapper{
         position: relative;
+        top: 1rem;
         left: 2rem;
-        width: 48%;
+        width: 46%;
         height: 96%;
         .projectModalName{
             font-size: 3rem;
@@ -58,6 +59,21 @@
             color: rgba(0,0,0,0.4);
             span{
                 color: black;
+            }
+        }
+        table {
+            font-size: 1.5rem;
+            color: rgba(0, 0, 0, 0.4);
+            tr{
+                border-bottom: 1px solid $semitransparent1;
+                &:last-of-type {
+                    border-bottom: none;
+                }
+                td:last-of-type{
+                    padding-top: 1rem;
+                        padding-bottom: 1rem;
+                    color: black;
+                }
             }
         }
     }
