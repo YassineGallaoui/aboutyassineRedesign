@@ -4,6 +4,7 @@ import Image, { StaticImageData } from "next/image";
 import arrRight from "../../public/icons/arr.svg";
 import gsap from "gsap";
 import { Project } from "../../dataset";
+import { createSpanStructure, textAnimationBackward, textAnimationForward } from "../../utility";
 
 interface CarouselProps {
   content: Project;
@@ -26,7 +27,6 @@ function Carousel({ content, updateCursorText, cursorIsHover }: CarouselProps) {
   const tl = gsap.timeline({});
   const tl2 = gsap.timeline({});
   const tl3 = gsap.timeline({}); //only for controller
-  const tl4 = gsap.timeline({}); //only for img opacity
 
   const prevBtnMouseOver = () => {
     tl.to(prevBtnRef.current, { duration: 0.2, x: -20 })
@@ -43,10 +43,16 @@ function Carousel({ content, updateCursorText, cursorIsHover }: CarouselProps) {
   };
 
   const prevBtnClick = () => {
-    goToImageIndex(
-      currentIndex === 0 ? images.length - 1 : currentIndex - 1,
-      "left"
-    );
+    let imagesNumber = document.querySelectorAll(".indexWrapper > span > span");
+    imagesNumber.forEach((el, index) => {
+      textAnimationForward(el, index + 1);
+    });
+    setTimeout(() => {
+      goToImageIndex(
+        currentIndex === 0 ? images.length - 1 : currentIndex - 1,
+        "left"
+      );
+    }, 100);
     tl3
       .to(prevBtnRef.current, { duration: 0.2, x: -3 })
       .to(prevBtnRef.current, {
@@ -55,14 +61,27 @@ function Carousel({ content, updateCursorText, cursorIsHover }: CarouselProps) {
   };
 
   const nextBtnClick = () => {
-    goToImageIndex(
-      currentIndex === images.length - 1 ? 0 : currentIndex + 1,
-      "right"
-    );
+    let imagesNumber = document.querySelectorAll(".indexWrapper > span > span");
+    imagesNumber.forEach((el, index)=>{
+      textAnimationBackward(el, index+1);
+    })
+
+    setTimeout(()=>{
+      goToImageIndex(
+        currentIndex === images.length - 1 ? 0 : currentIndex + 1,
+        "right"
+      );  
+    }, 100)
+
     tl3.to(nextBtnRef.current, { duration: 0.2, x: 3 }).to(nextBtnRef.current, {
       x: 0,
     });
   };
+
+  const thumbnailClickHandle = (index: number) => {
+    
+    goToImageIndex(index);
+  }
 
   const goToImageIndex = (index, direction = null) => {
     if (index != currentIndex) {
@@ -99,6 +118,7 @@ function Carousel({ content, updateCursorText, cursorIsHover }: CarouselProps) {
         tl2
           .to(nextImageRef.current, {
             duration: 0,
+            delay: 0.1,
             x: "-90%",
             filter: "grayscale(1)",
             scale: 1.1,
@@ -148,6 +168,7 @@ function Carousel({ content, updateCursorText, cursorIsHover }: CarouselProps) {
         tl2
           .to(prevImageRef.current, {
             duration: 0,
+            delay: 0.1,
             x: "90%",
             filter: "grayscale(1)",
             scale: 1.1,
@@ -176,6 +197,15 @@ function Carousel({ content, updateCursorText, cursorIsHover }: CarouselProps) {
 
   return (
     <div className={styles.component}>
+      <div className={styles.indexWrapper + " indexWrapper"}>
+        <span>
+          <span>{"0"}</span>
+        </span>
+        <span>
+          <span>{currentIndex + 1}</span>
+        </span>
+      </div>
+      <div className={styles.expandCarouselWrapper + " expandCarouselWrapper"}></div>
       <div className={styles.currentImageContainer}>
         <div className={styles.prevImg}>
           <Image ref={prevImageRef} src={prevImgSrc} alt={altText} fill></Image>
@@ -197,7 +227,7 @@ function Carousel({ content, updateCursorText, cursorIsHover }: CarouselProps) {
                 " " +
                 (index === currentIndex ? styles.currentImg : "")
               }
-              onClick={() => goToImageIndex(index)}
+              onClick={() => thumbnailClickHandle(index)}
             >
               <Image src={el} alt={altText} fill></Image>
             </div>

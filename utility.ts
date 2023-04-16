@@ -1,12 +1,27 @@
 import { useEffect, useState } from "react";
+import gsap from "gsap";
 
 export function createSpanStructure(w) {
     const charArr = w.split('');
     let returnString = '';
     charArr.forEach((element, index) => {
-      returnString += `<span style="--i:${index+1}">${element}</span>`;  
+      returnString += `<span style="--i:${index + 1}"><span>${element}</span></span>`;  
     });
     return returnString;
+}
+
+export function textAnimationForward(el, index) {
+  const tl = gsap.timeline({});
+  tl.to(el, { delay: 0.05 * index, duration: 0.25, x: 10 })
+    .to(el, { duration: 0, x: -10 })
+    .to(el, { duration: 0.25, x: 0 });
+}
+
+export function textAnimationBackward(el, index) {
+  const tl = gsap.timeline({});
+  tl.to(el, { delay: 0.05 * index, duration: 0.25, x: -10 })
+    .to(el, { duration: 0, x: 10 })
+    .to(el, { duration: 0.25, x: 0 });
 }
 
 
