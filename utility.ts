@@ -60,11 +60,6 @@ export const useSwipe = () => {
     if (elapsedTime <= allowedTime && dist >= threshold) {
       if (Math.abs(startX - e.changedTouches[0].pageX) >= threshold) {
         const swipeDirection = startX > e.changedTouches[0].pageX ? "left" : "right";
-        if (swipeDirection === "left") {
-          console.log("ciao");
-        } else {
-          console.log("addio");
-        }
         setPosition((prevPosition) =>
           startX > e.changedTouches[0].pageX
             ? prevPosition + 100

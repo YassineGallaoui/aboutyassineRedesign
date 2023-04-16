@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import styles from "./Cursor.module.scss"
 
-export default function Cursor({ hovered, txt, updateCursorText, updateCursorStatus }) {
+export default function Cursor({ hovered, txt }) {
     useEffect(() => {
         const cc: HTMLElement = document.querySelector(".customCursorContainer");
         document.addEventListener('mousemove', (e) => {

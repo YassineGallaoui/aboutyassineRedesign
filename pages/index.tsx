@@ -83,16 +83,6 @@ export default function Home({updateCursorText, cursorIsHover}: HomeProps) {
     const currentPrj = projectsDataset.find(el => el.id === id);
     setProjectOpened(currentPrj);
     setProjectOpenedBoolean(true);
-    /* gsap.to(`#triangleProjectWrapper-${id}`, {
-      position: 'fixed', width: '95vw', height:'95vh', backgroundColor:'white', 
-      borderRadius: '30px', left: "50%", top: "50%", xPercent: -50, yPercent: -50, zIndex: '20'
-    });
-    gsap.to(`#triangleProjectContent-${id}`, {
-      width: '50%', height:'100%', clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
-    });
-    gsap.to(`#triangleProjectContent-${id} img`, {
-      borderRadius: '30px'
-    }); */
   }
 
   useEffect(() => {
@@ -181,7 +171,7 @@ export default function Home({updateCursorText, cursorIsHover}: HomeProps) {
         )}
         )}
       </div>
-      <ProjectModal content={projectOpened} open={projectOpenedBoolean} updateOpen={setProjectOpenedBoolean}/>
+      <ProjectModal content={projectOpened} open={projectOpenedBoolean} updateOpen={setProjectOpenedBoolean} updateCursorText={updateCursorText} cursorIsHover={cursorIsHover}/>
     </>
   )
 }
