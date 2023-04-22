@@ -2,6 +2,7 @@ import styles from "./Carousel.module.scss";
 import { useEffect, useRef, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import arrRight from "../../public/icons/arr.svg";
+import arrExpand from "../../public/icons/expand.svg";
 import gsap from "gsap";
 import { Project } from "../../dataset";
 import { createSpanStructure, textAnimationBackward, textAnimationForward } from "../../utility";
@@ -19,14 +20,21 @@ function Carousel({ content, updateCursorText, cursorIsHover }: CarouselProps) {
   const [prevImgSrc, setPrevImgSrc] = useState<StaticImageData>(images[images.length - 1]);
   const [currentImgSrc, setCurrentImgSrc] = useState<StaticImageData>(images[0]);
   const [nextImgSrc, setNextImgSrc] = useState<StaticImageData>(images[1]);
+  const [spanTags, setSpanTags] = useState<NodeListOf<Element>>();
   const prevBtnRef = useRef(null);
   const nextBtnRef = useRef(null);
+  const expandBtnRef  = useRef(null);
   const prevImageRef = useRef(null);
   const mainImageRef = useRef(null);
   const nextImageRef = useRef(null);
   const tl = gsap.timeline({});
   const tl2 = gsap.timeline({});
   const tl3 = gsap.timeline({}); //only for controller
+
+  useEffect(()=>{
+    let imagesNumber = document.querySelectorAll(".indexWrapper > span > span");
+    setSpanTags(imagesNumber);
+  }, [])
 
   const prevBtnMouseOver = () => {
     tl.to(prevBtnRef.current, { duration: 0.2, x: -20 })
@@ -42,17 +50,34 @@ function Carousel({ content, updateCursorText, cursorIsHover }: CarouselProps) {
     cursorIsHover(true);
   };
 
+  const expandBtnMouseOver = () => {
+    console.log("expandBtnMouseOver");
+    tl.to(expandBtnRef.current, { duration: 0.3, scale: 2 });
+    cursorIsHover(true);
+  };
+
+  const expandBtnMouseLeave = () => {
+    console.log("expandBtnMouseLeave");
+    tl.to(expandBtnRef.current, { duration: 0.3, scale: 1 });
+    cursorIsHover(false);
+  };
+
+  const expandBtnClick = () =>{
+
+  };
+
   const prevBtnClick = () => {
-    let imagesNumber = document.querySelectorAll(".indexWrapper > span > span");
-    imagesNumber.forEach((el, index) => {
+    spanTags.forEach((el, index) => {
       textAnimationForward(el, index + 1);
     });
+
     setTimeout(() => {
       goToImageIndex(
         currentIndex === 0 ? images.length - 1 : currentIndex - 1,
         "left"
       );
-    }, 100);
+    }, 200);
+
     tl3
       .to(prevBtnRef.current, { duration: 0.2, x: -3 })
       .to(prevBtnRef.current, {
@@ -61,26 +86,32 @@ function Carousel({ content, updateCursorText, cursorIsHover }: CarouselProps) {
   };
 
   const nextBtnClick = () => {
-    let imagesNumber = document.querySelectorAll(".indexWrapper > span > span");
-    imagesNumber.forEach((el, index)=>{
-      textAnimationBackward(el, index+1);
-    })
+    spanTags.forEach((el, index) => {
+      textAnimationBackward(el, index + 1);
+    });
 
     setTimeout(()=>{
       goToImageIndex(
         currentIndex === images.length - 1 ? 0 : currentIndex + 1,
         "right"
       );  
-    }, 100)
+    }, 200)
 
     tl3.to(nextBtnRef.current, { duration: 0.2, x: 3 }).to(nextBtnRef.current, {
       x: 0,
     });
   };
 
-  const thumbnailClickHandle = (index: number) => {
-    
-    goToImageIndex(index);
+  const thumbnailClickHandle = (imageIndex: number) => {
+    console.log(imageIndex > currentIndex);
+    if (imageIndex != currentIndex) {
+      spanTags.forEach((el, index) => {
+        imageIndex > currentIndex
+          ? textAnimationBackward(el, index + 1)
+          : textAnimationForward(el, index + 1);
+      });
+      goToImageIndex(imageIndex);
+    }
   }
 
   const goToImageIndex = (index, direction = null) => {
@@ -205,7 +236,20 @@ function Carousel({ content, updateCursorText, cursorIsHover }: CarouselProps) {
           <span>{currentIndex + 1}</span>
         </span>
       </div>
-      <div className={styles.expandCarouselWrapper + " expandCarouselWrapper"}></div>
+      <div
+        className={styles.expandCarouselWrapper + " expandCarouselWrapper"}
+        onMouseOver={() => expandBtnMouseOver()}
+        onMouseLeave={() => expandBtnMouseLeave()}
+        onClick={() => expandBtnClick()}
+      >
+        <Image
+          id="arrExpand"
+          ref={expandBtnRef}
+          className={styles.arrExpand}
+          src={arrExpand}
+          alt={"expand"}
+        ></Image>
+      </div>
       <div className={styles.currentImageContainer}>
         <div className={styles.prevImg}>
           <Image ref={prevImageRef} src={prevImgSrc} alt={altText} fill></Image>
