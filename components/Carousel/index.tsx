@@ -5,15 +5,17 @@ import arrRight from "../../public/icons/arr.svg";
 import arrExpand from "../../public/icons/expand.svg";
 import gsap from "gsap";
 import { Project } from "../../dataset";
-import { createSpanStructure, textAnimationBackward, textAnimationForward } from "../../utility";
+import { textAnimationBackward, textAnimationForward } from "../../utility";
 
 interface CarouselProps {
   content: Project;
   updateCursorText: Function;
   cursorIsHover: Function;
+  expandedCarousel: boolean;
+  setExpandedCarousel: Function;
 }
 
-function Carousel({ content, updateCursorText, cursorIsHover }: CarouselProps) {
+function Carousel({ content, updateCursorText, cursorIsHover, expandedCarousel, setExpandedCarousel }: CarouselProps) {
   const images = content.media;
   const altText = content.name + " for " + content.workingFor;
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -29,7 +31,7 @@ function Carousel({ content, updateCursorText, cursorIsHover }: CarouselProps) {
   const nextImageRef = useRef(null);
   const tl = gsap.timeline({});
   const tl2 = gsap.timeline({});
-  const tl3 = gsap.timeline({}); //only for controller
+  const tl3 = gsap.timeline({}); // only for controller
 
   useEffect(()=>{
     let imagesNumber = document.querySelectorAll(".indexWrapper > span > span");
@@ -52,7 +54,7 @@ function Carousel({ content, updateCursorText, cursorIsHover }: CarouselProps) {
 
   const expandBtnMouseOver = () => {
     console.log("expandBtnMouseOver");
-    tl.to(expandBtnRef.current, { duration: 0.3, scale: 2 });
+    tl.to(expandBtnRef.current, { duration: 0.3, scale: 1.4 });
     cursorIsHover(true);
   };
 
@@ -63,7 +65,19 @@ function Carousel({ content, updateCursorText, cursorIsHover }: CarouselProps) {
   };
 
   const expandBtnClick = () =>{
-
+    console.log('click on expand button');
+    setExpandedCarousel(!expandedCarousel);
+    if(expandedCarousel){
+      gsap.to('.expandCarouselWrapper', {
+        duration: 0.6,
+        right: '1rem',
+      })
+    } else {
+      gsap.to('.expandCarouselWrapper', {
+        duration: 0.6,
+        right: '4rem',
+      })
+    }
   };
 
   const prevBtnClick = () => {

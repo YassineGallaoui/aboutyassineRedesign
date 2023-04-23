@@ -10,8 +10,8 @@
     width: 90vw;
     .closeModalBtn{
         position: absolute;
-        top: 1.5rem;
-        right: 1.5rem;
+        top: 2rem;
+        right: 2rem;
         height: 2rem;
         width: 2rem;
         display: flex;
@@ -35,24 +35,27 @@
         }
     }
     .projectCarouselWrapper{
-        background-color: rgba(109, 0, 0, 0.5);
         width: 50%;
-        height: 96%;
+        height: 100%;
         position: relative;
-        top: 1rem;
-        left: 1rem;
-        border-radius: 22px;
         padding: 1rem;
+        flex: 1;
     }
     .projectModalDescriptionWrapper{
         position: relative;
-        top: 1rem;
-        left: 2rem;
-        width: 46%;
-        height: 96%;
+        height: 100%;
         overflow-y: scroll;
         -ms-overflow-style: none;// Hide scrollbar for IE and Edge
         scrollbar-width: none; //firefox
+        padding: 1rem;
+        overflow-y: hidden;
+        box-sizing: border-box;
+        flex: 1;
+        .projectDescriptionComponent {
+            height: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
         &::-webkit-scrollbar {
             display: none; //chrome and safari
         }

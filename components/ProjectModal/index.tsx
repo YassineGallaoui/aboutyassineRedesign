@@ -18,12 +18,9 @@ export default function ProjectModal({
   updateOpen,
   updateCursorText,
   cursorIsHover}: ModalProps) {
-  const [carouselSectionWidth, setCarouselSectionWidth] = useState<
-    number | null
-  >(null);
-  const [carouselSectionHeight, setCarouselSectionHeight] = useState<
-    number | null
-  >(null);
+  const [carouselSectionWidth, setCarouselSectionWidth] = useState<number | null>(null);
+  const [carouselSectionHeight, setCarouselSectionHeight] = useState<number | null>(null);
+  const [expandedCarousel, setExpandedCarousel] = useState<boolean>(false);
 
   useEffect(() => {
     if (open) {
@@ -78,6 +75,41 @@ export default function ProjectModal({
     gsap.to(`.closeModalBtn`, { transform: "rotate(0deg)" });
   };
 
+  useEffect(()=>{
+    const descriptionWrapper = document.querySelector('.projectModalDescriptionWrapper');
+    const fadeEffectBox = document.querySelector('.fadeEffectBox') as HTMLElement;
+    if(expandedCarousel){
+      fadeEffectBox.style.backgroundImage = 'none';
+      gsap.to(descriptionWrapper, {
+        duration: 0.6,
+        opacity: 0,
+        x: 100,
+        flex: 0,
+        padding: 0,
+      })
+      gsap.to('.closeModalBtn', {
+        delay: 0.3,
+        duration: 0.3,
+        filter: 'invert(1)',
+      })
+    } else {
+      gsap.to(descriptionWrapper, {
+        duration: 0.6,
+        opacity: 1,
+        x: 0,
+        flex: 1,
+        padding: '1rem',
+      })
+      gsap.to('.closeModalBtn', {
+        duration: 0.3,
+        filter: 'invert(0)',
+      })
+      setTimeout(() => {
+        fadeEffectBox.style.backgroundImage = 'linear-gradient(0deg, white, transparent)';
+      }, 650); 
+    }
+  }, [expandedCarousel])
+
   return (
     <div className={styles.projectModalContainer + " projectModalContainer"}>
       <div
@@ -88,33 +120,37 @@ export default function ProjectModal({
           content={content}
           updateCursorText={updateCursorText}
           cursorIsHover={cursorIsHover}
+          expandedCarousel={expandedCarousel}
+          setExpandedCarousel={setExpandedCarousel}
         ></ThreeCarousel>
       </div>
-      <div className={styles.projectModalDescriptionWrapper}>
-        <div className={styles.projectModalName}>{content.name}</div>
-        <table>
-          <tr className={styles.bottomBorder}>
-            <td className={styles.characteristic}>{"Working for"}</td>
-            <td>{content.workingFor}</td>
-          </tr>
-          <tr aria-rowspan={2} className={styles.descriptionTitle}>
-            <td colSpan={2} className={styles.characteristic}>
-              {"Description"}
-            </td>
-          </tr>
-          <tr className={styles.bottomBorder + " " + styles.description}>
-            <td colSpan={2}>{content.description}</td>
-          </tr>
-          <tr className={styles.bottomBorder}>
-            <td className={styles.characteristic}>{"Frontend"}</td>
-            <td>{content.frontend}</td>
-          </tr>
-          <tr>
-            <td className={styles.characteristic}>{"Backend"}</td>
-            <td>{content.backend}</td>
-          </tr>
-        </table>
-        <div className={styles.fadeEffect}></div>
+      <div className={styles.projectModalDescriptionWrapper+' projectModalDescriptionWrapper'}>
+        <div className={styles.projectDescriptionComponent}>
+          <div className={styles.projectModalName}>{content.name}</div>
+          <table>
+            <tr className={styles.bottomBorder}>
+              <td className={styles.characteristic}>{"Working for"}</td>
+              <td>{content.workingFor}</td>
+            </tr>
+            <tr aria-rowspan={2} className={styles.descriptionTitle}>
+              <td colSpan={2} className={styles.characteristic}>
+                {"Description"}
+              </td>
+            </tr>
+            <tr className={styles.bottomBorder + " " + styles.description}>
+              <td colSpan={2}>{content.description}</td>
+            </tr>
+            <tr className={styles.bottomBorder}>
+              <td className={styles.characteristic}>{"Frontend"}</td>
+              <td>{content.frontend}</td>
+            </tr>
+            <tr>
+              <td className={styles.characteristic}>{"Backend"}</td>
+              <td>{content.backend}</td>
+            </tr>
+          </table>
+          <div className={styles.fadeEffect+' fadeEffectBox'}></div>
+        </div>
       </div>
       <div
         className={styles.closeModalBtn + " closeModalBtn"}
