@@ -55,6 +55,11 @@
             height: 100%;
             overflow-y: scroll;
             overflow-x: hidden;
+            -ms-overflow-style: none; // Hide scrollbar for IE and Edge
+            scrollbar-width: none; //firefox
+            &::-webkit-scrollbar {
+                display: none; //chrome and safari
+            }
         }
         &::-webkit-scrollbar {
             display: none; //chrome and safari

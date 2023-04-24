@@ -1,5 +1,6 @@
 @import "../../styles/scss/variables.scss";
-.component{
+
+.component {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -10,19 +11,23 @@
     padding: 1rem;
     border-radius: 22px;
     overflow: hidden;
-    .indexWrapper{
+
+    .indexWrapper {
         position: fixed;
-        span{
+
+        span {
             display: inline-block;
             overflow: hidden;
-            span{
+
+            span {
                 position: relative;
                 display: block;
                 color: $light-color;
             }
         }
     }
-    .expandCarouselWrapper{
+
+    .expandCarouselWrapper {
         position: fixed;
         width: 30px;
         height: 30px;
@@ -36,7 +41,8 @@
         right: 1rem;
         z-index: 1;
     }
-    .currentImageContainer{
+
+    .currentImageContainer {
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -45,28 +51,37 @@
         height: 92%;
         left: -100%;
         position: relative;
-        > div {
-            width: 100%; 
+
+        >div {
+            width: 100%;
             height: 100%;
-            img{
+
+            img {
                 object-fit: contain;
             }
-            &.prevImg > img, &.nextImg >img {
+            &.prevImg > img {
+                opacity: 0;
+            }
+            &.nextImg > img {
+                opacity: 0;
             }
         }
     }
-    .thumbnailControls{
+
+    .thumbnailControls {
         width: 100%;
         height: 8%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-end;
+
         img {
             object-fit: cover;
-            
+
         }
-        .thumbnails{
+
+        .thumbnails {
             width: calc(100% - 110px);
             height: 100%;
             display: flex;
@@ -74,29 +89,36 @@
             justify-content: flex-start;
             align-items: center;
             gap: 1%;
+
             .singleThumbnail {
                 width: calc(20% - 10px);
                 height: 100%;
                 filter: grayscale(1);
                 transition: all 0.3s;
+
                 &:hover {
                     filter: grayscale(0.5);
                 }
-                &.currentImg{
+
+                &.currentImg {
                     filter: grayscale(0);
                 }
-                &.nextImg{
+
+                &.nextImg {
                     left: 50px;
                 }
+
                 &.prevImg {
                     left: -50px;
                 }
-                img{
+
+                img {
                     border-radius: 5px
                 }
             }
         }
-        .controls{
+
+        .controls {
             width: 110px;
             height: 100%;
             display: flex;
@@ -104,7 +126,9 @@
             justify-content: center;
             align-items: center;
             gap: 15px;
-            .prevButton, .nextButton{
+
+            .prevButton,
+            .nextButton {
                 width: 30px;
                 height: 30px;
                 background-color: transparent;
@@ -116,11 +140,94 @@
                 align-items: center;
                 overflow: hidden;
             }
+
             .arrLeft {
                 transform: rotate(180deg);
             }
-            .arrLeft{
-                transform: rotate(180deg);
+        }
+    }
+
+    .thumbnailControlsVertical {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        flex: 0;
+        opacity: 0;
+        height: 0;
+        width: 0;
+
+        img {
+            object-fit: cover;
+        }
+
+        .thumbnailsVertical {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 3%;
+
+            .singleThumbnailVertical {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1.6;
+                filter: grayscale(1);
+                transition: all 0.3s;
+
+                &:hover {
+                    filter: grayscale(0.5);
+                }
+
+                &.currentImg {
+                    filter: grayscale(0);
+                }
+
+                &.nextImg {
+                    left: 50px;
+                }
+
+                &.prevImg {
+                    left: -50px;
+                }
+
+                img {
+                    border-radius: 5px
+                }
+            }
+        }
+
+        .controlsVertical {
+            height: 110px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+
+            .prevButtonVertical,
+            .nextButtonVertical {
+                width: 30px;
+                height: 30px;
+                background-color: transparent;
+                border: 1px solid white;
+                border-radius: 50%;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+            }
+            
+            .arrLeftVertical {
+                transform: rotate(-90deg);
+            }
+            
+            .arrRightVertical {
+                transform: rotate(90deg);
             }
         }
     }
