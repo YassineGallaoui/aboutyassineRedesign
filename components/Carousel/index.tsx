@@ -41,8 +41,7 @@ function Carousel({
   const nextImageRef = useRef(null);
   const tl = gsap.timeline({});
   const tl2 = gsap.timeline({});
-  const tl3 = gsap.timeline({}); // only for controller
-  const tl4 = gsap.timeline({}); // expand
+  const tl3 = gsap.timeline({});
 
   useEffect(() => {
     let imagesNumber = document.querySelectorAll(".indexWrapper > span > span");
@@ -64,85 +63,115 @@ function Carousel({
   };
 
   const expandBtnMouseOver = () => {
-    console.log("expandBtnMouseOver");
     tl.to(expandBtnRef.current, { duration: 0.3, scale: 1.4 });
     cursorIsHover(true);
   };
 
   const expandBtnMouseLeave = () => {
-    console.log("expandBtnMouseLeave");
     tl.to(expandBtnRef.current, { duration: 0.3, scale: 1 });
     cursorIsHover(false);
   };
 
   const expandBtnClick = () => {
-    console.log("click on expand button");
     setExpandedCarousel(!expandedCarousel);
     if (expandedCarousel) {
-      gsap.to(".expandCarouselWrapper", {
+
+      // IF //
+      
+      tl.to(".expandCarouselWrapper", {
         duration: 0.6,
         right: "1rem",
-      });
-      gsap.to(".thumbnailControls", {
-        delay: 0.4,
+      })
+      .to(".currentImageContainer", {
+        duration: 0,
+        width: '100%',
+      }, 0)
+      .to(".currentImageContainer", {
+        duration: 0,
+        flexDirection: 'row',
+        height: '100%',
+        width: '300%',
+        left: '-100%',
+        top: 0,
+      }, 0.7)
+      .to(".carouselComponent", {
+        duration: 0,
+        flexDirection: "column",
+        alignItems: "flex-start",
+      }, 0.7)
+      .to(".thumbnailControlsVertical", {
+        duration: 0.4,
+        width: "0%",
+        marginLeft: '0rem',
+        x: 100,
+        opacity: 0,
+        flex: 0,
+      }, 0.2)
+      .to(".thumbnailControlsVertical", {
+        duration: 0,
+        height: "0%",
+      }, 0.5)
+      .to(".thumbnailControls", {
+        duration: 0,
+        width: '100%',
+        height: '0%',
+      }, 0.7)
+      .to(".thumbnailControls", {
         duration: 0.6,
+        height: '8%',
         y: 0,
         opacity: 1,
-      });
+      }, 0.7)
+
     } else {
+ 
+      // ELSE //
+
       tl.to(".expandCarouselWrapper", {
         duration: 0.6,
         right: "4rem",
-      });
-      tl2.to(".thumbnailControls", {
+      }).to(".thumbnailControls", {
         duration: 0.6,
         y: 100,
         opacity: 0,
         flex: 0,
-      });
-      tl3
-        .to(".carouselComponent", {
-          delay: 0.6,
-          duration: 0,
-          flexDirection: "row",
-          alignItems: "flex-start",
-        })
-        .to(".thumbnailControls", {
-          duration: 0,
-          width: 0,
-          flex: 0,
-        })
-        .to(".currentImageContainer", {
-          duration: 0,
-          left: 0,
-          flexDirection: "column",
-          height: "300%",
-          width: "calc(100% - 110px)",
-          top: "-100%",
-        });
-      tl4.fromTo(
-        ".thumbnailControlsVertical",
-        {
-          duration: 0,
-          x: 100,
-          opacity: 0,
-          flex: 0,
-          alignSelf: "flex-end",
-          marginLeft: "1rem",
-        },
-        {
-          duration: 1,
-          x: 0,
-          opacity: 1,
-          flex: 1,
-          height: 'calc(100% - 4rem)',
-          width: '160px',
-        }
-      );
-      /* gsap.to(".thumbnailVertical", {
-        width: '100%',
-        height: '100%',
-      }); */
+        height: '0%',
+      }, 0.3)
+      .to(".currentImageContainer", {
+        duration: 0,
+        flexDirection: 'column',
+        left: '0',
+        height: '300%',
+        top: '-100%',
+      }, 0.7)
+      .to(".currentImageContainer", {
+        duration: 0.6,
+        width: 'calc(100% - 110px)',
+        gap: '0rem',
+      }, 0.7)
+      .to(".carouselComponent", {
+        duration: 0,
+        flexDirection: "row",
+        alignItems: "flex-start",
+      }, 0.7)
+      .to(".thumbnailControls", {
+        duration: 0,
+        width: '0%',
+      }, 0.7)
+      .to(".thumbnailControlsVertical", {
+        duration: 0,
+        height: "calc(100% - 4rem)",
+      }, 0.7)
+      .to(".thumbnailControlsVertical", {
+        duration: 0.4,
+        height: "calc(100% - 4rem)",
+        width: "110px",
+        marginLeft: '1rem',
+        gap: '1rem',
+        x: 0,
+        opacity: 1,
+        flex: 1,
+      }, 0.7)
     }
   };
 
@@ -183,7 +212,6 @@ function Carousel({
   };
 
   const thumbnailClickHandle = (imageIndex: number) => {
-    console.log(imageIndex > currentIndex);
     if (imageIndex != currentIndex) {
       spanTags.forEach((el, index) => {
         imageIndex > currentIndex

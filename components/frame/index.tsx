@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import styles from './Frame.module.scss'
 import { createSpanStructure } from '../../utility'
 import Link from 'next/link'
@@ -15,10 +15,15 @@ import cvIcon from '../../public/icons/CV.svg'
 import mailIcon from '../../public/icons/mail.svg'
 import linkedinIcon from '../../public/icons/linkedin.svg'
 import githubIcon from '../../public/icons/github.svg'
-import useColorScheme from '../../hooks/ColorSchema';
+import websiteLastUpdateDate from '../../websiteLastUpdateDate';
+import gsap from "gsap";
+
 
 export default function Frame({updateCursorText, updateCursorStatus}) {
     const [themeIconRot, setThemeIconRot] = useState(0);
+    const tl = gsap.timeline({});
+    /* const letterA = useRef(null);
+    const letterS = useRef(null); */
 
     const themeChange = (newMode:'light'|'dark') => {
         setThemeIconRot(themeIconRot+180);
@@ -43,20 +48,48 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
         })
       }, [])
 
+    /* const mouseOverLogoHandle = () => {
+        updateCursorStatus(true);
+            tl.to(letterA.current,{
+                duration: 0.05,
+                opacity: 1,
+                x: 20,
+            }).to(letterS.current,{
+                duration: 0.05,
+                opacity: 1,
+                x: 40,
+            })
+    }
+
+    const mouseLeaveLogoHandle = () => {
+        updateCursorStatus(false);
+        tl.to(letterS.current,{
+            duration: 0.1,
+            opacity: 0,
+            x: 0,
+        }).to(letterA.current,{
+            duration: 0.1,
+            opacity: 0,
+            x: 0,
+        })
+    } */
+
     return (
         <div className={styles.frameContainer}>
             <div className={styles.frameContainer__left}>
                 <Link href="/">
-                    <div className={styles.frameContainer__left__logo} 
-                        onMouseOver={()=> updateCursorStatus(true)}
-                        onMouseLeave={()=> updateCursorStatus(false)}>
-                        <Image src={logoY} alt={`YAS`} className={styles.letterY} fill/>
-                        <Image src={logoA} alt={`YAS`} className={styles.letterA} fill/>
-                        <Image src={logoS} alt={`YAS`} className={styles.letterS} fill/>
+                    <div className={styles.frameContainer__left__logoWrapper}
+                            onMouseOver={()=> updateCursorStatus(true)}
+                            onMouseLeave={()=> updateCursorStatus(false)}>
+                        <div className={styles.frameContainer__left__logoWrapper__logo}>
+                            <Image src={logoY} alt={`YAS`} className={styles.letterY} fill/>
+                            {/* <Image src={logoA} alt={`YAS`} className={styles.letterA} ref={letterA} fill/>
+                            <Image src={logoS} alt={`YAS`} className={styles.letterS} ref={letterS} fill/> */}
+                        </div>
                     </div>
                 </Link>
                 <div className={styles.frameContainer__left__lastUpdate}>
-                    Last update: 23 Oct 2022
+                    Last update: {websiteLastUpdateDate.getLastUpdateDate()}
                 </div>
             </div>
             <div className={styles.frameContainer__right}>

@@ -17,46 +17,40 @@
     }
     &__left{
         align-items: flex-start;
-        &__logo {
+        &__logoWrapper {
             position: relative;
-            width: 150px;
-            height: 35px;
+            width: calc(40px + 2.5rem);
+            height: calc(40px + 2rem);
+            top: -1rem;
+            left: -1.25rem;
             cursor: pointer;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: center;
             pointer-events: auto;
-            span {
-                position: absolute !important;
-                width: 40px !important;
-                height: 40px !important;
-                overflow: visible !important;
-            }
-            .letterY{
-                opacity: 1;
-                width: auto;
-            }
-            .letterA{
-                opacity: 0;
-                left: 0px;width: auto;
-                transition: all 0.5s cubic-bezier(.16,-0.05,.53,.02);
-            }
-            .letterS{
-                opacity: 0;
-                left: 24px;width: auto;
-                transition: all 0.5s cubic-bezier(.16,-0.05,.53,.02);
-            }
-            &:hover {
-                .letterA{
+            &__logo {
+                width: 40px;
+                height: 40px;
+                position: relative;
+                img {
+                    width: 40px !important;
+                    height: 40px !important;
+                    overflow: visible !important;
+                }
+                .letterY{
                     opacity: 1;
-                    left: 24px !important;
-                    transition: all 0.5s cubic-bezier(.21,1.02,.7,1.01);
+                    width: auto;
+                }
+                .letterA{
+                    opacity: 0;
+                    width: auto;
+                    transition: all 0.5s cubic-bezier(.16,-0.05,.53,.02);
                 }
                 .letterS{
-                    opacity: 1;
-                    left: 48px !important;
-                    transition: all 0.5s cubic-bezier(.21,1.02,.7,1.01);
+                    opacity: 0;
+                    width: auto;
+                    transition: all 0.5s cubic-bezier(.16,-0.05,.53,.02);
                 }
             }
         }
