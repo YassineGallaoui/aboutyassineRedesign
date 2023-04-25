@@ -18,12 +18,15 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
+        border-radius: 2rem;
+        transition: border 0.3s;
         &:before,&:after {
             content: "";
             position: absolute;
             width: 3px;
             height: 24px;
             background-color: black;
+            transition: width 0.3s, height 0.3s;
         }
     
         &:before {
@@ -33,7 +36,18 @@
         &:after {
             transform: rotate(-45deg);
         }
+        &.light {
+            transition: border 0.3s;
+            border: 1px solid black;
+
+            &:before, &:after {
+                width: 1px;
+                height: 14px;
+                transition: width 0.3s, height 0.3s;
+            }
+        }
     }
+    
     .projectCarouselWrapper{
         width: 50%;
         height: 100%;

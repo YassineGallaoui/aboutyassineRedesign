@@ -77,6 +77,7 @@ export default function ProjectModal({
 
   useEffect(()=>{
     const descriptionWrapper = document.querySelector('.projectModalDescriptionWrapper');
+    const closeModalBtn = document.querySelector(".closeModalBtn");
     const fadeEffectBox = document.querySelector('.fadeEffectBox') as HTMLElement;
     if(expandedCarousel){
       fadeEffectBox.style.backgroundImage = 'none';
@@ -87,11 +88,11 @@ export default function ProjectModal({
         flex: 0,
         padding: 0,
       })
-      gsap.to('.closeModalBtn', {
+      gsap.to(closeModalBtn, {
         delay: 0.3,
         duration: 0.3,
-        filter: 'invert(1)',
-      })
+        filter: "invert(1)",
+      });
     } else {
       gsap.to(descriptionWrapper, {
         duration: 0.6,
@@ -100,10 +101,10 @@ export default function ProjectModal({
         flex: 1,
         padding: '1rem',
       })
-      gsap.to('.closeModalBtn', {
+      gsap.to(closeModalBtn, {
         duration: 0.3,
-        filter: 'invert(0)',
-      })
+        filter: "invert(0)",
+      });
       setTimeout(() => {
         fadeEffectBox.style.backgroundImage = 'linear-gradient(0deg, white, transparent)';
       }, 650); 
@@ -124,7 +125,12 @@ export default function ProjectModal({
           setExpandedCarousel={setExpandedCarousel}
         ></ThreeCarousel>
       </div>
-      <div className={styles.projectModalDescriptionWrapper+' projectModalDescriptionWrapper'}>
+      <div
+        className={
+          styles.projectModalDescriptionWrapper +
+          " projectModalDescriptionWrapper"
+        }
+      >
         <div className={styles.projectDescriptionComponent}>
           <div className={styles.projectModalName}>{content.name}</div>
           <table>
@@ -149,11 +155,11 @@ export default function ProjectModal({
               <td>{content.backend}</td>
             </tr>
           </table>
-          <div className={styles.fadeEffect+' fadeEffectBox'}></div>
+          <div className={styles.fadeEffect + " fadeEffectBox"}></div>
         </div>
       </div>
       <div
-        className={styles.closeModalBtn + " closeModalBtn"}
+        className={styles.closeModalBtn + (expandedCarousel ? ' '+styles.light : '') + " closeModalBtn"}
         onMouseOver={() => hoverCloseBtn()}
         onMouseLeave={() => notHoverCloseBtn()}
         onClick={() => closeModal()}
