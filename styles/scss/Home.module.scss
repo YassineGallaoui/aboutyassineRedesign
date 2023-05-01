@@ -8,15 +8,24 @@
 }
 .currentPrjHovered{
     position: fixed;
-    top: 0px;
-    left: 0px;
-    height: 100vh;
-    width: 100vw;
+    top: -2.5vh;
+    left: -2.5vw;
+    height: 105vh;
+    width: 105vw;
     transform: translate(0) !important;
     img{
         object-fit: cover;
         filter: brightness(0.7);
         mix-blend-mode:difference;
+    }
+    &.hover:after {
+        content: " ";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url('../../public/imgs/filter.png');
     }
 }
 .modalMatteBkgrd {

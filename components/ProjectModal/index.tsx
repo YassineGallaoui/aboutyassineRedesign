@@ -134,32 +134,38 @@ export default function ProjectModal({
         <div className={styles.projectDescriptionComponent}>
           <div className={styles.projectModalName}>{content.name}</div>
           <table>
-            <tr className={styles.bottomBorder}>
-              <td className={styles.characteristic}>{"Working for"}</td>
-              <td>{content.workingFor}</td>
-            </tr>
-            <tr aria-rowspan={2} className={styles.descriptionTitle}>
-              <td colSpan={2} className={styles.characteristic}>
-                {"Description"}
-              </td>
-            </tr>
-            <tr className={styles.bottomBorder + " " + styles.description}>
-              <td colSpan={2}>{content.description}</td>
-            </tr>
-            <tr className={styles.bottomBorder}>
-              <td className={styles.characteristic}>{"Frontend"}</td>
-              <td>{content.frontend}</td>
-            </tr>
-            <tr>
-              <td className={styles.characteristic}>{"Backend"}</td>
-              <td>{content.backend}</td>
-            </tr>
+            <tbody>
+              <tr className={styles.bottomBorder}>
+                <td className={styles.characteristic}>{"Working for"}</td>
+                <td>{content.workingFor}</td>
+              </tr>
+              <tr aria-rowspan={2} className={styles.descriptionTitle}>
+                <td colSpan={2} className={styles.characteristic}>
+                  {"Description"}
+                </td>
+              </tr>
+              <tr className={styles.bottomBorder + " " + styles.description}>
+                <td colSpan={2}>{content.description}</td>
+              </tr>
+              <tr className={styles.bottomBorder}>
+                <td className={styles.characteristic}>{"Frontend"}</td>
+                <td>{content.frontend}</td>
+              </tr>
+              <tr>
+                <td className={styles.characteristic}>{"Backend"}</td>
+                <td>{content.backend}</td>
+              </tr>
+            </tbody>
           </table>
           <div className={styles.fadeEffect + " fadeEffectBox"}></div>
         </div>
       </div>
       <div
-        className={styles.closeModalBtn + (expandedCarousel ? ' '+styles.light : '') + " closeModalBtn"}
+        className={
+          styles.closeModalBtn +
+          (expandedCarousel ? " " + styles.light : "") +
+          " closeModalBtn"
+        }
         onMouseOver={() => hoverCloseBtn()}
         onMouseLeave={() => notHoverCloseBtn()}
         onClick={() => closeModal()}

@@ -25,7 +25,7 @@ export function textAnimationBackward(el, index) {
 }
 
 
-export function scrollHorizontal(event) {
+/* export function scrollHorizontal(event) {
   event.preventDefault();
   if (!event.deltaY) {
     return;
@@ -34,14 +34,14 @@ export function scrollHorizontal(event) {
     event.preventDefault();
     event.currentTarget.scrollLeft += (event.deltaY + event.deltaX)*10;
   }
-}
+} */
 
-export function parallax(event) {
-  this.querySelectorAll(".sectionBkgrdTxt").forEach((el) => {
-      const x = (window.innerWidth - event.pageX * 1) / 90;
-      const y = (window.innerHeight - event.pageY * 2) / 90;
+export function parallax(event, element) {
+  element.forEach((el) => {
+    const x = (window.innerWidth - event.pageX * 2) / 90;
+    const y = (window.innerHeight - event.pageY * 2) / 90;
 
-      el.style.transform = `translateX(${x}px) translateY(${y}px)`;
+    el.style.transform = `translateX(${x}px) translateY(${y}px)`;
   });
 }
 export const useSwipe = () => {

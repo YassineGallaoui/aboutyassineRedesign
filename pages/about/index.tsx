@@ -16,7 +16,9 @@ export default function About() {
         };
         startWelcomeAnimation(i);
 
-        document.addEventListener("mousemove", parallax);
+        document.addEventListener("mousemove", (event) =>
+          parallax(event, document.querySelectorAll(".sectionBkgrdTxt"))
+        );
 
     }, []);
 
@@ -50,7 +52,7 @@ export default function About() {
                         <span className={styles.meContainer__txt__standard}>{`, going from digital ethics to digital law and from web design to software development. My focus is always into making `}</span>
                         <span className={styles.meContainer__txt__big}>{`software which `}</span>
                         <span className={styles.meContainer__txt__standard}>{` not only `}</span>
-                        <span className={styles.meContainer__txt__big}>{`works good`}</span>
+                        <span className={styles.meContainer__txt__big}>{`works flawless`}</span>
                         <span className={styles.meContainer__txt__standard}>{`, but `}</span>
                         <span className={styles.meContainer__txt__big}>{`is also aesthetically captivating`}</span>
                         <span className={styles.meContainer__txt__standard}>{`.`}</span>
