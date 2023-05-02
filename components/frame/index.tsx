@@ -87,9 +87,6 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
               <Image
                 src={lightIconBase}
                 fill
-                sizes="(max-width: 768px) 100vw,
-                                    (max-width: 1200px) 50vw,
-                                    33vw"
                 alt="light mode"
                 className="invertImg"
               />
@@ -97,27 +94,18 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                 className={styles.firstSun + " invertImg"}
                 src={lightIcon}
                 fill
-                sizes="(max-width: 768px) 100vw,
-                                    (max-width: 1200px) 50vw,
-                                    33vw"
                 alt="light mode"
               />
               <Image
                 className={styles.secondSun + " invertImg"}
                 src={lightIcon}
                 fill
-                sizes="(max-width: 768px) 100vw,
-                                    (max-width: 1200px) 50vw,
-                                    33vw"
                 alt="light mode"
               />
               <Image
                 className={styles.thirdSun + " invertImg"}
                 src={lightIcon}
                 fill
-                sizes="(max-width: 768px) 100vw,
-                                    (max-width: 1200px) 50vw,
-                                    33vw"
                 alt="light mode"
               />
             </div>
@@ -130,9 +118,6 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
               <Image
                 src={darkIcon}
                 fill
-                sizes="(max-width: 768px) 100vw,
-                                    (max-width: 1200px) 50vw,
-                                    33vw"
                 alt="dark mode"
                 className="invertImg"
               />
@@ -140,9 +125,6 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                 className={styles.moonStars1 + " invertImg"}
                 src={darkIconStars1}
                 fill
-                sizes="(max-width: 768px) 100vw,
-                                    (max-width: 1200px) 50vw,
-                                    33vw"
                 alt="dark mode"
               />
 
@@ -150,9 +132,6 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                 className={styles.moonStars2 + " invertImg"}
                 src={darkIconStars2}
                 fill
-                sizes="(max-width: 768px) 100vw,
-                                    (max-width: 1200px) 50vw,
-                                    33vw"
                 alt="dark mode"
               />
             </div>
@@ -189,9 +168,6 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                 <Image
                   src={cvIcon}
                   fill
-                  sizes="(max-width: 768px) 100vw,
-                                        (max-width: 1200px) 50vw,
-                                        33vw"
                   alt="my curriculum vitae"
                   className="invertImg"
                 />
@@ -206,9 +182,6 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                 <Image
                   src={mailIcon}
                   fill
-                  sizes="(max-width: 768px) 100vw,
-                                        (max-width: 1200px) 50vw,
-                                        33vw"
                   alt="mail"
                   className="invertImg"
                 />
@@ -227,9 +200,6 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                 <Image
                   src={linkedinIcon}
                   fill
-                  sizes="(max-width: 768px) 100vw,
-                                        (max-width: 1200px) 50vw,
-                                        33vw"
                   alt="linkedin"
                   className="invertImg"
                 />
@@ -248,9 +218,6 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                 <Image
                   src={githubIcon}
                   fill
-                  sizes="(max-width: 768px) 100vw,
-                                        (max-width: 1200px) 50vw,
-                                        33vw"
                   alt="github"
                   className="invertImg"
                 />

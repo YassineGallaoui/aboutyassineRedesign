@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import '../styles/css/globals.module.min.css'
-import Layout from '../components/Layout'
+import Layout from '../components/layout/index'
 import { useState } from 'react'
 import Head from 'next/head'
 

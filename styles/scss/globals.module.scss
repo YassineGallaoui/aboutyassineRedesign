@@ -29,19 +29,51 @@ body {
     &.lightMode > *{
         background-color: $light-color;
         color: $dark-color;
+        transition: all 0.4s;
+        .projectModalContainer{
+            background-color: $white;
+            color: $dark-color;
+            .fadeEffectBox{
+                background-image: linear-gradient(0deg, $white, transparent);
+            }
+        }
         .sectionBkgrdTxt {
             color: $semitransparent1;
+            transition: all 0.4s;
         }
     }
     &.darkMode > * {
         background-color: $dark-color;
         color: $light-color;
+        transition: all 0.4s;
         .sectionBkgrdTxt {
             color: $semitransparent2;
+            transition: all 0.4s;
+        }
+        .projectModalContainer{
+            background-color: $dark-color;
+            color: $light-color;
+            .carouselComponent{
+                background-color: $carouselBG-dark;
+            }
+            table {
+                color: $light-color;
+                .bottomBorder{
+                    border-bottom: 1px solid $semitransparent2;
+                }
+                tr{
+                    .characteristic{
+                        color: $semitransparent4;
+                    }
+                }
+            }
+            .fadeEffectBox{
+                background-image: linear-gradient(0deg, $dark-color, transparent);
+            }
         }
         .invertImg {
             filter: invert(1);
-
+            transition: filter 0.4s;
             > * {
                 filter: invert(1);
             }

@@ -126,9 +126,6 @@ export default function Home({updateCursorText, cursorIsHover}: HomeProps) {
           className={"bigBackgroundImage"}
           src={tempImgHover}
           fill
-          sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
           alt="project"
         ></Image>
       </div>
@@ -216,9 +213,6 @@ export default function Home({updateCursorText, cursorIsHover}: HomeProps) {
                         }`}
                         className={"image"}
                         fill
-                        sizes="(max-width: 768px) 100vw,
-                              (max-width: 1200px) 50vw,
-                              33vw"
                         alt="project"
                         onMouseOver={() =>
                           handleImageHover(

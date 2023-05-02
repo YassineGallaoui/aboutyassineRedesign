@@ -28,7 +28,6 @@ export default function ProjectModal({
         position: "fixed",
         width: "90vw",
         height: "90vh",
-        backgroundColor: "rgba(255,255,255,1)",
         borderRadius: "30px",
         left: "50%",
         top: "50%",
@@ -49,7 +48,6 @@ export default function ProjectModal({
       gsap.to(`.projectModalContainer`, {
         position: "fixed",
         height: "0vh",
-        backgroundColor: "rgba(255,255,255,0)",
         borderRadius: "0px",
         left: "50%",
         top: "-50%",
@@ -105,9 +103,6 @@ export default function ProjectModal({
         duration: 0.3,
         filter: "invert(0)",
       });
-      setTimeout(() => {
-        fadeEffectBox.style.backgroundImage = 'linear-gradient(0deg, white, transparent)';
-      }, 650); 
     }
   }, [expandedCarousel])
 
@@ -135,24 +130,24 @@ export default function ProjectModal({
           <div className={styles.projectModalName}>{content.name}</div>
           <table>
             <tbody>
-              <tr className={styles.bottomBorder}>
-                <td className={styles.characteristic}>{"Working for"}</td>
+              <tr className={styles.bottomBorder+' bottomBorder'}>
+                <td className={styles.characteristic+' characteristic'}>{"Working for"}</td>
                 <td>{content.workingFor}</td>
               </tr>
               <tr aria-rowspan={2} className={styles.descriptionTitle}>
-                <td colSpan={2} className={styles.characteristic}>
+                <td colSpan={2} className={styles.characteristic+' characteristic'}>
                   {"Description"}
                 </td>
               </tr>
-              <tr className={styles.bottomBorder + " " + styles.description}>
+              <tr className={styles.bottomBorder + " bottomBorder " + styles.description}>
                 <td colSpan={2}>{content.description}</td>
               </tr>
-              <tr className={styles.bottomBorder}>
-                <td className={styles.characteristic}>{"Frontend"}</td>
+              <tr className={styles.bottomBorder+' bottomBorder'}>
+                <td className={styles.characteristic+' characteristic'}>{"Frontend"}</td>
                 <td>{content.frontend}</td>
               </tr>
               <tr>
-                <td className={styles.characteristic}>{"Backend"}</td>
+                <td className={styles.characteristic+' characteristic'}>{"Backend"}</td>
                 <td>{content.backend}</td>
               </tr>
             </tbody>

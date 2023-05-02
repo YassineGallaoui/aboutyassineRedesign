@@ -7,9 +7,10 @@
     align-items: flex-start;
     height: 100%;
     overflow: hidden;
-    background-color: rgba(109, 0, 0, 0.5);
+    background-color: $carouselBG-light;
     padding: 1rem;
     border-radius: 22px;
+    gap: 0.5rem;
 
     .indexWrapper {
         position: fixed;
@@ -27,7 +28,7 @@
     }
 
     .expandCarouselWrapper {
-        position: fixed;
+        position: absolute;
         width: 30px;
         height: 30px;
         background-color: transparent;
@@ -37,7 +38,7 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        right: 1rem;
+        right: 2rem;
         z-index: 1;
     }
 
@@ -56,6 +57,7 @@
             height: 100%;
 
             img {
+                position: relative;
                 object-fit: contain;
             }
             &.prevImg > img {
