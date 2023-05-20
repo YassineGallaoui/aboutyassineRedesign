@@ -2,8 +2,11 @@ import imgMaserati1 from "./public/imgs/maserati-1.png";
 import imgMaserati2 from "./public/imgs/maserati-2.png";
 import autotorino1 from "./public/imgs/autotorino-1.png";
 import autotorino2 from "./public/imgs/autotorino-2.png";
-import imgBeeTickets1 from "./public/imgs/bee-tickets-1.png";
-import imgBeeTickets2 from "./public/imgs/bee-tickets-2.png";
+import imgBeeTickets1 from "./public/imgs/BeeTicketsCH-5.png";
+import imgBeeTickets2 from "./public/imgs/BeeTicketsCH-2.png";
+import imgBeeTickets3 from "./public/imgs/BeeTicketsCH-3.png";
+import imgBeeTickets4 from "./public/imgs/BeeTicketsCH-4.png";
+import imgBeeTickets5 from "./public/imgs/BeeTicketsCH-1.svg";
 import smartFit1 from "./public/imgs/smartfit-1.png";
 import smartfit2 from "./public/imgs/smartfit-2.png";
 import { StaticImageData } from "next/image";
@@ -55,9 +58,9 @@ export const projectsDataset: Project[] = [
     media: [
       imgBeeTickets1,
       imgBeeTickets2,
-      autotorino2,
-      imgMaserati1,
-      autotorino2,
+      imgBeeTickets3,
+      imgBeeTickets4,
+      imgBeeTickets5,
     ],
     workingFor: "Once Upon A Time SA",
     description:

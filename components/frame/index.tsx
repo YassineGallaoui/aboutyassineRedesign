@@ -4,8 +4,6 @@ import { createSpanStructure } from '../../utility'
 import Link from 'next/link'
 import Image from 'next/image'
 import logoY from '../../public/logo/logo-Y.svg'
-import logoA from '../../public/logo/logo-A.svg'
-import logoS from '../../public/logo/logo-S.svg'
 import lightIcon from '../../public/icons/light_mode.svg'
 import lightIconBase from '../../public/icons/light_mode_base.svg'
 import darkIcon from '../../public/icons/dark_mode.svg'
@@ -47,6 +45,16 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
             element.innerHTML = createSpanStructure(sectionNames[index]);
         })
       }, [])
+
+  const hoverSocialButtons = (e) => {
+    updateCursorStatus(true); 
+    e.currentTarget.classList.add(styles.hovered)
+  }
+
+  const unhoverSocialButtons = (e) => {
+    updateCursorStatus(false);
+    e.currentTarget.classList.remove(styles.hovered)
+  }
 
     return (
       <div className={styles.frameContainer}>
@@ -159,70 +167,90 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
             </ul>
           </div>
           <div className={styles.frameContainer__right__contacts}>
-            <a href="/cv.pdf" rel="noreferrer noopener" target="_blank">
-              <div
-                className={styles.frameContainer__right__contacts__social}
-                onMouseOver={() => updateCursorStatus(true)}
-                onMouseLeave={() => updateCursorStatus(false)}
-              >
+            <div
+              className={styles.frameContainer__right__contacts__social}
+              onMouseOver={(e) => hoverSocialButtons(e)}
+              onMouseLeave={(e) => unhoverSocialButtons(e)}
+            >
+              <a href="/cv.pdf" rel="noreferrer noopener" target="_blank">
+              </a>
+                <div className={styles.frameContainer__right__contacts__social__text}>
+                  <span>
+                    {"Download"}
+                  </span>
+                </div>
                 <Image
                   src={cvIcon}
                   fill
                   alt="my curriculum vitae"
                   className="invertImg"
                 />
-              </div>
-            </a>
-            <a href="mailto:myassine.gallaoui@gmail.com">
-              <div
-                className={styles.frameContainer__right__contacts__social}
-                onMouseOver={() => updateCursorStatus(true)}
-                onMouseLeave={() => updateCursorStatus(false)}
-              >
+            </div>
+            <div
+              className={styles.frameContainer__right__contacts__social}
+              onMouseOver={(e) => hoverSocialButtons(e)}
+              onMouseLeave={(e) => unhoverSocialButtons(e)}
+            >
+              <a href="mailto:myassine.gallaoui@gmail.com">
+              </a>
+                <div className={styles.frameContainer__right__contacts__social__text}>
+                  <span>
+                    {"Send"}
+                  </span>
+                </div>
                 <Image
                   src={mailIcon}
                   fill
                   alt="mail"
                   className="invertImg"
                 />
-              </div>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/mohamed-yassine-gallaoui/"
-              rel="noreferrer noopener"
-              target="_blank"
+            </div>
+            <div
+              className={styles.frameContainer__right__contacts__social}
+              onMouseOver={(e) => hoverSocialButtons(e)}
+              onMouseLeave={(e) => unhoverSocialButtons(e)}
             >
-              <div
-                className={styles.frameContainer__right__contacts__social}
-                onMouseOver={() => updateCursorStatus(true)}
-                onMouseLeave={() => updateCursorStatus(false)}
+              <a
+                href="https://www.linkedin.com/in/mohamed-yassine-gallaoui/"
+                rel="noreferrer noopener"
+                target="_blank"
               >
+              </a>
+                <div className={styles.frameContainer__right__contacts__social__text}>
+                  <span>
+                    {"More"}
+                  </span>
+                </div>
                 <Image
                   src={linkedinIcon}
                   fill
                   alt="linkedin"
                   className="invertImg"
                 />
-              </div>
-            </a>
-            <a
-              href="https://github.com/YassineGallaoui"
-              rel="noreferrer noopener"
-              target="_blank"
+            </div>
+            <div
+              className={styles.frameContainer__right__contacts__social}
+              onMouseOver={(e) => hoverSocialButtons(e)}
+              onMouseLeave={(e) => unhoverSocialButtons(e)}
             >
-              <div
-                className={styles.frameContainer__right__contacts__social}
-                onMouseOver={() => updateCursorStatus(true)}
-                onMouseLeave={() => updateCursorStatus(false)}
+              <a
+                href="https://github.com/YassineGallaoui"
+                rel="noreferrer noopener"
+                target="_blank"
               >
+              </a>
+                <div className={styles.frameContainer__right__contacts__social__text}>
+                  <span>
+                    {"Code"}
+                  </span>
+                </div>
                 <Image
                   src={githubIcon}
                   fill
                   alt="github"
                   className="invertImg"
                 />
-              </div>
-            </a>
+            </div>
           </div>
         </div>
       </div>
