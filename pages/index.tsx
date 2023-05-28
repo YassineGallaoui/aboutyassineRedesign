@@ -74,7 +74,7 @@ export default function Home({updateCursorText, cursorIsHover}: HomeProps) {
       gsap.to(`#see-more-odd-${id}`, { duration: 0.5, delay: 0.8, opacity: 1 });
     gsap.to(`.image:not(#image-${id})`, { duration: 0.5, scale: 0.95, opacity: 0, });
     cursorIsHover(true);
-    updateCursorText('see more')
+    updateCursorText('SEE MORE')
   };
 
   const handleImageLeave = (id: number) => {
