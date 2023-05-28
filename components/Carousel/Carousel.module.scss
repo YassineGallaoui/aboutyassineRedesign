@@ -10,62 +10,171 @@
     background-color: $carouselBG-light;
     padding: 1rem;
     border-radius: 22px;
-    gap: 0.5rem;
+    gap: 1rem;
 
-    .indexWrapper {
-        position: fixed;
+    .upperControls, .verticalUpperControl {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
 
-        span {
-            display: inline-block;
-            overflow: hidden;
+        .indexWrapper {
+            position: relative;
 
             span {
-                position: relative;
-                display: block;
-                color: $light-color;
+                display: inline-block;
+                overflow: hidden;
+
+                span {
+                    position: relative;
+                    display: block;
+                    color: $light-color;
+                }
             }
+        }
+
+        .expandCarouselWrapper {
+            position: relative;
+            width: 2rem;
+            height: 2rem;
+            background-color: transparent;
+            border: 1px solid white;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
         }
     }
 
-    .expandCarouselWrapper {
-        position: absolute;
-        width: 30px;
-        height: 30px;
-        background-color: transparent;
-        border: 1px solid white;
-        border-radius: 50%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        right: 2rem;
-        z-index: 1;
-    }
-
-    .currentImageContainer {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        width: 300%;
-        height: 92%;
-        left: -100%;
+    .imageContainer {
         position: relative;
-
-        >div {
-            width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        height: 92%;
+        .currentImageContainer {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 300%;
             height: 100%;
+            left: -100%;
+            flex: 1 0 300%;
 
-            img {
-                position: relative;
-                object-fit: contain;
+            .prevImg,
+            .currentImg,
+            .nextImg {
+                width: 100%;
+                aspect-ratio: 4/3;
+
+                img {
+                    position: relative !important;
+                    object-fit: cover;
+                }
             }
-            &.prevImg > img {
+
+            .prevImg,
+            .nextImg {
+                img {
+                    opacity: 0;
+                }
+            }
+
+            
+        }
+        .thumbnailControlsVertical {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                flex: 0;
                 opacity: 0;
-            }
-            &.nextImg > img {
-                opacity: 0;
-            }
+                height: 0;
+                width: 0;
+                align-self: flex-end;
+                margin-left: 0rem;
+                gap: 1rem;
+
+                img {
+                    object-fit: cover;
+                }
+
+                .thumbnailsVertical {
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 1rem;
+
+                    .singleThumbnailVertical {
+                        width: 100%;
+                        height: 100%;
+                        aspect-ratio: 1.6;
+                        filter: grayscale(1);
+                        transition: all 0.3s;
+
+                        &:hover {
+                            filter: grayscale(0.75);
+                        }
+
+                        &.currentImg {
+                            filter: grayscale(0);
+                        }
+
+                        &.nextImg {
+                            left: 50px;
+                        }
+
+                        &.prevImg {
+                            left: -50px;
+                        }
+
+                        img {
+                            border-radius: 5px
+                        }
+                    }
+                }
+
+                .controlsVertical {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 1rem;
+
+                    .prevButtonVertical,
+                    .nextButtonVertical {
+                        width: 2rem;
+                        height: 2rem;
+                        background-color: transparent;
+                        border: 1px solid white;
+                        border-radius: 50%;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        overflow: hidden;
+                    }
+
+                    .arrLeftVertical {
+                        transform: rotate(-90deg);
+                    }
+
+                    .arrRightVertical {
+                        transform: rotate(90deg);
+                    }
+                }
         }
     }
 
@@ -98,7 +207,7 @@
                 transition: all 0.3s;
 
                 &:hover {
-                    filter: grayscale(0.5);
+                    filter: grayscale(0.75);
                 }
 
                 &.currentImg {
@@ -130,8 +239,8 @@
 
             .prevButton,
             .nextButton {
-                width: 30px;
-                height: 30px;
+                width: 2rem;
+                height: 2rem;
                 background-color: transparent;
                 border: 1px solid white;
                 border-radius: 50%;
@@ -144,94 +253,6 @@
 
             .arrLeft {
                 transform: rotate(180deg);
-            }
-        }
-    }
-
-    .thumbnailControlsVertical {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        flex: 0;
-        opacity: 0;
-        transform: translateX(100px);
-        height: 0;
-        width: 0;
-        align-self: flex-end;
-        margin-left: 0rem;
-
-        img {
-            object-fit: cover;
-        }
-
-        .thumbnailsVertical {
-            width: 100%;
-            height: calc(100% - 110px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 3%;
-
-            .singleThumbnailVertical {
-                width: 100%;
-                height: 100%;
-                aspect-ratio: 1.6;
-                filter: grayscale(1);
-                transition: all 0.3s;
-
-                &:hover {
-                    filter: grayscale(0.5);
-                }
-
-                &.currentImg {
-                    filter: grayscale(0);
-                }
-
-                &.nextImg {
-                    left: 50px;
-                }
-
-                &.prevImg {
-                    left: -50px;
-                }
-
-                img {
-                    border-radius: 5px
-                }
-            }
-        }
-
-        .controlsVertical {
-            height: 110px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-
-            .prevButtonVertical,
-            .nextButtonVertical {
-                width: 30px;
-                height: 30px;
-                background-color: transparent;
-                border: 1px solid white;
-                border-radius: 50%;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                overflow: hidden;
-            }
-            
-            .arrLeftVertical {
-                transform: rotate(-90deg);
-            }
-            
-            .arrRightVertical {
-                transform: rotate(90deg);
             }
         }
     }

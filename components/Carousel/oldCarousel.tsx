@@ -75,178 +75,50 @@ function Carousel({
   const expandBtnClick = () => {
     setExpandedCarousel(!expandedCarousel);
     if (expandedCarousel) {
-
       // IF //
-      
+
       tl.to(".expandCarouselWrapper", {
         duration: 0.6,
         right: "1rem",
       })
         .to(
-          ".thumbnailControlsVertical",
-          {
-            duration: 0.4,
-            opacity: 0,
-            flex: "0 1 0%",
-          },
-          0
-        )
-        .to(
-          ".thumbnailControlsVertical",
+          ".currentImageContainer",
           {
             duration: 0,
-            height: "0%",
-          },
-          0.4
-        )
-        .to(
-          ".carouselComponent",
-          {
-            duration: 0.4,
-            gap: "1rem",
+            width: "100%",
           },
           0
         )
         .to(
-          ".carouselComponent",
+          ".currentImageContainer",
           {
             duration: 0,
-            justifyContent: "space-between",
-            gap: "1rem",
-          },
-          0.4
-        )
-        .to(
-          ".prevImg, .currentImg, .nextImg",
-          {
-            duration: 0.4,
-            aspectRatio: "4 / 3",
-          },
-          0
-        )
-        .to(
-          ".thumbnailControls",
-          {
-            duration: 0,
-            display: "flex",
-          },
-          0
-        )
-        .to(
-          ".thumbnailControls",
-          {
-            duration: 0.4,
-            y: 0,
-            opacity: 1,
-            height: "8%",
-          },
-          0
-        )
-        .to(
-          ".upperControls",
-          {
-            duration: 0,
-            display: "flex",
-          },
-          0
-        )
-        .to(
-          ".upperControls",
-          {
-            duration: 0.4,
-            y: 0,
-            opacity: 1,
-            height: "auto",
-          },
-          0
-        )
-        .to(
-          ".imageContainer",
-          {
-            duration: 0.4,
-            height: "92%",
-            gap: "0rem",
-          },
-          0
-        );
-
-
-
-    } else {
-      // ELSE //
-
-
-
-      tl.to(".expandCarouselWrapper", {
-        duration: 0.6,
-        right: "3rem",
-      })
-        .to(
-          ".imageContainer",
-          {
-            duration: 0.6,
+            flexDirection: "row",
             height: "100%",
-            gap: "1rem",
+            width: "300%",
+            left: "-100%",
+            top: 0,
           },
-          0
-        )
-        .to(
-          ".thumbnailControls",
-          {
-            duration: 0.6,
-            y: 100,
-            opacity: 0,
-            height: 0,
-          },
-          0
-        )
-        .to(
-          ".thumbnailControls",
-          {
-            duration: 0,
-            display: "none",
-          },
-          0.6
-        )
-        .to(
-          ".upperControls",
-          {
-            duration: 0.6,
-            y: -100,
-            opacity: 0,
-            height: 0,
-          },
-          0
-        )
-        .to(
-          ".upperControls",
-          {
-            duration: 0,
-            display: "none",
-          },
-          0.6
-        )
-        .to(
-          ".carouselComponent",
-          {
-            duration: 0.6,
-            gap: "0rem",
-          },
-          0
+          0.7
         )
         .to(
           ".carouselComponent",
           {
             duration: 0,
-            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "flex-start",
           },
-          0.6
+          0.7
         )
         .to(
-          ".prevImg, .currentImg, .nextImg",
+          ".thumbnailControlsVertical",
           {
             duration: 0.4,
-            aspectRatio: "16 / 9",
+            width: "0%",
+            marginLeft: "0rem",
+            x: 100,
+            opacity: 0,
+            flex: 0,
           },
           0.2
         )
@@ -254,19 +126,105 @@ function Carousel({
           ".thumbnailControlsVertical",
           {
             duration: 0,
-            height: "100%",
-            opacity: 0.4,
+            height: "0%",
           },
-          0
+          0.5
+        )
+        .to(
+          ".thumbnailControls",
+          {
+            duration: 0,
+            width: "100%",
+            height: "0%",
+          },
+          0.7
+        )
+        .to(
+          ".thumbnailControls",
+          {
+            duration: 0.6,
+            height: "8%",
+            y: 0,
+            opacity: 1,
+          },
+          0.7
+        );
+    } else {
+      // ELSE //
+
+      tl.to(".expandCarouselWrapper", {
+        duration: 0.6,
+        right: "4rem",
+      })
+        .to(
+          ".thumbnailControls",
+          {
+            duration: 0.6,
+            y: 100,
+            opacity: 0,
+            flex: 0,
+            height: "0%",
+          },
+          0.3
+        )
+        .to(
+          ".currentImageContainer",
+          {
+            duration: 0,
+            flexDirection: "column",
+            left: "0",
+            height: "300%",
+            top: "-100%",
+          },
+          0.7
+        )
+        .to(
+          ".currentImageContainer",
+          {
+            duration: 0.6,
+            width: "calc(100% - 110px)",
+            gap: "0rem",
+          },
+          0.7
+        )
+        .to(
+          ".carouselComponent",
+          {
+            duration: 0,
+            flexDirection: "row",
+            alignItems: "flex-start",
+          },
+          0.7
+        )
+        .to(
+          ".thumbnailControls",
+          {
+            duration: 0,
+            width: "0%",
+          },
+          0.7
         )
         .to(
           ".thumbnailControlsVertical",
           {
-            duration: 0.6,
-            opacity: 1,
-            flex: "1 0 15%",
+            duration: 0,
+            height: "calc(100% - 4rem)",
           },
-          0
+          0.7
+        )
+        .to(
+          ".thumbnailControlsVertical",
+          {
+            duration: 0.4,
+            height: "calc(100% - 4rem)",
+            width: "110px",
+            marginLeft: "1rem",
+            gap: "1rem",
+            x: 0,
+            opacity: 1,
+            flex: 1,
+          },
+          0.7
         );
     }
   };
@@ -328,204 +286,196 @@ function Carousel({
             (currentIndex === images.length - 1 && index === 0)))
       ) {
         setNextImgSrc(images[index]);
+        tl.to(mainImageRef.current, {
+          duration: 0,
+          x: 0,
+          filter: "grayscale(0)",
+          scale: 1,
+          opacity: 1,
+        })
+          .to(mainImageRef.current, {
+            duration: 0.5,
+            x: -100,
+            filter: "grayscale(1)",
+            scale: 0.85,
+            opacity: 0,
+          })
+          .to(mainImageRef.current, {
+            duration: 0,
+            x: 0,
+            filter: "grayscale(0)",
+            scale: 1,
+            opacity: 1,
+          });
+
         tl2
           .to(nextImageRef.current, {
             duration: 0,
-            x: "0%",
+            delay: 0.1,
+            x: "-90%",
+            filter: "grayscale(1)",
             scale: 1.1,
             opacity: 1,
           })
           .to(nextImageRef.current, {
-            duration: 0.3,
+            duration: 0.5,
             x: "-100%",
+            filter: "grayscale(0)",
             scale: 1,
             opacity: 1,
           })
           .to(nextImageRef.current, {
             duration: 0,
-            x: "0%",
-            scale: 1.1,
+            filter: "grayscale(1)",
+            x: 0,
             opacity: 0,
           });
         setTimeout(() => {
+          setPrevImgSrc(images[index]);
           setCurrentImgSrc(images[index]);
-        }, 285);
-        setTimeout(() => {
-          setNextImgSrc(images[index < (images.length - 1) ? index + 1 : 0]);
-        }, 305);
+          setNextImgSrc(images[index]);
+        }, 400);
       } else {
         setPrevImgSrc(images[index]);
+        tl.to(mainImageRef.current, {
+          duration: 0,
+          x: 0,
+          filter: "grayscale(0)",
+          scale: 1,
+          opacity: 1,
+        })
+          .to(mainImageRef.current, {
+            duration: 0.5,
+            x: 100,
+            filter: "grayscale(1)",
+            scale: 0.85,
+            opacity: 0,
+          })
+          .to(mainImageRef.current, {
+            duration: 0,
+            x: 0,
+            filter: "grayscale(0)",
+            scale: 1,
+            opacity: 1,
+          });
+
         tl2
           .to(prevImageRef.current, {
             duration: 0,
-            x: "0%",
+            delay: 0.1,
+            x: "90%",
+            filter: "grayscale(1)",
             scale: 1.1,
             opacity: 1,
-            zIndex: 1,
           })
           .to(prevImageRef.current, {
-            duration: 0.3,
+            duration: 0.5,
             x: "100%",
+            filter: "grayscale(0)",
             scale: 1,
             opacity: 1,
           })
           .to(prevImageRef.current, {
             duration: 0,
-            x: "0%",
-            scale: 1.1,
+            filter: "grayscale(1)",
+            x: 0,
             opacity: 0,
           });
         setTimeout(() => {
+          setPrevImgSrc(images[index]);
           setCurrentImgSrc(images[index]);
-        }, 285);
-        setTimeout(() => {
-          setPrevImgSrc(
-            images[index - 1 < 0 ? images.length - 1 : index - 1]
-          );
-        }, 305);
+          setNextImgSrc(images[index]);
+        }, 400);
       }
     }
   };
 
   return (
     <div className={styles.component + " carouselComponent"}>
-      <div className={styles.upperControls + " upperControls"}>
-        <div className={styles.indexWrapper + " indexWrapper"}>
-          <span>
-            <span>{"0"}</span>
-          </span>
-          <span>
-            <span>{currentIndex + 1}</span>
-          </span>
+      <div className={styles.indexWrapper + " indexWrapper"}>
+        <span>
+          <span>{"0"}</span>
+        </span>
+        <span>
+          <span>{currentIndex + 1}</span>
+        </span>
+      </div>
+      <div
+        className={styles.expandCarouselWrapper + " expandCarouselWrapper"}
+        onMouseOver={() => expandBtnMouseOver()}
+        onMouseLeave={() => expandBtnMouseLeave()}
+        onClick={() => expandBtnClick()}
+      >
+        <Image
+          id="arrExpand"
+          ref={expandBtnRef}
+          className={styles.arrExpand}
+          src={arrExpand}
+          alt={"expand"}
+        ></Image>
+      </div>
+      <div className={styles.currentImageContainer + " currentImageContainer"}>
+        <div className={styles.prevImg}>
+          <Image ref={prevImageRef} src={prevImgSrc} alt={altText} fill></Image>
         </div>
-
-        <div
-          className={styles.expandCarouselWrapper + " expandCarouselWrapper"}
-          onMouseOver={() => expandBtnMouseOver()}
-          onMouseLeave={() => expandBtnMouseLeave()}
-          onClick={() => expandBtnClick()}
-        >
-          <Image
-            id="arrExpand"
-            ref={expandBtnRef}
-            className={styles.arrExpand}
-            src={arrExpand}
-            alt={"expand"}
-          ></Image>
+        <div className={styles.currentImg} ref={mainImageRef}>
+          <Image src={currentImgSrc} alt={altText} fill></Image>
+        </div>
+        <div className={styles.nextImg}>
+          <Image ref={nextImageRef} src={nextImgSrc} alt={altText} fill></Image>
         </div>
       </div>
-
-      <div className={styles.imageContainer + " imageContainer"}>
-        <div>
-          <div
-            className={styles.currentImageContainer + " currentImageContainer"}
-          >
-            <div className={styles.prevImg + " prevImg"}>
-              <Image
-                ref={prevImageRef}
-                src={prevImgSrc}
-                alt={altText}
-                fill
-              ></Image>
-            </div>
-
+      <div
+        className={
+          styles.thumbnailControlsVertical + " thumbnailControlsVertical"
+        }
+      >
+        <div className={styles.thumbnailsVertical + " thumbnailVertical"}>
+          {images.map((el, index) => (
             <div
-              className={styles.currentImg + " currentImg"}
-              ref={mainImageRef}
-            >
-              <Image src={currentImgSrc} alt={altText} fill></Image>
-            </div>
-
-            <div className={styles.nextImg + " nextImg"}>
-              <Image
-                ref={nextImageRef}
-                src={nextImgSrc}
-                alt={altText}
-                fill
-              ></Image>
-            </div>
-          </div>
-        </div>
-        <div
-          className={
-            styles.thumbnailControlsVertical + " thumbnailControlsVertical"
-          }
-        >
-          <div className={styles.verticalUpperControl}>
-            <div className={styles.indexWrapper + " indexWrapper"}>
-              <span>
-                <span>{"0"}</span>
-              </span>
-              <span>
-                <span>{currentIndex + 1}</span>
-              </span>
-            </div>
-
-            <div
+              key={index}
               className={
-                styles.expandCarouselWrapper + " expandCarouselWrapper"
+                styles.singleThumbnailVertical +
+                " " +
+                (index === currentIndex ? styles.currentImg : "")
               }
-              onMouseOver={() => expandBtnMouseOver()}
-              onMouseLeave={() => expandBtnMouseLeave()}
-              onClick={() => expandBtnClick()}
+              onClick={() => thumbnailClickHandle(index)}
             >
-              <Image
-                id="arrExpand"
-                ref={expandBtnRef}
-                className={styles.arrExpand}
-                src={arrExpand}
-                alt={"expand"}
-              ></Image>
+              <Image src={el} alt={altText} fill></Image>
             </div>
+          ))}
+        </div>
+        <div className={styles.controlsVertical}>
+          <div
+            className={styles.prevButtonVertical}
+            onMouseOver={() => prevBtnMouseOver()}
+            onMouseLeave={() => cursorIsHover(false)}
+            onClick={() => prevBtnClick()}
+          >
+            <Image
+              id="arrLeft"
+              ref={prevBtnRef}
+              className={styles.arrLeftVertical}
+              src={arrRight}
+              alt={"previous"}
+            ></Image>
           </div>
-          <div className={styles.thumbnailsVertical + " thumbnailVertical"}>
-            {images.map((el, index) => (
-              <div
-                key={index}
-                className={
-                  styles.singleThumbnailVertical +
-                  " " +
-                  (index === currentIndex ? styles.currentImg : "")
-                }
-                onClick={() => thumbnailClickHandle(index)}
-              >
-                <Image src={el} alt={altText} fill></Image>
-              </div>
-            ))}
-          </div>
-          <div className={styles.controlsVertical}>
-            <div
-              className={styles.prevButtonVertical}
-              onMouseOver={() => prevBtnMouseOver()}
-              onMouseLeave={() => cursorIsHover(false)}
-              onClick={() => prevBtnClick()}
-            >
-              <Image
-                id="arrLeft"
-                ref={prevBtnRef}
-                className={styles.arrLeftVertical}
-                src={arrRight}
-                alt={"previous"}
-              ></Image>
-            </div>
-            <div
-              className={styles.nextButtonVertical}
-              onMouseOver={() => nextBtnMouseOver()}
-              onMouseLeave={() => cursorIsHover(false)}
-              onClick={() => nextBtnClick()}
-            >
-              <Image
-                id="arrRight"
-                ref={nextBtnRef}
-                className={styles.arrRightVertical}
-                src={arrRight}
-                alt={"previous"}
-              ></Image>
-            </div>
+          <div
+            className={styles.nextButtonVertical}
+            onMouseOver={() => nextBtnMouseOver()}
+            onMouseLeave={() => cursorIsHover(false)}
+            onClick={() => nextBtnClick()}
+          >
+            <Image
+              id="arrRight"
+              ref={nextBtnRef}
+              className={styles.arrRightVertical}
+              src={arrRight}
+              alt={"previous"}
+            ></Image>
           </div>
         </div>
       </div>
-
       <div className={styles.thumbnailControls + " thumbnailControls"}>
         <div className={styles.thumbnails}>
           {images.map((el, index) => (
