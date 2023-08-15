@@ -228,7 +228,7 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                   className="invertImg"
                 />
             </div>
-            <div
+            {/* <div
               className={styles.frameContainer__right__contacts__social}
               onMouseOver={(e) => hoverSocialButtons(e)}
               onMouseLeave={(e) => unhoverSocialButtons(e)}
@@ -250,7 +250,7 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
                   alt="github"
                   className="invertImg"
                 />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

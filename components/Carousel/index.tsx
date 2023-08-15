@@ -36,6 +36,7 @@ function Carousel({
   const prevBtnRef = useRef(null);
   const nextBtnRef = useRef(null);
   const expandBtnRef = useRef(null);
+  const expandBtnVerticalRef = useRef(null);
   const prevImageRef = useRef(null);
   const mainImageRef = useRef(null);
   const nextImageRef = useRef(null);
@@ -46,6 +47,11 @@ function Carousel({
   useEffect(() => {
     let imagesNumber = document.querySelectorAll(".indexWrapper > span > span");
     setSpanTags(imagesNumber);
+    if(!images.find(el=>el === currentImgSrc)) {
+      setPrevImgSrc(images[images.length - 1]);
+      setCurrentImgSrc(images[0]);
+      setNextImgSrc(images[1]);
+    }
   }, []);
 
   const prevBtnMouseOver = () => {
@@ -72,12 +78,22 @@ function Carousel({
     cursorIsHover(false);
   };
 
+  const expandBtnVerticalMouseOver = () => {
+    tl.to(expandBtnVerticalRef.current, { duration: 0.3, scale: 1 });
+    cursorIsHover(true);
+  }
+
+  const expandBtnVerticalMouseLeave = () => {
+    tl.to(expandBtnVerticalRef.current, { duration: 0.3, scale: 1.4 });
+    cursorIsHover(false);
+  }
+
   const expandBtnClick = () => {
     setExpandedCarousel(!expandedCarousel);
     if (expandedCarousel) {
 
       // IF //
-      
+
       tl.to(".expandCarouselWrapper", {
         duration: 0.6,
         right: "1rem",
@@ -175,16 +191,14 @@ function Carousel({
     } else {
       // ELSE //
 
-
-
-      tl.to(".expandCarouselWrapper", {
-        duration: 0.6,
+      tl.to(".expandCarouselWrapperVertical", {
+        duration: 0.4,
         right: "3rem",
       })
         .to(
           ".imageContainer",
           {
-            duration: 0.6,
+            duration: 0.4,
             height: "100%",
             gap: "1rem",
           },
@@ -193,7 +207,7 @@ function Carousel({
         .to(
           ".thumbnailControls",
           {
-            duration: 0.6,
+            duration: 0.4,
             y: 100,
             opacity: 0,
             height: 0,
@@ -206,12 +220,12 @@ function Carousel({
             duration: 0,
             display: "none",
           },
-          0.6
+          0.4
         )
         .to(
           ".upperControls",
           {
-            duration: 0.6,
+            duration: 0.2,
             y: -100,
             opacity: 0,
             height: 0,
@@ -224,7 +238,7 @@ function Carousel({
             duration: 0,
             display: "none",
           },
-          0.6
+          0.4
         )
         .to(
           ".carouselComponent",
@@ -264,7 +278,7 @@ function Carousel({
           {
             duration: 0.6,
             opacity: 1,
-            flex: "1 0 15%",
+            flex: "1 0 10%",
           },
           0
         );
@@ -314,7 +328,9 @@ function Carousel({
           ? textAnimationBackward(el, index + 1)
           : textAnimationForward(el, index + 1);
       });
-      goToImageIndex(imageIndex);
+      setTimeout(() => {
+        goToImageIndex(imageIndex);
+      }, 200);
     }
   };
 
@@ -463,15 +479,15 @@ function Carousel({
 
             <div
               className={
-                styles.expandCarouselWrapper + " expandCarouselWrapper"
+                styles.expandCarouselWrapperVertical + " expandCarouselWrapperVertical"
               }
-              onMouseOver={() => expandBtnMouseOver()}
-              onMouseLeave={() => expandBtnMouseLeave()}
+              onMouseOver={() => expandBtnVerticalMouseOver()}
+              onMouseLeave={() => expandBtnVerticalMouseLeave()}
               onClick={() => expandBtnClick()}
             >
               <Image
                 id="arrExpand"
-                ref={expandBtnRef}
+                ref={expandBtnVerticalRef}
                 className={styles.arrExpand}
                 src={arrExpand}
                 alt={"expand"}
