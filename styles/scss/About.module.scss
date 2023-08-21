@@ -10,7 +10,7 @@
     position: fixed;
     height: 100vh;
     width: 1px;
-    background-color: $semitransparent4;
+    background-color: $semitransparent3;
     border: none;
     top: 0;
     left: 24vw;
@@ -21,10 +21,10 @@
 .horizontalLine{
     height: 1px;
     width: 0vw;
-    background-color: $semitransparent4;
+    background-color: $semitransparent3;
     border: none;
     position: fixed;
-    top: calc(13rem + 15vh);
+    top: calc(12.5rem + 15vh);
     animation: drawHLine cubic-bezier(.7,0,.3,1) 3s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
@@ -36,6 +36,11 @@
 @keyframes drawVLine {
     0% {height: 0vw;}
     100% {height: 100vh;}
+}
+html[data-theme='dark'] {
+    .verticalLine, .horizontalLine {
+        background-color: $semitransparent4;
+    }
 }
 .meContainer{
     position: absolute;
@@ -59,12 +64,12 @@
                     position: relative;
                     top: 2rem;
                     opacity: 0;
-                    animation: anim 3s infinite;
+                    animation: animHello cubic-bezier(.87,0,.13,1) 3s infinite;
                     animation-iteration-count: 1;
                     animation-fill-mode: forwards;
-                    animation-delay: calc(0.1s * var(--i))
+                    animation-delay: calc(0.1s * var(--i)) ;
                 }
-                @keyframes anim {
+                @keyframes animHello {
                     0% {top: 2rem; opacity: 0;}
                     25% {top: 0rem; opacity: 1;}
                     60% {top: 0rem; opacity: 1;}
@@ -80,11 +85,22 @@
                 line-height: 1.2rem;
                 text-align: right;
                 text-transform: uppercase;
+                display: block;
+                .singleWord{
+                    display: block;
+                    opacity: 0;
+                    top: 3rem;
+                    animation: animText cubic-bezier(.87,0,.13,1) 2s, animOpacity cubic-bezier(1,0,.5,1) 2s;
+                    animation-iteration-count: 1;
+                    animation-fill-mode: forwards;
+                    animation-delay: 0.9s;
+                }
             }
         }
         &__description{
             position: fixed;
             padding-top: calc(15vh + 12.2rem);
+            padding-bottom: 9rem;
             overflow: visible;
             overflow-y: scroll;
             z-index: 100;
@@ -98,15 +114,46 @@
             &::-webkit-scrollbar {
                 width: 0;
             }
-            &__small{
-                opacity: 0.6;
+            span {
+                position: relative;
+                top: 3rem;
+                opacity: 0;
+                overflow: hidden;
+            }
+            &__small {
+                animation: animText cubic-bezier(.87,0,.13,1) 2s, animOpacitySmall cubic-bezier(1,0,.75,1) 2s;
+                animation-delay: 0.9s;
+                animation-iteration-count: 1;
+                animation-fill-mode: forwards;
             }
             &__big{
+                animation: animText cubic-bezier(.87,0,.13,1) 2s, animOpacity cubic-bezier(1,0,.5,1) 2s;
+                animation-delay: 0.9s;
+                animation-iteration-count: 1;
+                animation-fill-mode: forwards;
                 font-size: 3.4rem;
-                opacity: 1;
+            }
+            p {
+                display: block;
+                overflow: hidden;
             }
         }
     }
+}
+
+@keyframes animOpacity {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes animOpacitySmall {
+    0% {opacity: 0;}
+    100% {opacity: 0.3;}
+}
+
+@keyframes animText {
+    0% { transform: translate(0, 5rem); top: 3rem; }
+    100% { transform: translate(0, 0rem); top: 0rem; }
 }
 
 .percentageBarContainer {
@@ -121,6 +168,7 @@
     width: 0.7rem;
     .percentageBarBar {
         height: 0vh;
+        transition: height 0.3s;
         font-size: 0.8rem;
         line-height: 0.8rem;
         color: $light-color;

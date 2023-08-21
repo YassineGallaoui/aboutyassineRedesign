@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./ProjectModal.module.scss"
 import gsap from 'gsap';
-import ThreeCarousel from "../Carousel";
+import Carousel from "../Carousel";
 import { Project } from "../../dataset";
 
 type ModalProps = {
@@ -112,13 +112,13 @@ export default function ProjectModal({
         id="projectCarouselWrapper"
         className={styles.projectCarouselWrapper}
       >
-        <ThreeCarousel
+        <Carousel
           content={content}
           updateCursorText={updateCursorText}
           cursorIsHover={cursorIsHover}
           expandedCarousel={expandedCarousel}
           setExpandedCarousel={setExpandedCarousel}
-        ></ThreeCarousel>
+        ></Carousel>
       </div>
       <div
         className={

@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import arrRight from "../../public/icons/arr.svg";
 import arrExpand from "../../public/icons/expand.svg";
-import gsap from "gsap";
+import gsap from 'gsap';
 import { Project } from "../../dataset";
 import { textAnimationBackward, textAnimationForward } from "../../utility";
 
@@ -22,24 +22,19 @@ function Carousel({
   expandedCarousel,
   setExpandedCarousel,
 }: CarouselProps) {
+  const projectName = content.name;
   const images = content.media;
   const altText = content.name + " for " + content.workingFor;
+  const [imageStackContainer, setImageStackContainer] = useState(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [prevImgSrc, setPrevImgSrc] = useState<StaticImageData>(
-    images[images.length - 1]
-  );
-  const [currentImgSrc, setCurrentImgSrc] = useState<StaticImageData>(
-    images[0]
-  );
-  const [nextImgSrc, setNextImgSrc] = useState<StaticImageData>(images[1]);
   const [spanTags, setSpanTags] = useState<NodeListOf<Element>>();
+
+  const [newZIndexLevel, setNewZIndexLevel] = useState(5);
+
   const prevBtnRef = useRef(null);
   const nextBtnRef = useRef(null);
   const expandBtnRef = useRef(null);
   const expandBtnVerticalRef = useRef(null);
-  const prevImageRef = useRef(null);
-  const mainImageRef = useRef(null);
-  const nextImageRef = useRef(null);
   const tl = gsap.timeline({});
   const tl2 = gsap.timeline({});
   const tl3 = gsap.timeline({});
@@ -47,11 +42,7 @@ function Carousel({
   useEffect(() => {
     let imagesNumber = document.querySelectorAll(".indexWrapper > span > span");
     setSpanTags(imagesNumber);
-    if(!images.find(el=>el === currentImgSrc)) {
-      setPrevImgSrc(images[images.length - 1]);
-      setCurrentImgSrc(images[0]);
-      setNextImgSrc(images[1]);
-    }
+    setImageStackContainer(document.querySelector('.imageStackContainer'));
   }, []);
 
   const prevBtnMouseOver = () => {
@@ -299,9 +290,7 @@ function Carousel({
 
     tl3
       .to(prevBtnRef.current, { duration: 0.2, x: -3 })
-      .to(prevBtnRef.current, {
-        x: 0,
-      });
+      .to(prevBtnRef.current, { x: 0 });
   };
 
   const nextBtnClick = () => {
@@ -316,9 +305,8 @@ function Carousel({
       );
     }, 200);
 
-    tl3.to(nextBtnRef.current, { duration: 0.2, x: 3 }).to(nextBtnRef.current, {
-      x: 0,
-    });
+    tl3.to(nextBtnRef.current, { duration: 0.2, x: 3 })
+    .to(nextBtnRef.current, { x: 0 });
   };
 
   const thumbnailClickHandle = (imageIndex: number) => {
@@ -335,6 +323,8 @@ function Carousel({
   };
 
   const goToImageIndex = (index, direction = null) => {
+    const imageToGo = document.querySelector("#image-"+projectName+index);
+    setNewZIndexLevel(newZIndexLevel + 1);
     if (index != currentIndex) {
       setCurrentIndex(index);
       if (
@@ -343,62 +333,33 @@ function Carousel({
           (index > currentIndex ||
             (currentIndex === images.length - 1 && index === 0)))
       ) {
-        setNextImgSrc(images[index]);
-        tl2
-          .to(nextImageRef.current, {
-            duration: 0,
-            x: "0%",
-            scale: 1.1,
-            opacity: 1,
-          })
-          .to(nextImageRef.current, {
-            duration: 0.3,
-            x: "-100%",
-            scale: 1,
-            opacity: 1,
-          })
-          .to(nextImageRef.current, {
-            duration: 0,
-            x: "0%",
-            scale: 1.1,
-            opacity: 0,
-          });
-        setTimeout(() => {
-          setCurrentImgSrc(images[index]);
-        }, 285);
-        setTimeout(() => {
-          setNextImgSrc(images[index < (images.length - 1) ? index + 1 : 0]);
-        }, 305);
+        tl
+        .to(imageToGo, {
+          duration: 0,
+          x: "100%",
+          zIndex: newZIndexLevel,
+          opacity: 1,
+        })
+        .to(imageToGo, {
+          duration: 1,
+          x: "0%",
+          opacity: 1,
+          ease: "expo.out"
+        })
       } else {
-        setPrevImgSrc(images[index]);
-        tl2
-          .to(prevImageRef.current, {
-            duration: 0,
-            x: "0%",
-            scale: 1.1,
-            opacity: 1,
-            zIndex: 1,
-          })
-          .to(prevImageRef.current, {
-            duration: 0.3,
-            x: "100%",
-            scale: 1,
-            opacity: 1,
-          })
-          .to(prevImageRef.current, {
-            duration: 0,
-            x: "0%",
-            scale: 1.1,
-            opacity: 0,
-          });
-        setTimeout(() => {
-          setCurrentImgSrc(images[index]);
-        }, 285);
-        setTimeout(() => {
-          setPrevImgSrc(
-            images[index - 1 < 0 ? images.length - 1 : index - 1]
-          );
-        }, 305);
+        tl
+        .to(imageToGo, {
+          duration: 0,
+          x: "-100%",
+          zIndex: newZIndexLevel,
+          opacity: 1,
+        })
+        .to(imageToGo, {
+          duration: 1,
+          x: "0%",
+          opacity: 1,
+          ease: "expo.out"
+        })
       }
     }
   };
@@ -432,36 +393,24 @@ function Carousel({
       </div>
 
       <div className={styles.imageContainer + " imageContainer"}>
-        <div>
-          <div
-            className={styles.currentImageContainer + " currentImageContainer"}
-          >
-            <div className={styles.prevImg + " prevImg"}>
-              <Image
-                ref={prevImageRef}
-                src={prevImgSrc}
-                alt={altText}
-                fill
-              ></Image>
-            </div>
-
-            <div
-              className={styles.currentImg + " currentImg"}
-              ref={mainImageRef}
-            >
-              <Image src={currentImgSrc} alt={altText} fill></Image>
-            </div>
-
-            <div className={styles.nextImg + " nextImg"}>
-              <Image
-                ref={nextImageRef}
-                src={nextImgSrc}
-                alt={altText}
-                fill
-              ></Image>
-            </div>
-          </div>
+        <div
+          className={styles.imageStackContainer+ " imageStackContainer"}
+        >
+          {images.map((el,index)=>{
+            return (
+              <div id={'image-'+projectName+index} className={styles.imageDiv} key={index} style={{zIndex: 5-index}}>
+                <Image
+                  src={el}
+                  alt={altText}
+                  fill
+                />
+              </div>
+            )
+          })
+          }
         </div>
+        
+        {/* THIS ACTIVATES ONLY WHEN THE CAROUSEL IS EXPANDED */}
         <div
           className={
             styles.thumbnailControlsVertical + " thumbnailControlsVertical"

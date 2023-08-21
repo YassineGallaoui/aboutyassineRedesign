@@ -27,7 +27,13 @@ export const projectsDataset: Project[] = [
     id: 0,
     name: "Autotorino",
     year: 2023,
-    media: [autotorino1, autotorino2, imgMaserati1, imgMaserati2, imgMaserati1],
+    media: [
+      autotorino1, 
+      autotorino2, 
+      imgMaserati1, 
+      imgMaserati2, 
+      imgMaserati1
+    ],
     workingFor: "Deloitte",
     description:
       "Worked with a team of 10/15 people on the redesign and implementation of a car auction platform, backoffice and frontoffice. ",

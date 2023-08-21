@@ -18,33 +18,62 @@ import gsap from "gsap";
 
 
 export default function Frame({updateCursorText, updateCursorStatus}) {
+    const [themePreference, setThemePreference] = useState<"lightMode"|"darkMode">("lightMode");
     const [themeIconRot, setThemeIconRot] = useState(0);
     const tl = gsap.timeline({});
 
-    const themeChange = (newMode:'light'|'dark') => {
+    const themeChange = (newMode) => {
         setThemeIconRot(themeIconRot+180);
         
         const body = document.querySelector("body");
-        if(newMode === 'light') {
+        if(newMode === 'lightMode') {
             body.classList.add("lightMode");
             body.classList.remove("darkMode");
+            localStorage.setItem('theme-preference', 'lightMode');
             document.documentElement.setAttribute("data-theme", "light");
         } else {
             body.classList.add("darkMode");
             body.classList.remove("lightMode");
+            localStorage.setItem('theme-preference', 'darkMode');
             document.documentElement.setAttribute("data-theme", "dark");
         }
     }
 
     useEffect(() => {
-        //menu navigation
+
+      if (typeof window !== 'undefined') {
         const body = document.querySelector("body");
-        const liTags = body.querySelectorAll('.sectionsNav li div');
-        const sectionNames = ['About','Career'];
-        liTags.forEach((element, index) => {
-            element.innerHTML = createSpanStructure(sectionNames[index]);
-        })
-      }, [])
+        // Check if dark mode is preferred by the user (system preference)
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+        // Function to set the theme preference class
+        function setThemePreferenceClass(themePreference) {
+          body.classList.remove('darkMode', 'lightMode');
+          body.classList.add(themePreference);
+          themePreference === 'darkMode' ? 
+          document.documentElement.setAttribute("data-theme", "dark"):
+          document.documentElement.setAttribute("data-theme", "light")
+
+          themePreference === 'darkMode' && setThemeIconRot(themeIconRot+180);
+        }
+      
+        // Check local storage for theme preference
+        const storedThemePreference = localStorage.getItem('theme-preference');
+        if (storedThemePreference) {
+          setThemePreferenceClass(storedThemePreference);
+        } else {
+          setThemePreferenceClass(prefersDarkMode ? 'darkMode' : 'lightMode');
+        }
+      }
+      
+      //menu navigation
+      const body = document.querySelector("body");
+      const liTags = body.querySelectorAll('.sectionsNav li div');
+      const sectionNames = ['About','Career'];
+      liTags.forEach((element, index) => {
+          element.innerHTML = createSpanStructure(sectionNames[index]);
+      })
+    }, [])
 
   const hoverSocialButtons = (e) => {
     updateCursorStatus(true); 
@@ -90,7 +119,7 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
               className={
                 styles.frameContainer__right__theme__light + " lightModeIcon"
               }
-              onClick={() => themeChange("light")}
+              onClick={() => themeChange("lightMode")}
             >
               <Image
                 src={lightIconBase}
@@ -121,7 +150,7 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
               className={
                 styles.frameContainer__right__theme__dark + " darkModeIcon"
               }
-              onClick={() => themeChange("dark")}
+              onClick={() => themeChange("darkMode")}
             >
               <Image
                 src={darkIcon}
