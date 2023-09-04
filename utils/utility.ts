@@ -12,18 +12,31 @@ export function createSpanStructure(w) {
 
 export function textAnimationForward(el, index) {
   const tl = gsap.timeline({});
-  tl.to(el, { delay: 0.05 * index, duration: 0.25, x: 10 })
-    .to(el, { duration: 0, x: -10 })
+  tl.to(el, { delay: 0.05 * index, duration: 0.25, x: '0.8rem' })
+    .to(el, { duration: 0, x: '-0.8rem' })
     .to(el, { duration: 0.25, x: 0 });
 }
 
 export function textAnimationBackward(el, index) {
   const tl = gsap.timeline({});
-  tl.to(el, { delay: 0.05 * index, duration: 0.25, x: -10 })
-    .to(el, { duration: 0, x: 10 })
+  tl.to(el, { delay: 0.05 * index, duration: 0.25, x: '-0.8rem' })
+    .to(el, { duration: 0, x: '0.8rem' })
     .to(el, { duration: 0.25, x: 0 });
 }
 
+export function verticalTextAnimationForward(el, index) {
+  const tl = gsap.timeline({});
+  tl.to(el, { delay: 0.05 * index, duration: 0.25, y: '1.5rem' })
+    .to(el, { duration: 0, y:  '-1.5rem' })
+    .to(el, { duration: 0.25, y: -3 });
+}
+
+export function verticalTextAnimationBackward(el, index) {
+  const tl = gsap.timeline({});
+  tl.to(el, { delay: 0.05 * index, duration: 0.25, y: '-1.5rem' })
+    .to(el, { duration: 0, y: '1.5rem' })
+    .to(el, { duration: 0.25, y: -3 });
+}
 
 /* export function scrollHorizontal(event) {
   event.preventDefault();
@@ -44,7 +57,22 @@ export function parallax(event, element) {
     el.style.transform = `translateX(${x}px) translateY(${y}px)`;
   });
 }
-export const useSwipe = () => {
+
+export const calculateScrollPercentage = (pageContent) => {
+  const scrollTop = pageContent.scrollTop;
+  const scrollHeight = pageContent.scrollHeight;
+  const clientHeight = pageContent.clientHeight;
+
+  // Calculate the scrolled distance from the top of the content
+  const scrolledDistance = scrollTop;
+
+  // Calculate the percentage of scrolled distance
+  const scrollPercentage = (scrolledDistance / (scrollHeight - clientHeight)) * 100;
+
+  // Return the calculated percentage
+  return scrollPercentage.toFixed(0);
+}
+/* export const useSwipe = () => {
   const [position, setPosition] = useState(0);
 
   let startX = 0;
@@ -99,4 +127,4 @@ export const useSwipe = () => {
   }, []);
 
   return { handleTouchStart, handleTouchMove, handleTouchEnd, position };
-}
+} */

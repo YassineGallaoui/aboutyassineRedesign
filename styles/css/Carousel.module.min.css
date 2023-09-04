@@ -1,1 +1,275 @@
-.component{display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;height:100%;overflow:hidden;background-color:rgba(109,0,0,.5);padding:1rem;border-radius:22px;gap:1rem}.component .upperControls,.component .verticalUpperControl{display:flex;flex-direction:row;justify-content:space-between;align-items:flex-start;width:100%}.component .upperControls .indexWrapper,.component .verticalUpperControl .indexWrapper{position:relative}.component .upperControls .indexWrapper span,.component .verticalUpperControl .indexWrapper span{display:inline-block;overflow:hidden}.component .upperControls .indexWrapper span span,.component .verticalUpperControl .indexWrapper span span{position:relative;display:block;color:#dadba3}.component .upperControls .expandCarouselWrapper,.component .verticalUpperControl .expandCarouselWrapper{position:relative;width:2rem;height:2rem;background-color:rgba(0,0,0,0);border:1px solid #fff;border-radius:50%;display:flex;flex-direction:row;justify-content:center;align-items:center;z-index:1}.component .imageContainer{position:relative;display:flex;flex-direction:row;justify-content:space-between;align-items:center;gap:1rem;width:100%;height:92%}.component .imageContainer .currentImageContainer{position:relative;display:flex;flex-direction:row;justify-content:center;align-items:center;width:300%;height:100%;left:-100%;flex:1 0 300%}.component .imageContainer .currentImageContainer .prevImg,.component .imageContainer .currentImageContainer .currentImg,.component .imageContainer .currentImageContainer .nextImg{width:100%;aspect-ratio:4/3}.component .imageContainer .currentImageContainer .prevImg img,.component .imageContainer .currentImageContainer .currentImg img,.component .imageContainer .currentImageContainer .nextImg img{position:relative !important;object-fit:cover}.component .imageContainer .currentImageContainer .prevImg img,.component .imageContainer .currentImageContainer .nextImg img{opacity:0}.component .imageContainer .thumbnailControlsVertical{display:flex;flex-direction:column;justify-content:space-between;align-items:center;flex:0;opacity:0;height:0;width:0;align-self:flex-end;margin-left:0rem;gap:1rem}.component .imageContainer .thumbnailControlsVertical img{object-fit:cover}.component .imageContainer .thumbnailControlsVertical .thumbnailsVertical{width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1rem}.component .imageContainer .thumbnailControlsVertical .thumbnailsVertical .singleThumbnailVertical{width:100%;height:100%;aspect-ratio:1.6;filter:grayscale(1);transition:all .3s}.component .imageContainer .thumbnailControlsVertical .thumbnailsVertical .singleThumbnailVertical:hover{filter:grayscale(0.75)}.component .imageContainer .thumbnailControlsVertical .thumbnailsVertical .singleThumbnailVertical.currentImg{filter:grayscale(0)}.component .imageContainer .thumbnailControlsVertical .thumbnailsVertical .singleThumbnailVertical.nextImg{left:50px}.component .imageContainer .thumbnailControlsVertical .thumbnailsVertical .singleThumbnailVertical.prevImg{left:-50px}.component .imageContainer .thumbnailControlsVertical .thumbnailsVertical .singleThumbnailVertical img{border-radius:5px}.component .imageContainer .thumbnailControlsVertical .controlsVertical{width:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1rem}.component .imageContainer .thumbnailControlsVertical .controlsVertical .prevButtonVertical,.component .imageContainer .thumbnailControlsVertical .controlsVertical .nextButtonVertical{width:2rem;height:2rem;background-color:rgba(0,0,0,0);border:1px solid #fff;border-radius:50%;display:flex;flex-direction:row;justify-content:center;align-items:center;overflow:hidden}.component .imageContainer .thumbnailControlsVertical .controlsVertical .arrLeftVertical{transform:rotate(-90deg)}.component .imageContainer .thumbnailControlsVertical .controlsVertical .arrRightVertical{transform:rotate(90deg)}.component .thumbnailControls{width:100%;height:8%;display:flex;flex-direction:row;justify-content:space-between;align-items:flex-end}.component .thumbnailControls img{object-fit:cover}.component .thumbnailControls .thumbnails{width:calc(100% - 110px);height:100%;display:flex;flex-direction:row;justify-content:flex-start;align-items:center;gap:.7rem}.component .thumbnailControls .thumbnails .singleThumbnail{width:calc(20% - 10px);height:100%;filter:grayscale(1);transition:all .3s}.component .thumbnailControls .thumbnails .singleThumbnail:hover{filter:grayscale(0.75)}.component .thumbnailControls .thumbnails .singleThumbnail.currentImg{filter:grayscale(0)}.component .thumbnailControls .thumbnails .singleThumbnail.nextImg{left:50px}.component .thumbnailControls .thumbnails .singleThumbnail.prevImg{left:-50px}.component .thumbnailControls .thumbnails .singleThumbnail img{border-radius:5px}.component .thumbnailControls .controls{width:110px;height:100%;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:15px}.component .thumbnailControls .controls .prevButton,.component .thumbnailControls .controls .nextButton{width:2rem;height:2rem;background-color:rgba(0,0,0,0);border:1px solid #fff;border-radius:50%;display:flex;flex-direction:row;justify-content:center;align-items:center;overflow:hidden}.component .thumbnailControls .controls .arrLeft{transform:rotate(180deg)}
+.lightMode {
+  background-color: hsl(69, 90%, 90%);
+  color: hsl(237, 30%, 15%);
+}
+
+.darkMode {
+  background-color: hsl(237, 30%, 15%);
+  color: hsl(69, 90%, 90%);
+}
+
+.component {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+  overflow: hidden;
+  padding: 1rem;
+  border-radius: 22px;
+}
+.component .upperControls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  height: 0%;
+}
+.component .upperControls .indexWrapper {
+  position: relative;
+}
+.component .upperControls .indexWrapper span {
+  display: inline-block;
+  overflow: hidden;
+}
+.component .upperControls .indexWrapper span span {
+  position: relative;
+  display: block;
+  color: hsl(69, 90%, 90%);
+}
+.component .upperControls .expandCarouselWrapper {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.component .upperControls .expandCarouselWrapperVertical {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.component .upperControls .expandCarouselWrapperVertical img {
+  transform: scale(1.4);
+}
+.component .imageContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 90%;
+  border-radius: 0.8rem;
+}
+.component .imageContainer .imageStackContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  flex: 1 0 100%;
+  overflow: hidden;
+  border-radius: 0.8rem;
+}
+.component .imageContainer .imageStackContainer .imageDiv {
+  position: absolute;
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  opacity: 0;
+  border-radius: 0.8rem;
+}
+.component .imageContainer .imageStackContainer .imageDiv:first-of-type {
+  opacity: 1;
+}
+.component .imageContainer .imageStackContainer .imageDiv img {
+  position: relative;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 0.8rem;
+}
+.component .imageContainer .thumbnailControlsVertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex: 0;
+  opacity: 0;
+  height: calc(100% - 3rem);
+  width: 0;
+  align-self: flex-end;
+  margin-left: 0rem;
+  gap: 1rem;
+}
+.component .imageContainer .thumbnailControlsVertical img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.component .imageContainer .thumbnailControlsVertical .thumbnailsVertical {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.component .imageContainer .thumbnailControlsVertical .thumbnailsVertical .singleThumbnailVertical {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1.6;
+  transform: translateZ(0);
+  filter: grayscale(1);
+  transition: all 0.3s;
+}
+.component .imageContainer .thumbnailControlsVertical .thumbnailsVertical .singleThumbnailVertical:hover {
+  transform: translateZ(0);
+  filter: grayscale(0.85);
+}
+.component .imageContainer .thumbnailControlsVertical .thumbnailsVertical .singleThumbnailVertical.currentImg {
+  transform: translateZ(0);
+  filter: grayscale(0);
+}
+.component .imageContainer .thumbnailControlsVertical .thumbnailsVertical .singleThumbnailVertical.nextImg {
+  left: 50px;
+}
+.component .imageContainer .thumbnailControlsVertical .thumbnailsVertical .singleThumbnailVertical.prevImg {
+  left: -50px;
+}
+.component .imageContainer .thumbnailControlsVertical .thumbnailsVertical .singleThumbnailVertical img {
+  border-radius: 5px;
+}
+.component .imageContainer .thumbnailControlsVertical .verticalNumberAndArrows {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+.component .imageContainer .thumbnailControlsVertical .verticalNumberAndArrows .verticalIndexWrapper {
+  position: relative;
+  line-height: 1.2rem;
+}
+.component .imageContainer .thumbnailControlsVertical .verticalNumberAndArrows .verticalIndexWrapper span {
+  display: inline-block;
+  overflow: hidden;
+}
+.component .imageContainer .thumbnailControlsVertical .verticalNumberAndArrows .verticalIndexWrapper span span {
+  position: relative;
+  display: block;
+  color: hsl(69, 90%, 90%);
+}
+.component .imageContainer .thumbnailControlsVertical .verticalNumberAndArrows .controlsVertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.component .imageContainer .thumbnailControlsVertical .verticalNumberAndArrows .controlsVertical .prevButtonVertical,
+.component .imageContainer .thumbnailControlsVertical .verticalNumberAndArrows .controlsVertical .nextButtonVertical {
+  width: 2rem;
+  height: 2rem;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.component .imageContainer .thumbnailControlsVertical .verticalNumberAndArrows .controlsVertical .arrLeftVertical {
+  transform: rotate(-90deg);
+}
+.component .imageContainer .thumbnailControlsVertical .verticalNumberAndArrows .controlsVertical .arrRightVertical {
+  transform: rotate(90deg);
+}
+.component .thumbnailControls {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.component .thumbnailControls img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.component .thumbnailControls .thumbnails {
+  width: calc(100% - 110px);
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.7rem;
+}
+.component .thumbnailControls .thumbnails .singleThumbnail {
+  width: calc(20% - 10px);
+  height: 100%;
+  transform: translateZ(0);
+  filter: grayscale(1);
+  transition: all 0.3s;
+}
+.component .thumbnailControls .thumbnails .singleThumbnail:hover {
+  transform: translateZ(0);
+  filter: grayscale(0.85);
+}
+.component .thumbnailControls .thumbnails .singleThumbnail.currentImg {
+  transform: translateZ(0);
+  filter: grayscale(0);
+}
+.component .thumbnailControls .thumbnails .singleThumbnail.nextImg {
+  left: 50px;
+}
+.component .thumbnailControls .thumbnails .singleThumbnail.prevImg {
+  left: -50px;
+}
+.component .thumbnailControls .thumbnails .singleThumbnail img {
+  border-radius: 5px;
+}
+.component .thumbnailControls .controls {
+  width: 110px;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.component .thumbnailControls .controls .prevButton,
+.component .thumbnailControls .controls .nextButton {
+  width: 2rem;
+  height: 2rem;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.component .thumbnailControls .controls .arrLeft {
+  transform: rotate(180deg);
+}

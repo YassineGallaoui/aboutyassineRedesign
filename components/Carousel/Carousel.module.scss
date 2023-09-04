@@ -7,25 +7,24 @@
     align-items: flex-start;
     height: 100%;
     overflow: hidden;
-    background-color: $carouselBG-light;
     padding: 1rem;
     border-radius: 22px;
-    gap: 1rem;
 
-    .upperControls, .verticalUpperControl {
+    .upperControls {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
         width: 100%;
+        height: 0%;
 
         .indexWrapper {
             position: relative;
-
+    
             span {
                 display: inline-block;
                 overflow: hidden;
-
+    
                 span {
                     position: relative;
                     display: block;
@@ -73,7 +72,8 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        height: 92%;
+        height: 90%;
+        border-radius: 0.8rem;
         .imageStackContainer {
             position: relative;
             display: flex;
@@ -84,6 +84,7 @@
             height: 100%;
             flex: 1 0 100%;
             overflow: hidden;
+            border-radius: 0.8rem;
 
             .imageDiv {
                 position: absolute;
@@ -91,6 +92,7 @@
                 aspect-ratio: 4/3;
                 overflow: hidden;
                 opacity: 0;
+                border-radius: 0.8rem;
 
                 &:first-of-type{
                     opacity: 1;
@@ -99,6 +101,7 @@
                 img {
                     position: relative;
                     object-fit: contain;
+                    border-radius: 0.8rem;
                 }
             }
 
@@ -110,7 +113,7 @@
                 align-items: center;
                 flex: 0;
                 opacity: 0;
-                height: 0;
+                height: calc(100% - 3rem);
                 width: 0;
                 align-self: flex-end;
                 margin-left: 0rem;
@@ -133,14 +136,17 @@
                         width: 100%;
                         height: 100%;
                         aspect-ratio: 1.6;
+                        transform: translateZ(0);
                         filter: grayscale(1);
                         transition: all 0.3s;
 
                         &:hover {
-                            filter: grayscale(0.75);
+                            transform: translateZ(0);
+                            filter: grayscale(0.85);
                         }
 
                         &.currentImg {
+                            transform: translateZ(0);
                             filter: grayscale(0);
                         }
 
@@ -157,35 +163,55 @@
                         }
                     }
                 }
-
-                .controlsVertical {
-                    width: 100%;
+                .verticalNumberAndArrows{
                     display: flex;
-                    flex-direction: column;
-                    justify-content: center;
+                    flex-direction: row;
+                    justify-content: space-around;
                     align-items: center;
-                    gap: 1rem;
+                    width: 100%;
 
-                    .prevButtonVertical,
-                    .nextButtonVertical {
-                        width: 2rem;
-                        height: 2rem;
-                        background-color: transparent;
-                        border: 1px solid white;
-                        border-radius: 50%;
+                    .verticalIndexWrapper {
+                        position: relative;
+                        line-height: 1.2rem;
+                        span {
+                            display: inline-block;
+                            overflow: hidden;
+                            span {
+                                position: relative;
+                                display: block;
+                                color: $light-color;
+                            }
+                        }
+                    }
+
+                    .controlsVertical {
                         display: flex;
-                        flex-direction: row;
+                        flex-direction: column;
                         justify-content: center;
                         align-items: center;
-                        overflow: hidden;
-                    }
-
-                    .arrLeftVertical {
-                        transform: rotate(-90deg);
-                    }
-
-                    .arrRightVertical {
-                        transform: rotate(90deg);
+                        gap: 1rem;
+    
+                        .prevButtonVertical,
+                        .nextButtonVertical {
+                            width: 2rem;
+                            height: 2rem;
+                            background-color: transparent;
+                            border: 1px solid white;
+                            border-radius: 50%;
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            align-items: center;
+                            overflow: hidden;
+                        }
+    
+                        .arrLeftVertical {
+                            transform: rotate(-90deg);
+                        }
+    
+                        .arrRightVertical {
+                            transform: rotate(90deg);
+                        }
                     }
                 }
         }
@@ -193,7 +219,7 @@
 
     .thumbnailControls {
         width: 100%;
-        height: 8%;
+        height: 10%;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -216,14 +242,17 @@
             .singleThumbnail {
                 width: calc(20% - 10px);
                 height: 100%;
+                transform: translateZ(0);
                 filter: grayscale(1);
                 transition: all 0.3s;
 
                 &:hover {
-                    filter: grayscale(0.75);
+                    transform: translateZ(0);
+                    filter: grayscale(0.85);
                 }
 
                 &.currentImg {
+                    transform: translateZ(0);
                     filter: grayscale(0);
                 }
 

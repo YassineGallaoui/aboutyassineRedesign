@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import styles from '../styles/scss/Home.module.scss'
-import { parallax } from "../utility";
+import { parallax } from "../utils/utility";
 import Head from "next/head";
 import defaultImg from '../public/imgs/default.svg'
 import Image, { StaticImageData } from "next/image";
@@ -103,7 +103,7 @@ export default function Home({updateCursorText, cursorIsHover}: HomeProps) {
   return (
     <>
       <Head>
-        <title>Yassine | Software Engineer</title>
+        <title>Yassine | Selected Projects</title>
       </Head>
       <div
         className={styles.expBkgrdTxt + " sectionBkgrdTxt"}

@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from "react";
 import styles from './Frame.module.scss'
-import { createSpanStructure } from '../../utility'
+import { createSpanStructure } from '../../utils/utility'
 import Link from 'next/link'
 import Image from 'next/image'
 import logoY from '../../public/logo/logo-Y.svg'
@@ -18,7 +18,6 @@ import gsap from "gsap";
 
 
 export default function Frame({updateCursorText, updateCursorStatus}) {
-    const [themePreference, setThemePreference] = useState<"lightMode"|"darkMode">("lightMode");
     const [themeIconRot, setThemeIconRot] = useState(0);
     const tl = gsap.timeline({});
 
@@ -29,12 +28,12 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
         if(newMode === 'lightMode') {
             body.classList.add("lightMode");
             body.classList.remove("darkMode");
-            localStorage.setItem('theme-preference', 'lightMode');
+            localStorage.setItem('yas-theme-preference', 'lightMode');
             document.documentElement.setAttribute("data-theme", "light");
         } else {
             body.classList.add("darkMode");
             body.classList.remove("lightMode");
-            localStorage.setItem('theme-preference', 'darkMode');
+            localStorage.setItem('yas-theme-preference', 'darkMode');
             document.documentElement.setAttribute("data-theme", "dark");
         }
     }
@@ -58,7 +57,7 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
         }
       
         // Check local storage for theme preference
-        const storedThemePreference = localStorage.getItem('theme-preference');
+        const storedThemePreference = localStorage.getItem('yas-theme-preference');
         if (storedThemePreference) {
           setThemePreferenceClass(storedThemePreference);
         } else {

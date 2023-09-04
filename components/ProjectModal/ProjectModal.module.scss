@@ -18,14 +18,14 @@
         justify-content: center;
         align-items: center;
         border-radius: 2rem;
-        transition: border 0.3s;
+        transition: border 0.4s;
         &:before,&:after {
             content: "";
             position: absolute;
             width: 3px;
             height: 24px;
-            background-color: black;
-            transition: width 0.3s, height 0.3s;
+            background-color: $semitransparentDark1;
+            transition: width 0.4s, height 0.4s, background-color 0.4s;
         }
     
         &:before {
@@ -36,13 +36,13 @@
             transform: rotate(-45deg);
         }
         &.light {
-            transition: border 0.3s;
-            border: 1px solid black;
+            transition: border 0.4s;
+            border: 1px solid $semitransparentDark1;
 
             &:before, &:after {
                 width: 1px;
                 height: 14px;
-                transition: width 0.3s, height 0.3s;
+                transition: width 0.4s, height 0.4s;
             }
         }
     }
@@ -53,7 +53,9 @@
         position: relative;
         padding: 1rem;
         flex: 1;
+        border-right: 3px dashed $semitransparentDark4;
     }
+    
     .projectModalDescriptionWrapper{
         position: relative;
         height: 100%;
@@ -84,7 +86,7 @@
             color: $dark-color;
             font-size: 1.5rem;
             .bottomBorder{
-                border-bottom: 1px solid $semitransparent1;
+                border-bottom: 1px solid $semitransparentDark2;
             }
             tr{
                 td:last-of-type{
@@ -92,7 +94,7 @@
                     padding-bottom: 1rem;
                 }
                 .characteristic{
-                    color: $semitransparent3;
+                    color: $semitransparentDark2;
                 }
                 &.descriptionTitle > td {
                     padding-bottom: 0rem;
@@ -109,5 +111,27 @@
             bottom: -1px;
             position: sticky;
         }
+    }
+}
+
+html[data-theme='dark'] {
+    .closeModalBtn {
+        &:before,&:after {
+            background-color: $semitransparentLight1;
+            transition: width 0.4s, height 0.4s, background-color 0.4s;
+        }
+        &.light {
+            transition: border 0.4s;
+            border: 1px solid $semitransparentLight1;
+            filter: invert(0)!important;
+            &:before, &:after {
+                width: 1px;
+                height: 14px;
+                transition: width 0.4s, height 0.4s;
+            }
+        }
+    }
+    .projectCarouselWrapper {
+        border-right-color: $semitransparentLight4;
     }
 }

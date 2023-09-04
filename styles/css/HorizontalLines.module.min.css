@@ -1,0 +1,37 @@
+.lightMode {
+  background-color: hsl(69, 90%, 90%);
+  color: hsl(237, 30%, 15%);
+}
+
+.darkMode {
+  background-color: hsl(237, 30%, 15%);
+  color: hsl(69, 90%, 90%);
+}
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.container .line {
+  position: absolute;
+  width: 0vw;
+  height: 1px;
+  background-color: hsla(0, 0%, 0%, 0.1);
+  animation: drawHLine cubic-bezier(0.7, 0, 0.3, 1) 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: calc(0.3s * var(--i));
+}
+@keyframes drawHLine {
+  0% {
+    width: 0vw;
+  }
+  100% {
+    width: 100vw;
+  }
+}
+
+html[data-theme=dark] .line {
+  background-color: hsla(0, 0%, 100%, 0.1);
+}

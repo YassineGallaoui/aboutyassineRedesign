@@ -15,6 +15,19 @@ body {
     max-width: 100vw;
     overflow: hidden;
     cursor: none;
+    
+    &.lightMode {
+        background-color: $light-color;
+        color: $semitransparentDark1;
+        transition: background-color $BG-Color-transition-duration, color $BG-Color-transition-duration;
+    }
+
+    &.darkMode {
+        background-color: $dark-color;
+        color: $semitransparentLight1;
+        transition: background-color $BG-Color-transition-duration, color $BG-Color-transition-duration;
+    }
+
     &::-webkit-scrollbar {
         display: none;
     }
@@ -27,48 +40,94 @@ body {
     }
     
     &.lightMode > *{
-        background-color: $light-color;
-        color: $dark-color;
+        background-color: inherit;
+        color: inherit;
         transition: all 0.4s;
-        .projectModalContainer{
-            background-color: $white;
-            color: $dark-color;
-            .fadeEffectBox{
-                background-image: linear-gradient(0deg, $white, transparent);
-            }
-        }
+        transition: background-color $BG-Color-transition-duration, color $BG-Color-transition-duration;
         .sectionBkgrdTxt {
-            color: $semitransparent1;
+            color: $semitransparentDark5;
             transition: all 0.4s;
         }
-    }
-    &.darkMode > * {
-        background-color: $dark-color;
-        color: $light-color;
-        transition: all 0.4s;
-        .sectionBkgrdTxt {
-            color: $semitransparent2;
-            transition: all 0.4s;
-        }
-        .projectModalContainer{
-            background-color: $dark-color;
-            color: $light-color;
-            .carouselComponent{
-                background-color: $carouselBG-dark;
+        .projectModalContainer {
+            color: $semitransparentDark1;
+            background-color: $light-color;
+            transition: background-color $BG-Color-transition-duration, color $BG-Color-transition-duration;
+            .carouselComponent {
+                background-color: $semitransparentDark1;
             }
             table {
-                color: $light-color;
-                .bottomBorder{
-                    border-bottom: 1px solid $semitransparent2;
+                color: $semitransparentDark1;
+                .bottomBorder{ 
+                    border-bottom: 1px solid $semitransparentDark4;
                 }
                 tr{
                     .characteristic{
-                        color: $semitransparent4;
+                        color: $semitransparentDark1;
+                        span{
+                            position: relative;
+                            display: inline-block;
+                            width: auto;
+                            &:after{
+                                content: '';
+                                position: absolute;
+                                display: block;
+                                width: 100%;
+                                height: 1rem;
+                                top: 1.2rem;
+                                background-color: $semitransparentDark5;
+                            }
+                        }
                     }
                 }
             }
             .fadeEffectBox{
-                background-image: linear-gradient(0deg, $dark-color, transparent);
+                background-image: linear-gradient(0deg, inherit, transparent);
+            }
+        }
+    }
+    &.darkMode > * {
+        background-color: inherit;
+        color: inherit;
+        transition: all 0.4s;
+        transition: background-color $BG-Color-transition-duration, color $BG-Color-transition-duration;
+        .sectionBkgrdTxt {
+            color: $semitransparentLight5;
+            transition: all 0.4s;
+        }
+        .projectModalContainer{
+            color: $semitransparentLight1;
+            background-color: $dark-color;
+            transition: background-color $BG-Color-transition-duration, color $BG-Color-transition-duration;
+            .carouselComponent{
+                background-color: $semitransparentDark1;
+            }
+            table {
+                color: $semitransparentLight1;
+                .bottomBorder{
+                    border-bottom: 1px solid $semitransparentLight5;
+                }
+                tr{
+                    .characteristic{
+                        color: $semitransparentLight1;
+                        span{
+                            position: relative;
+                            display: inline-block;
+                            width: auto;
+                            &:after{
+                                content: '';
+                                position: absolute;
+                                display: block;
+                                width: 100%;
+                                height: 1rem;
+                                top: 1.2rem;
+                                background-color: $semitransparentLight5;
+                            }
+                        }
+                    }
+                }
+            }
+            .fadeEffectBox{
+                background-image: linear-gradient(0deg, inherit, transparent);
             }
         }
         .invertImg {
@@ -79,22 +138,23 @@ body {
             }
         }
     }
-}
 
-main {
-    height: 100vh;
-    max-height: 100vh;
-    min-width: 100vw;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
+    main {
+        height: 100vh;
+        max-height: 100vh;
+        min-width: 100vw;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
 
-a {
-    color: inherit;
-    text-decoration: none;
-    &:hover {
+    a {
         color: inherit;
         text-decoration: none;
+        &:hover {
+            color: inherit;
+            text-decoration: none;
+        }
     }
+
 }

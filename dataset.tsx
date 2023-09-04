@@ -19,6 +19,7 @@ export type Project = {
   description: string;
   frontend: string;
   backend: string;
+  awards?: string[];
   media: StaticImageData[];
 };
 
@@ -37,8 +38,8 @@ export const projectsDataset: Project[] = [
     workingFor: "Deloitte",
     description:
       "Worked with a team of 10/15 people on the redesign and implementation of a car auction platform, backoffice and frontoffice. ",
-    frontend: "Next.js, MUI",
-    backend: "Nest.js, Socket.io, MongoDB",
+    frontend: "Next.js + MUI",
+    backend: "Nest.js + Socket.io + DocumentDB + Amazon Cognito",
   },
   {
     id: 1,
@@ -51,6 +52,7 @@ export const projectsDataset: Project[] = [
       imgMaserati2,
       imgMaserati1,
     ],
+    awards: ['Awwwards Honorable Mention'],
     workingFor: "Deloitte",
     description:
       "Joined the project during its UAT phase with a team of 30 people. In the first period I worked mainly on bugfixing and analytics integration. After the go live I joined a team of 5 people to develop from scratch the Owner Area section of the website, take care of all analytics and later also bugfixing.",
@@ -71,8 +73,8 @@ export const projectsDataset: Project[] = [
     workingFor: "Once Upon A Time SA",
     description:
       "Worked with a team of 5 people on creating a whole new tickets selling platform for internal use. Implemented all the frontend side of the website -including analytics- and also contributed, in some cases, in the design process.",
-    frontend: "Vanilla Javascript, Scss",
-    backend: "Django, MySQL",
+    frontend: "Vanilla Javascript + Scss",
+    backend: "Django + MySQL",
   },
   {
     id: 3,
@@ -82,7 +84,7 @@ export const projectsDataset: Project[] = [
     workingFor: "University of Milan Internship",
     description:
       "As part of my bachelor degree internship, I redesigned and developed a fitness tracking web application which helps trainers and individual athletes to keep track of various fitness, physical and body parameters.",
-    frontend: "React, ChartJS2",
-    backend: "Node.js, MongoDB",
+    frontend: "React + ChartJS2",
+    backend: "Node.js + MongoDB",
   },
 ];

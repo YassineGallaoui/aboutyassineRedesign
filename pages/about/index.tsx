@@ -1,26 +1,10 @@
 import { useEffect } from "react";
 import styles from "../../styles/scss/About.module.scss";
-import { createSpanStructure, parallax } from "../../utility";
+import { createSpanStructure, parallax, calculateScrollPercentage } from "../../utils/utility";
 import Head from "next/head";
-import { text } from "stream/consumers";
-import { forEachChild } from "typescript";
+import HorizontalLines from "../../components/HorizontalLines";
 
 export default function About() {
-
-    const calculateScrollPercentage = (pageContent) => {
-        const scrollTop = pageContent.scrollTop;
-        const scrollHeight = pageContent.scrollHeight;
-        const clientHeight = pageContent.clientHeight;
-
-        // Calculate the scrolled distance from the top of the content
-        const scrolledDistance = scrollTop;
-
-        // Calculate the percentage of scrolled distance
-        const scrollPercentage = (scrolledDistance / (scrollHeight - clientHeight)) * 100;
-
-        // Return the calculated percentage
-        return scrollPercentage.toFixed(0);
-    }
 
     useEffect(() => {
         const welcomeArray = ["Hi!", "Hallo!", "¡Hola!", "Salut!", "Ciao!"];
@@ -30,7 +14,7 @@ export default function About() {
             setTimeout(function () {
                 welcomeWord.innerHTML = createSpanStructure(welcomeArray[i]);
                 startWelcomeAnimation(++i < welcomeArray.length ? i : 0);
-            }, 3000);
+            }, 5000);
         };
         startWelcomeAnimation(i);
 
@@ -51,11 +35,12 @@ export default function About() {
     return (
         <>
             <Head>
-                <title>Yassine | Software Developer</title>
+                <title>Yassine | About him</title>
             </Head>
             <div className={styles.meBkgrdTxt+' sectionBkgrdTxt'}>About</div> 
             <div className={styles.verticalLine}></div>
             <div className={styles.horizontalLine}></div>
+            <HorizontalLines />
             <div className={styles.meContainer}>
                 <div className={styles.meContainer__txt + " row gx-5"}>
                     <div className={styles.meContainer__txt__big__welcome + " col-2 offset-1 welcomeWord"}>

@@ -74,6 +74,7 @@ export default function ProjectModal({
   };
 
   useEffect(()=>{
+    const projectCarouselWrapper = document.querySelector('.projectCarouselWrapper');
     const descriptionWrapper = document.querySelector('.projectModalDescriptionWrapper');
     const closeModalBtn = document.querySelector(".closeModalBtn");
     const fadeEffectBox = document.querySelector('.fadeEffectBox') as HTMLElement;
@@ -85,7 +86,11 @@ export default function ProjectModal({
         x: 100,
         flex: 0,
         padding: 0,
-      })
+      });
+      gsap.to(projectCarouselWrapper, {
+        duration: 0.3,
+        borderRightWidth: 0,
+      });
       gsap.to(closeModalBtn, {
         delay: 0.3,
         duration: 0.3,
@@ -99,6 +104,10 @@ export default function ProjectModal({
         flex: 1,
         padding: '1rem',
       })
+      gsap.to(projectCarouselWrapper, {
+        duration: 0.3,
+        borderWidth: '1px',
+      });
       gsap.to(closeModalBtn, {
         duration: 0.3,
         filter: "invert(0)",
@@ -110,7 +119,7 @@ export default function ProjectModal({
     <div className={styles.projectModalContainer + " projectModalContainer"}>
       <div
         id="projectCarouselWrapper"
-        className={styles.projectCarouselWrapper}
+        className={styles.projectCarouselWrapper+ ' projectCarouselWrapper'}
       >
         <Carousel
           content={content}
@@ -131,23 +140,37 @@ export default function ProjectModal({
           <table>
             <tbody>
               <tr className={styles.bottomBorder+' bottomBorder'}>
-                <td className={styles.characteristic+' characteristic'}>{"Working for"}</td>
+                <th className={styles.characteristic+' characteristic'}>
+                  <span>
+                    {"Working for"}
+                  </span>
+                </th>
                 <td>{content.workingFor}</td>
               </tr>
               <tr aria-rowspan={2} className={styles.descriptionTitle}>
-                <td colSpan={2} className={styles.characteristic+' characteristic'}>
-                  {"Description"}
-                </td>
+                <th colSpan={2} className={styles.characteristic+' characteristic'}>
+                  <span>
+                    {"Description"}
+                  </span>
+                </th>
               </tr>
               <tr className={styles.bottomBorder + " bottomBorder " + styles.description}>
                 <td colSpan={2}>{content.description}</td>
               </tr>
               <tr className={styles.bottomBorder+' bottomBorder'}>
-                <td className={styles.characteristic+' characteristic'}>{"Frontend"}</td>
+                <th className={styles.characteristic+' characteristic'}>
+                  <span>
+                    {"Frontend"}
+                  </span>
+                </th>
                 <td>{content.frontend}</td>
               </tr>
               <tr>
-                <td className={styles.characteristic+' characteristic'}>{"Backend"}</td>
+                <th className={styles.characteristic+' characteristic'}>
+                  <span>
+                    {"Backend"}
+                  </span>
+                </th>
                 <td>{content.backend}</td>
               </tr>
             </tbody>
