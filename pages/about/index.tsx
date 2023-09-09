@@ -69,7 +69,7 @@ export default function About() {
                             <span className={styles.meContainer__txt__description__small}>{`→ I'm`}</span>
                             <span className={styles.meContainer__txt__description__big}>{` Yassine, `}</span>
                             <span className={styles.meContainer__txt__description__small}>{`a`}</span>
-                            <span className={styles.meContainer__txt__description__big}>{` full stack developer, `}</span>
+                            <span className={styles.meContainer__txt__description__big}>{` software developer, `}</span>
                             <span className={styles.meContainer__txt__description__small}>{`particularly capable in`}</span>
                             <span className={styles.meContainer__txt__description__big}>{` frontend development. `}</span>
                             <span className={styles.meContainer__txt__description__small}>{`The majority of my`}</span>
@@ -95,12 +95,12 @@ export default function About() {
                             <span className={styles.meContainer__txt__description__small}>{`is`}</span>
                             <span className={styles.meContainer__txt__description__big}>{` Italian `}</span>
                             <span className={styles.meContainer__txt__description__small}>{`but I also speak`}</span>
-                            <span className={styles.meContainer__txt__description__big}>{` fluent English. `}</span>
-                            <span className={styles.meContainer__txt__description__small}>{`I also have a rusty (i mean, reaaaally rusty) knowledge of `}</span>
+                            <span className={styles.meContainer__txt__description__big}>{` fluent English, `}</span>
+                            <span className={styles.meContainer__txt__description__small}>{`a rusty `}</span>
                             <span className={styles.meContainer__txt__description__big}>{` French, `}</span>
                             <span className={styles.meContainer__txt__description__small}>{`as well as an informal`}</span>
                             <span className={styles.meContainer__txt__description__big}>{` Arabic `}</span>
-                            <span className={styles.meContainer__txt__description__small}>{`with typical Tunisian accent and expressions.`}</span>
+                            <span className={styles.meContainer__txt__description__small}>{`with typical Tunisian accent and slang.`}</span>
                         </p>
                     </div>
                 </div>

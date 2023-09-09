@@ -1,8 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import '../styles/css/globals.module.min.css';
 import { generateColors } from '../utils/colorGenerator';
-import Layout from '../components/Layout';
 import { useEffect, useState } from 'react';
+import Layout from '../components/layout';
 
 
 export default function MyApp({ Component, pageProps }) {
@@ -31,10 +31,10 @@ export default function MyApp({ Component, pageProps }) {
       const projectModalContainer = document.querySelector('.projectModalContainer') as HTMLElement;
       if(body.classList.contains('lightMode')) {
         body.style.setProperty("background-color", newColors[0]);
-        projectModalContainer.style.setProperty("background-color", newColors[0]);
+        projectModalContainer!=null && projectModalContainer.style.setProperty("background-color", newColors[0]);
       } else {
         body.style.setProperty("background-color", newColors[1]);
-        projectModalContainer.style.setProperty("background-color", newColors[1]);
+        projectModalContainer!=null && projectModalContainer.style.setProperty("background-color", newColors[1]);
       }
     }, 10000)
 

@@ -1,27 +1,58 @@
 import styles from './SplashScreen.module.scss'
 import logoY from '../../public/logo/logo-Y.svg'
 import Image from 'next/image'
-import { useEffect } from 'react';
-import { typeText } from '../../utils/textTyping';
+import { useEffect, useState } from 'react';
+import TypingText from '../TypingText';
+import gsap from 'gsap';
+import ProgressBarCMD from '../ProgressBarCMD';
 
 
 export default function SplashScreen({updateCursorText, updateCursorStatus}) {
-    const texhnicalText1 = `Welcome dear web traveler!`;
-    const texhnicalTextReply1 = `'Welcome' is not recognized as an internal or external command, operable program or batch file.`;
-    const texhnicalText2 = `... ok. Anyways, don't expect all the website to be like THIS.`;
+    const tl = gsap.timeline({});
+    const displaySS = false;
+    const baseDirectory = `C:\\Users\\yas> `;
+    const directoryProjects = `C:\\Users\\yas\\projects> `;
+    const directoryYassineRedesign = `C:\\Users\\yas\\projects\\yasRedesign> `;
+    const texhnicalText1 = `cd projects`;
+    const texhnicalText2 = `cd yasRedesign`;
+    const texhnicalText3 = `code .`;
+    const texhnicalText4 = `npm run dev`;
+    const texhnicalText5 = `[··············································]`;
+
+    const [text1Completed, setText1Completed] = useState(false);
+    const [text2Completed, setText2Completed] = useState(false);
+    const [text3Completed, setText3Completed] = useState(false);
+    const [text4Completed, setText4Completed] = useState(false);
+    const [text5Completed, setText5Completed] = useState(false);
 
     useEffect(()=>{
-      const codeTextWrapper = document.querySelector('.codeText');
-      typeText(texhnicalText1, codeTextWrapper);
-    }, [])
+      if(text5Completed){
+        const SSContainer = document.querySelector('.SSContainer');
+        setTimeout(() => {
+          tl.to(SSContainer, {
+            top: -100,
+            opacity: 0,
+            zIndex: 0
+          })
+        }, 1200);
+      }
+    }, [text5Completed])
 
-    return (
-      <div className={styles.SSContainer}>
+    return displaySS ? (
+      <div className={styles.SSContainer+' SSContainer'}>
         <Image id={styles.logoImageSS} src={logoY} alt={`Yassine's Portfolio logo`} fill></Image>
         <div className={styles.codeText}>
-          <span>{`C:\\Users\\yas>`}</span>
-          <div className={styles.textCursor}></div>
+          <span>{baseDirectory}</span>
+          <span><TypingText text={texhnicalText1} updateCompletion={setText1Completed} /></span>
+          {text1Completed && <><br/><span>{directoryProjects}</span></>}
+          <span>{text1Completed && <TypingText text={texhnicalText2} updateCompletion={setText2Completed} />}</span>
+          {text2Completed && <><br/><span>{directoryYassineRedesign}</span></>}
+          <span>{text2Completed && <TypingText text={texhnicalText3} updateCompletion={setText3Completed} />}</span>
+          {text3Completed && <><br/><span>{directoryYassineRedesign}</span></>}
+          <span>{text3Completed && <TypingText text={texhnicalText4} updateCompletion={setText4Completed} />}</span>
+          <span>{text4Completed && <><br/><ProgressBarCMD text={texhnicalText5} updateCompletion={setText5Completed} /></>}</span>
+          {!text4Completed && <div className={styles.textCursor}></div>}
         </div>
       </div>
-    );
+    ) : <></>;
 }

@@ -3,24 +3,23 @@
 .SSContainer {
     position: fixed;
     width: 100vw;
-    height: 100vh;
+    height: 150vh;
+    top: 0;
     background-color: $black;
     color: lime;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     z-index: 20;
     user-select: none;
     #logoImageSS {
-        opacity: 0.2;
+        opacity: 0.6;
         transform: translateX(-25%);
     }
     .textCursor {
+        position: relative;
         display: inline-block;
         width: 0.5rem;
         height: 2rem;
-        background-color: lime;
+        top: 2px;
+        background-color: lime !important;
         animation: blinkCursor infinite 1s;
     }
     @keyframes blinkCursor {
@@ -29,7 +28,7 @@
         50% {opacity: 1;}
     }
     .codeText {
-        position: fixed;
+        position: relative;
         top: 5rem;
         left: 5rem;
         font-family: 'Courier New', Courier, monospace;

@@ -1,8 +1,8 @@
 import React, { ReactNode, useState } from "react";
 import Head from "next/head";
-import Frame from "../Frame";
 import Cursor from "../Cursor";
 import SplashScreen from "../SplashScreen";
+import Frame from "../frame";
 
 type Props = {
     children?: ReactNode;
