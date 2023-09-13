@@ -11,6 +11,7 @@
     height: 100vh;
     width: 1px;
     background-color: $semitransparentDark3;
+    transition: background-color 0.4s;
     border: none;
     top: 0;
     left: 24vw;
@@ -22,6 +23,7 @@
     height: 1px;
     width: 0vw;
     background-color: $semitransparentDark3;
+    transition: background-color 0.4s;
     border: none;
     position: fixed;
     top: calc(12.5rem + 15vh);
@@ -32,6 +34,7 @@
 
 html[data-theme='dark'] {
     .verticalLine, .horizontalLine {
+        transition: background-color 0.4s;
         background-color: $semitransparentLight3;
     }
 }

@@ -11,7 +11,7 @@ export default function ProgressBarCMD ({text, updateCompletion}) {
   useEffect(() => {
     const typeNextCharacter = () => {
       if (currentIndex < text.length) {
-        const typingSpeed = getRandomInt(50, 200); // Random speed between 100 and 500 ms
+        const typingSpeed = getRandomInt(5, 100); // Random speed between 5 and 100 ms
 
         setTimeout(() => {
           setDisplayText(displayText.substring(0, currentIndex)+'≡'+text.substring(currentIndex+2));

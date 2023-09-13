@@ -10,6 +10,7 @@
         width: 0vw;
         height: 1px;
         background-color: $semitransparentDark5;
+        transition: background-color 0.4s;
         animation: drawHLine cubic-bezier(.7,0,.3,1) 3s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
@@ -23,6 +24,7 @@
 
 html[data-theme='dark'] {
     .line {
+        transition: background-color 0.4s;
         background-color: $semitransparentLight5;
     }
 }

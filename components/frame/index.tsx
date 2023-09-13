@@ -15,9 +15,10 @@ import linkedinIcon from '../../public/icons/linkedin.svg'
 import githubIcon from '../../public/icons/github.svg'
 import websiteLastUpdateDate from '../../websiteLastUpdateDate';
 import gsap from "gsap";
+import { colorApplicator } from "../../utils/colorFunctions";
 
 
-export default function Frame({updateCursorText, updateCursorStatus}) {
+export default function Frame({updateCursorText, updateCursorStatus, lightColor, darkColor}) {
     const [themeIconRot, setThemeIconRot] = useState(0);
     const tl = gsap.timeline({});
 
@@ -30,11 +31,13 @@ export default function Frame({updateCursorText, updateCursorStatus}) {
             body.classList.remove("darkMode");
             localStorage.setItem('yas-theme-preference', 'lightMode');
             document.documentElement.setAttribute("data-theme", "light");
+            colorApplicator(lightColor, darkColor);
         } else {
             body.classList.add("darkMode");
             body.classList.remove("lightMode");
             localStorage.setItem('yas-theme-preference', 'darkMode');
             document.documentElement.setAttribute("data-theme", "dark");
+            colorApplicator(lightColor, darkColor);
         }
     }
 

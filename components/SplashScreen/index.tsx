@@ -9,7 +9,7 @@ import ProgressBarCMD from '../ProgressBarCMD';
 
 export default function SplashScreen({updateCursorText, updateCursorStatus}) {
     const tl = gsap.timeline({});
-    const displaySS = false;
+    const displaySS = true;
     const baseDirectory = `C:\\Users\\yas> `;
     const directoryProjects = `C:\\Users\\yas\\projects> `;
     const directoryYassineRedesign = `C:\\Users\\yas\\projects\\yasRedesign> `;

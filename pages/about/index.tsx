@@ -73,7 +73,7 @@ export default function About() {
                             <span className={styles.meContainer__txt__description__small}>{`particularly capable in`}</span>
                             <span className={styles.meContainer__txt__description__big}>{` frontend development. `}</span>
                             <span className={styles.meContainer__txt__description__small}>{`The majority of my`}</span>
-                            <span className={styles.meContainer__txt__description__big}>{` interests gravitate around IT, `}</span>
+                            <span className={styles.meContainer__txt__description__big}>{` interests gravitate around IT and CS, `}</span>
                             <span className={styles.meContainer__txt__description__small}>{`going from digital ethics to digital law and from web design to software development. My focus is always into making`}</span>
                             <span className={styles.meContainer__txt__description__big}>{` software which `}</span>
                             <span className={styles.meContainer__txt__description__small}>{`not only`}</span>

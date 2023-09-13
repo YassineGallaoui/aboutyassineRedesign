@@ -7,17 +7,19 @@ import Image, { StaticImageData } from "next/image";
 import { Project, projectsDataset } from "../dataset";
 import gsap from 'gsap';
 import ProjectModal from "../components/ProjectModal";
+import { colorApplicator } from "../utils/colorFunctions";
 
 type HomeProps = {
   updateCursorText: Function,
-  cursorIsHover: Function
+  cursorIsHover: Function,
+  lightColor: string,
+  darkColor: string,
 }
 
-export default function Home({updateCursorText, cursorIsHover}: HomeProps) {
+export default function Home({updateCursorText, cursorIsHover, lightColor, darkColor}: HomeProps) {
   const [triangleRowsNumber, setTriangleRowsNumber] = useState<number>(0);
   const [trianglesPerRow, setTrianglesPerRow] = useState<number>(0);
   const [tempImgHover, setTempImageHover] = useState<StaticImageData>(defaultImg);
-  //const [projectOpened, setProjectOpened] = useState<Boolean>(false);
   const [projectOpened, setProjectOpened] = useState<Project>(
     projectsDataset[0]
   );
@@ -33,6 +35,8 @@ export default function Home({updateCursorText, cursorIsHover}: HomeProps) {
     setTriangleRowsNumber(Math.ceil(((window.innerHeight/300))/2));
     (Math.ceil((window.innerWidth/300)*2)+2)%2 === 1 ? 
     setTrianglesPerRow(Math.ceil((window.innerWidth/300)*2)+5) : setTrianglesPerRow(Math.ceil((window.innerWidth/300)*2)+4);
+    
+    colorApplicator(lightColor, darkColor);
   }, [])
 
   useEffect(() => {

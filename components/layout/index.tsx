@@ -5,19 +5,29 @@ import SplashScreen from "../SplashScreen";
 import Frame from "../frame";
 
 type Props = {
-    children?: ReactNode;
-    cursorHover: boolean;
-    cursorText: string|null;
     updateCursorText: Function;
     updateCursorStatus: Function;
+    cursorHover: boolean;
+    cursorText: string|null;
+    lightColor: string;
+    darkColor: string;
+    children?: ReactNode;
 };
 
-const Layout = ({ updateCursorText, updateCursorStatus, cursorHover, cursorText, children }: Props) => {
+const Layout = ({ updateCursorText, updateCursorStatus, cursorHover, cursorText, lightColor, darkColor, children }: Props) => {
     return (
         <main>
-            <Cursor hovered={cursorHover} txt={cursorText} />
-            <SplashScreen updateCursorText={updateCursorText} updateCursorStatus={updateCursorStatus} />
-            <Frame updateCursorText={updateCursorText} updateCursorStatus={updateCursorStatus} />
+            <Cursor 
+                hovered={cursorHover} 
+                txt={cursorText} />
+            <SplashScreen 
+                updateCursorText={updateCursorText} 
+                updateCursorStatus={updateCursorStatus} />
+            <Frame 
+                updateCursorText={updateCursorText} 
+                updateCursorStatus={updateCursorStatus} 
+                lightColor={lightColor} 
+                darkColor={darkColor}/>
             {children}
         </main>
     );
