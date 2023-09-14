@@ -97,6 +97,11 @@ function Carousel({
         },
         0
       )
+      .to(".upperControls", {
+        duration: 0.4,
+        height: '2rem',
+      },
+      0)
       .to(
         ".imageStackContainer",
         {
@@ -141,6 +146,10 @@ function Carousel({
         duration: 0.4,
         right: "3rem",
       })
+      .to(".upperControls", {
+        duration: 0.4,
+        height: '0rem',
+      }, 0)
       .to(
         ".thumbnailControls",
         {

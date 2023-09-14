@@ -11,6 +11,9 @@
     z-index: 9999;
     mix-blend-mode: difference;
     pointer-events: none;
+    &.hiddenPointer {
+        display: none;
+    }
     .customCursor{
         position: relative;
         margin-top: -50%;
