@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import styles from '../styles/scss/Home.module.scss'
 import { parallax } from "../utils/utility";
 import Head from "next/head";
-import defaultImg from '../public/imgs/default.svg'
+import defaultImg from '../public/imgs/default.webp'
 import Image, { StaticImageData } from "next/image";
 import { Project, projectsDataset } from "../dataset";
 import gsap from 'gsap';
@@ -163,7 +163,7 @@ export default function Home({updateCursorText, cursorIsHover, lightColor, darkC
           {trianglesPerRow > 0 &&
             [...Array(trianglesPerRow).keys()].map((cell, index2) => {
               if (
-                index2 < (trianglesPerRow - 4) / 2 ||
+                index2 < (trianglesPerRow - 2) / 2 ||
                 index2 >= (trianglesPerRow + 4) / 2
               ) {
                 return (
@@ -190,7 +190,7 @@ export default function Home({updateCursorText, cursorIsHover, lightColor, darkC
                       } as React.CSSProperties
                     }
                     id={`triangleProjectWrapper-${
-                      projectsDataset[index2 - (trianglesPerRow - 4) / 2]?.id
+                      projectsDataset[index2 - (trianglesPerRow - 2) / 2]?.id
                     }`}
                   >
                     <div
@@ -198,19 +198,19 @@ export default function Home({updateCursorText, cursorIsHover, lightColor, darkC
                         styles.triangleProjectContent + " triangleProjectImg"
                       }
                       id={`triangleProjectContent-${
-                        projectsDataset[index2 - (trianglesPerRow - 4) / 2]?.id
+                        projectsDataset[index2 - (trianglesPerRow - 2) / 2]?.id
                       }`}
                       data-project-id={
-                        projectsDataset[index2 - (trianglesPerRow - 4) / 2]?.id
+                        projectsDataset[index2 - (trianglesPerRow - 2) / 2]?.id
                       }
                     >
                       <Image
                         src={
-                          projectsDataset[index2 - (trianglesPerRow - 4) / 2]
+                          projectsDataset[index2 - (trianglesPerRow - 2) / 2]
                             ?.media[0]
                         }
                         id={`image-${
-                          projectsDataset[index2 - (trianglesPerRow - 4) / 2]
+                          projectsDataset[index2 - (trianglesPerRow - 2) / 2]
                             ?.id
                         }`}
                         className={"image"}
@@ -218,26 +218,26 @@ export default function Home({updateCursorText, cursorIsHover, lightColor, darkC
                         alt="project"
                         onMouseOver={() =>
                           handleImageHover(
-                            projectsDataset[index2 - (trianglesPerRow - 4) / 2]
+                            projectsDataset[index2 - (trianglesPerRow - 2) / 2]
                               ?.id
                           )
                         }
                         onMouseLeave={() =>
                           handleImageLeave(
-                            projectsDataset[index2 - (trianglesPerRow - 4) / 2]
+                            projectsDataset[index2 - (trianglesPerRow - 2) / 2]
                               ?.id
                           )
                         }
                         onClick={() =>
                           handleImageClick(
-                            projectsDataset[index2 - (trianglesPerRow - 4) / 2]
+                            projectsDataset[index2 - (trianglesPerRow - 2) / 2]
                               ?.id
                           )
                         }
                       />
                       <div
                         id={`see-more-${index2 % 2 === 1 ? "odd" : "even"}-${
-                          projectsDataset[index2 - (trianglesPerRow - 4) / 2]
+                          projectsDataset[index2 - (trianglesPerRow - 2) / 2]
                             ?.id
                         }`}
                         className={styles.seeMoreText}
