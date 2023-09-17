@@ -18,8 +18,6 @@ export default function ProjectModal({
   updateOpen,
   updateCursorText,
   cursorIsHover}: ModalProps) {
-  const [carouselSectionWidth, setCarouselSectionWidth] = useState<number | null>(null);
-  const [carouselSectionHeight, setCarouselSectionHeight] = useState<number | null>(null);
   const [expandedCarousel, setExpandedCarousel] = useState<boolean>(false);
 
   useEffect(() => {
@@ -36,14 +34,6 @@ export default function ProjectModal({
         zIndex: "20",
         opacity: 1,
       });
-      setTimeout(() => {
-        setCarouselSectionWidth(
-          document.getElementById("projectCarouselWrapper").offsetWidth
-        );
-        setCarouselSectionHeight(
-          document.getElementById("projectCarouselWrapper").offsetHeight
-        );
-      }, 550);
     } else {
       gsap.to(`.projectModalContainer`, {
         position: "fixed",

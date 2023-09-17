@@ -81,75 +81,25 @@ function Carousel({
   const expandBtnClick = () => {
     setExpandedCarousel(!expandedCarousel);
     if (expandedCarousel) {
-      // compressing the carousel //
-
-      tl.to(".expandCarouselWrapper", {
-        duration: 0.6,
-        right: "0rem",
-      })
-      .to(
-        ".thumbnailControlsVertical",
-        {
-          duration: 0.6,
-          x: 100,
-          opacity: 0,
-          flex: "0 0 0",
-        },
-        0
-      )
-      .to(".upperControls", {
-        duration: 0.4,
-        height: '2rem',
-      },
-      0)
-      .to(
-        ".imageStackContainer",
-        {
-          duration: 0.6,
-          flex: "1 0 100%",
-        },
-        0
-      )
-      .to(
-          ".imageContainer",
-          {
-            duration: 0.4,
-            height: "90%",
-            gap: "0rem",
-          },
-          0
-        )
-        .to(
-          ".indexWrapper",
-          {
-            duration: 0.4,
-            x: 0,
-            opacity: 1,
-          },
-          0
-        )
-        .to(
-          ".thumbnailControls",
-          {
-            duration: 0.4,
-            y: 0,
-            opacity: 1,
-            height: '10%',
-          },
-          0
-        )
-
+      compressCarousel();
     } else {
-      // expanding the carousel //
+      expandCarousel();
+    }
+  };
 
-      tl.to(".expandCarouselWrapper", {
-        duration: 0.4,
-        right: "3rem",
-      })
-      .to(".upperControls", {
-        duration: 0.4,
-        height: '0rem',
-      }, 0)
+  const expandCarousel = () => {
+    tl.to(".expandCarouselWrapper", {
+      duration: 0.4,
+      right: "3rem",
+    })
+      .to(
+        ".upperControls",
+        {
+          duration: 0.4,
+          height: "0rem",
+        },
+        0
+      )
       .to(
         ".thumbnailControls",
         {
@@ -170,14 +120,14 @@ function Carousel({
         0
       )
       .to(
-          ".imageContainer",
-          {
-            duration: 0.4,
-            height: "100%",
-            gap: "1rem",
-          },
-          0
-        )
+        ".imageContainer",
+        {
+          duration: 0.4,
+          height: "100%",
+          gap: "1rem",
+        },
+        0
+      )
       .to(
         ".imageStackContainer",
         {
@@ -195,8 +145,68 @@ function Carousel({
           flex: "1 0 10%",
         },
         0
+      );
+  };
+
+  const compressCarousel = () => {
+    tl.to(".expandCarouselWrapper", {
+      duration: 0.6,
+      right: "0rem",
+    })
+      .to(
+        ".thumbnailControlsVertical",
+        {
+          duration: 0.6,
+          x: 100,
+          opacity: 0,
+          flex: "0 0 0",
+        },
+        0
       )
-    }
+      .to(
+        ".upperControls",
+        {
+          duration: 0.4,
+          height: "2rem",
+        },
+        0
+      )
+      .to(
+        ".imageStackContainer",
+        {
+          duration: 0.6,
+          flex: "1 0 100%",
+        },
+        0
+      )
+      .to(
+        ".imageContainer",
+        {
+          duration: 0.4,
+          height: "90%",
+          gap: "0rem",
+        },
+        0
+      )
+      .to(
+        ".indexWrapper",
+        {
+          duration: 0.4,
+          x: 0,
+          opacity: 1,
+        },
+        0
+      )
+      .to(
+        ".thumbnailControls",
+        {
+          duration: 0.4,
+          y: 0,
+          opacity: 1,
+          height: "10%",
+        },
+        0
+      );
   };
 
   const prevBtnClick = (vertical = null) => {
