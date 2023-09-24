@@ -106,9 +106,6 @@ export default function Home({updateCursorText, cursorIsHover, lightColor, darkC
 
   return (
     <>
-      <Head>
-        <title>Yassine | Selected Projects</title>
-      </Head>
       <div
         className={styles.expBkgrdTxt + " sectionBkgrdTxt"}
         onMouseMove={(event) =>

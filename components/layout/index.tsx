@@ -1,8 +1,7 @@
-import React, { ReactNode, useState } from "react";
-import Head from "next/head";
+import React, { ReactNode } from "react";
 import Cursor from "../Cursor";
 import SplashScreen from "../SplashScreen";
-import Frame from "../Frame";
+import Frame from "../frame";
 import { themeMode } from "../../pages/_app";
 
 type Props = {

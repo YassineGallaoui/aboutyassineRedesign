@@ -1,6 +1,6 @@
 import styles from "./Carousel.module.scss";
 import { useEffect, useRef, useState } from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import arrRight from "../../public/icons/arr.svg";
 import arrExpand from "../../public/icons/expand.svg";
 import gsap from "gsap";

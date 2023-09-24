@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import styles from "../../styles/scss/About.module.scss";
 import { createSpanStructure, parallax, calculateScrollPercentage } from "../../utils/utility";
-import Head from "next/head";
 import HorizontalLines from "../../components/HorizontalLines";
+import Head from "next/head";
 
 export default function About() {
 
@@ -34,9 +34,6 @@ export default function About() {
 
     return (
         <>
-            <Head>
-                <title>Yassine | About him</title>
-            </Head>
             <div className={styles.meBkgrdTxt+' sectionBkgrdTxt'}>About</div> 
             <div className={styles.verticalLine}></div>
             <div className={styles.horizontalLine}></div>
