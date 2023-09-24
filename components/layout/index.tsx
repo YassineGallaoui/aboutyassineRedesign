@@ -2,7 +2,7 @@ import React, { ReactNode, useState } from "react";
 import Head from "next/head";
 import Cursor from "../Cursor";
 import SplashScreen from "../SplashScreen";
-//import Frame from "../Frame";
+import Frame from "../Frame";
 import { themeMode } from "../../pages/_app";
 
 type Props = {
@@ -33,13 +33,13 @@ const Layout = ({
         updateCursorText={updateCursorText}
         updateCursorStatus={updateCursorStatus}
       />
-      {/* <Frame
+      <Frame
         updateCursorText={updateCursorText}
         updateCursorStatus={updateCursorStatus}
         preferredTheme={preferredTheme}
         lightColor={lightColor}
         darkColor={darkColor}
-      /> */}
+      />
       {children}
     </main>
   );
