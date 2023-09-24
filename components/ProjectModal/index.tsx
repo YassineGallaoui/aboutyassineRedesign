@@ -113,6 +113,7 @@ export default function ProjectModal({
       >
         <Carousel
           content={content}
+          open={open}
           updateCursorText={updateCursorText}
           cursorIsHover={cursorIsHover}
           expandedCarousel={expandedCarousel}

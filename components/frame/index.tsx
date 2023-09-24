@@ -16,57 +16,55 @@ import githubIcon from '../../public/icons/github.svg'
 import websiteLastUpdateDate from '../../websiteLastUpdateDate';
 import gsap from "gsap";
 import { colorApplicator } from "../../utils/colorFunctions";
+import { themeMode } from "../../pages/_app";
+import { updateLanguageServiceSourceFile } from "typescript";
 
+type FrameType = {
+  updateCursorText: Function, 
+  updateCursorStatus: Function, 
+  preferredTheme: themeMode, 
+  lightColor: string, 
+  darkColor: string,
+}
 
-export default function Frame({updateCursorText, updateCursorStatus, lightColor, darkColor}) {
+export default function Frame<FrameType>({updateCursorText, updateCursorStatus, preferredTheme, lightColor, darkColor}) {
     const [themeIconRot, setThemeIconRot] = useState(0);
-    const tl = gsap.timeline({});
+    const [currentTheme, setCurrentTheme] = useState<themeMode>(preferredTheme);
 
-    const themeChange = (newMode) => {
+    const themeChange = () => {
         setThemeIconRot(themeIconRot+180);
-        
+        console.log(themeMode[currentTheme], "currentTheme");
+        setCurrentTheme(
+          currentTheme === themeMode.darkMode
+            ? themeMode.lightMode
+            : themeMode.darkMode
+        );
         const body = document.querySelector("body");
-        if(newMode === 'lightMode') {
-            body.classList.add("lightMode");
-            body.classList.remove("darkMode");
-            localStorage.setItem('yas-theme-preference', 'lightMode');
-            document.documentElement.setAttribute("data-theme", "light");
-            colorApplicator(lightColor, darkColor);
+         if (currentTheme === themeMode.darkMode) {
+          body.classList.add("lightMode");
+          body.classList.remove("darkMode");
+          localStorage.setItem("yas-theme-preference", themeMode[themeMode.lightMode]);
+          document.documentElement.setAttribute("data-theme", "light");
+          colorApplicator(lightColor, darkColor);
         } else {
-            body.classList.add("darkMode");
-            body.classList.remove("lightMode");
-            localStorage.setItem('yas-theme-preference', 'darkMode');
-            document.documentElement.setAttribute("data-theme", "dark");
-            colorApplicator(lightColor, darkColor);
+          body.classList.add("darkMode");
+          body.classList.remove("lightMode");
+          localStorage.setItem(
+            "yas-theme-preference",
+            themeMode[themeMode.darkMode]
+          );
+          document.documentElement.setAttribute("data-theme", "dark");
+          colorApplicator(lightColor, darkColor);
         }
     }
 
     useEffect(() => {
 
-      if (typeof window !== 'undefined') {
-        const body = document.querySelector("body");
-        // Check if dark mode is preferred by the user (system preference)
-        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      
-        // Function to set the theme preference class
-        function setThemePreferenceClass(themePreference) {
-          body.classList.remove('darkMode', 'lightMode');
-          body.classList.add(themePreference);
-          themePreference === 'darkMode' ? 
-          document.documentElement.setAttribute("data-theme", "dark"):
-          document.documentElement.setAttribute("data-theme", "light")
-
-          themePreference === 'darkMode' && setThemeIconRot(themeIconRot+180);
-        }
-      
-        // Check local storage for theme preference
-        const storedThemePreference = localStorage.getItem('yas-theme-preference');
-        if (storedThemePreference) {
-          setThemePreferenceClass(storedThemePreference);
-        } else {
-          setThemePreferenceClass(prefersDarkMode ? 'darkMode' : 'lightMode');
-        }
-      }
+      console.log(preferredTheme);
+      console.log(themeMode.darkMode);
+      preferredTheme === themeMode.darkMode
+        ? setThemeIconRot(themeIconRot + 180)
+        : setThemeIconRot(themeIconRot + 0);
       
       //menu navigation
       const body = document.querySelector("body");
@@ -75,7 +73,7 @@ export default function Frame({updateCursorText, updateCursorStatus, lightColor,
       liTags.forEach((element, index) => {
           element.innerHTML = createSpanStructure(sectionNames[index]);
       })
-    }, [])
+    })
 
   const hoverSocialButtons = (e) => {
     updateCursorStatus(true); 
@@ -116,12 +114,12 @@ export default function Frame({updateCursorText, updateCursorStatus, lightColor,
             style={{ transform: "rotate(" + themeIconRot + "deg)" }}
             onMouseOver={() => updateCursorStatus(true)}
             onMouseLeave={() => updateCursorStatus(false)}
+            onClick={() => themeChange()}
           >
             <div
               className={
                 styles.frameContainer__right__theme__light + " lightModeIcon"
               }
-              onClick={() => themeChange("lightMode")}
             >
               <Image
                 src={lightIconBase}
@@ -152,7 +150,6 @@ export default function Frame({updateCursorText, updateCursorStatus, lightColor,
               className={
                 styles.frameContainer__right__theme__dark + " darkModeIcon"
               }
-              onClick={() => themeChange("darkMode")}
             >
               <Image
                 src={darkIcon}

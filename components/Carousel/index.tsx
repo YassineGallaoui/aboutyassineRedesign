@@ -3,12 +3,18 @@ import { useEffect, useRef, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import arrRight from "../../public/icons/arr.svg";
 import arrExpand from "../../public/icons/expand.svg";
-import gsap from 'gsap';
+import gsap from "gsap";
 import { Project } from "../../dataset";
-import { textAnimationBackward, textAnimationForward, verticalTextAnimationBackward, verticalTextAnimationForward } from "../../utils/utility";
+import {
+  textAnimationBackward,
+  textAnimationForward,
+  verticalTextAnimationBackward,
+  verticalTextAnimationForward,
+} from "../../utils/utility";
 
 interface CarouselProps {
   content: Project;
+  open: boolean;
   updateCursorText: Function;
   cursorIsHover: Function;
   expandedCarousel: boolean;
@@ -17,17 +23,20 @@ interface CarouselProps {
 
 function Carousel({
   content,
+  open,
   updateCursorText,
   cursorIsHover,
   expandedCarousel,
   setExpandedCarousel,
 }: CarouselProps) {
-  const projectName = content.name;
+  const codeName = content.codeName;
   const images = content.media;
   const altText = content.name + " for " + content.workingFor;
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [imageNumberSpanTags, setImageNumberSpanTags] = useState<NodeListOf<Element>>();
-  const [verticalImageNumberSpanTags, setVerticalImageNumberSpanTags] = useState<NodeListOf<Element>>();
+  const [imageNumberSpanTags, setImageNumberSpanTags] =
+    useState<NodeListOf<Element>>();
+  const [verticalImageNumberSpanTags, setVerticalImageNumberSpanTags] =
+    useState<NodeListOf<Element>>();
 
   const [newZIndexLevel, setNewZIndexLevel] = useState(5);
 
@@ -44,37 +53,30 @@ function Carousel({
     let imagesNumber = document.querySelectorAll(".indexWrapper > span > span");
     setImageNumberSpanTags(imagesNumber);
 
-    let verticalImagesNumber = document.querySelectorAll(".verticalIndexWrapper > span > span");
+    let verticalImagesNumber = document.querySelectorAll(
+      ".verticalIndexWrapper > span > span"
+    );
     setVerticalImageNumberSpanTags(verticalImagesNumber);
   }, []);
 
-  const prevBtnMouseOver = () => {
-    tl.to(prevBtnRef.current, { duration: 0.2, x: -20 })
-      .to(prevBtnRef.current, { duration: 0, x: 20, y: 0 })
-      .to(prevBtnRef.current, { x: 0 });
-    tl2.to(prevBtnVerticalRef.current, { duration: 0.2, y: -20 })
-      .to(prevBtnVerticalRef.current, { duration: 0, y: 20, x: 0 })
-      .to(prevBtnVerticalRef.current, { y: 0 });
-    cursorIsHover(true);
-  };
-
-  const nextBtnMouseOver = () => {
-    tl.to(nextBtnRef.current, { duration: 0.2, x: 20 })
-      .to(nextBtnRef.current, { duration: 0, x: -20, y: 0 })
-      .to(nextBtnRef.current, { x: 0 });
-    tl2.to(nextBtnVerticalRef.current, { duration: 0.2, y: 20 })
-      .to(nextBtnVerticalRef.current, { duration: 0, y: -20, x: 0 })
-      .to(nextBtnVerticalRef.current, { y: 0 });
-    cursorIsHover(true);
-  };
+  useEffect(() => {
+    setTimeout(() => {
+      setCurrentIndex(0);
+      goToImageIndex(0, "left");  
+    }, 200);
+  }, [open]);
 
   const expandBtnMouseOver = () => {
-    tl.to(expandBtnRef.current, { duration: 0.3, scale: 1.4 });
+    expandedCarousel
+      ? tl.to(expandBtnRef.current, { duration: 0.3, scale: 1 })
+      : tl.to(expandBtnRef.current, { duration: 0.3, scale: 1.4 });
     cursorIsHover(true);
   };
 
   const expandBtnMouseLeave = () => {
-    tl.to(expandBtnRef.current, { duration: 0.3, scale: 1 });
+    expandedCarousel
+      ? tl.to(expandBtnRef.current, { duration: 0.3, scale: 1.4 })
+      : tl.to(expandBtnRef.current, { duration: 0.3, scale: 1 });
     cursorIsHover(false);
   };
 
@@ -92,6 +94,7 @@ function Carousel({
       duration: 0.4,
       right: "3rem",
     })
+      .to(expandBtnRef.current, { duration: 0, scale: 1.4 })
       .to(
         ".upperControls",
         {
@@ -153,6 +156,7 @@ function Carousel({
       duration: 0.6,
       right: "0rem",
     })
+      .to(expandBtnRef.current, { duration: 0, scale: 1 })
       .to(
         ".thumbnailControlsVertical",
         {
@@ -209,6 +213,28 @@ function Carousel({
       );
   };
 
+  const prevBtnMouseOver = () => {
+    tl.to(prevBtnRef.current, { duration: 0.2, x: -20 })
+      .to(prevBtnRef.current, { duration: 0, x: 20, y: 0 })
+      .to(prevBtnRef.current, { x: 0 });
+    tl2
+      .to(prevBtnVerticalRef.current, { duration: 0.2, y: -20 })
+      .to(prevBtnVerticalRef.current, { duration: 0, y: 20, x: 0 })
+      .to(prevBtnVerticalRef.current, { y: 0 });
+    cursorIsHover(true);
+  };
+
+  const nextBtnMouseOver = () => {
+    tl.to(nextBtnRef.current, { duration: 0.2, x: 20 })
+      .to(nextBtnRef.current, { duration: 0, x: -20, y: 0 })
+      .to(nextBtnRef.current, { x: 0 });
+    tl2
+      .to(nextBtnVerticalRef.current, { duration: 0.2, y: 20 })
+      .to(nextBtnVerticalRef.current, { duration: 0, y: -20, x: 0 })
+      .to(nextBtnVerticalRef.current, { y: 0 });
+    cursorIsHover(true);
+  };
+
   const prevBtnClick = (vertical = null) => {
     imageNumberSpanTags.forEach((el, index) => {
       textAnimationForward(el, index + 1);
@@ -219,19 +245,19 @@ function Carousel({
     });
 
     setTimeout(() => {
-      if(vertical) 
+      if (vertical)
         goToImageIndexVertical(
           currentIndex === 0 ? images.length - 1 : currentIndex - 1,
           "left"
         );
-      else 
+      else
         goToImageIndex(
           currentIndex === 0 ? images.length - 1 : currentIndex - 1,
           "left"
         );
     }, 200);
 
-    if(vertical)
+    if (vertical)
       tl3
         .to(prevBtnVerticalRef.current, { duration: 0.2, y: -3 })
         .to(prevBtnVerticalRef.current, { y: 0 });
@@ -251,26 +277,28 @@ function Carousel({
     });
 
     setTimeout(() => {
-      if(vertical) 
+      if (vertical)
         goToImageIndexVertical(
           currentIndex === images.length - 1 ? 0 : currentIndex + 1,
           "right"
         );
-      else 
+      else
         goToImageIndex(
           currentIndex === images.length - 1 ? 0 : currentIndex + 1,
           "right"
         );
     }, 200);
-    if(vertical)
-      tl3.to(nextBtnVerticalRef.current, { duration: 0.2, y: 3 })
+    if (vertical)
+      tl3
+        .to(nextBtnVerticalRef.current, { duration: 0.2, y: 3 })
         .to(nextBtnVerticalRef.current, { y: 0 });
     else
-      tl3.to(nextBtnRef.current, { duration: 0.2, x: 3 })
+      tl3
+        .to(nextBtnRef.current, { duration: 0.2, x: 3 })
         .to(nextBtnRef.current, { x: 0 });
   };
 
-  const thumbnailClickHandle = (imageIndex: number, vertical=null) => {
+  const thumbnailClickHandle = (imageIndex: number, vertical = null) => {
     if (imageIndex != currentIndex) {
       imageNumberSpanTags.forEach((el, index) => {
         imageIndex > currentIndex
@@ -284,16 +312,14 @@ function Carousel({
       });
 
       setTimeout(() => {
-        if(vertical)
-          goToImageIndexVertical(imageIndex);
-        else
-          goToImageIndex(imageIndex);
+        if (vertical) goToImageIndexVertical(imageIndex);
+        else goToImageIndex(imageIndex);
       }, 200);
     }
   };
 
   const goToImageIndex = (index, direction = null) => {
-    const imageToGo = document.querySelector("#image-"+projectName+index);
+    const imageToGo = document.querySelector("#image-" + codeName + index);
     setNewZIndexLevel(newZIndexLevel + 1);
     if (index != currentIndex) {
       setCurrentIndex(index);
@@ -303,39 +329,35 @@ function Carousel({
           (index > currentIndex ||
             (currentIndex === images.length - 1 && index === 0)))
       ) {
-        tl
-        .to(imageToGo, {
+        tl.to(imageToGo, {
           duration: 0,
           x: "100%",
           zIndex: newZIndexLevel,
           opacity: 1,
-        })
-        .to(imageToGo, {
+        }).to(imageToGo, {
           duration: 1,
           x: "0%",
           opacity: 1,
-          ease: "expo.out"
-        })
+          ease: "expo.out",
+        });
       } else {
-        tl
-        .to(imageToGo, {
+        tl.to(imageToGo, {
           duration: 0,
           x: "-100%",
           zIndex: newZIndexLevel,
           opacity: 1,
-        })
-        .to(imageToGo, {
+        }).to(imageToGo, {
           duration: 1,
           x: "0%",
           opacity: 1,
-          ease: "expo.out"
-        })
+          ease: "expo.out",
+        });
       }
     }
   };
 
   const goToImageIndexVertical = (index, direction = null) => {
-    const imageToGo = document.querySelector("#image-"+projectName+index);
+    const imageToGo = document.querySelector("#image-" + codeName + index);
     setNewZIndexLevel(newZIndexLevel + 1);
     if (index != currentIndex) {
       setCurrentIndex(index);
@@ -345,33 +367,29 @@ function Carousel({
           (index > currentIndex ||
             (currentIndex === images.length - 1 && index === 0)))
       ) {
-        tl
-        .to(imageToGo, {
+        tl.to(imageToGo, {
           duration: 0,
           y: "100%",
           zIndex: newZIndexLevel,
           opacity: 1,
-        })
-        .to(imageToGo, {
+        }).to(imageToGo, {
           duration: 1,
           y: "0%",
           opacity: 1,
-          ease: "expo.out"
-        })
+          ease: "expo.out",
+        });
       } else {
-        tl
-        .to(imageToGo, {
+        tl.to(imageToGo, {
           duration: 0,
           y: "-100%",
           zIndex: newZIndexLevel,
           opacity: 1,
-        })
-        .to(imageToGo, {
+        }).to(imageToGo, {
           duration: 1,
           y: "0%",
           opacity: 1,
-          ease: "expo.out"
-        })
+          ease: "expo.out",
+        });
       }
     }
   };
@@ -405,23 +423,21 @@ function Carousel({
       </div>
 
       <div className={styles.imageContainer + " imageContainer"}>
-        <div
-          className={styles.imageStackContainer+ " imageStackContainer"}
-        >
-          {images.map((el,index)=>{
+        <div className={styles.imageStackContainer + " imageStackContainer"}>
+          {images.map((el, index) => {
             return (
-              <div id={'image-'+projectName+index} className={styles.imageDiv} key={index} style={{zIndex: 5-index}}>
-                <Image
-                  src={el}
-                  alt={altText}
-                  fill
-                />
+              <div
+                id={"image-" + codeName + index}
+                className={styles.imageDiv}
+                key={index}
+                style={{ zIndex: 5 - index }}
+              >
+                <Image src={el} alt={altText} fill />
               </div>
-            )
-          })
-          }
+            );
+          })}
         </div>
-        
+
         {/* THIS ACTIVATES ONLY WHEN THE CAROUSEL IS EXPANDED */}
         <div
           className={
@@ -446,7 +462,9 @@ function Carousel({
           </div>
           {/* numero slide e frecce */}
           <div className={styles.verticalNumberAndArrows}>
-            <div className={styles.verticalIndexWrapper + " verticalIndexWrapper"}>
+            <div
+              className={styles.verticalIndexWrapper + " verticalIndexWrapper"}
+            >
               <span>
                 <span>{"0"}</span>
               </span>

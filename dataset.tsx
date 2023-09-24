@@ -11,6 +11,7 @@ import { StaticImageData } from "next/image";
 
 export type Project = {
   id: number;
+  codeName: string;
   name: string;
   workingFor: string;
   year: number;
@@ -24,6 +25,7 @@ export type Project = {
 export const projectsDataset: Project[] = [
   {
     id: 0,
+    codeName: "Autotorino",
     name: "Autotorino",
     year: 2023,
     media: [
@@ -41,6 +43,7 @@ export const projectsDataset: Project[] = [
   },
   {
     id: 1,
+    codeName: "BeeTiMaseratickets",
     name: "Maserati",
     year: 2022,
     media: [
@@ -59,6 +62,7 @@ export const projectsDataset: Project[] = [
   },
   {
     id: 2,
+    codeName: "BeeTickets",
     name: "Bee Tickets",
     year: 2021,
     media: [imgBeeTickets1, imgBeeTickets2, imgBeeTickets3, imgBeeTickets4],
