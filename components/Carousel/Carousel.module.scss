@@ -1,39 +1,180 @@
 @import "../../styles/scss/variables.scss";
 
 .component {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+  overflow: hidden;
+  padding: 1rem;
+  border-radius: 22px;
+
+  .upperControls {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    height: 100%;
-    overflow: hidden;
-    padding: 1rem;
-    border-radius: 22px;
+    width: 100%;
 
-    .upperControls {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
+    .indexWrapper {
+      position: relative;
+
+      span {
+        display: inline-block;
+        overflow: hidden;
+
+        span {
+          position: relative;
+          display: block;
+          color: $light-color;
+        }
+      }
+    }
+
+    .expandCarouselWrapper {
+      position: relative;
+      width: 2rem;
+      height: 2rem;
+      background-color: transparent;
+      border: 1px solid white;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+  }
+
+  .imageContainer {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 90%;
+    border-radius: 0.8rem;
+    .imageStackContainer {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      flex: 1 0 100%;
+      overflow: hidden;
+      border-radius: 0.8rem;
+
+      .imageDiv {
+        position: absolute;
         width: 100%;
+        aspect-ratio: 4/3;
+        overflow: hidden;
+        opacity: 0;
+        border-radius: 0.8rem;
 
-        .indexWrapper {
-            position: relative;
-    
-            span {
-                display: inline-block;
-                overflow: hidden;
-    
-                span {
-                    position: relative;
-                    display: block;
-                    color: $light-color;
-                }
-            }
+        &:first-of-type {
+          opacity: 1;
         }
 
-        .expandCarouselWrapper {
-            position: relative;
+        img {
+          position: relative;
+          object-fit: contain;
+          border-radius: 0.8rem;
+        }
+      }
+    }
+    .thumbnailControlsVertical {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      flex: 0;
+      opacity: 0;
+      height: calc(100% - 3rem);
+      width: 0;
+      align-self: flex-end;
+      margin-left: 0rem;
+      gap: 1rem;
+
+      img {
+        object-fit: cover;
+      }
+
+      .thumbnailsVertical {
+        width: 100%;
+        height: calc(100% - 6rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        .singleThumbnailVertical {
+          width: 100%;
+          height: 100%;
+          aspect-ratio: 1.6;
+          transform: translateZ(0);
+          filter: grayscale(1);
+          transition: all 0.3s;
+
+          &:hover {
+            transform: translateZ(0);
+            filter: grayscale(0.85);
+          }
+
+          &.currentImg {
+            transform: translateZ(0);
+            filter: grayscale(0);
+          }
+
+          &.nextImg {
+            left: 50px;
+          }
+
+          &.prevImg {
+            left: -50px;
+          }
+
+          img {
+            border-radius: 5px;
+          }
+        }
+      }
+      .verticalNumberAndArrows {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: 5rem;
+
+        .verticalIndexWrapper {
+          position: relative;
+          line-height: 1.2rem;
+          span {
+            display: inline-block;
+            overflow: hidden;
+            span {
+              position: relative;
+              display: block;
+              color: $light-color;
+            }
+          }
+        }
+
+        .controlsVertical {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 1rem;
+
+          .prevButtonVertical,
+          .nextButtonVertical {
             width: 2rem;
             height: 2rem;
             background-color: transparent;
@@ -43,242 +184,99 @@
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            z-index: 1;
-        }
-    }
-
-    .imageContainer {
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        height: 90%;
-        border-radius: 0.8rem;
-        .imageStackContainer {
-            position: relative;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            flex: 1 0 100%;
             overflow: hidden;
-            border-radius: 0.8rem;
+          }
 
-            .imageDiv {
-                position: absolute;
-                width: 100%;
-                aspect-ratio: 4/3;
-                overflow: hidden;
-                opacity: 0;
-                border-radius: 0.8rem;
+          .arrLeftVertical {
+            transform: rotate(-90deg);
+          }
 
-                &:first-of-type{
-                    opacity: 1;
-                }
-
-                img {
-                    position: relative;
-                    object-fit: contain;
-                    border-radius: 0.8rem;
-                }
-            }
-
+          .arrRightVertical {
+            transform: rotate(90deg);
+          }
         }
-        .thumbnailControlsVertical {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                align-items: center;
-                flex: 0;
-                opacity: 0;
-                height: calc(100% - 3rem);
-                width: 0;
-                align-self: flex-end;
-                margin-left: 0rem;
-                gap: 1rem;
+      }
+    }
+  }
 
-                img {
-                    object-fit: cover;
-                }
+  .thumbnailControls {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
 
-                .thumbnailsVertical {
-                    width: 100%;
-                    height: calc(100% - 6rem);
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 1rem;
-
-                    .singleThumbnailVertical {
-                        width: 100%;
-                        height: 100%;
-                        aspect-ratio: 1.6;
-                        transform: translateZ(0);
-                        filter: grayscale(1);
-                        transition: all 0.3s;
-
-                        &:hover {
-                            transform: translateZ(0);
-                            filter: grayscale(0.85);
-                        }
-
-                        &.currentImg {
-                            transform: translateZ(0);
-                            filter: grayscale(0);
-                        }
-
-                        &.nextImg {
-                            left: 50px;
-                        }
-
-                        &.prevImg {
-                            left: -50px;
-                        }
-
-                        img {
-                            border-radius: 5px
-                        }
-                    }
-                }
-                .verticalNumberAndArrows{
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-around;
-                    align-items: center;
-                    width: 100%;
-                    height: 5rem;
-
-                    .verticalIndexWrapper {
-                        position: relative;
-                        line-height: 1.2rem;
-                        span {
-                            display: inline-block;
-                            overflow: hidden;
-                            span {
-                                position: relative;
-                                display: block;
-                                color: $light-color;
-                            }
-                        }
-                    }
-
-                    .controlsVertical {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        gap: 1rem;
-    
-                        .prevButtonVertical,
-                        .nextButtonVertical {
-                            width: 2rem;
-                            height: 2rem;
-                            background-color: transparent;
-                            border: 1px solid white;
-                            border-radius: 50%;
-                            display: flex;
-                            flex-direction: row;
-                            justify-content: center;
-                            align-items: center;
-                            overflow: hidden;
-                        }
-    
-                        .arrLeftVertical {
-                            transform: rotate(-90deg);
-                        }
-    
-                        .arrRightVertical {
-                            transform: rotate(90deg);
-                        }
-                    }
-                }
-        }
+    img {
+      object-fit: cover;
     }
 
-    .thumbnailControls {
-        width: 100%;
-        height: 10%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-end;
+    .thumbnails {
+      width: calc(100% - 110px);
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 0.7rem;
+
+      .singleThumbnail {
+        width: calc(20% - 10px);
+        height: 100%;
+        transform: translateZ(0);
+        filter: grayscale(1);
+        transition: all 0.3s;
+
+        &:hover {
+          transform: translateZ(0);
+          filter: grayscale(0.85);
+        }
+
+        &.currentImg {
+          transform: translateZ(0);
+          filter: grayscale(0);
+        }
+
+        &.nextImg {
+          left: 50px;
+        }
+
+        &.prevImg {
+          left: -50px;
+        }
 
         img {
-            object-fit: cover;
-
+          border-radius: 5px;
         }
-
-        .thumbnails {
-            width: calc(100% - 110px);
-            height: 100%;
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: center;
-            gap: 0.7rem;
-
-            .singleThumbnail {
-                width: calc(20% - 10px);
-                height: 100%;
-                transform: translateZ(0);
-                filter: grayscale(1);
-                transition: all 0.3s;
-
-                &:hover {
-                    transform: translateZ(0);
-                    filter: grayscale(0.85);
-                }
-
-                &.currentImg {
-                    transform: translateZ(0);
-                    filter: grayscale(0);
-                }
-
-                &.nextImg {
-                    left: 50px;
-                }
-
-                &.prevImg {
-                    left: -50px;
-                }
-
-                img {
-                    border-radius: 5px
-                }
-            }
-        }
-
-        .controls {
-            width: 110px;
-            height: 100%;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-
-            .prevButton,
-            .nextButton {
-                width: 2rem;
-                height: 2rem;
-                background-color: transparent;
-                border: 1px solid white;
-                border-radius: 50%;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                overflow: hidden;
-            }
-
-            .arrLeft {
-                transform: rotate(180deg);
-            }
-        }
+      }
     }
+
+    .controls {
+      width: 110px;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+
+      .prevButton,
+      .nextButton {
+        width: 2rem;
+        height: 2rem;
+        background-color: transparent;
+        border: 1px solid white;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .arrLeft {
+        transform: rotate(180deg);
+      }
+    }
+  }
 }

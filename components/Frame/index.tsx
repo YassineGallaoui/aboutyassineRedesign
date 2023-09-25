@@ -1,28 +1,28 @@
-import {useEffect, useState} from "react";
-import styles from './Frame.module.scss'
-import { createSpanStructure } from '../../utils/utility'
-import Link from 'next/link'
-import Image from 'next/image'
-import logoY from '../../public/logo/logo-Y.svg'
-import lightIcon from '../../public/icons/light_mode.svg'
-import lightIconBase from '../../public/icons/light_mode_base.svg'
-import darkIcon from '../../public/icons/dark_mode.svg'
-import darkIconStars1 from '../../public/icons/dark_mode_stars_1.svg'
-import darkIconStars2 from '../../public/icons/dark_mode_stars_2.svg'
-import cvIcon from '../../public/icons/CV.svg'
-import mailIcon from '../../public/icons/mail.svg'
-import linkedinIcon from '../../public/icons/linkedin.svg'
-import websiteLastUpdateDate from '../../websiteLastUpdateDate';
+import { useEffect, useState } from "react";
+import styles from "./Frame.module.scss";
+import { createSpanStructure } from "../../utils/utility";
+import Link from "next/link";
+import Image from "next/image";
+import logoY from "../../public/logo/logo-Y.svg";
+import lightIcon from "../../public/icons/light_mode.svg";
+import lightIconBase from "../../public/icons/light_mode_base.svg";
+import darkIcon from "../../public/icons/dark_mode.svg";
+import darkIconStars1 from "../../public/icons/dark_mode_stars_1.svg";
+import darkIconStars2 from "../../public/icons/dark_mode_stars_2.svg";
+import cvIcon from "../../public/icons/CV.svg";
+import mailIcon from "../../public/icons/mail.svg";
+import linkedinIcon from "../../public/icons/linkedin.svg";
+import websiteLastUpdateDate from "../../websiteLastUpdateDate";
 import { colorApplicator } from "../../utils/colorFunctions";
 import { themeMode } from "../../pages/_app";
 
 type FrameType = {
-  updateCursorText: Function, 
-  updateCursorStatus: Function, 
-  preferredTheme: themeMode, 
-  lightColor: string, 
-  darkColor: string,
-}
+  updateCursorText: Function;
+  updateCursorStatus: Function;
+  preferredTheme: themeMode;
+  lightColor: string;
+  darkColor: string;
+};
 
 export default function Frame({
   updateCursorText,
@@ -40,7 +40,7 @@ export default function Frame({
     setCurrentTheme(
       currentTheme === themeMode.darkMode
         ? themeMode.lightMode
-        : themeMode.darkMode
+        : themeMode.darkMode,
     );
     const body = document.querySelector("body");
     if (currentTheme === themeMode.darkMode) {
@@ -48,7 +48,7 @@ export default function Frame({
       body.classList.remove("darkMode");
       localStorage.setItem(
         "yas-theme-preference",
-        themeMode[themeMode.lightMode]
+        themeMode[themeMode.lightMode],
       );
       document.documentElement.setAttribute("data-theme", "light");
       colorApplicator(lightColor, darkColor);
@@ -57,7 +57,7 @@ export default function Frame({
       body.classList.remove("lightMode");
       localStorage.setItem(
         "yas-theme-preference",
-        themeMode[themeMode.darkMode]
+        themeMode[themeMode.darkMode],
       );
       document.documentElement.setAttribute("data-theme", "dark");
       colorApplicator(lightColor, darkColor);
@@ -205,7 +205,10 @@ export default function Frame({
           >
             <a href="/cv.pdf" rel="noreferrer noopener" target="_blank"></a>
             <div
-              className={styles.frameContainer__right__contacts__social__text+" contactsSocial"}
+              className={
+                styles.frameContainer__right__contacts__social__text +
+                " contactsSocial"
+              }
             >
               <div></div>
             </div>
@@ -223,7 +226,10 @@ export default function Frame({
           >
             <a href="mailto:myassine.gallaoui@gmail.com"></a>
             <div
-              className={styles.frameContainer__right__contacts__social__text+" contactsSocial"}
+              className={
+                styles.frameContainer__right__contacts__social__text +
+                " contactsSocial"
+              }
             >
               <div></div>
             </div>
@@ -240,7 +246,10 @@ export default function Frame({
               target="_blank"
             ></a>
             <div
-              className={styles.frameContainer__right__contacts__social__text+" contactsSocial"}
+              className={
+                styles.frameContainer__right__contacts__social__text +
+                " contactsSocial"
+              }
             >
               <div></div>
             </div>

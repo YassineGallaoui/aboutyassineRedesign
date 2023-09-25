@@ -1,170 +1,181 @@
 @import "./variables.scss";
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html,
 body {
-    padding: 0;
-    margin: 0;
-    font-family: 'Playfair Display', serif;
-    font-size: 0.9rem;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    max-height: 100vh;
-    max-width: 100vw;
-    overflow: hidden;
-    cursor: auto;
-    
-    &.lightMode {
-        background-color: $light-color;
+  padding: 0;
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  font-size: 0.9rem;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  max-height: 100vh;
+  max-width: 100vw;
+  overflow: hidden;
+  cursor: auto;
+
+  &.lightMode {
+    background-color: $light-color;
+    color: $semitransparentDark1;
+    transition:
+      background-color $BG-Color-transition-duration,
+      color $BG-Color-transition-duration;
+  }
+
+  &.darkMode {
+    background-color: $dark-color;
+    color: $semitransparentLight1;
+    transition:
+      background-color $BG-Color-transition-duration,
+      color $BG-Color-transition-duration;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  box-sizing: border-box;
+  transition: all 0.4s;
+  user-select: none;
+  img {
+    pointer-events: none;
+    user-drag: none;
+  }
+
+  &.lightMode > * {
+    background-color: inherit;
+    color: inherit;
+    transition: all 0.8s;
+    transition:
+      background-color $BG-Color-transition-duration,
+      color $BG-Color-transition-duration;
+    .sectionBkgrdTxt {
+      color: $semitransparentDark5;
+      transition: all 0.8s;
+    }
+    .projectModalContainer {
+      color: $semitransparentDark1;
+      background-color: $light-color;
+      transition:
+        background-color $BG-Color-transition-duration,
+        color $BG-Color-transition-duration;
+      .carouselComponent {
+        background-color: $semitransparentDark1;
+      }
+      table {
         color: $semitransparentDark1;
-        transition: background-color $BG-Color-transition-duration, color $BG-Color-transition-duration;
-    }
-
-    &.darkMode {
-        background-color: $dark-color;
-        color: $semitransparentLight1;
-        transition: background-color $BG-Color-transition-duration, color $BG-Color-transition-duration;
-    }
-
-    &::-webkit-scrollbar {
-        display: none;
-    }
-    box-sizing: border-box;
-    transition: all 0.4s;
-    user-select: none;
-    img {
-        pointer-events: none;
-        user-drag: none;
-    }
-    
-    &.lightMode > *{
-        background-color: inherit;
-        color: inherit;
-        transition: all 0.8s;
-        transition: background-color $BG-Color-transition-duration, color $BG-Color-transition-duration;
-        .sectionBkgrdTxt {
-            color: $semitransparentDark5;
-            transition: all 0.8s;
+        .bottomBorder {
+          border-bottom: 1px solid $semitransparentDark4;
         }
-        .projectModalContainer {
+        tr {
+          .characteristic {
             color: $semitransparentDark1;
-            background-color: $light-color;
-            transition: background-color $BG-Color-transition-duration, color $BG-Color-transition-duration;
-            .carouselComponent {
-                background-color: $semitransparentDark1;
+            span {
+              position: relative;
+              display: inline-block;
+              width: auto;
+              &:after {
+                content: "";
+                position: absolute;
+                display: block;
+                width: 100%;
+                height: 1rem;
+                top: 1.2rem;
+                background-color: $semitransparentDark5;
+              }
             }
-            table {
-                color: $semitransparentDark1;
-                .bottomBorder{ 
-                    border-bottom: 1px solid $semitransparentDark4;
-                }
-                tr{
-                    .characteristic{
-                        color: $semitransparentDark1;
-                        span{
-                            position: relative;
-                            display: inline-block;
-                            width: auto;
-                            &:after{
-                                content: '';
-                                position: absolute;
-                                display: block;
-                                width: 100%;
-                                height: 1rem;
-                                top: 1.2rem;
-                                background-color: $semitransparentDark5;
-                            }
-                        }
-                    }
-                }
-            }
-            .fadeEffectBox{
-                background-image: linear-gradient(0deg, inherit, transparent);
-            }
+          }
         }
-        .invertImg {
-            filter: invert(0);
-            transition: filter 0.8s;
-            > * {
-                transition: filter 0.8s;
-                filter: invert(0);
-            }
-        }
+      }
+      .fadeEffectBox {
+        background-image: linear-gradient(0deg, inherit, transparent);
+      }
     }
-    &.darkMode > * {
-        background-color: inherit;
-        color: inherit;
-        transition: all 0.8s;
-        transition: background-color $BG-Color-transition-duration, color $BG-Color-transition-duration;
-        .sectionBkgrdTxt {
-            color: $semitransparentLight5;
-            transition: all 0.8s;
+    .invertImg {
+      filter: invert(0);
+      transition: filter 0.8s;
+      > * {
+        transition: filter 0.8s;
+        filter: invert(0);
+      }
+    }
+  }
+  &.darkMode > * {
+    background-color: inherit;
+    color: inherit;
+    transition: all 0.8s;
+    transition:
+      background-color $BG-Color-transition-duration,
+      color $BG-Color-transition-duration;
+    .sectionBkgrdTxt {
+      color: $semitransparentLight5;
+      transition: all 0.8s;
+    }
+    .projectModalContainer {
+      color: $semitransparentLight1;
+      background-color: $dark-color;
+      transition:
+        background-color $BG-Color-transition-duration,
+        color $BG-Color-transition-duration;
+      .carouselComponent {
+        background-color: $semitransparentDark1;
+      }
+      table {
+        color: $semitransparentLight1;
+        .bottomBorder {
+          border-bottom: 1px solid $semitransparentLight5;
         }
-        .projectModalContainer{
+        tr {
+          .characteristic {
             color: $semitransparentLight1;
-            background-color: $dark-color;
-            transition: background-color $BG-Color-transition-duration, color $BG-Color-transition-duration;
-            .carouselComponent{
-                background-color: $semitransparentDark1;
+            span {
+              position: relative;
+              display: inline-block;
+              width: auto;
+              &:after {
+                content: "";
+                position: absolute;
+                display: block;
+                width: 100%;
+                height: 1rem;
+                top: 1.2rem;
+                background-color: $semitransparentLight5;
+              }
             }
-            table {
-                color: $semitransparentLight1;
-                .bottomBorder{
-                    border-bottom: 1px solid $semitransparentLight5;
-                }
-                tr{
-                    .characteristic{
-                        color: $semitransparentLight1;
-                        span{
-                            position: relative;
-                            display: inline-block;
-                            width: auto;
-                            &:after{
-                                content: '';
-                                position: absolute;
-                                display: block;
-                                width: 100%;
-                                height: 1rem;
-                                top: 1.2rem;
-                                background-color: $semitransparentLight5;
-                            }
-                        }
-                    }
-                }
-            }
-            .fadeEffectBox{
-                background-image: linear-gradient(0deg, inherit, transparent);
-            }
+          }
         }
-        .invertImg {
-            filter: invert(1);
-            transition: filter 0.8s;
-            > * {
-                transition: filter 0.8s;
-                filter: invert(1);
-            }
-        }
+      }
+      .fadeEffectBox {
+        background-image: linear-gradient(0deg, inherit, transparent);
+      }
     }
-
-    main {
-        height: 100vh;
-        max-height: 100vh;
-        min-width: 100vw;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+    .invertImg {
+      filter: invert(1);
+      transition: filter 0.8s;
+      > * {
+        transition: filter 0.8s;
+        filter: invert(1);
+      }
     }
+  }
 
-    a {
-        color: inherit;
-        text-decoration: none;
-        &:hover {
-            color: inherit;
-            text-decoration: none;
-        }
+  main {
+    height: 100vh;
+    max-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    &:hover {
+      color: inherit;
+      text-decoration: none;
     }
-
+  }
 }

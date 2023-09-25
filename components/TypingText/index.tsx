@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const getRandomInt = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-export default function TypingText ({text, updateCompletion}) {
-  const [displayText, setDisplayText] = useState('');
+export default function TypingText({ text, updateCompletion }) {
+  const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -16,7 +16,9 @@ export default function TypingText ({text, updateCompletion}) {
 
         setTimeout(() => {
           setDisplayText(displayText + nextCharacter);
-          currentIndex !== text.length-1 ? setCurrentIndex(currentIndex + 1) : updateCompletion(true);
+          currentIndex !== text.length - 1
+            ? setCurrentIndex(currentIndex + 1)
+            : updateCompletion(true);
         }, typingSpeed);
       }
     };
@@ -25,9 +27,8 @@ export default function TypingText ({text, updateCompletion}) {
         typeNextCharacter();
       }, getRandomInt(400, 900));
     else */
-      typeNextCharacter();
+    typeNextCharacter();
   }, [currentIndex]);
 
   return <>{displayText}</>;
-
-};
+}

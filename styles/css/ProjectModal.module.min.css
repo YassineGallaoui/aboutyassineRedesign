@@ -29,13 +29,17 @@
   border-radius: 2rem;
   transition: border 0.4s;
 }
-.projectModalContainer .closeModalBtn:before, .projectModalContainer .closeModalBtn:after {
+.projectModalContainer .closeModalBtn:before,
+.projectModalContainer .closeModalBtn:after {
   content: "";
   position: absolute;
   width: 3px;
   height: 24px;
   background-color: hsla(0, 0%, 0%, 0.9);
-  transition: width 0.4s, height 0.4s, background-color 0.4s;
+  transition:
+    width 0.4s,
+    height 0.4s,
+    background-color 0.4s;
 }
 .projectModalContainer .closeModalBtn:before {
   transform: rotate(45deg);
@@ -47,10 +51,13 @@
   transition: border 0.4s;
   border: 1px solid hsla(0, 0%, 0%, 0.9);
 }
-.projectModalContainer .closeModalBtn.light:before, .projectModalContainer .closeModalBtn.light:after {
+.projectModalContainer .closeModalBtn.light:before,
+.projectModalContainer .closeModalBtn.light:after {
   width: 1px;
   height: 14px;
-  transition: width 0.4s, height 0.4s;
+  transition:
+    width 0.4s,
+    height 0.4s;
 }
 .projectModalContainer .projectCarouselWrapper {
   width: 50%;
@@ -71,14 +78,18 @@
   box-sizing: border-box;
   flex: 1;
 }
-.projectModalContainer .projectModalDescriptionWrapper .projectDescriptionComponent {
+.projectModalContainer
+  .projectModalDescriptionWrapper
+  .projectDescriptionComponent {
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-.projectModalContainer .projectModalDescriptionWrapper .projectDescriptionComponent::-webkit-scrollbar {
+.projectModalContainer
+  .projectModalDescriptionWrapper
+  .projectDescriptionComponent::-webkit-scrollbar {
   display: none;
 }
 .projectModalContainer .projectModalDescriptionWrapper::-webkit-scrollbar {
@@ -94,17 +105,33 @@
 .projectModalContainer .projectModalDescriptionWrapper table .bottomBorder {
   border-bottom: 1px solid hsla(0, 0%, 0%, 0.7);
 }
-.projectModalContainer .projectModalDescriptionWrapper table tr td:last-of-type {
+.projectModalContainer
+  .projectModalDescriptionWrapper
+  table
+  tr
+  td:last-of-type {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
-.projectModalContainer .projectModalDescriptionWrapper table tr .characteristic {
+.projectModalContainer
+  .projectModalDescriptionWrapper
+  table
+  tr
+  .characteristic {
   color: hsla(0, 0%, 0%, 0.7);
 }
-.projectModalContainer .projectModalDescriptionWrapper table tr.descriptionTitle > td {
+.projectModalContainer
+  .projectModalDescriptionWrapper
+  table
+  tr.descriptionTitle
+  > td {
   padding-bottom: 0rem;
 }
-.projectModalContainer .projectModalDescriptionWrapper table tr.description > td {
+.projectModalContainer
+  .projectModalDescriptionWrapper
+  table
+  tr.description
+  > td {
   padding-top: 0rem;
 }
 .projectModalContainer .projectModalDescriptionWrapper .fadeEffect {
@@ -115,20 +142,27 @@
   position: sticky;
 }
 
-html[data-theme=dark] .closeModalBtn:before, html[data-theme=dark] .closeModalBtn:after {
+html[data-theme="dark"] .closeModalBtn:before,
+html[data-theme="dark"] .closeModalBtn:after {
   background-color: hsla(0, 0%, 100%, 0.9);
-  transition: width 0.4s, height 0.4s, background-color 0.4s;
+  transition:
+    width 0.4s,
+    height 0.4s,
+    background-color 0.4s;
 }
-html[data-theme=dark] .closeModalBtn.light {
+html[data-theme="dark"] .closeModalBtn.light {
   transition: border 0.4s;
   border: 1px solid hsla(0, 0%, 100%, 0.9);
   filter: invert(0) !important;
 }
-html[data-theme=dark] .closeModalBtn.light:before, html[data-theme=dark] .closeModalBtn.light:after {
+html[data-theme="dark"] .closeModalBtn.light:before,
+html[data-theme="dark"] .closeModalBtn.light:after {
   width: 1px;
   height: 14px;
-  transition: width 0.4s, height 0.4s;
+  transition:
+    width 0.4s,
+    height 0.4s;
 }
-html[data-theme=dark] .projectCarouselWrapper {
+html[data-theme="dark"] .projectCarouselWrapper {
   border-right-color: hsla(0, 0%, 100%, 0.3);
 }

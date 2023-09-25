@@ -2,39 +2,41 @@ import { useEffect, useState } from "react";
 import gsap from "gsap";
 
 export function createSpanStructure(w) {
-    const charArr = w.split('');
-    let returnString = '';
-    charArr.forEach((element, index) => {
-      returnString += `<span style="--i:${index + 1}"><span>${element}</span></span>`;  
-    });
-    return returnString;
+  const charArr = w.split("");
+  let returnString = "";
+  charArr.forEach((element, index) => {
+    returnString += `<span style="--i:${
+      index + 1
+    }"><span>${element}</span></span>`;
+  });
+  return returnString;
 }
 
 export function textAnimationForward(el, index) {
   const tl = gsap.timeline({});
-  tl.to(el, { delay: 0.05 * index, duration: 0.25, x: '0.8rem' })
-    .to(el, { duration: 0, x: '-0.8rem' })
+  tl.to(el, { delay: 0.05 * index, duration: 0.25, x: "0.8rem" })
+    .to(el, { duration: 0, x: "-0.8rem" })
     .to(el, { duration: 0.25, x: 0 });
 }
 
 export function textAnimationBackward(el, index) {
   const tl = gsap.timeline({});
-  tl.to(el, { delay: 0.05 * index, duration: 0.25, x: '-0.8rem' })
-    .to(el, { duration: 0, x: '0.8rem' })
+  tl.to(el, { delay: 0.05 * index, duration: 0.25, x: "-0.8rem" })
+    .to(el, { duration: 0, x: "0.8rem" })
     .to(el, { duration: 0.25, x: 0 });
 }
 
 export function verticalTextAnimationForward(el, index) {
   const tl = gsap.timeline({});
-  tl.to(el, { delay: 0.05 * index, duration: 0.25, y: '1.5rem' })
-    .to(el, { duration: 0, y:  '-1.5rem' })
+  tl.to(el, { delay: 0.05 * index, duration: 0.25, y: "1.5rem" })
+    .to(el, { duration: 0, y: "-1.5rem" })
     .to(el, { duration: 0.25, y: -3 });
 }
 
 export function verticalTextAnimationBackward(el, index) {
   const tl = gsap.timeline({});
-  tl.to(el, { delay: 0.05 * index, duration: 0.25, y: '-1.5rem' })
-    .to(el, { duration: 0, y: '1.5rem' })
+  tl.to(el, { delay: 0.05 * index, duration: 0.25, y: "-1.5rem" })
+    .to(el, { duration: 0, y: "1.5rem" })
     .to(el, { duration: 0.25, y: -3 });
 }
 
@@ -67,11 +69,12 @@ export const calculateScrollPercentage = (pageContent) => {
   const scrolledDistance = scrollTop;
 
   // Calculate the percentage of scrolled distance
-  const scrollPercentage = (scrolledDistance / (scrollHeight - clientHeight)) * 100;
+  const scrollPercentage =
+    (scrolledDistance / (scrollHeight - clientHeight)) * 100;
 
   // Return the calculated percentage
   return scrollPercentage.toFixed(0);
-}
+};
 /* export const useSwipe = () => {
   const [position, setPosition] = useState(0);
 
