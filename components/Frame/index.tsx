@@ -71,10 +71,15 @@ export default function Frame({
 
     //menu navigation
     const body = document.querySelector("body");
-    const liTags = body.querySelectorAll(".sectionsNav li div");
-    const sectionNames = ["About", "Career"];
-    liTags.forEach((element, index) => {
-      element.innerHTML = createSpanStructure(sectionNames[index]);
+    const liTagsRC = body.querySelectorAll(".sectionsNav li div");
+    const liTagsRB = body.querySelectorAll(".contactsSocial div");
+    const sectionNamesRC = ["About", "Career"];
+    const sectionNamesRB = ["Download", "Send", "More"];
+    liTagsRC.forEach((element, index) => {
+      element.innerHTML = createSpanStructure(sectionNamesRC[index]);
+    });
+    liTagsRB.forEach((element, index) => {
+      element.innerHTML = createSpanStructure(sectionNamesRB[index]);
     });
   }, []);
 
@@ -200,9 +205,9 @@ export default function Frame({
           >
             <a href="/cv.pdf" rel="noreferrer noopener" target="_blank"></a>
             <div
-              className={styles.frameContainer__right__contacts__social__text}
+              className={styles.frameContainer__right__contacts__social__text+" contactsSocial"}
             >
-              <span>{"Download"}</span>
+              <div></div>
             </div>
             <Image
               src={cvIcon}
@@ -218,9 +223,9 @@ export default function Frame({
           >
             <a href="mailto:myassine.gallaoui@gmail.com"></a>
             <div
-              className={styles.frameContainer__right__contacts__social__text}
+              className={styles.frameContainer__right__contacts__social__text+" contactsSocial"}
             >
-              <span>{"Send"}</span>
+              <div></div>
             </div>
             <Image src={mailIcon} fill alt="mail" className="invertImg" />
           </div>
@@ -235,9 +240,9 @@ export default function Frame({
               target="_blank"
             ></a>
             <div
-              className={styles.frameContainer__right__contacts__social__text}
+              className={styles.frameContainer__right__contacts__social__text+" contactsSocial"}
             >
-              <span>{"More"}</span>
+              <div></div>
             </div>
             <Image
               src={linkedinIcon}
@@ -257,7 +262,7 @@ export default function Frame({
                 target="_blank"
               >
               </a>
-                <div className={styles.frameContainer__right__contacts__social__text}>
+                <div className={styles.frameContainer__right__contacts__social__text+" contactsSocial"}>
                   <span>
                     {"Code"}
                   </span>

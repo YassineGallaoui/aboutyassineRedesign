@@ -109,7 +109,7 @@ export default function ProjectModal({
     <div className={styles.projectModalContainer + " projectModalContainer"}>
       <div
         id="projectCarouselWrapper"
-        className={styles.projectCarouselWrapper+ ' projectCarouselWrapper'}
+        className={styles.projectCarouselWrapper + " projectCarouselWrapper"}
       >
         <Carousel
           content={content}
@@ -130,37 +130,44 @@ export default function ProjectModal({
           <div className={styles.projectModalName}>{content.name}</div>
           <table>
             <tbody>
-              <tr className={styles.bottomBorder+' bottomBorder'}>
-                <th className={styles.characteristic+' characteristic'}>
-                  <span>
-                    {"Working for"}
-                  </span>
+              <tr className={styles.bottomBorder + " bottomBorder"}>
+                <th className={styles.characteristic + " characteristic"}>
+                  <span>{"Working for"}</span>
                 </th>
                 <td>{content.workingFor}</td>
               </tr>
+              {content.awards != null && (
+                <tr className={styles.bottomBorder + " bottomBorder"}>
+                  <th className={styles.characteristic + " characteristic"}>
+                    <span>{"Awards"}</span>
+                  </th>
+                  <td>{content.awards}</td>
+                </tr>
+              )}
               <tr aria-rowspan={2} className={styles.descriptionTitle}>
-                <th colSpan={2} className={styles.characteristic+' characteristic'}>
-                  <span>
-                    {"Description"}
-                  </span>
+                <th
+                  colSpan={2}
+                  className={styles.characteristic + " characteristic"}
+                >
+                  <span>{"Description"}</span>
                 </th>
               </tr>
-              <tr className={styles.bottomBorder + " bottomBorder " + styles.description}>
+              <tr
+                className={
+                  styles.bottomBorder + " bottomBorder " + styles.description
+                }
+              >
                 <td colSpan={2}>{content.description}</td>
               </tr>
-              <tr className={styles.bottomBorder+' bottomBorder'}>
-                <th className={styles.characteristic+' characteristic'}>
-                  <span>
-                    {"Frontend"}
-                  </span>
+              <tr className={styles.bottomBorder + " bottomBorder"}>
+                <th className={styles.characteristic + " characteristic"}>
+                  <span>{"Frontend"}</span>
                 </th>
                 <td>{content.frontend}</td>
               </tr>
               <tr>
-                <th className={styles.characteristic+' characteristic'}>
-                  <span>
-                    {"Backend"}
-                  </span>
+                <th className={styles.characteristic + " characteristic"}>
+                  <span>{"Backend"}</span>
                 </th>
                 <td>{content.backend}</td>
               </tr>

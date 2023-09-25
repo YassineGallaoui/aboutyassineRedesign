@@ -61,19 +61,28 @@ export default function Cursor({ hovered, txt }) {
     }, [])
 
     return (
-        <div className={
-            styles.customCursorContainer + 
-            ' customCursorContainer '+
-            (isTouchOnlyDevice ? styles.hiddenPointer : '')
-            }>
-            <div className={styles.customCursor + ' customCursor ' + (hovered ? styles.mouseHover : '')}>
-                <div className={styles.cursorDecoration + ' cursorDecoration '}></div>
-            </div>
-            {hovered &&
-                <div className={styles.customCursorText}>
-                    {txt}
-                </div>
-            }
+      <div
+        className={
+          styles.customCursorContainer +
+          " customCursorContainer " +
+          (isTouchOnlyDevice ? styles.hiddenPointer : "")
+        }
+      >
+        <div
+          className={
+            styles.customCursor +
+            " customCursor " +
+            (hovered ? styles.mouseHover : "")
+          }
+        >
+          <div
+            className={styles.cursorDecoration1 + " cursorDecoration1 "}
+          ></div>
+          <div
+            className={styles.cursorDecoration2 + " cursorDecoration2 "}
+          ></div>
         </div>
-    )
+        {hovered && <div className={styles.customCursorText}>{txt}</div>}
+      </div>
+    );
 }
