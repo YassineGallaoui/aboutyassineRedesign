@@ -24,11 +24,11 @@ $semitransparentLight4: hsla(0, 0%, 100%, 0.3);
 $semitransparentLight5: hsla(0, 0%, 100%, 0.1);
 
 .lightMode {
-    background-color: $light-color;
-    color: $dark-color;
+  background-color: $light-color;
+  color: $dark-color;
 }
 
 .darkMode {
-    background-color: $dark-color;
-    color: $light-color;
+  background-color: $dark-color;
+  color: $light-color;
 }

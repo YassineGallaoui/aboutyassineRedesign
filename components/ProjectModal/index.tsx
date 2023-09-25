@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import styles from "./ProjectModal.module.scss"
-import gsap from 'gsap';
+import styles from "./ProjectModal.module.scss";
+import gsap from "gsap";
 import Carousel from "../Carousel";
 import { Project } from "../../dataset";
 
@@ -17,7 +17,8 @@ export default function ProjectModal({
   open,
   updateOpen,
   updateCursorText,
-  cursorIsHover}: ModalProps) {
+  cursorIsHover,
+}: ModalProps) {
   const [expandedCarousel, setExpandedCarousel] = useState<boolean>(false);
 
   useEffect(() => {
@@ -63,13 +64,19 @@ export default function ProjectModal({
     gsap.to(`.closeModalBtn`, { transform: "rotate(0deg)" });
   };
 
-  useEffect(()=>{
-    const projectCarouselWrapper = document.querySelector('.projectCarouselWrapper');
-    const descriptionWrapper = document.querySelector('.projectModalDescriptionWrapper');
+  useEffect(() => {
+    const projectCarouselWrapper = document.querySelector(
+      ".projectCarouselWrapper",
+    );
+    const descriptionWrapper = document.querySelector(
+      ".projectModalDescriptionWrapper",
+    );
     const closeModalBtn = document.querySelector(".closeModalBtn");
-    const fadeEffectBox = document.querySelector('.fadeEffectBox') as HTMLElement;
-    if(expandedCarousel){
-      fadeEffectBox.style.backgroundImage = 'none';
+    const fadeEffectBox = document.querySelector(
+      ".fadeEffectBox",
+    ) as HTMLElement;
+    if (expandedCarousel) {
+      fadeEffectBox.style.backgroundImage = "none";
       gsap.to(descriptionWrapper, {
         duration: 0.6,
         opacity: 0,
@@ -92,18 +99,18 @@ export default function ProjectModal({
         opacity: 1,
         x: 0,
         flex: 1,
-        padding: '1rem',
-      })
+        padding: "1rem",
+      });
       gsap.to(projectCarouselWrapper, {
         duration: 0.3,
-        borderWidth: '1px',
+        borderWidth: "1px",
       });
       gsap.to(closeModalBtn, {
         duration: 0.3,
         filter: "invert(0)",
       });
     }
-  }, [expandedCarousel])
+  }, [expandedCarousel]);
 
   return (
     <div className={styles.projectModalContainer + " projectModalContainer"}>

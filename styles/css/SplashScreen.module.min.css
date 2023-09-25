@@ -20,8 +20,8 @@
   align-items: center;
   z-index: 20;
   -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 .SSContainer #logoImageSS {
   opacity: 0.2;
@@ -53,6 +53,6 @@
   font-size: 2rem;
 }
 
-html[data-theme=dark] .SSContainer .textCursor {
+html[data-theme="dark"] .SSContainer .textCursor {
   background-color: hsl(0, 0%, 0%);
 }

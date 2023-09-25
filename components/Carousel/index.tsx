@@ -54,7 +54,7 @@ function Carousel({
     setImageNumberSpanTags(imagesNumber);
 
     let verticalImagesNumber = document.querySelectorAll(
-      ".verticalIndexWrapper > span > span"
+      ".verticalIndexWrapper > span > span",
     );
     setVerticalImageNumberSpanTags(verticalImagesNumber);
   }, []);
@@ -62,7 +62,7 @@ function Carousel({
   useEffect(() => {
     setTimeout(() => {
       setCurrentIndex(0);
-      goToImageIndex(0, "left");  
+      goToImageIndex(0, "left");
     }, 200);
   }, [open]);
 
@@ -101,7 +101,7 @@ function Carousel({
           duration: 0.4,
           height: "0rem",
         },
-        0
+        0,
       )
       .to(
         ".thumbnailControls",
@@ -111,7 +111,7 @@ function Carousel({
           opacity: 0,
           height: 0,
         },
-        0
+        0,
       )
       .to(
         ".indexWrapper",
@@ -120,7 +120,7 @@ function Carousel({
           x: -40,
           opacity: 0,
         },
-        0
+        0,
       )
       .to(
         ".imageContainer",
@@ -129,7 +129,7 @@ function Carousel({
           height: "100%",
           gap: "1rem",
         },
-        0
+        0,
       )
       .to(
         ".imageStackContainer",
@@ -137,7 +137,7 @@ function Carousel({
           duration: 0.6,
           flex: "1 0 calc(90% - 1rem)",
         },
-        0
+        0,
       )
       .to(
         ".thumbnailControlsVertical",
@@ -147,7 +147,7 @@ function Carousel({
           x: 0,
           flex: "1 0 10%",
         },
-        0
+        0,
       );
   };
 
@@ -165,7 +165,7 @@ function Carousel({
           opacity: 0,
           flex: "0 0 0",
         },
-        0
+        0,
       )
       .to(
         ".upperControls",
@@ -173,7 +173,7 @@ function Carousel({
           duration: 0.4,
           height: "2rem",
         },
-        0
+        0,
       )
       .to(
         ".imageStackContainer",
@@ -181,7 +181,7 @@ function Carousel({
           duration: 0.6,
           flex: "1 0 100%",
         },
-        0
+        0,
       )
       .to(
         ".imageContainer",
@@ -190,7 +190,7 @@ function Carousel({
           height: "90%",
           gap: "0rem",
         },
-        0
+        0,
       )
       .to(
         ".indexWrapper",
@@ -199,7 +199,7 @@ function Carousel({
           x: 0,
           opacity: 1,
         },
-        0
+        0,
       )
       .to(
         ".thumbnailControls",
@@ -209,7 +209,7 @@ function Carousel({
           opacity: 1,
           height: "10%",
         },
-        0
+        0,
       );
   };
 
@@ -248,12 +248,12 @@ function Carousel({
       if (vertical)
         goToImageIndexVertical(
           currentIndex === 0 ? images.length - 1 : currentIndex - 1,
-          "left"
+          "left",
         );
       else
         goToImageIndex(
           currentIndex === 0 ? images.length - 1 : currentIndex - 1,
-          "left"
+          "left",
         );
     }, 200);
 
@@ -280,12 +280,12 @@ function Carousel({
       if (vertical)
         goToImageIndexVertical(
           currentIndex === images.length - 1 ? 0 : currentIndex + 1,
-          "right"
+          "right",
         );
       else
         goToImageIndex(
           currentIndex === images.length - 1 ? 0 : currentIndex + 1,
-          "right"
+          "right",
         );
     }, 200);
     if (vertical)

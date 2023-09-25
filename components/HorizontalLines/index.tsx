@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import styles from './HorizontalLines.module.scss';
+import { useEffect, useState } from "react";
+import styles from "./HorizontalLines.module.scss";
 
 const HorizontalLines = () => {
   const [lineCountBefore, setLineCountBefore] = useState(0);
@@ -12,7 +12,9 @@ const HorizontalLines = () => {
     const minDistance = lineDistanceRem * 16; // Convert rem to pixels
 
     const maxLinesBefore = Math.floor(existingLineTop / minDistance);
-    const maxLinesAfter = Math.floor((windowHeight - existingLineTop) / minDistance);
+    const maxLinesAfter = Math.floor(
+      (windowHeight - existingLineTop) / minDistance,
+    );
 
     setLineCountBefore(maxLinesBefore);
     setLineCountAfter(maxLinesAfter);
@@ -23,11 +25,11 @@ const HorizontalLines = () => {
     calculateLineCounts();
 
     // Attach event listener for window resize
-    window.addEventListener('resize', calculateLineCounts);
+    window.addEventListener("resize", calculateLineCounts);
 
     // Clean up event listener on unmount
     return () => {
-      window.removeEventListener('resize', calculateLineCounts);
+      window.removeEventListener("resize", calculateLineCounts);
     };
   }, []);
 
