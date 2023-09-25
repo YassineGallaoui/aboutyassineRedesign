@@ -11,6 +11,9 @@
     z-index: 9999;
     mix-blend-mode: difference;
     pointer-events: none;
+    &.hiddenPointer {
+        display: none;
+    }
     .customCursor{
         position: relative;
         margin-top: -50%;
@@ -31,15 +34,18 @@
             height: 6rem;
             width: 6rem;
         }
-        .cursorDecoration{
+        .cursorDecoration1, .cursorDecoration2{
             position: absolute;
             height: 10%;
             width: 100%;
-            background: rgb(2,0,36);
-            background: -moz-linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 10%, rgba(255,255,255,1) 10%, rgba(255,255,255,1) 90%, rgba(0,0,0,1) 90%, rgba(0,0,0,1) 100%);
-            background: -webkit-linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 10%, rgba(255,255,255,1) 10%, rgba(255,255,255,1) 90%, rgba(0,0,0,1) 90%, rgba(0,0,0,1) 100%);
-            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,0,1) 10%, rgba(255,255,255,1) 10%, rgba(255,255,255,1) 90%, rgba(0,0,0,1) 90%, rgba(0,0,0,1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#000000",GradientType=1);
+            background: rgb(2, 0, 36);
+            background: -moz-linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(0, 0, 0, 1) 10%, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 1) 90%, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 1) 100%);
+            background: -webkit-linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(0, 0, 0, 1) 10%, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 1) 90%, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 1) 100%);
+            background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(0, 0, 0, 1) 10%, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 1) 90%, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#000000", GradientType=1);
+        }
+        .cursorDecoration2 {
+            transform: rotate(90deg);
         }
     }
     @keyframes rotateCursor {

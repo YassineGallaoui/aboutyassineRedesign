@@ -37,18 +37,24 @@ const HorizontalLines = () => {
         <div
           key={`before-${index}`}
           className={styles.line}
-          style={{
-            top: `calc(12.5rem + 15vh - ${lineDistanceRem  * (index + 1)}rem)`, '--i': index,
-          }}
+          style={
+            {
+              top: `calc(12.5rem + 15vh - ${lineDistanceRem * (index + 1)}rem)`,
+              "--i": index,
+            } as React.CSSProperties
+          }
         />
       ))}
       {[...Array(lineCountAfter)].map((_, index) => (
         <div
           key={`after-${index}`}
           className={styles.line}
-          style={{
-            top: `calc(12.5rem + 15vh + ${lineDistanceRem  * (index + 1)}rem)`, '--i': index,
-          }}
+          style={
+            {
+              top: `calc(12.5rem + 15vh + ${lineDistanceRem * (index + 1)}rem)`,
+              "--i": index,
+            } as React.CSSProperties
+          }
         />
       ))}
     </div>

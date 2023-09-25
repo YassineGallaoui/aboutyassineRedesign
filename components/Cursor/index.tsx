@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Cursor.module.scss"
 import gsap from 'gsap';
 
 export default function Cursor({ hovered, txt }) {
+    const [isTouchOnlyDevice, setIsTouchOnlyDevice] = useState(false);
     const tl = gsap.timeline({});
 
     useEffect(() => {
@@ -13,6 +14,7 @@ export default function Cursor({ hovered, txt }) {
             ccc.style.top = event.clientY + 'px';
         }
         document.addEventListener('mousemove', handleMouseMove);
+        
         const handleClick = (event: MouseEvent) => {
             const newDiv = document.createElement('div');
             newDiv.className = 'cursorClickDecoration';
@@ -42,22 +44,45 @@ export default function Cursor({ hovered, txt }) {
             }
         }
         document.addEventListener('click', handleClick);
+        
+        const checkTouchOnlyDevice = () => {
+            const mediaQuery = window.matchMedia('(hover: none)');
+            setIsTouchOnlyDevice(mediaQuery.matches);
+        };
+        checkTouchOnlyDevice();
+        window.addEventListener('resize', checkTouchOnlyDevice);
+    
+        // Clean up the event listener when the component unmounts
         return () => {
             document.removeEventListener('click', handleClick);
             document.addEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('resize', checkTouchOnlyDevice);
         }
     }, [])
 
     return (
-        <div className={styles.customCursorContainer + ' customCursorContainer'}>
-            <div className={styles.customCursor + ' customCursor ' + (hovered ? styles.mouseHover : '')}>
-                <div className={styles.cursorDecoration + ' cursorDecoration '}></div>
-            </div>
-            {hovered &&
-                <div className={styles.customCursorText}>
-                    {txt}
-                </div>
-            }
+      <div
+        className={
+          styles.customCursorContainer +
+          " customCursorContainer " +
+          (isTouchOnlyDevice ? styles.hiddenPointer : "")
+        }
+      >
+        <div
+          className={
+            styles.customCursor +
+            " customCursor " +
+            (hovered ? styles.mouseHover : "")
+          }
+        >
+          <div
+            className={styles.cursorDecoration1 + " cursorDecoration1 "}
+          ></div>
+          <div
+            className={styles.cursorDecoration2 + " cursorDecoration2 "}
+          ></div>
         </div>
-    )
+        {hovered && <div className={styles.customCursorText}>{txt}</div>}
+      </div>
+    );
 }

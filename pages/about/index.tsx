@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import styles from "../../styles/scss/About.module.scss";
 import { createSpanStructure, parallax, calculateScrollPercentage } from "../../utils/utility";
-import Head from "next/head";
 import HorizontalLines from "../../components/HorizontalLines";
+import Head from "next/head";
 
 export default function About() {
 
@@ -34,9 +34,6 @@ export default function About() {
 
     return (
         <>
-            <Head>
-                <title>Yassine | About him</title>
-            </Head>
             <div className={styles.meBkgrdTxt+' sectionBkgrdTxt'}>About</div> 
             <div className={styles.verticalLine}></div>
             <div className={styles.horizontalLine}></div>
@@ -75,11 +72,11 @@ export default function About() {
                             <span className={styles.meContainer__txt__description__small}>{`The majority of my`}</span>
                             <span className={styles.meContainer__txt__description__big}>{` interests gravitate around IT and CS, `}</span>
                             <span className={styles.meContainer__txt__description__small}>{`going from digital ethics to digital law and from web design to software development. My focus is always into making`}</span>
-                            <span className={styles.meContainer__txt__description__big}>{` software which `}</span>
-                            <span className={styles.meContainer__txt__description__small}>{`not only`}</span>
-                            <span className={styles.meContainer__txt__description__big}>{` works flawless, `}</span>
-                            <span className={styles.meContainer__txt__description__small}>{`but`}</span>
-                            <span className={styles.meContainer__txt__description__big}>{` is also aesthetically captivating.`}</span>
+                            <span className={styles.meContainer__txt__description__big}>{` software `}</span>
+                            <span className={styles.meContainer__txt__description__small}>{`which`}</span>
+                            <span className={styles.meContainer__txt__description__big}>{` works flawless `}</span>
+                            <span className={styles.meContainer__txt__description__small}>{`and`}</span>
+                            <span className={styles.meContainer__txt__description__big}>{` is aesthetically captivating.`}</span>
                         </p>
                         <p>
                             <span className={styles.meContainer__txt__description__small}>{`→ Although I am currently working`}</span>
@@ -99,8 +96,8 @@ export default function About() {
                             <span className={styles.meContainer__txt__description__small}>{`a rusty `}</span>
                             <span className={styles.meContainer__txt__description__big}>{` French, `}</span>
                             <span className={styles.meContainer__txt__description__small}>{`as well as an informal`}</span>
-                            <span className={styles.meContainer__txt__description__big}>{` Arabic `}</span>
-                            <span className={styles.meContainer__txt__description__small}>{`with typical Tunisian accent and slang.`}</span>
+                            <span className={styles.meContainer__txt__description__big}>{` Arabic`}</span>
+                            <span className={styles.meContainer__txt__description__small}>{`.`}</span>
                         </p>
                     </div>
                 </div>
