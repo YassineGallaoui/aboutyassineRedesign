@@ -30,7 +30,7 @@ export default function MyApp({ Component, pageProps }) {
       : document.documentElement.setAttribute("data-theme", "light");
     const body = document.querySelector("body");
     body.classList.remove("darkMode", "lightMode");
-    body.classList.add(themePreference+'');
+    body.classList.add(themeMode[themePreference]);
     setPreferredTheme(themePreference);
 
     const intervalColor = setInterval(() => {
