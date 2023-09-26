@@ -35,14 +35,10 @@ export default function Frame({
   const [currentTheme, setCurrentTheme] = useState<themeMode>(preferredTheme);
 
   const themeChange = () => {
-    setThemeIconRot(themeIconRot + 180);
-    setCurrentTheme(
-      currentTheme === themeMode.darkMode
-        ? themeMode.lightMode
-        : themeMode.darkMode,
-    );
+    setThemeIconRot(t => t + 180);
+    
     const body = document.querySelector("body");
-    if (currentTheme === themeMode.darkMode) {
+    if (currentTheme === themeMode.lightMode) {
       body.className = themeMode[themeMode.darkMode];
       localStorage.setItem(
         "yas-theme-preference",
@@ -58,13 +54,14 @@ export default function Frame({
       document.documentElement.setAttribute("data-theme", "light");
     }
     colorApplicator(lightColor, darkColor);
+    setCurrentTheme(
+      currentTheme === themeMode.darkMode
+        ? themeMode.lightMode
+        : themeMode.darkMode
+    );
   };
 
   useEffect(() => {
-    preferredTheme === themeMode.darkMode
-      ? setThemeIconRot(themeIconRot + 180)
-      : setThemeIconRot(themeIconRot + 0);
-
     //menu navigation
     const body = document.querySelector("body");
     const liTagsRC = body.querySelectorAll(".sectionsNav li div");
@@ -78,6 +75,13 @@ export default function Frame({
       element.innerHTML = createSpanStructure(sectionNamesRB[index]);
     });
   }, []);
+
+  useEffect(() => {
+    preferredTheme === themeMode.darkMode
+      ? setThemeIconRot(180)
+      : setThemeIconRot(0);
+    setCurrentTheme(preferredTheme);
+  }, [preferredTheme]);
 
   const hoverSocialButtons = (e) => {
     updateCursorStatus(true);
