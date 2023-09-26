@@ -1,3 +1,5 @@
+import { themeMode } from "../pages/_app";
+
 export function generateColors(): string[] {
   const brightnessLight = 90;
   const brightnessDark = 15;
@@ -19,7 +21,7 @@ export function colorApplicator(lightColor: string, darkColor: string): void {
     ".projectModalContainer",
   ) as HTMLElement;
 
-  if (body.classList.contains("lightMode")) {
+  if (body.classList.contains(themeMode[themeMode.lightMode])) {
     body.style.setProperty("background-color", lightColor);
     projectModalContainer != null &&
       projectModalContainer.style.setProperty("background-color", lightColor);

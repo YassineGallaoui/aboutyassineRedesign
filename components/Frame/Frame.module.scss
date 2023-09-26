@@ -204,7 +204,7 @@
               opacity: 1;
               animation: slideIn 0.1s 1;
               animation-fill-mode: forwards;
-              animation-delay: calc(0.05s * var(--i));
+              animation-delay: calc(0.07s * var(--i));
               span {
                 opacity: 1;
               }
@@ -287,9 +287,9 @@
             max-width: 100rem;
             span {
               opacity: 1;
-              animation: slideIn 0.01s 1;
+              animation: slideIn 0.1s 1;
               animation-fill-mode: forwards;
-              animation-delay: calc(0.05s * var(--i));
+              animation-delay: calc(0.07s * var(--i));
             }
           }
         }

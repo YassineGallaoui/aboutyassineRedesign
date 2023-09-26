@@ -108,7 +108,7 @@ export default function About() {
               >{` interests gravitate around IT and CS, `}</span>
               <span
                 className={styles.meContainer__txt__description__small}
-              >{`going from digital ethics to digital law and from web design to software development. My focus is always into making`}</span>
+              >{`going from digital ethics to digital law and from UX/UI design to software development. My focus is always into making`}</span>
               <span
                 className={styles.meContainer__txt__description__big}
               >{` software `}</span>
@@ -123,7 +123,13 @@ export default function About() {
               >{`and`}</span>
               <span
                 className={styles.meContainer__txt__description__big}
-              >{` is aesthetically captivating.`}</span>
+              >{` is aesthetically captivating. `}</span>
+              <span
+                className={styles.meContainer__txt__description__small}
+              >{`Generally I am also`}</span>
+              <span
+                className={styles.meContainer__txt__description__big}
+              >{` interested in art and architecture.`}</span>
             </p>
             <p>
               <span
