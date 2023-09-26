@@ -13,26 +13,38 @@ export default function MyApp({ Component, pageProps }) {
   const [cursorText, setCursorText] = useState<string | null>(null);
   const [cursorHover, setCursorHover] = useState<boolean>(false);
   const [preferredTheme, setPreferredTheme] = useState<themeMode>(
-    themeMode.darkMode,
+    themeMode.darkMode
   );
   const [lightColor, setLightColor] = useState("");
   const [darkColor, setDarkColor] = useState("");
 
   useEffect(() => {
     const prefersDarkMode = window.matchMedia(
-      "(prefers-color-scheme: dark)",
+      "(prefers-color-scheme: dark)"
     ).matches;
-    const storedThemePreference: themeMode = localStorage.getItem(
-      "yas-theme-preference",
-    ) as unknown as themeMode;
-    const themePreference: themeMode =
-      storedThemePreference ||
-      (prefersDarkMode ? themeMode.darkMode : themeMode.lightMode);
+    const prefersLightMode = window.matchMedia(
+      "(prefers-color-scheme: light)"
+    ).matches;
+
+    const storedThemePreference: themeMode | null = themeMode[localStorage.getItem(
+      "yas-theme-preference"
+    )];
+    const themePreferenceSelection = ():themeMode => {
+      return storedThemePreference != null ? storedThemePreference :
+      ((prefersDarkMode || !prefersLightMode)
+        ? themeMode.darkMode
+        : themeMode.lightMode);
+    }
+
+    let themePreference: themeMode = themePreferenceSelection();
+ 
     themePreference === themeMode.darkMode
       ? document.documentElement.setAttribute("data-theme", "dark")
       : document.documentElement.setAttribute("data-theme", "light");
+
     const body = document.querySelector("body");
-    body.classList.remove("darkMode", "lightMode");
+    body.className = "";
+
     body.classList.add(themeMode[themePreference]);
     setPreferredTheme(themePreference);
 

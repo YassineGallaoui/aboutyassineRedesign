@@ -36,7 +36,6 @@ export default function Frame({
 
   const themeChange = () => {
     setThemeIconRot(themeIconRot + 180);
-    console.log(themeMode[currentTheme], "currentTheme");
     setCurrentTheme(
       currentTheme === themeMode.darkMode
         ? themeMode.lightMode
@@ -44,24 +43,21 @@ export default function Frame({
     );
     const body = document.querySelector("body");
     if (currentTheme === themeMode.darkMode) {
-      body.classList.add("lightMode");
-      body.classList.remove("darkMode");
+      body.className = themeMode[themeMode.darkMode];
       localStorage.setItem(
         "yas-theme-preference",
-        themeMode[themeMode.lightMode],
-      );
-      document.documentElement.setAttribute("data-theme", "light");
-      colorApplicator(lightColor, darkColor);
-    } else {
-      body.classList.add("darkMode");
-      body.classList.remove("lightMode");
-      localStorage.setItem(
-        "yas-theme-preference",
-        themeMode[themeMode.darkMode],
+        themeMode[themeMode.darkMode]
       );
       document.documentElement.setAttribute("data-theme", "dark");
-      colorApplicator(lightColor, darkColor);
+    } else {
+      body.className = themeMode[themeMode.lightMode];
+      localStorage.setItem(
+        "yas-theme-preference",
+        themeMode[themeMode.lightMode]
+      );
+      document.documentElement.setAttribute("data-theme", "light");
     }
+    colorApplicator(lightColor, darkColor);
   };
 
   useEffect(() => {
