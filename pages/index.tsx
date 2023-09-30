@@ -17,7 +17,7 @@ type HomeProps = {
   darkColor: string;
 };
 
-function Home({
+export default function Home({
   updateCursorText,
   cursorIsHover,
   lightColor,
@@ -28,14 +28,15 @@ function Home({
   const [tempImgHover, setTempImageHover] =
     useState<StaticImageData>(defaultImg);
   const [projectOpened, setProjectOpened] = useState<Project>(
-    projectsDataset[0],
+    projectsDataset[0]
   );
   const [projectOpenedBoolean, setProjectOpenedBoolean] =
     useState<boolean>(false);
   const [projectIsHovered, setProjectIsHovered] = useState<boolean>(false);
 
   useEffect(() => {
-    document.addEventListener("mousemove", () => parallax(event, document.querySelectorAll(".sectionBkgrdTxt"))
+    document.addEventListener("mousemove", () =>
+      parallax(event, document.querySelectorAll(".sectionBkgrdTxt"))
     );
 
     setTriangleRowsNumber(Math.ceil(window.innerHeight / 300 / 2));
@@ -59,14 +60,14 @@ function Home({
         setProjectIsHovered(true);
         if (elementId != null) {
           const elementData = projectsDataset.find(
-            (el) => el.id + "" === elementId,
+            (el) => el.id + "" === elementId
           );
           setTempImageHover(elementData.media[0]);
           const tl1 = gsap.timeline({ delay: 0 });
           tl1.fromTo(
             ".bigBackgroundImage",
             { scale: 1.1, opacity: 0 },
-            { scale: 1.02, opacity: 1, duration: 1, ease: "power3.out" },
+            { scale: 1.02, opacity: 1, duration: 1, ease: "power3.out" }
           );
         }
       });
@@ -76,7 +77,7 @@ function Home({
         tl1.fromTo(
           ".bigBackgroundImage",
           { scale: 1.02, opacity: 1 },
-          { scale: 1.1, opacity: 0, duration: 1, ease: "power3.out" },
+          { scale: 1.1, opacity: 0, duration: 1, ease: "power3.out" }
         );
       });
     });
@@ -135,11 +136,14 @@ function Home({
   }, [projectOpenedBoolean]);
 
   return (
-    <>
-      <div
-        className={styles.expBkgrdTxt + " sectionBkgrdTxt"}>
-        Exp
-      </div>
+    <motion.div
+      className={styles.mainMotionDiv + " mainMotionDiv"}
+      initial={{ x: "-50vw", opacity: 0 }}
+      animate={{ x: "0vw", opacity: 1 }}
+      exit={{ x: "-50vw", opacity: 0 }}
+      transition={{ duration: 1, ease: [0.87, 0, 0.13, 1] }}
+    >
+      <div className={styles.expBkgrdTxt + " sectionBkgrdTxt"}>Exp</div>
       <div
         className={
           styles.currentPrjHovered +
@@ -212,17 +216,19 @@ function Home({
                         "--index": index2 + 2 - trianglesPerRow / 2,
                       } as React.CSSProperties
                     }
-                    id={`triangleProjectWrapper-${projectsDataset[
-                      index2 + 1 - (trianglesPerRow - 2) / 2
-                    ]?.id}`}
+                    id={`triangleProjectWrapper-${
+                      projectsDataset[index2 + 1 - (trianglesPerRow - 2) / 2]
+                        ?.id
+                    }`}
                   >
                     <div
                       className={
                         styles.triangleProjectContent + " triangleProjectImg"
                       }
-                      id={`triangleProjectContent-${projectsDataset[
-                        index2 + 1 - (trianglesPerRow - 2) / 2
-                      ]?.id}`}
+                      id={`triangleProjectContent-${
+                        projectsDataset[index2 + 1 - (trianglesPerRow - 2) / 2]
+                          ?.id
+                      }`}
                       data-project-id={
                         projectsDataset[index2 + 1 - (trianglesPerRow - 2) / 2]
                           ?.id
@@ -234,9 +240,11 @@ function Home({
                             index2 + 1 - (trianglesPerRow - 2) / 2
                           ]?.media[0]
                         }
-                        id={`image-${projectsDataset[
-                          index2 + 1 - (trianglesPerRow - 2) / 2
-                        ]?.id}`}
+                        id={`image-${
+                          projectsDataset[
+                            index2 + 1 - (trianglesPerRow - 2) / 2
+                          ]?.id
+                        }`}
                         className={"image"}
                         fill
                         alt="project"
@@ -244,30 +252,30 @@ function Home({
                           handleImageHover(
                             projectsDataset[
                               index2 + 1 - (trianglesPerRow - 2) / 2
-                            ]?.id,
+                            ]?.id
                           )
                         }
                         onMouseLeave={() =>
                           handleImageLeave(
                             projectsDataset[
                               index2 + 1 - (trianglesPerRow - 2) / 2
-                            ]?.id,
+                            ]?.id
                           )
                         }
                         onClick={() =>
                           handleImageClick(
                             projectsDataset[
                               index2 + 1 - (trianglesPerRow - 2) / 2
-                            ]?.id,
+                            ]?.id
                           )
                         }
                       />
                       <div
-                        id={`see-more-${
-                          index2 % 2 === 1 ? "odd" : "even"
-                        }-${projectsDataset[
-                          index2 + 1 - (trianglesPerRow - 2) / 2
-                        ]?.id}`}
+                        id={`see-more-${index2 % 2 === 1 ? "odd" : "even"}-${
+                          projectsDataset[
+                            index2 + 1 - (trianglesPerRow - 2) / 2
+                          ]?.id
+                        }`}
                         className={styles.seeMoreText}
                       ></div>
                     </div>
@@ -310,8 +318,6 @@ function Home({
         updateCursorText={updateCursorText}
         cursorIsHover={cursorIsHover}
       />
-    </>
+    </motion.div>
   );
 }
-
-export default motion(Home);

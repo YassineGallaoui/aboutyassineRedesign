@@ -6,7 +6,7 @@ import {
   calculateScrollPercentage,
 } from "../../utils/utility";
 import HorizontalLines from "../../components/HorizontalLines";
-import Head from "next/head";
+import { motion } from "framer-motion";
 
 export default function About() {
   useEffect(() => {
@@ -22,15 +22,15 @@ export default function About() {
     startWelcomeAnimation(i);
 
     document.addEventListener("mousemove", (event) =>
-      parallax(event, document.querySelectorAll(".sectionBkgrdTxt")),
+      parallax(event, document.querySelectorAll(".sectionBkgrdTxt"))
     );
 
     const pageContent = document.querySelector(".aboutContent");
     const percentageBar = document.querySelector(
-      ".percentageBarBar",
+      ".percentageBarBar"
     ) as HTMLElement;
     const percentageNumber = document.querySelector(
-      ".percentageBarBar > span",
+      ".percentageBarBar > span"
     ) as HTMLElement;
     pageContent.addEventListener("scroll", (event) => {
       const scrollPercentage = calculateScrollPercentage(pageContent);
@@ -40,7 +40,13 @@ export default function About() {
   }, []);
 
   return (
-    <>
+    <motion.div
+      className={styles.mainMotionDiv + " mainMotionDiv"}
+      initial={{ x: "50vw", opacity: 0 }}
+      animate={{ x: "0vw", opacity: 1 }}
+      exit={{ x: "50vw", opacity: 0 }}
+      transition={{ duration: 1, ease: [0.87, 0, 0.13, 1] }}
+    >
       <div className={styles.meBkgrdTxt + " sectionBkgrdTxt"}>About</div>
       <div className={styles.verticalLine}></div>
       <div className={styles.horizontalLine}></div>
@@ -194,7 +200,6 @@ export default function About() {
           <span></span>
         </div>
       </div>
-    </>
+    </motion.div>
   );
 }
-

@@ -10,7 +10,7 @@ export enum themeMode {
   darkMode,
 }
 
-export default function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps, router }) {
   const [cursorText, setCursorText] = useState<string | null>(null);
   const [cursorHover, setCursorHover] = useState<boolean>(false);
   const [preferredTheme, setPreferredTheme] = useState<themeMode>(
@@ -62,32 +62,25 @@ export default function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <AnimatePresence mode="wait">
-      <Layout
-        updateCursorText={setCursorText}
-        updateCursorStatus={setCursorHover}
-        cursorText={cursorText}
-        cursorHover={cursorHover}
-        preferredTheme={preferredTheme}
-        lightColor={lightColor}
-        darkColor={darkColor}
-      >
-        <motion.div
-          style={{ position: "absolute", top: 0, left: 0 }}
-          initial={{ x: "-20vw", opacity: 0 }}
-          animate={{ x: "0vw", opacity: 1 }}
-          exit={{ x: "20vw", opacity: 0 }}
-          transition={{ duration: 1, ease: [0.87, 0, 0.13, 1] }}
-        >
-          <Component
-            {...pageProps}
-            updateCursorText={setCursorText}
-            cursorIsHover={setCursorHover}
-            lightColor={lightColor}
-            darkColor={darkColor}
-          />
-        </motion.div>
-      </Layout>
-    </AnimatePresence>
+    <Layout
+      updateCursorText={setCursorText}
+      updateCursorStatus={setCursorHover}
+      cursorText={cursorText}
+      cursorHover={cursorHover}
+      preferredTheme={preferredTheme}
+      lightColor={lightColor}
+      darkColor={darkColor}
+    >
+      <AnimatePresence mode="sync" initial={false}>
+        <Component
+          {...pageProps}
+          updateCursorText={setCursorText}
+          cursorIsHover={setCursorHover}
+          lightColor={lightColor}
+          darkColor={darkColor}
+          key={router.pathname}
+        />
+      </AnimatePresence>
+    </Layout>
   );
 }

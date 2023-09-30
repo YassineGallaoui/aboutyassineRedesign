@@ -29,6 +29,15 @@ body {
     transform-origin: right;
   }
 
+  .mainMotionDiv{
+    position: absolute;
+    display: block;
+    top: 0px;
+    left: 0px;
+    height: 100vh;
+    width: 100vw;
+  }
+
   &.lightMode {
     background-color: $light-color;
     color: $semitransparentDark1;
