@@ -149,7 +149,7 @@ export default function About() {
               >{` so if you feel like it, reach me thru `}</span>
               <span
                 className={styles.meContainer__txt__description__big}
-              >{` email or linkedin.`}</span>
+              >{` email or LinkedIn.`}</span>
             </p>
             <p>
               <span
@@ -197,3 +197,4 @@ export default function About() {
     </>
   );
 }
+

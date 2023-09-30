@@ -17,6 +17,18 @@ body {
   overflow: hidden;
   cursor: auto;
 
+  .slideRight, .slideLeft{
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: #333333;
+    transform-origin: left;
+  }
+  .slideLeft {
+    transform-origin: right;
+  }
+
   &.lightMode {
     background-color: $light-color;
     color: $semitransparentDark1;
@@ -53,7 +65,6 @@ body {
       color $BG-Color-transition-duration;
     .sectionBkgrdTxt {
       color: $semitransparentDark5;
-      transition: all 0.8s;
     }
     .projectModalContainer {
       color: $semitransparentDark1;
@@ -111,7 +122,6 @@ body {
       color $BG-Color-transition-duration;
     .sectionBkgrdTxt {
       color: $semitransparentLight5;
-      transition: all 0.8s;
     }
     .projectModalContainer {
       color: $semitransparentLight1;

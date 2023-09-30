@@ -153,6 +153,12 @@ export default function Frame({
               fill
               alt="light mode"
             />
+            <Image
+              className={styles.fourthSun + " invertImg"}
+              src={lightIcon}
+              fill
+              alt="light mode"
+            />
           </div>
           <div
             className={

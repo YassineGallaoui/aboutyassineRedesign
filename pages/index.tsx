@@ -8,6 +8,7 @@ import { Project, projectsDataset } from "../dataset";
 import gsap from "gsap";
 import ProjectModal from "../components/ProjectModal";
 import { colorApplicator } from "../utils/colorFunctions";
+import { motion } from "framer-motion";
 
 type HomeProps = {
   updateCursorText: Function;
@@ -16,7 +17,7 @@ type HomeProps = {
   darkColor: string;
 };
 
-export default function Home({
+function Home({
   updateCursorText,
   cursorIsHover,
   lightColor,
@@ -34,8 +35,7 @@ export default function Home({
   const [projectIsHovered, setProjectIsHovered] = useState<boolean>(false);
 
   useEffect(() => {
-    document.addEventListener("mousemove", (event) =>
-      parallax(event, document.querySelectorAll(".sectionBkgrdTxt")),
+    document.addEventListener("mousemove", () => parallax(event, document.querySelectorAll(".sectionBkgrdTxt"))
     );
 
     setTriangleRowsNumber(Math.ceil(window.innerHeight / 300 / 2));
@@ -44,6 +44,11 @@ export default function Home({
       : setTrianglesPerRow(Math.ceil((window.innerWidth / 300) * 2) + 4);
 
     colorApplicator(lightColor, darkColor);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      document.addEventListener("mousemove", () => parallax);
+    };
   }, []);
 
   useEffect(() => {
@@ -132,11 +137,7 @@ export default function Home({
   return (
     <>
       <div
-        className={styles.expBkgrdTxt + " sectionBkgrdTxt"}
-        onMouseMove={(event) =>
-          parallax(event, document.querySelectorAll(".bigBackgroundImage"))
-        }
-      >
+        className={styles.expBkgrdTxt + " sectionBkgrdTxt"}>
         Exp
       </div>
       <div
@@ -312,3 +313,5 @@ export default function Home({
     </>
   );
 }
+
+export default motion(Home);

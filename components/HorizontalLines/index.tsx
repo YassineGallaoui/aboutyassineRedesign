@@ -13,7 +13,7 @@ const HorizontalLines = () => {
 
     const maxLinesBefore = Math.floor(existingLineTop / minDistance);
     const maxLinesAfter = Math.floor(
-      (windowHeight - existingLineTop) / minDistance,
+      ((windowHeight - existingLineTop) / minDistance) + 1,
     );
 
     setLineCountBefore(maxLinesBefore);
@@ -35,30 +35,38 @@ const HorizontalLines = () => {
 
   return (
     <div className={styles.container}>
-      {[...Array(lineCountBefore)].map((_, index) => (
-        <div
-          key={`before-${index}`}
-          className={styles.line}
-          style={
-            {
-              top: `calc(12.5rem + 15vh - ${lineDistanceRem * (index + 1)}rem)`,
-              "--i": index,
-            } as React.CSSProperties
-          }
-        />
-      ))}
-      {[...Array(lineCountAfter)].map((_, index) => (
-        <div
-          key={`after-${index}`}
-          className={styles.line}
-          style={
-            {
-              top: `calc(12.5rem + 15vh + ${lineDistanceRem * (index + 1)}rem)`,
-              "--i": index,
-            } as React.CSSProperties
-          }
-        />
-      ))}
+      {(lineCountBefore > 0 ? [...Array(lineCountBefore)] : null)?.map(
+        (_, index) => (
+          <div
+            key={`before-${index}`}
+            className={styles.line}
+            style={
+              {
+                top: `calc(12.5rem + 15vh - ${
+                  lineDistanceRem * (index + 1)
+                }rem)`,
+                "--i": index,
+              } as React.CSSProperties
+            }
+          />
+        )
+      )}
+      {(lineCountAfter > 0 ? [...Array(lineCountAfter)] : null)?.map(
+        (_, index) => (
+          <div
+            key={`after-${index}`}
+            className={styles.line}
+            style={
+              {
+                top: `calc(12.5rem + 15vh + ${
+                  lineDistanceRem * (index + 1)
+                }rem)`,
+                "--i": index,
+              } as React.CSSProperties
+            }
+          />
+        )
+      )}
     </div>
   );
 };

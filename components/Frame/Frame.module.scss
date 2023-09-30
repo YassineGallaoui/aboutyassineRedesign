@@ -87,20 +87,24 @@
             transform: rotateX(0deg) rotateY(0deg);
           }
           to {
-            transform: rotateX(30deg) rotateY(360deg);
+            transform: rotateX(60deg) rotateY(360deg);
           }
         }
 
-        .firstSun {
+        .firstSun, .secondSun, .thirdSun, .fourthSun {
           animation: rotateFirstSun 20s linear infinite alternate;
+        }
+        .firstSun {
+          transform: rotateY(0deg)
         }
         .secondSun {
-          animation: rotateFirstSun 20s linear infinite alternate;
-          animation-delay: 2.5s;
+          animation-delay: 5s;
         }
         .thirdSun {
-          animation: rotateFirstSun 20s linear infinite alternate;
-          animation-delay: 5s;
+          animation-delay: 10s;
+        }
+        .fourthSun {
+          animation-delay: 15s;
         }
       }
       &__dark {
