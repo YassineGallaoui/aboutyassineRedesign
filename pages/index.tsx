@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import styles from "../styles/scss/Home.module.scss";
+import stylesHome from "../styles/scss/Home.module.scss";
+import stylesAbout from "../styles/scss/About.module.scss";
 import { parallax } from "../utils/utility";
-import Head from "next/head";
 import defaultImg from "../public/imgs/default.webp";
 import Image, { StaticImageData } from "next/image";
 import { Project, projectsDataset } from "../dataset";
@@ -137,18 +137,18 @@ export default function Home({
 
   return (
     <motion.div
-      className={styles.mainMotionDiv + " mainMotionDiv"}
+      className={stylesHome.mainMotionDiv + " mainMotionDiv"}
       initial={{ x: "-50vw", opacity: 0 }}
       animate={{ x: "0vw", opacity: 1 }}
       exit={{ x: "-50vw", opacity: 0 }}
       transition={{ duration: 1, ease: [0.87, 0, 0.13, 1] }}
     >
-      <div className={styles.expBkgrdTxt + " sectionBkgrdTxt"}>Exp</div>
+      <div className={stylesHome.expBkgrdTxt + " sectionBkgrdTxt"}>Exp</div>
       <div
         className={
-          styles.currentPrjHovered +
+          stylesHome.currentPrjHovered +
           " currentPrjHovered " +
-          (projectIsHovered ? styles.hover : "")
+          (projectIsHovered ? stylesHome.hover : "")
         }
       >
         <Image
@@ -158,35 +158,35 @@ export default function Home({
           alt="project"
         ></Image>
       </div>
-      <div className={styles.modalMatteBkgrd + " modalMatteBkgrd"}></div>
-      <div className={styles.expContainer + " expContainer col-12"}>
+      <div className={stylesHome.modalMatteBkgrd + " modalMatteBkgrd"}></div>
+      <div className={stylesHome.expContainer + " expContainer col-12"}>
         {triangleRowsNumber > 0 &&
           [...Array(triangleRowsNumber).keys()].map((row, index) => {
             return (
               <div
                 key={index}
-                className={styles.triangleProjectRow + " " + styles.noProjRow}
+                className={stylesHome.triangleProjectRow + " " + stylesHome.noProjRow}
               >
                 {trianglesPerRow > 0 &&
                   [...Array(trianglesPerRow).keys()].map((cell, index2) => {
                     return (
                       <div
                         key={index2}
-                        className={styles.triangleProjectWrapper__NoProj}
+                        className={stylesHome.triangleProjectWrapper__NoProj}
                         style={
                           {
                             "--index": index2 + 2 - trianglesPerRow / 2,
                           } as React.CSSProperties
                         }
                       >
-                        <div className={styles.triangleProjectContent}></div>
+                        <div className={stylesHome.triangleProjectContent}></div>
                       </div>
                     );
                   })}
               </div>
             );
           })}
-        <div className={styles.triangleProjectRow}>
+        <div className={stylesHome.triangleProjectRow}>
           {trianglesPerRow > 0 &&
             [...Array(trianglesPerRow).keys()].map((cell, index2) => {
               if (
@@ -196,21 +196,21 @@ export default function Home({
                 return (
                   <div
                     key={index2}
-                    className={styles.triangleProjectWrapper__NoProj}
+                    className={stylesHome.triangleProjectWrapper__NoProj}
                     style={
                       {
                         "--index": index2 + 2 - trianglesPerRow / 2,
                       } as React.CSSProperties
                     }
                   >
-                    <div className={styles.triangleProjectContent}></div>
+                    <div className={stylesHome.triangleProjectContent}></div>
                   </div>
                 );
               } else {
                 return (
                   <div
                     key={index2}
-                    className={styles.triangleProjectWrapper}
+                    className={stylesHome.triangleProjectWrapper}
                     style={
                       {
                         "--index": index2 + 2 - trianglesPerRow / 2,
@@ -223,7 +223,7 @@ export default function Home({
                   >
                     <div
                       className={
-                        styles.triangleProjectContent + " triangleProjectImg"
+                        stylesHome.triangleProjectContent + " triangleProjectImg"
                       }
                       id={`triangleProjectContent-${
                         projectsDataset[index2 + 1 - (trianglesPerRow - 2) / 2]
@@ -276,7 +276,7 @@ export default function Home({
                             index2 + 1 - (trianglesPerRow - 2) / 2
                           ]?.id
                         }`}
-                        className={styles.seeMoreText}
+                        className={stylesHome.seeMoreText}
                       ></div>
                     </div>
                   </div>
@@ -289,21 +289,21 @@ export default function Home({
             return (
               <div
                 key={index}
-                className={styles.triangleProjectRow + " " + styles.noProjRow}
+                className={stylesHome.triangleProjectRow + " " + stylesHome.noProjRow}
               >
                 {trianglesPerRow > 0 &&
                   [...Array(trianglesPerRow).keys()].map((cell, index2) => {
                     return (
                       <div
                         key={index2}
-                        className={styles.triangleProjectWrapper__NoProj}
+                        className={stylesHome.triangleProjectWrapper__NoProj}
                         style={
                           {
                             "--index": index2 + 2 - trianglesPerRow / 2,
                           } as React.CSSProperties
                         }
                       >
-                        <div className={styles.triangleProjectContent}></div>
+                        <div className={stylesHome.triangleProjectContent}></div>
                       </div>
                     );
                   })}
