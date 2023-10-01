@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import stylesAbout from "../../styles/scss/About.module.scss";
+import stylesAbout from "../../styles/scss/General.module.scss";
 import {
   createSpanStructure,
   parallax,
