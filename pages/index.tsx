@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import stylesHome from "../styles/scss/Home.module.scss";
-import stylesAbout from "../styles/scss/About.module.scss";
 import { parallax } from "../utils/utility";
 import defaultImg from "../public/imgs/default.webp";
 import Image, { StaticImageData } from "next/image";
