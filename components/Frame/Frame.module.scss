@@ -91,11 +91,14 @@
           }
         }
 
-        .firstSun, .secondSun, .thirdSun, .fourthSun {
+        .firstSun,
+        .secondSun,
+        .thirdSun,
+        .fourthSun {
           animation: rotateFirstSun 20s linear infinite alternate;
         }
         .firstSun {
-          transform: rotateY(0deg)
+          transform: rotateY(0deg);
         }
         .secondSun {
           animation-delay: 5s;
@@ -167,7 +170,6 @@
               top: 1.5rem;
               opacity: 0;
               white-space: break-spaces;
-              transition: font-size 0.4s;
             }
           }
           &:after {
@@ -261,7 +263,7 @@
           max-width: 1.5rem;
           height: 1.5rem;
           border: 1px none;
-          transition: all 0.4s;
+          transition: all $change-theme-duration;
           div {
             display: flex;
             flex-direction: row;

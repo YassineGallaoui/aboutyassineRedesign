@@ -3,7 +3,8 @@
 @font-face {
   font-family: "Playfair--Display";
   src: url("../../public/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf");
-  src: url("../../public/fonts/Playfair_Display/static/PlayfairDisplay-Regular.ttf") format("ttf")
+  src: url("../../public/fonts/Playfair_Display/static/PlayfairDisplay-Regular.ttf")
+    format("ttf");
 }
 
 * {
@@ -22,8 +23,10 @@ body {
   max-width: 100vw;
   overflow: hidden;
   cursor: auto;
+  transition: transform $parallax-duration;
 
-  .slideRight, .slideLeft{
+  .slideRight,
+  .slideLeft {
     position: absolute;
     top: 0;
     height: 100vh;
@@ -35,7 +38,7 @@ body {
     transform-origin: right;
   }
 
-  .mainMotionDiv{
+  .mainMotionDiv {
     position: absolute;
     display: block;
     top: 0px;
@@ -48,23 +51,23 @@ body {
     background-color: $light-color;
     color: $semitransparentDark1;
     transition:
-      background-color $BG-Color-transition-duration,
-      color $BG-Color-transition-duration;
+      background-color $change-theme-duration,
+      color $change-theme-duration;
   }
 
   &.darkMode {
     background-color: $dark-color;
     color: $semitransparentLight1;
     transition:
-      background-color $BG-Color-transition-duration,
-      color $BG-Color-transition-duration;
+      background-color $change-theme-duration,
+      color $change-theme-duration;
   }
 
   &::-webkit-scrollbar {
     display: none;
   }
   box-sizing: border-box;
-  transition: all 0.4s;
+  transition: all $change-theme-duration;
   user-select: none;
   img {
     pointer-events: none;
@@ -74,19 +77,16 @@ body {
   &.lightMode > * {
     background-color: inherit;
     color: inherit;
-    transition: all 0.8s;
-    transition:
-      background-color $BG-Color-transition-duration,
-      color $BG-Color-transition-duration;
+    transition: all $change-theme-duration;
+    transition: background-color $change-theme-duration linear;
     .sectionBkgrdTxt {
       color: $semitransparentDark5;
+      transition: color $change-theme-duration;
     }
     .projectModalContainer {
       color: $semitransparentDark1;
       background-color: $light-color;
-      transition:
-        background-color $BG-Color-transition-duration,
-        color $BG-Color-transition-duration;
+      transition: background-color $change-theme-duration linear;
       .carouselComponent {
         background-color: $semitransparentDark1;
       }
@@ -121,9 +121,9 @@ body {
     }
     .invertImg {
       filter: invert(0);
-      transition: filter 0.8s;
+      transition: filter $change-theme-duration;
       > * {
-        transition: filter 0.8s;
+        transition: filter $change-theme-duration;
         filter: invert(0);
       }
     }
@@ -131,19 +131,16 @@ body {
   &.darkMode > * {
     background-color: inherit;
     color: inherit;
-    transition: all 0.8s;
-    transition:
-      background-color $BG-Color-transition-duration,
-      color $BG-Color-transition-duration;
+    transition: all $change-theme-duration;
+    transition: background-color $change-theme-duration linear;
     .sectionBkgrdTxt {
       color: $semitransparentLight5;
+      transition: color $change-theme-duration linear;
     }
     .projectModalContainer {
       color: $semitransparentLight1;
       background-color: $dark-color;
-      transition:
-        background-color $BG-Color-transition-duration,
-        color $BG-Color-transition-duration;
+      transition: background-color $change-theme-duration linear;
       .carouselComponent {
         background-color: $semitransparentDark1;
       }
@@ -178,9 +175,9 @@ body {
     }
     .invertImg {
       filter: invert(1);
-      transition: filter 0.8s;
+      transition: filter $change-theme-duration linear;
       > * {
-        transition: filter 0.8s;
+        transition: filter $change-theme-duration linear;
         filter: invert(1);
       }
     }

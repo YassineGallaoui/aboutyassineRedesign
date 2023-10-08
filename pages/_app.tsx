@@ -14,17 +14,17 @@ export default function MyApp({ Component, pageProps, router }) {
   const [cursorText, setCursorText] = useState<string | null>(null);
   const [cursorHover, setCursorHover] = useState<boolean>(false);
   const [preferredTheme, setPreferredTheme] = useState<themeMode>(
-    themeMode.darkMode
+    themeMode.darkMode,
   );
   const [lightColor, setLightColor] = useState("");
   const [darkColor, setDarkColor] = useState("");
 
   useEffect(() => {
     const prefersDarkMode = window.matchMedia(
-      "(prefers-color-scheme: dark)"
+      "(prefers-color-scheme: dark)",
     ).matches;
     const prefersLightMode = window.matchMedia(
-      "(prefers-color-scheme: light)"
+      "(prefers-color-scheme: light)",
     ).matches;
 
     const storedThemePreference: themeMode | null =

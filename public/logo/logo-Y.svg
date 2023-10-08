@@ -12,7 +12,7 @@
         stroke-miterlimit: 10;
       }
     </style>
-    <linearGradient id="Sfumatura_senza_nome_178" data-name="Sfumatura senza nome 178" x1="35.6" y1="26.8" x2="90.34" y2="81.54" gradientUnits="userSpaceOnUse">
+    <linearGradient id="Sfumatura_senza_nome_178" x1="35.6" y1="26.8" x2="90.34" y2="81.54" gradientUnits="userSpaceOnUse">
       <stop offset=".28" stop-color="#000"/>
       <stop offset=".9" stop-color="#828282" stop-opacity=".49"/>
       <stop offset="1" stop-color="#fff" stop-opacity="0"/>

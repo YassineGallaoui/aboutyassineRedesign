@@ -4,6 +4,7 @@ import {
   createSpanStructure,
   parallax,
   calculateScrollPercentage,
+  distanceLevels,
 } from "../../utils/utility";
 import HorizontalLines from "../../components/HorizontalLines";
 import { motion } from "framer-motion";
@@ -21,16 +22,21 @@ export default function About() {
     };
     startWelcomeAnimation(i);
 
-    document.addEventListener("mousemove", (event) =>
-      parallax(event, document.querySelectorAll(".sectionBkgrdTxt"))
-    );
+    document.addEventListener("mousemove", (event) => {
+      parallax(
+        event,
+        document.querySelectorAll(".sectionBkgrdTxt"),
+        distanceLevels.Second,
+      );
+      //parallax(event, document.querySelectorAll(".mainMotionDiv"), distanceLevels.First);
+    });
 
     const pageContent = document.querySelector(".aboutContent");
     const percentageBar = document.querySelector(
-      ".percentageBarBar"
+      ".percentageBarBar",
     ) as HTMLElement;
     const percentageNumber = document.querySelector(
-      ".percentageBarBar > span"
+      ".percentageBarBar > span",
     ) as HTMLElement;
     pageContent.addEventListener("scroll", (event) => {
       const scrollPercentage = calculateScrollPercentage(pageContent);
@@ -45,7 +51,7 @@ export default function About() {
       initial={{ x: "50vw", opacity: 0 }}
       animate={{ x: "0vw", opacity: 1 }}
       exit={{ x: "50vw", opacity: 0 }}
-      transition={{ duration: 1, ease: [0.87, 0, 0.13, 1] }}
+      transition={{ duration: 1, ease: [0.8, 0.28, 0, 1] }}
     >
       <div className={stylesAbout.meBkgrdTxt + " sectionBkgrdTxt"}>About</div>
       <div className={stylesAbout.verticalLine}></div>
@@ -64,15 +70,21 @@ export default function About() {
             <span style={{ "--i": 3 } as React.CSSProperties}>!</span>
           </div>
           <div className="w-100"></div>
-          <div className={stylesAbout.meContainer__txt__words + " col-2 offset-1"}>
+          <div
+            className={stylesAbout.meContainer__txt__words + " col-2 offset-1"}
+          >
             <p>
-              <span className={stylesAbout.singleWord}>{`software developer`}</span>
+              <span
+                className={stylesAbout.singleWord}
+              >{`software developer`}</span>
             </p>
             <p>
               <span className={stylesAbout.singleWord}>{`proactive nerd`}</span>
             </p>
             <p>
-              <span className={stylesAbout.singleWord}>{`a bit workaholic`}</span>
+              <span
+                className={stylesAbout.singleWord}
+              >{`a bit workaholic`}</span>
             </p>
             <p>
               <span

@@ -1,1 +1,234 @@
-.lightMode{background-color:#f6fccf;color:#1b1c32}.darkMode{background-color:#1b1c32;color:#f6fccf}.meBkgrdTxt{font-size:100vh;position:fixed;pointer-events:none;user-select:none}.verticalLine{position:fixed;height:100vh;width:1px;background-color:rgba(0,0,0,.5);transition:background-color .4s;border:none;top:0;left:24vw;animation:drawVLine cubic-bezier(0.72, 0.27, 0.3, 1) 3s;animation-iteration-count:1;animation-fill-mode:forwards}.horizontalLine{height:1px;width:0vw;background-color:rgba(0,0,0,.5);transition:background-color .4s;border:none;position:fixed;top:calc(12.5rem + 15vh);animation:drawHLine cubic-bezier(0.7, 0, 0.3, 1) 3s;animation-iteration-count:1;animation-fill-mode:forwards}html[data-theme=dark] .verticalLine,html[data-theme=dark] .horizontalLine{transition:background-color .4s;background-color:rgba(255,255,255,.5)}@keyframes drawHLine{0%{width:0vw}100%{width:100vw}}@keyframes drawVLine{0%{height:0vw}100%{height:100vh}}.meContainer{position:absolute;top:0;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}.meContainer__txt__big__welcome{position:fixed;top:15vh;display:flex;justify-content:flex-end;overflow:visible;font-size:8rem;line-height:14rem;opacity:.6;text-align:right}.meContainer__txt__big__welcome>span{position:relative;transform:translateY(0);opacity:0;animation:animHello cubic-bezier(0.87, 0, 0.13, 1) 5s infinite;animation-iteration-count:1;animation-fill-mode:forwards;animation-delay:calc(.03s*var(--i))}@keyframes animHello{0%{transform:translateY(2.4rem)}5%{opacity:0}30%{transform:translateY(0rem);opacity:1}70%{transform:translateY(0rem);opacity:1}97%{opacity:0}100%{transform:translateY(-3rem)}}.meContainer__txt__words{position:fixed;top:calc(15vh + 13.2rem)}.meContainer__txt__words p{line-height:1.3rem;text-align:right;text-transform:uppercase;display:block}.meContainer__txt__words p .singleWord{display:block;opacity:0;top:3rem;animation:animText cubic-bezier(0.87, 0, 0.13, 1) 2s,animOpacity cubic-bezier(1, 0, 0.5, 1) 2s;animation-iteration-count:1;animation-fill-mode:forwards;animation-delay:.9s}.meContainer__txt__description{position:fixed;padding-top:calc(15vh + 12.2rem);padding-bottom:9rem;overflow:visible;overflow-y:scroll;z-index:5;font-size:3rem;line-height:4.7rem;height:100vh;scrollbar-width:none}.meContainer__txt__description::-webkit-scrollbar-track{display:none}.meContainer__txt__description::-webkit-scrollbar{width:0}.meContainer__txt__description span{position:relative;top:3rem;opacity:0;overflow:hidden}.meContainer__txt__description__small{line-height:4.5rem;animation:animText cubic-bezier(0.87, 0, 0.13, 1) 2s,animOpacitySmall cubic-bezier(1, 0, 0.75, 1) 2s;animation-delay:.9s;animation-iteration-count:1;animation-fill-mode:forwards}.meContainer__txt__description__big{line-height:4.5rem;animation:animText cubic-bezier(0.87, 0, 0.13, 1) 2s,animOpacity cubic-bezier(1, 0, 0.5, 1) 2s;animation-delay:.9s;animation-iteration-count:1;animation-fill-mode:forwards}.meContainer__txt__description p{display:block;overflow:hidden}@keyframes animOpacity{0%{opacity:0}100%{opacity:1}}@keyframes animOpacitySmall{0%{opacity:0}100%{opacity:.4}}@keyframes animText{0%{transform:translate(0, 5rem);top:3rem}100%{transform:translate(0, 0rem);top:0rem}}.percentageBarContainer{position:fixed;top:0;right:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;width:.7rem}.percentageBarContainer .percentageBarBar{height:0vh;transition:height .3s;font-size:.8rem;line-height:.8rem;color:rgba(255,255,255,.9);background-color:rgba(0,0,0,.9);writing-mode:vertical-rl;transform:rotate(180deg);text-align:left}.percentageBarContainer .percentageBarBar span{position:relative;top:.4rem;font-weight:900}html[data-theme=dark] .percentageBarBar{color:rgba(0,0,0,.9);background-color:rgba(255,255,255,.9)}
+.lightMode {
+  background-color: #f6fccf;
+  color: #1b1c32;
+}
+.darkMode {
+  background-color: #1b1c32;
+  color: #f6fccf;
+}
+.meBkgrdTxt {
+  font-size: 100vh;
+  position: fixed;
+  pointer-events: none;
+  user-select: none;
+}
+.verticalLine {
+  position: fixed;
+  height: 100vh;
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: background-color 0.4s;
+  border: none;
+  top: 0;
+  left: 24vw;
+  animation: drawVLine cubic-bezier(0.72, 0.27, 0.3, 1) 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.horizontalLine {
+  height: 1px;
+  width: 0vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: background-color 0.4s;
+  border: none;
+  position: fixed;
+  top: calc(12.5rem + 15vh);
+  animation: drawHLine cubic-bezier(0.7, 0, 0.3, 1) 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+html[data-theme="dark"] .verticalLine,
+html[data-theme="dark"] .horizontalLine {
+  transition: background-color 0.4s;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+@keyframes drawHLine {
+  0% {
+    width: 0vw;
+  }
+  100% {
+    width: 100vw;
+  }
+}
+@keyframes drawVLine {
+  0% {
+    height: 0vw;
+  }
+  100% {
+    height: 100vh;
+  }
+}
+.meContainer {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.meContainer__txt__big__welcome {
+  position: fixed;
+  top: 15vh;
+  display: flex;
+  justify-content: flex-end;
+  overflow: visible;
+  font-size: 8rem;
+  line-height: 14rem;
+  opacity: 0.6;
+  text-align: right;
+}
+.meContainer__txt__big__welcome > span {
+  position: relative;
+  transform: translateY(0);
+  opacity: 0;
+  animation: animHello cubic-bezier(0.87, 0, 0.13, 1) 5s infinite;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: calc(0.03s * var(--i));
+}
+@keyframes animHello {
+  0% {
+    transform: translateY(2.4rem);
+  }
+  5% {
+    opacity: 0;
+  }
+  30% {
+    transform: translateY(0rem);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(0rem);
+    opacity: 1;
+  }
+  97% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-3rem);
+  }
+}
+.meContainer__txt__words {
+  position: fixed;
+  top: calc(15vh + 13.2rem);
+}
+.meContainer__txt__words p {
+  line-height: 1.3rem;
+  text-align: right;
+  text-transform: uppercase;
+  display: block;
+}
+.meContainer__txt__words p .singleWord {
+  display: block;
+  opacity: 0;
+  top: 3rem;
+  animation:
+    animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
+    animOpacity cubic-bezier(1, 0, 0.5, 1) 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: 0.9s;
+}
+.meContainer__txt__description {
+  position: fixed;
+  padding-top: calc(15vh + 12.2rem);
+  padding-bottom: 9rem;
+  overflow: visible;
+  overflow-y: scroll;
+  z-index: 5;
+  font-size: 3rem;
+  line-height: 4.7rem;
+  height: 100vh;
+  scrollbar-width: none;
+}
+.meContainer__txt__description::-webkit-scrollbar-track {
+  display: none;
+}
+.meContainer__txt__description::-webkit-scrollbar {
+  width: 0;
+}
+.meContainer__txt__description span {
+  position: relative;
+  top: 3rem;
+  opacity: 0;
+  overflow: hidden;
+}
+.meContainer__txt__description__small {
+  line-height: 4.5rem;
+  animation:
+    animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
+    animOpacitySmall cubic-bezier(1, 0, 0.75, 1) 2s;
+  animation-delay: 0.9s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.meContainer__txt__description__big {
+  line-height: 4.5rem;
+  animation:
+    animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
+    animOpacity cubic-bezier(1, 0, 0.5, 1) 2s;
+  animation-delay: 0.9s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+.meContainer__txt__description p {
+  display: block;
+  overflow: hidden;
+}
+@keyframes animOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes animOpacitySmall {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+@keyframes animText {
+  0% {
+    transform: translate(0, 5rem);
+    top: 3rem;
+  }
+  100% {
+    transform: translate(0, 0rem);
+    top: 0rem;
+  }
+}
+.percentageBarContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 0.7rem;
+}
+.percentageBarContainer .percentageBarBar {
+  height: 0vh;
+  transition: height 0.3s;
+  font-size: 0.8rem;
+  line-height: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(0, 0, 0, 0.9);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-align: left;
+}
+.percentageBarContainer .percentageBarBar span {
+  position: relative;
+  top: 0.4rem;
+  font-weight: 900;
+}
+html[data-theme="dark"] .percentageBarBar {
+  color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(255, 255, 255, 0.9);
+}

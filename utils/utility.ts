@@ -40,21 +40,18 @@ export function verticalTextAnimationBackward(el, index) {
     .to(el, { duration: 0.25, y: -3 });
 }
 
-/* export function scrollHorizontal(event) {
-  event.preventDefault();
-  if (!event.deltaY) {
-    return;
-  }
-  if (!event.shiftKey) {
-    event.preventDefault();
-    event.currentTarget.scrollLeft += (event.deltaY + event.deltaX)*10;
-  }
-} */
+export enum distanceLevels {
+  First = 400,
+  Second = 800,
+  Third = 1200,
+}
 
-export function parallax(event, element) {
+export function parallax(event, element, distance) {
   element.forEach((el) => {
-    const x = (window.innerWidth - event.pageX * 2) / 90;
-    const y = (window.innerHeight - event.pageY * 2) / 90;
+    const x = (window.innerWidth - event.pageX * 2) / distance;
+    const y = (window.innerHeight - event.pageY * 2) / distance;
+    /*const xDeg = (window.innerHeight - event.pageY * 2) / (window.innerHeight * 0.05);
+    const yDeg = (window.innerWidth - event.pageY * 2) / (window.innerWidth * 0.05);*/
 
     el.style.transform = `translateX(${x}px) translateY(${y}px)`;
   });
@@ -75,59 +72,3 @@ export const calculateScrollPercentage = (pageContent) => {
   // Return the calculated percentage
   return scrollPercentage.toFixed(0);
 };
-/* export const useSwipe = () => {
-  const [position, setPosition] = useState(0);
-
-  let startX = 0;
-  let startY = 0;
-  let dist = 0;
-  let threshold = 50;
-  let allowedTime = 300;
-  let elapsedTime = 0;
-  let startTime = 0;
-
-  const handleTouchStart = (e) => {
-    const touch = e.touches[0];
-    startX = touch.pageX;
-    startY = touch.pageY;
-    startTime = new Date().getTime();
-  };
-
-  const handleTouchMove = (e) => {
-    e.preventDefault();
-    const touch = e.touches[0];
-    let deltaX = touch.pageX - startX;
-    let deltaY = touch.pageY - startY;
-    dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-  };
-
-  const handleTouchEnd = (e) => {
-    elapsedTime = new Date().getTime() - startTime;
-    if (elapsedTime <= allowedTime && dist >= threshold) {
-      if (Math.abs(startX - e.changedTouches[0].pageX) >= threshold) {
-        const swipeDirection = startX > e.changedTouches[0].pageX ? "left" : "right";
-        setPosition((prevPosition) =>
-          startX > e.changedTouches[0].pageX
-            ? prevPosition + 100
-            : prevPosition - 100
-        );
-      }
-    }
-  };
-
-  useEffect(() => {
-    // add event listeners to the document for touch events
-    document.addEventListener("touchstart", handleTouchStart);
-    document.addEventListener("touchmove", handleTouchMove);
-    document.addEventListener("touchend", handleTouchEnd);
-
-    // remove event listeners on cleanup
-    return () => {
-      document.removeEventListener("touchstart", handleTouchStart);
-      document.removeEventListener("touchmove", handleTouchMove);
-      document.removeEventListener("touchend", handleTouchEnd);
-    };
-  }, []);
-
-  return { handleTouchStart, handleTouchMove, handleTouchEnd, position };
-} */

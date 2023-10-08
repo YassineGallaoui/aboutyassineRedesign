@@ -35,21 +35,21 @@ export default function Frame({
   const [currentTheme, setCurrentTheme] = useState<themeMode>(preferredTheme);
 
   const themeChange = () => {
-    setThemeIconRot(t => t + 180);
-    
+    setThemeIconRot((t) => t + 180);
+
     const body = document.querySelector("body");
     if (currentTheme === themeMode.lightMode) {
       body.className = themeMode[themeMode.darkMode];
       localStorage.setItem(
         "yas-theme-preference",
-        themeMode[themeMode.darkMode]
+        themeMode[themeMode.darkMode],
       );
       document.documentElement.setAttribute("data-theme", "dark");
     } else {
       body.className = themeMode[themeMode.lightMode];
       localStorage.setItem(
         "yas-theme-preference",
-        themeMode[themeMode.lightMode]
+        themeMode[themeMode.lightMode],
       );
       document.documentElement.setAttribute("data-theme", "light");
     }
@@ -57,7 +57,7 @@ export default function Frame({
     setCurrentTheme(
       currentTheme === themeMode.darkMode
         ? themeMode.lightMode
-        : themeMode.darkMode
+        : themeMode.darkMode,
     );
   };
 

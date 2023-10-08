@@ -19,7 +19,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 2rem;
-    transition: border 0.4s;
+    transition: border $carousel-duration;
     &:before,
     &:after {
       content: "";
@@ -28,9 +28,9 @@
       height: 24px;
       background-color: $semitransparentDark1;
       transition:
-        width 0.4s,
-        height 0.4s,
-        background-color 0.4s;
+        width $carousel-duration,
+        height $carousel-duration,
+        background-color $carousel-duration;
     }
 
     &:before {
@@ -41,7 +41,7 @@
       transform: rotate(-45deg);
     }
     &.light {
-      transition: border 0.4s;
+      transition: border $carousel-duration;
       border: 1px solid $semitransparentDark1;
 
       &:before,
@@ -49,8 +49,8 @@
         width: 1px;
         height: 14px;
         transition:
-          width 0.4s,
-          height 0.4s;
+          width $carousel-duration,
+          height $carousel-duration;
       }
     }
   }
@@ -128,12 +128,12 @@ html[data-theme="dark"] {
     &:after {
       background-color: $semitransparentLight1;
       transition:
-        width 0.4s,
-        height 0.4s,
-        background-color 0.4s;
+        width $carousel-duration,
+        height $carousel-duration,
+        background-color $carousel-duration;
     }
     &.light {
-      transition: border 0.4s;
+      transition: border $carousel-duration;
       border: 1px solid $semitransparentLight1;
       filter: invert(0) !important;
       &:before,
@@ -141,8 +141,8 @@ html[data-theme="dark"] {
         width: 1px;
         height: 14px;
         transition:
-          width 0.4s,
-          height 0.4s;
+          width $carousel-duration,
+          height $carousel-duration;
       }
     }
   }

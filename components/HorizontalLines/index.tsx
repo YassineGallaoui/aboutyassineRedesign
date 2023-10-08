@@ -13,7 +13,7 @@ const HorizontalLines = () => {
 
     const maxLinesBefore = Math.floor(existingLineTop / minDistance);
     const maxLinesAfter = Math.floor(
-      ((windowHeight - existingLineTop) / minDistance) + 1,
+      (windowHeight - existingLineTop) / minDistance + 1,
     );
 
     setLineCountBefore(maxLinesBefore);
@@ -49,7 +49,7 @@ const HorizontalLines = () => {
               } as React.CSSProperties
             }
           />
-        )
+        ),
       )}
       {(lineCountAfter > 0 ? [...Array(lineCountAfter)] : null)?.map(
         (_, index) => (
@@ -65,7 +65,7 @@ const HorizontalLines = () => {
               } as React.CSSProperties
             }
           />
-        )
+        ),
       )}
     </div>
   );
