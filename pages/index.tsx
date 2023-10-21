@@ -53,8 +53,8 @@ export default function Home({
     setTriangleRowsNumber(Math.ceil(IH / 300));
     let tempNumber =
       (Math.ceil((IW / 300) * 2) + 2) % 2 === 1
-        ? Math.ceil((IW / 300) * 2) + 20
-        : Math.ceil((IW / 300) * 2) + 19;
+        ? Math.ceil((IW / 300) * 2) + 30
+        : Math.ceil((IW / 300) * 2) + 29;
     setTrianglesPerRow(tempNumber);
     setFirstPositionProject(
       tempNumber % 2 === 0
