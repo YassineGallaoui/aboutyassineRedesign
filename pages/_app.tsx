@@ -18,6 +18,7 @@ export default function MyApp({ Component, pageProps, router }) {
   );
   const [lightColor, setLightColor] = useState("");
   const [darkColor, setDarkColor] = useState("");
+  const [SSAnimFinished, setSSAnimFinished] = useState(false);
 
   useEffect(() => {
     const prefersDarkMode = window.matchMedia(
@@ -70,6 +71,7 @@ export default function MyApp({ Component, pageProps, router }) {
       preferredTheme={preferredTheme}
       lightColor={lightColor}
       darkColor={darkColor}
+      setSSAnimFinished={setSSAnimFinished}
     >
       <AnimatePresence mode="sync" initial={false}>
         <Component
@@ -78,6 +80,7 @@ export default function MyApp({ Component, pageProps, router }) {
           cursorIsHover={setCursorHover}
           lightColor={lightColor}
           darkColor={darkColor}
+          SSAnimFinished={SSAnimFinished}
           key={router.pathname}
         />
       </AnimatePresence>

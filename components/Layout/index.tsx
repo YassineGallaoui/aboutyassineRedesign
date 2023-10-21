@@ -12,6 +12,7 @@ type Props = {
   preferredTheme: themeMode;
   lightColor: string;
   darkColor: string;
+  setSSAnimFinished: Function;
   children?: ReactNode;
 };
 
@@ -23,14 +24,14 @@ const Layout = ({
   preferredTheme,
   lightColor,
   darkColor,
+  setSSAnimFinished,
   children,
 }: Props) => {
   return (
     <main>
       <Cursor hovered={cursorHover} txt={cursorText} />
       <SplashScreen
-        updateCursorText={updateCursorText}
-        updateCursorStatus={updateCursorStatus}
+        setSSAnimFinished={setSSAnimFinished}
       />
       <Frame
         updateCursorText={updateCursorText}

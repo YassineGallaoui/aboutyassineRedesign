@@ -18,7 +18,7 @@ export type Project = {
   description: string;
   frontend: string;
   backend: string;
-  awards?: string[];
+  recognitions?: string[];
   media: StaticImageData[];
 };
 
@@ -53,7 +53,7 @@ export const projectsDataset: Project[] = [
       imgMaserati4,
       imgMaserati5,
     ],
-    awards: ["Awwwards Honorable Mention"],
+    recognitions: ["Awwwards Honorable Mention"],
     workingFor: "Deloitte",
     description:
       "Joined the project during its UAT phase with a team of 30 people. In the first period I worked mainly on bugfixing and analytics integration. After the go live I joined a team of 5 people to develop from scratch the Owner Area section of the website, take care of all analytics and later also bugfixing.",

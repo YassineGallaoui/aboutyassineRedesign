@@ -66,7 +66,7 @@ export default function Frame({
     const body = document.querySelector("body");
     const liTagsRC = body.querySelectorAll(".sectionsNav li div");
     const liTagsRB = body.querySelectorAll(".contactsSocial div");
-    const sectionNamesRC = ["About", "Career"];
+    const sectionNamesRC = ["About", "Projects"];
     const sectionNamesRB = ["Download", "Send", "More"];
     liTagsRC.forEach((element, index) => {
       element.innerHTML = createSpanStructure(sectionNamesRC[index]);
@@ -209,15 +209,16 @@ export default function Frame({
             onMouseOver={(e) => hoverSocialButtons(e)}
             onMouseLeave={(e) => unhoverSocialButtons(e)}
           >
-            <a href="/cv.pdf" rel="noreferrer noopener" target="_blank"></a>
-            <div
-              className={
-                styles.frameContainer__right__contacts__social__text +
-                " contactsSocial"
-              }
-            >
-              <div></div>
-            </div>
+            <a href="/cv.pdf" rel="noreferrer noopener" target="_blank">
+              <div
+                className={
+                  styles.frameContainer__right__contacts__social__text +
+                  " contactsSocial"
+                }
+              >
+                <div></div>
+              </div>
+            </a>
             <Image
               src={cvIcon}
               fill
@@ -230,15 +231,16 @@ export default function Frame({
             onMouseOver={(e) => hoverSocialButtons(e)}
             onMouseLeave={(e) => unhoverSocialButtons(e)}
           >
-            <a href="mailto:myassine.gallaoui@gmail.com"></a>
-            <div
-              className={
-                styles.frameContainer__right__contacts__social__text +
-                " contactsSocial"
-              }
-            >
-              <div></div>
-            </div>
+            <a href="mailto:myassine.gallaoui@gmail.com">
+              <div
+                className={
+                  styles.frameContainer__right__contacts__social__text +
+                  " contactsSocial"
+                }
+              >
+                <div></div>
+              </div>
+            </a>
             <Image src={mailIcon} fill alt="mail" className="invertImg" />
           </div>
           <div
@@ -250,15 +252,16 @@ export default function Frame({
               href="https://www.linkedin.com/in/mohamed-yassine-gallaoui/"
               rel="noreferrer noopener"
               target="_blank"
-            ></a>
-            <div
-              className={
-                styles.frameContainer__right__contacts__social__text +
-                " contactsSocial"
-              }
             >
-              <div></div>
-            </div>
+              <div
+                className={
+                  styles.frameContainer__right__contacts__social__text +
+                  " contactsSocial"
+                }
+              >
+                <div></div>
+              </div>
+            </a>
             <Image
               src={linkedinIcon}
               fill
@@ -266,29 +269,6 @@ export default function Frame({
               className="invertImg"
             />
           </div>
-          {/* <div
-              className={styles.frameContainer__right__contacts__social}
-              onMouseOver={(e) => hoverSocialButtons(e)}
-              onMouseLeave={(e) => unhoverSocialButtons(e)}
-            >
-              <a
-                href="https://github.com/YassineGallaoui"
-                rel="noreferrer noopener"
-                target="_blank"
-              >
-              </a>
-                <div className={styles.frameContainer__right__contacts__social__text+" contactsSocial"}>
-                  <span>
-                    {"Code"}
-                  </span>
-                </div>
-                <Image
-                  src={githubIcon}
-                  fill
-                  alt="github"
-                  className="invertImg"
-                />
-            </div> */}
         </div>
       </div>
     </div>

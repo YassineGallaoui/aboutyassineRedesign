@@ -43,6 +43,7 @@
   align-items: center;
   height: 100vh;
   width: 100vw;
+  transform: translateX(5.5vw);
   .triangleProjectRow {
     position: relative;
     display: flex;
@@ -51,6 +52,27 @@
     align-items: center;
     margin-bottom: 1vw;
     margin: 11vw;
+    .horizontalLineL, .horizontalLineR {
+      position: absolute;
+      width: max(200vh, 200vw);
+      height: 1px;
+      opacity: 0.2;
+      background-color: $semitransparentDark5;
+      transition: background-color $change-theme-duration;
+      animation: drawOrizLine cubic-bezier(.34,.65,.46,.76) 5s;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      margin-top: 22vw;
+      transform: translateX(max(200vh, 200vw));
+    }
+    .horizontalLineL {
+      transform: translateX(calc(max(200vh, 200vw) * -1));
+    }
+    @keyframes drawOrizLine {
+      100% {
+        transform: translateX(0);
+      }
+    }
     .triangleProjectWrapper,
     .triangleProjectWrapper__NoProj {
       position: absolute;
@@ -64,7 +86,31 @@
       align-items: center;
       justify-content: center;
       pointer-events: none;
-      > div {
+      .obliqueLineP, .obliqueLineN {
+        position: absolute;
+        width: 2px;
+        height: 0vw;
+        background-color: $semitransparentDark5;
+        transition: background-color $change-theme-duration;
+        transform: rotate(26.5deg);
+        transform-origin: top;
+        margin-top: -0.9vw;
+        animation: drawOLine cubic-bezier(.34,.65,.46,.76) 5s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+      }
+      @keyframes drawOLine {
+        0% {
+          height: 0vw;
+        }
+        100% {
+          height: max(220vh, 220vw);
+        }
+      }
+      .obliqueLineN {
+        transform: rotate(-26.5deg);
+      }
+      > div.triangleProjectContent {
         position: absolute;
         height: 21vw;
         width: 21vw;
@@ -105,5 +151,21 @@
   }
   .noProjRow:nth-child(even) {
     transform: translateX(11vw);
+  }
+}
+
+html[data-theme="dark"] {
+  .horizontalLineL,
+    .horizontalLineR{
+      transition: background-color $change-theme-duration !important;
+      background-color: $semitransparentLight5 !important;
+    }
+  .triangleProjectWrapper,
+  .triangleProjectWrapper__NoProj  {
+    .obliqueLineP,
+    .obliqueLineN {
+      transition: background-color $change-theme-duration!important;
+      background-color: $semitransparentLight5 !important;
+    }
   }
 }

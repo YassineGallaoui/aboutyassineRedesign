@@ -14,6 +14,7 @@ type HomeProps = {
   cursorIsHover: Function;
   lightColor: string;
   darkColor: string;
+  SSAnimFinished: Function;
 };
 
 export default function Home({
@@ -21,44 +22,84 @@ export default function Home({
   cursorIsHover,
   lightColor,
   darkColor,
+  SSAnimFinished,
 }: HomeProps) {
   const [triangleRowsNumber, setTriangleRowsNumber] = useState<number>(0);
   const [trianglesPerRow, setTrianglesPerRow] = useState<number>(0);
+  const [firstPositionProject, setFirstPositionProject] = useState<number>(0);
   const [tempImgHover, setTempImageHover] =
     useState<StaticImageData>(defaultImg);
   const [projectOpened, setProjectOpened] = useState<Project>(
-    projectsDataset[0],
+    projectsDataset[0]
   );
   const [projectOpenedBoolean, setProjectOpenedBoolean] =
     useState<boolean>(false);
   const [projectIsHovered, setProjectIsHovered] = useState<boolean>(false);
   const zIndexMatteBKGOpen: number = 5;
   const zIndexMatteBKGClosed: number = -1;
+  const [hasComponentMounted, setHasComponentMounted] = useState(false);
 
-  function mouseMoveHomepage(event: MouseEvent) {
-    //parallax(event, document.querySelectorAll(".expContainer"), distanceLevels.First);
+  function mouseMoveHomepage(event: MouseEvent | Event) {
     parallax(
       event,
       document.querySelectorAll(".sectionBkgrdTxt"),
-      distanceLevels.Second,
+      distanceLevels.Second
+    );
+  }
+
+  function setIndexSettings() {
+    let IH = window.innerHeight;
+    let IW = window.innerWidth;
+    setTriangleRowsNumber(Math.ceil(IH / 300));
+    let tempNumber =
+      (Math.ceil((IW / 300) * 2) + 2) % 2 === 1
+        ? Math.ceil((IW / 300) * 2) + 20
+        : Math.ceil((IW / 300) * 2) + 19;
+    setTrianglesPerRow(tempNumber);
+    setFirstPositionProject(
+      tempNumber % 2 === 0
+        ? tempNumber / 2 - (projectsDataset.length - 1) / 2
+        : (tempNumber - 1) / 2 - (projectsDataset.length - 1) / 2
     );
   }
 
   useEffect(() => {
     document.addEventListener("mousemove", (event) => mouseMoveHomepage(event));
 
-    setTriangleRowsNumber(Math.ceil(window.innerHeight / 300 / 2));
-    (Math.ceil((window.innerWidth / 300) * 2) + 2) % 2 === 1
-      ? setTrianglesPerRow(Math.ceil((window.innerWidth / 300) * 2) + 5)
-      : setTrianglesPerRow(Math.ceil((window.innerWidth / 300) * 2) + 4);
+    setIndexSettings();
+    window.addEventListener("resize", () => setIndexSettings());
 
     colorApplicator(lightColor, darkColor);
 
     // Clean up the event listener when the component unmounts
     return () => {
       document.addEventListener("mousemove", mouseMoveHomepage);
+      window.addEventListener("resize", setIndexSettings);
     };
   }, []);
+
+  useEffect(() => {
+    console.log("SSAnimFinished: " + SSAnimFinished);
+    if (SSAnimFinished && hasComponentMounted) {
+      const tlInitial = gsap.timeline({ delay: 0.2 });
+      console.log("dentro timeout");
+      tlInitial
+        .to(".expContainer", {
+          duration: 0,
+          top: 80,
+          scale: 1,
+          opacity: 0.8,
+        })
+        .to(".expContainer", {
+          duration: 1.8,
+          top: 0,
+          scale: 1,
+          opacity: 1,
+        });
+    } else {
+      setHasComponentMounted(true);
+    }
+  }, [SSAnimFinished]);
 
   useEffect(() => {
     let projects = document.querySelectorAll(".triangleProjectImg");
@@ -68,14 +109,14 @@ export default function Home({
         setProjectIsHovered(true);
         if (elementId != null) {
           const elementData = projectsDataset.find(
-            (el) => el.id + "" === elementId,
+            (el) => el.id + "" === elementId
           );
           setTempImageHover(elementData.media[0]);
           const tl1 = gsap.timeline({ delay: 0 });
           tl1.fromTo(
             ".bigBackgroundImage",
             { scale: 1.1, opacity: 0 },
-            { scale: 1.02, opacity: 1, duration: 1, ease: "power3.out" },
+            { scale: 1.02, opacity: 1, duration: 1, ease: "power3.out" }
           );
         }
       });
@@ -85,7 +126,7 @@ export default function Home({
         tl1.fromTo(
           ".bigBackgroundImage",
           { scale: 1.02, opacity: 1 },
-          { scale: 1.1, opacity: 0, duration: 1, ease: "power3.out" },
+          { scale: 1.1, opacity: 0, duration: 1, ease: "power3.out" }
         );
       });
     });
@@ -127,13 +168,25 @@ export default function Home({
     }
   }, [projectOpenedBoolean]);
 
-  const renderNonProjectTriangles = () => {
+  const renderNonProjectTriangles = (upper = false) => {
     return [...Array(triangleRowsNumber).keys()].map((index) => {
       return (
         <div
           key={index}
           className={stylesHome.triangleProjectRow + " " + stylesHome.noProjRow}
         >
+          {SSAnimFinished && (
+            <div
+              className={stylesHome.horizontalLineL}
+              style={{ "--i": index } as React.CSSProperties}
+            />
+          )}
+          {SSAnimFinished && (
+            <div
+              className={stylesHome.horizontalLineL}
+              style={{ "--i": index } as React.CSSProperties}
+            />
+          )}
           {trianglesPerRow > 0 &&
             [...Array(trianglesPerRow).keys()].map((index2) => {
               return (
@@ -146,10 +199,34 @@ export default function Home({
                     } as React.CSSProperties
                   }
                 >
+                  {index === 0 && upper && SSAnimFinished && (
+                    <div
+                      className={stylesHome.obliqueLineP}
+                      style={{ "--i": index2 } as React.CSSProperties}
+                    ></div>
+                  )}
+                  {index === 0 && upper && SSAnimFinished && (
+                    <div
+                      className={stylesHome.obliqueLineN}
+                      style={{ "--i": index2 } as React.CSSProperties}
+                    ></div>
+                  )}
                   <div className={stylesHome.triangleProjectContent}></div>
                 </div>
               );
             })}
+          {SSAnimFinished && (
+            <div
+              className={stylesHome.horizontalLineR}
+              style={{ "--i": index } as React.CSSProperties}
+            />
+          )}
+          {SSAnimFinished && (
+            <div
+              className={stylesHome.horizontalLineR}
+              style={{ "--i": index } as React.CSSProperties}
+            />
+          )}
         </div>
       );
     });
@@ -180,13 +257,15 @@ export default function Home({
       </div>
       <div className={stylesHome.modalMatteBkgrd + " modalMatteBkgrd"}></div>
       <div className={stylesHome.expContainer + " expContainer col-12"}>
-        {triangleRowsNumber > 0 && renderNonProjectTriangles()}
+        {triangleRowsNumber > 0 && renderNonProjectTriangles(true)}
         <div className={stylesHome.triangleProjectRow}>
+          <div className={stylesHome.horizontalLineL} />
+          <div className={stylesHome.horizontalLineL} />
           {trianglesPerRow > 0 &&
             [...Array(trianglesPerRow).keys()].map((index2) => {
               if (
-                index2 <= trianglesPerRow / 2 - projectsDataset.length ||
-                index2 >= trianglesPerRow / 2 + projectsDataset.length - 2
+                index2 < firstPositionProject ||
+                index2 >= firstPositionProject + projectsDataset.length
               ) {
                 return (
                   <div
@@ -211,63 +290,53 @@ export default function Home({
                         "--index": index2 + 2 - trianglesPerRow / 2,
                       } as React.CSSProperties
                     }
-                    id={`triangleProjectWrapper-${projectsDataset[
-                      index2 + 1 - (trianglesPerRow - 2) / 2
-                    ]?.id}`}
+                    id={`triangleProjectWrapper-${
+                      projectsDataset[index2 - firstPositionProject]?.id
+                    }`}
                   >
                     <div
                       className={
                         stylesHome.triangleProjectContent +
                         " triangleProjectImg"
                       }
-                      id={`triangleProjectContent-${projectsDataset[
-                        index2 + 1 - (trianglesPerRow - 2) / 2
-                      ]?.id}`}
+                      id={`triangleProjectContent-${
+                        projectsDataset[index2 - firstPositionProject]?.id
+                      }`}
                       data-project-id={
-                        projectsDataset[index2 + 1 - (trianglesPerRow - 2) / 2]
-                          ?.id
+                        projectsDataset[index2 - firstPositionProject]?.id
                       }
                     >
                       <Image
                         src={
-                          projectsDataset[
-                            index2 + 1 - (trianglesPerRow - 2) / 2
-                          ]?.media[0]
+                          projectsDataset[index2 - firstPositionProject]
+                            ?.media[0]
                         }
-                        id={`image-${projectsDataset[
-                          index2 + 1 - (trianglesPerRow - 2) / 2
-                        ]?.id}`}
+                        id={`image-${
+                          projectsDataset[index2 - firstPositionProject]?.id
+                        }`}
                         className={"image"}
                         fill
                         alt="project"
                         onMouseOver={() =>
                           handleImageHover(
-                            projectsDataset[
-                              index2 + 1 - (trianglesPerRow - 2) / 2
-                            ]?.id,
+                            projectsDataset[index2 - firstPositionProject]?.id
                           )
                         }
                         onMouseLeave={() =>
                           handleImageLeave(
-                            projectsDataset[
-                              index2 + 1 - (trianglesPerRow - 2) / 2
-                            ]?.id,
+                            projectsDataset[index2 - firstPositionProject]?.id
                           )
                         }
                         onClick={() =>
                           handleImageClick(
-                            projectsDataset[
-                              index2 + 1 - (trianglesPerRow - 2) / 2
-                            ]?.id,
+                            projectsDataset[index2 - firstPositionProject]?.id
                           )
                         }
                       />
                       <div
-                        id={`see-more-${
-                          index2 % 2 === 1 ? "odd" : "even"
-                        }-${projectsDataset[
-                          index2 + 1 - (trianglesPerRow - 2) / 2
-                        ]?.id}`}
+                        id={`see-more-${index2 % 2 === 1 ? "odd" : "even"}-${
+                          projectsDataset[index2 - firstPositionProject]?.id
+                        }`}
                         className={stylesHome.seeMoreText}
                       ></div>
                     </div>
@@ -275,8 +344,10 @@ export default function Home({
                 );
               }
             })}
+          <div className={stylesHome.horizontalLineR} />
+          <div className={stylesHome.horizontalLineR} />
         </div>
-        {triangleRowsNumber > 0 && renderNonProjectTriangles()}
+        {triangleRowsNumber > 0 && renderNonProjectTriangles(false)}
       </div>
       <ProjectModal
         content={projectOpened}
