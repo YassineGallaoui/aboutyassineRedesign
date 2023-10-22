@@ -232,9 +232,29 @@ export default function Home({
     });
   };
 
+  const [navbarHeight, setNavbarHeight] = useState(0);
+
+  useEffect(() => {
+    const navbarHeight =
+      window.innerHeight - document.documentElement.clientHeight;
+    setNavbarHeight(navbarHeight);
+
+    const handleResize = () => {
+      const newNavbarHeight =
+        window.innerHeight - document.documentElement.clientHeight;
+      setNavbarHeight(newNavbarHeight);
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <motion.div
       className={stylesHome.mainMotionDiv + " mainMotionDiv"}
+      style={{ height: `calc(100vh - ${navbarHeight}px)` }}
       initial={{ x: "-50vw", opacity: 0 }}
       animate={{ x: "0vw", opacity: 1 }}
       exit={{ x: "-50vw", opacity: 0 }}
