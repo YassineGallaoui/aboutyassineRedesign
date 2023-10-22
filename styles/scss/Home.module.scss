@@ -35,6 +35,9 @@
   background-color: rgba(0, 0, 0, 0);
   z-index: -1;
 }
+.mainMotionDiv {
+  overflow: hidden;
+}
 .expContainer {
   position: relative;
   display: flex;

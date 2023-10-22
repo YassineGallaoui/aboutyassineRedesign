@@ -56,7 +56,9 @@ html[data-theme="dark"] {
     height: 100vh;
   }
 }
-
+.mainMotionDiv {
+  overflow: hidden;
+}
 .meContainer {
   position: absolute;
   top: 0;

@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import Cursor from "../Cursor";
 import SplashScreen from "../SplashScreen";
 import Frame from "../Frame";
@@ -27,9 +27,30 @@ const Layout = ({
   setSSAnimFinished,
   children,
 }: Props) => {
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    const onTouchStart = () => {
+      setIsTouchDevice(true);
+    };
+
+    if ("ontouchstart" in window) {
+      // The 'ontouchstart' event is supported, indicating a touch device.
+      setIsTouchDevice(true);
+    } else {
+      // Add an event listener to detect touch events.
+      window.addEventListener("touchstart", onTouchStart, { passive: true });
+    }
+
+    return () => {
+      // Clean up the event listener when the component unmounts.
+      window.removeEventListener("touchstart", onTouchStart);
+    };
+  }, []);
+
   return (
     <main>
-      <Cursor hovered={cursorHover} txt={cursorText} />
+      {!isTouchDevice && <Cursor hovered={cursorHover} txt={cursorText} />}
       <SplashScreen
         setSSAnimFinished={setSSAnimFinished}
       />
