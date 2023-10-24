@@ -51,9 +51,7 @@ const Layout = ({
   return (
     <main>
       {!isTouchDevice && <Cursor hovered={cursorHover} txt={cursorText} />}
-      <SplashScreen
-        setSSAnimFinished={setSSAnimFinished}
-      />
+      <SplashScreen setSSAnimFinished={setSSAnimFinished}/>
       <Frame
         updateCursorText={updateCursorText}
         updateCursorStatus={updateCursorStatus}

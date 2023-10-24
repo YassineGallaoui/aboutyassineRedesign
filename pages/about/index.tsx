@@ -8,11 +8,8 @@ import {
 } from "../../utils/utility";
 import HorizontalLines from "../../components/HorizontalLines";
 import { motion } from "framer-motion";
-import gsap from "gsap";
 
-export default function About({SSAnimFinished}) {
-  const [hasComponentMounted, setHasComponentMounted] = useState(false);
-  
+export default function About({ SSAnimFinished }) {
   useEffect(() => {
     const welcomeArray = ["Hi!", "Hallo!", "¡Hola!", "Salut!", "Ciao!"];
     const welcomeWord = document.querySelector(".welcomeWord");
@@ -35,9 +32,10 @@ export default function About({SSAnimFinished}) {
 
     const pageContent = document.querySelector(".aboutContent");
 
-    pageContent!=null && pageContent.addEventListener("scroll", () =>
-      scrollPercentageFunction(pageContent)
-    );
+    pageContent != null &&
+      pageContent.addEventListener("scroll", () =>
+        scrollPercentageFunction(pageContent)
+      );
     return () => {
       pageContent?.removeEventListener("scroll", scrollPercentageFunction);
     };
@@ -55,29 +53,9 @@ export default function About({SSAnimFinished}) {
     percentageNumber.textContent = scrollPercentage + "%";
   };
 
-  const [navbarHeight, setNavbarHeight] = useState(0);
-
-  useEffect(() => {
-    const navbarHeight =
-      window.innerHeight - document.documentElement.clientHeight;
-    setNavbarHeight(navbarHeight);
-
-    const handleResize = () => {
-      const newNavbarHeight =
-        window.innerHeight - document.documentElement.clientHeight;
-      setNavbarHeight(newNavbarHeight);
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   return (
     <motion.div
       className={stylesAbout.mainMotionDiv + " mainMotionDiv"}
-      style={{ height: `calc(100vh - ${navbarHeight}px)` }}
       initial={{ x: "50vw", opacity: 0 }}
       animate={{ x: "0vw", opacity: 1 }}
       exit={{ x: "50vw", opacity: 0 }}

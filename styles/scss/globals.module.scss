@@ -31,8 +31,8 @@ body {
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
-  max-height: 100vh;
-  max-width: 100vw;
+  max-height: 100dvh;
+  max-width: 100dvw;
   overflow: hidden;
   cursor: auto;
   transition: transform $parallax-duration;
@@ -41,8 +41,8 @@ body {
   .slideLeft {
     position: absolute;
     top: 0;
-    height: 100vh;
-    width: 100vw;
+    height: 100dvh;
+    width: 100dvw;
     background-color: #333333;
     transform-origin: left;
   }
@@ -55,8 +55,8 @@ body {
     display: block;
     top: 0px;
     left: 0px;
-    height: 100vh;
-    width: 100vw;
+    height: 100dvh;
+    width: 100dvw;
   }
 
   &.lightMode {
@@ -196,9 +196,9 @@ body {
   }
 
   main {
-    height: 100vh;
-    max-height: 100vh;
-    min-width: 100vw;
+    height: 100dvh;
+    max-height: 100dvh;
+    min-width: 100dvw;
     display: flex;
     flex-direction: row;
     align-items: center;

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./HorizontalLines.module.scss";
+import { breakpoints, getDeviceType, rootFontSize } from "../../utils/breakpoints";
 
 const HorizontalLines = () => {
   const [lineCountBefore, setLineCountBefore] = useState(0);
@@ -7,9 +8,11 @@ const HorizontalLines = () => {
   const lineDistanceRem = 4.75;
 
   const calculateLineCounts = () => {
+    const deviceType: breakpoints = getDeviceType();
+    const rem:number = rootFontSize(deviceType);
     const windowHeight = window.innerHeight;
-    const existingLineTop = 12.5 * 16 + 15 * (windowHeight / 100); // Convert rem and vh to pixels
-    const minDistance = lineDistanceRem * 16; // Convert rem to pixels
+    const existingLineTop = 12.5 * rem + 15 * (windowHeight / 100); // Convert rem and vh to pixels
+    const minDistance = lineDistanceRem * rem; // Convert rem to pixels
 
     const maxLinesBefore = Math.floor(existingLineTop / minDistance);
     const maxLinesAfter = Math.floor(

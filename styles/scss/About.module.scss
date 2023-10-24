@@ -1,14 +1,14 @@
 @import "./variables.scss";
 
 .meBkgrdTxt {
-  font-size: 100vh;
+  font-size: 100dvh;
   position: fixed;
   pointer-events: none;
   user-select: none;
 }
 .verticalLine {
   position: fixed;
-  height: 100vh;
+  height: 100dvh;
   width: 1px;
   background-color: $semitransparentDark3;
   transition: background-color $change-theme-duration;
@@ -45,7 +45,7 @@ html[data-theme="dark"] {
     width: 0vw;
   }
   100% {
-    width: 100vw;
+    width: 100dvw;
   }
 }
 @keyframes drawVLine {
@@ -53,7 +53,7 @@ html[data-theme="dark"] {
     height: 0vw;
   }
   100% {
-    height: 100vh;
+    height: 100dvh;
   }
 }
 .mainMotionDiv {
@@ -139,7 +139,7 @@ html[data-theme="dark"] {
       z-index: 5;
       font-size: 3rem;
       line-height: 4.7rem;
-      height: 100vh;
+      height: 100dvh;
       scrollbar-width: none;
       &::-webkit-scrollbar-track {
         display: none;
@@ -212,7 +212,7 @@ html[data-theme="dark"] {
   position: fixed;
   top: 0;
   right: 0;
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
