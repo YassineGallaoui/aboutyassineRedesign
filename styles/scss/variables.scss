@@ -35,3 +35,8 @@ $semitransparentLight5: hsla(0, 0%, 100%, 0.1);
   background-color: $dark-color;
   color: $light-color;
 }
+
+$breakpointMobileSmall: 456px;
+$breakpointMobile: 567px;
+$breakpointTablet: 768px;
+$breakpointDesktop: 992px;

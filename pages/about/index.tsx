@@ -72,7 +72,7 @@ export default function About({ SSAnimFinished }) {
           <div
             className={
               stylesAbout.meContainer__txt__big__welcome +
-              " col-2 offset-1 welcomeWord"
+              " col-10 col-sm-2 offset-1 offset-sm-1 welcomeWord"
             }
           >
             <span style={{ "--i": 1 } as React.CSSProperties}>H</span>
@@ -113,7 +113,7 @@ export default function About({ SSAnimFinished }) {
             <div
               className={
                 stylesAbout.meContainer__txt__description +
-                " aboutContent col-8 offset-3"
+                " aboutContent col-10 col-sm-8 offset-1 offset-sm-3"
               }
             >
               <p>

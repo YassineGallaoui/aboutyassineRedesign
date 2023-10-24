@@ -8,7 +8,7 @@
 }
 .verticalLine {
   position: fixed;
-  height: 100dvh;
+  height: 0dvh;
   width: 1px;
   background-color: $semitransparentDark3;
   transition: background-color $change-theme-duration;
@@ -18,6 +18,10 @@
   animation: drawVLine cubic-bezier(0.72, 0.27, 0.3, 1) 3s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+  @media screen and (max-width: $breakpointMobileSmall) {
+    top: calc(3rem + 15vh);
+    animation: none;
+  }
 }
 .horizontalLine {
   height: 1px;
@@ -30,6 +34,9 @@
   animation: drawHLine cubic-bezier(0.7, 0, 0.3, 1) 3s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+  @media screen and (max-width: $breakpointMobileSmall) {
+    top: calc(3rem + 15vh);
+  }
 }
 
 html[data-theme="dark"] {
@@ -77,6 +84,13 @@ html[data-theme="dark"] {
       line-height: 14rem;
       opacity: 0.6;
       text-align: right;
+      @media screen and (max-width: $breakpointMobileSmall) {
+        font-size: 4rem;
+        line-height: 6rem;
+        top: 8.9vh;
+        left: 0;
+        overflow: hidden;
+      }
       > span {
         position: relative;
         transform: translateY(0);
@@ -112,11 +126,17 @@ html[data-theme="dark"] {
     &__words {
       position: fixed;
       top: calc(15vh + 13.2rem);
+      @media screen and (max-width: $breakpointMobileSmall) {
+        display: none;
+      }
       p {
         line-height: 1.3rem;
         text-align: right;
         text-transform: uppercase;
         display: block;
+        @media screen and (max-width: $breakpointMobileSmall) {
+          font-size: 1rem;
+        }
         .singleWord {
           display: block;
           opacity: 0;
@@ -141,6 +161,15 @@ html[data-theme="dark"] {
       line-height: 4.7rem;
       height: 100dvh;
       scrollbar-width: none;
+      @media screen and (max-width: $breakpointMobileSmall) {
+        font-size: 1.5rem;
+        line-height: 3rem;
+        padding-top: 0;
+        margin-top: calc(3.1rem + 15vh);
+        height: calc(100dvh - 15vh);
+        left: 0;
+        padding-bottom: 7rem;
+      }
       &::-webkit-scrollbar-track {
         display: none;
       }
@@ -154,7 +183,6 @@ html[data-theme="dark"] {
         overflow: hidden;
       }
       &__small {
-        line-height: 4.5rem;
         animation:
           animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
           animOpacitySmall cubic-bezier(1, 0, 0.75, 1) 2s;
@@ -163,7 +191,6 @@ html[data-theme="dark"] {
         animation-fill-mode: forwards;
       }
       &__big {
-        line-height: 4.5rem;
         animation:
           animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
           animOpacity cubic-bezier(1, 0, 0.5, 1) 2s;
@@ -174,6 +201,9 @@ html[data-theme="dark"] {
       p {
         display: block;
         overflow: hidden;
+        @media screen and (max-width: $breakpointMobileSmall) {
+            padding-bottom: 1.9rem;
+          }
       }
     }
   }

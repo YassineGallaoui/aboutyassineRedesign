@@ -5,11 +5,21 @@ import { breakpoints, getDeviceType, rootFontSize } from "../../utils/breakpoint
 const HorizontalLines = () => {
   const [lineCountBefore, setLineCountBefore] = useState(0);
   const [lineCountAfter, setLineCountAfter] = useState(0);
-  const lineDistanceRem = 4.75;
+  const [referenceLine, setReferenceLine] = useState('');
+  const [lineDistanceRem, setLineDistanceRem] = useState(4.75);
 
   const calculateLineCounts = () => {
     const deviceType: breakpoints = getDeviceType();
     const rem:number = rootFontSize(deviceType);
+    
+    if (deviceType === breakpoints.mobileSmall) {
+      setReferenceLine("3rem + 15vh");
+      setLineDistanceRem(3);
+    } else {
+      setReferenceLine("12.5rem + 15vh");
+      setLineDistanceRem(4.75);
+    }
+
     const windowHeight = window.innerHeight;
     const existingLineTop = 12.5 * rem + 15 * (windowHeight / 100); // Convert rem and vh to pixels
     const minDistance = lineDistanceRem * rem; // Convert rem to pixels
@@ -45,7 +55,7 @@ const HorizontalLines = () => {
             className={styles.line}
             style={
               {
-                top: `calc(12.5rem + 15vh - ${
+                top: `calc(${referenceLine} - ${
                   lineDistanceRem * (index + 1)
                 }rem)`,
                 "--i": index,
@@ -61,7 +71,7 @@ const HorizontalLines = () => {
             className={styles.line}
             style={
               {
-                top: `calc(12.5rem + 15vh + ${
+                top: `calc(${referenceLine} + ${
                   lineDistanceRem * (index + 1)
                 }rem)`,
                 "--i": index,

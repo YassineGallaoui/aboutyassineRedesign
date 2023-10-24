@@ -17,18 +17,18 @@ body {
   margin: 0;
   font-family: "Playfair--Display", serif;
   font-size: 14px; 
-  @media screen and (max-width: 992px) {
+  /* @media screen and (max-width: $breakpointDesktop) {
+    font-size: 13px;
+  }
+  @media screen and (max-width: $breakpointTablet){
     font-size: 12px;
   }
-  @media screen and (max-width: 768px){
-    font-size: 8px;
+  @media screen and (max-width: $breakpointMobile) {
+    font-size: 11px;
   }
-  @media screen and (max-width: 567px) {
-    font-size: 7px;
-  }
-  @media screen and (max-width: 456px) {
-    font-size: 5px;
-  }
+  @media screen and (max-width: $breakpointMobileSmall) {
+    font-size: 14px;
+  } */
   -ms-overflow-style: none;
   scrollbar-width: none;
   max-height: 100dvh;
