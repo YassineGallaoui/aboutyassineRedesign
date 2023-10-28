@@ -8,6 +8,7 @@ import ProgressBarCMD from "../ProgressBarCMD";
 
 export default function SplashScreen({
   setSSAnimFinished,
+  deviceType
 }) {
   const tl = gsap.timeline({});
   const displaySS = true;

@@ -3,7 +3,8 @@ import "../styles/css/globals.module.min.css";
 import { colorApplicator, generateColors } from "../utils/colorFunctions";
 import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import { breakpoints, getDeviceType } from "../utils/breakpoints";
 
 export enum themeMode {
   lightMode,
@@ -16,9 +17,10 @@ export default function MyApp({ Component, pageProps, router }) {
   const [preferredTheme, setPreferredTheme] = useState<themeMode>(
     themeMode.darkMode,
   );
-  const [lightColor, setLightColor] = useState("");
-  const [darkColor, setDarkColor] = useState("");
-  const [SSAnimFinished, setSSAnimFinished] = useState(false);
+  const [lightColor, setLightColor] = useState<string>("");
+  const [darkColor, setDarkColor] = useState<string>("");
+  const [SSAnimFinished, setSSAnimFinished] = useState<boolean>(false);
+  const [deviceType, setDeviceType] = useState<breakpoints>();
 
   useEffect(() => {
     const prefersDarkMode = window.matchMedia(
@@ -57,6 +59,17 @@ export default function MyApp({ Component, pageProps, router }) {
       colorApplicator(newColors[0], newColors[1]);
     }, 10000);
 
+    let portrait = window.matchMedia("(orientation: portrait)");
+    setDeviceType(getDeviceType());
+    window.addEventListener("resize", () => setDeviceType(getDeviceType())); //resize
+    portrait.addEventListener("change", function (e) {
+      //changing display orientation
+      if (e.matches) {
+        setDeviceType(getDeviceType());
+      }
+    });
+
+
     return () => {
       clearInterval(intervalColor); // Clear the interval when component unmounts or effect re-runs
     };
@@ -72,6 +85,7 @@ export default function MyApp({ Component, pageProps, router }) {
       lightColor={lightColor}
       darkColor={darkColor}
       setSSAnimFinished={setSSAnimFinished}
+      deviceType={deviceType}
     >
       <AnimatePresence mode="sync" initial={false}>
         <Component
@@ -81,6 +95,7 @@ export default function MyApp({ Component, pageProps, router }) {
           lightColor={lightColor}
           darkColor={darkColor}
           SSAnimFinished={SSAnimFinished}
+          deviceType={deviceType}
           key={router.pathname}
         />
       </AnimatePresence>

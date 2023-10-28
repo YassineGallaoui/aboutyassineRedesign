@@ -3,6 +3,7 @@ import Cursor from "../Cursor";
 import SplashScreen from "../SplashScreen";
 import Frame from "../Frame";
 import { themeMode } from "../../pages/_app";
+import { breakpoints } from "../../utils/breakpoints";
 
 type Props = {
   updateCursorText: Function;
@@ -13,6 +14,7 @@ type Props = {
   lightColor: string;
   darkColor: string;
   setSSAnimFinished: Function;
+  deviceType: breakpoints;
   children?: ReactNode;
 };
 
@@ -25,6 +27,7 @@ const Layout = ({
   lightColor,
   darkColor,
   setSSAnimFinished,
+  deviceType,
   children,
 }: Props) => {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
@@ -51,13 +54,17 @@ const Layout = ({
   return (
     <main>
       {!isTouchDevice && <Cursor hovered={cursorHover} txt={cursorText} />}
-      <SplashScreen setSSAnimFinished={setSSAnimFinished}/>
+      <SplashScreen
+        setSSAnimFinished={setSSAnimFinished}
+        deviceType={deviceType}
+      />
       <Frame
         updateCursorText={updateCursorText}
         updateCursorStatus={updateCursorStatus}
         preferredTheme={preferredTheme}
         lightColor={lightColor}
         darkColor={darkColor}
+        deviceType={deviceType}
       />
       {children}
     </main>

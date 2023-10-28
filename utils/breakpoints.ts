@@ -21,6 +21,28 @@ export function getDeviceType() {
   }
 }
 
+
+
+export function moreThanMobile() {
+  const width = window.innerWidth;
+  return width > 456;
+}
+
+export function moreThanTablet() {
+  const width = window.innerWidth;
+  return width > 567;
+}
+
+export function moreThanDesktop() {
+  const width = window.innerWidth;
+  return width > 768;
+}
+
+export function moreThanDesktopLarge() {
+  const width = window.innerWidth;
+  return width > 992;
+}
+
 export function rootFontSize(deviceType) {
   let fontSize;
   switch (deviceType) {
