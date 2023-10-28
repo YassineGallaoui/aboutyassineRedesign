@@ -53,7 +53,8 @@
       transform-origin: top left;
       position: relative;
       top: 1.25rem;
-      color: $semitransparentLight4;
+      color: $semitransparentDark4;
+      transition: color $change-theme-duration;
       @media screen and (max-width: $breakpointMobileSmall) {
         right: 5px;
       }
@@ -383,5 +384,10 @@ html[data-theme="dark"] {
     &::after{transition: background-color $change-theme-duration;
       background-color: $black;
     }
+  }
+
+  .frameContainer__left__lastUpdate{
+    transition: color $change-theme-duration;
+    color: $semitransparentLight4;
   }
 }
