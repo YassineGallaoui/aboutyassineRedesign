@@ -14,12 +14,12 @@
         fill: #1d1d1b;
       }
     </style>
-    <linearGradient id="Sfumatura_senza_nome_8" data-name="Sfumatura senza nome 8" x1="69.42" y1="148.04" x2="125.1" y2="128.57" gradientUnits="userSpaceOnUse">
+    <linearGradient id="Sfumatura_senza_nome_8" x1="69.42" y1="148.04" x2="125.1" y2="128.57" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#000"/>
       <stop offset=".82" stop-color="#868686" stop-opacity=".47"/>
       <stop offset=".97" stop-color="#fff" stop-opacity="0"/>
     </linearGradient>
-    <linearGradient id="Sfumatura_senza_nome_5" data-name="Sfumatura senza nome 5" x1="55.05" y1="109.62" x2="109.43" y2="86.18" gradientUnits="userSpaceOnUse">
+    <linearGradient id="Sfumatura_senza_nome_5" x1="55.05" y1="109.62" x2="109.43" y2="86.18" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#000"/>
       <stop offset=".86" stop-color="#777" stop-opacity=".53"/>
       <stop offset="1" stop-color="#fff" stop-opacity="0"/>

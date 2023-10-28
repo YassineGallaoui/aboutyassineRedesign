@@ -15,6 +15,9 @@ import linkedinIcon from "../../public/icons/linkedin.svg";
 import websiteLastUpdateDate from "../../websiteLastUpdateDate";
 import { colorApplicator } from "../../utils/colorFunctions";
 import { themeMode } from "../../pages/_app";
+import { breakpoints } from "../../utils/breakpoints";
+import { useRouter } from "next/router";
+import gsap from "gsap";
 
 type FrameType = {
   updateCursorText: Function;
@@ -22,6 +25,7 @@ type FrameType = {
   preferredTheme: themeMode;
   lightColor: string;
   darkColor: string;
+  deviceType: breakpoints;
 };
 
 export default function Frame({
@@ -30,13 +34,22 @@ export default function Frame({
   preferredTheme,
   lightColor,
   darkColor,
+  deviceType,
 }: FrameType) {
   const [themeIconRot, setThemeIconRot] = useState(0);
   const [currentTheme, setCurrentTheme] = useState<themeMode>(preferredTheme);
+  const router = useRouter();
+  const { pathname } = router;
+  const sectionNamesRC = ["About", "Projects"];
+  const tl = gsap.timeline({});
+
+  useEffect(()=>{
+    console.log("pathname", pathname);
+  })
 
   const themeChange = () => {
-    setThemeIconRot(t => t + 180);
-    
+    setThemeIconRot((t) => t + 180);
+
     const body = document.querySelector("body");
     if (currentTheme === themeMode.lightMode) {
       body.className = themeMode[themeMode.darkMode];
@@ -64,17 +77,49 @@ export default function Frame({
   useEffect(() => {
     //menu navigation
     const body = document.querySelector("body");
-    const liTagsRC = body.querySelectorAll(".sectionsNav li div");
+    const liTagsRC = body.querySelectorAll(".sectionsNav li div.twoNavItem");
     const liTagsRB = body.querySelectorAll(".contactsSocial div");
-    const sectionNamesRC = ["About", "Career"];
     const sectionNamesRB = ["Download", "Send", "More"];
-    liTagsRC.forEach((element, index) => {
-      element.innerHTML = createSpanStructure(sectionNamesRC[index]);
-    });
+    if (liTagsRC != null)
+      liTagsRC.forEach((element, index) => {
+        element.innerHTML = createSpanStructure(sectionNamesRC[index]);
+      });
     liTagsRB.forEach((element, index) => {
       element.innerHTML = createSpanStructure(sectionNamesRB[index]);
     });
   }, []);
+
+  useEffect(() => {
+    const body = document.querySelector("body");
+    const navTagRC = body.querySelector(
+      ".sectionsNav div.singleNavItem div.singleNavItemText"
+    );
+
+    setTimeout(() => {
+    if (navTagRC != null)
+      navTagRC.innerHTML = createSpanStructure(
+        sectionNamesRC[pathname === "/about" ? 1 : 0]
+      );
+    }, 800);
+  }, [deviceType, pathname]);
+
+  useEffect(() => {
+    const navTagRC = document.querySelector(".sectionsNav div.singleNavItem");
+    tl.to(navTagRC, {
+      left: "0rem",
+      duration: 0.8,
+      delay: 0.85,
+    });
+  }, [pathname]);
+
+  const singleNavItemAnimation = () => {
+    const navTagRC = document.querySelector(".sectionsNav div.singleNavItem");
+    tl.to(navTagRC, {
+      left: "5rem",
+      duration: 0.8,
+      delay: 0,
+    });
+  };
 
   useEffect(() => {
     preferredTheme === themeMode.darkMode
@@ -153,6 +198,12 @@ export default function Frame({
               fill
               alt="light mode"
             />
+            <Image
+              className={styles.fourthSun + " invertImg"}
+              src={lightIcon}
+              fill
+              alt="light mode"
+            />
           </div>
           <div
             className={
@@ -175,43 +226,76 @@ export default function Frame({
             />
           </div>
         </div>
-        <div className={styles.frameContainer__right__nav + " sectionsNav"}>
-          <ul>
-            <Link href="/about">
-              <li
-                className="invertImg"
-                onMouseOver={() => updateCursorStatus(true)}
-                onMouseLeave={() => updateCursorStatus(false)}
+        {
+          <div className={styles.frameContainer__right__nav + " sectionsNav"}>
+            {/* {deviceType === breakpoints.mobileSmall ||
+            deviceType === breakpoints.mobile ? ( */}
+            <Link
+              href={pathname === "/about" ? "/" : "/about"}
+              className="invertImg"
+              onMouseOver={() => updateCursorStatus(true)}
+              onMouseLeave={() => updateCursorStatus(false)}
+            >
+              <div
+                className={
+                  styles.frameContainer__right__nav__singleNavItem +
+                  " singleNavItem"
+                }
+                onClick={() => singleNavItemAnimation()}
               >
-                <div></div>
-              </li>
+                <div
+                  className={
+                    styles.frameContainer__right__nav__singleNavItemText +
+                    " singleNavItemText"
+                  }
+                ></div>
+                <div
+                  className={
+                    styles.frameContainer__right__nav__singleNavItemUnderline
+                  }
+                ></div>
+              </div>
             </Link>
-            <Link href="/">
-              <li
-                className="invertImg"
-                onMouseOver={() => updateCursorStatus(true)}
-                onMouseLeave={() => updateCursorStatus(false)}
-              >
-                <div></div>
-              </li>
-            </Link>
-          </ul>
-        </div>
+            {/* ) : (
+              <ul>
+                <Link href="/about">
+                  <li
+                    className="invertImg"
+                    onMouseOver={() => updateCursorStatus(true)}
+                    onMouseLeave={() => updateCursorStatus(false)}
+                  >
+                    <div className={"twoNavItem"}></div>
+                  </li>
+                </Link>
+                <Link href="/">
+                  <li
+                    className="invertImg"
+                    onMouseOver={() => updateCursorStatus(true)}
+                    onMouseLeave={() => updateCursorStatus(false)}
+                  >
+                    <div className={"twoNavItem"}></div>
+                  </li>
+                </Link>
+              </ul>
+            )} */}
+          </div>
+        }
         <div className={styles.frameContainer__right__contacts}>
           <div
             className={styles.frameContainer__right__contacts__social}
             onMouseOver={(e) => hoverSocialButtons(e)}
             onMouseLeave={(e) => unhoverSocialButtons(e)}
           >
-            <a href="/cv.pdf" rel="noreferrer noopener" target="_blank"></a>
-            <div
-              className={
-                styles.frameContainer__right__contacts__social__text +
-                " contactsSocial"
-              }
-            >
-              <div></div>
-            </div>
+            <a href="/cv.pdf" rel="noreferrer noopener" target="_blank">
+              <div
+                className={
+                  styles.frameContainer__right__contacts__social__text +
+                  " contactsSocial"
+                }
+              >
+                <div></div>
+              </div>
+            </a>
             <Image
               src={cvIcon}
               fill
@@ -224,15 +308,16 @@ export default function Frame({
             onMouseOver={(e) => hoverSocialButtons(e)}
             onMouseLeave={(e) => unhoverSocialButtons(e)}
           >
-            <a href="mailto:myassine.gallaoui@gmail.com"></a>
-            <div
-              className={
-                styles.frameContainer__right__contacts__social__text +
-                " contactsSocial"
-              }
-            >
-              <div></div>
-            </div>
+            <a href="mailto:myassine.gallaoui@gmail.com">
+              <div
+                className={
+                  styles.frameContainer__right__contacts__social__text +
+                  " contactsSocial"
+                }
+              >
+                <div></div>
+              </div>
+            </a>
             <Image src={mailIcon} fill alt="mail" className="invertImg" />
           </div>
           <div
@@ -244,15 +329,16 @@ export default function Frame({
               href="https://www.linkedin.com/in/mohamed-yassine-gallaoui/"
               rel="noreferrer noopener"
               target="_blank"
-            ></a>
-            <div
-              className={
-                styles.frameContainer__right__contacts__social__text +
-                " contactsSocial"
-              }
             >
-              <div></div>
-            </div>
+              <div
+                className={
+                  styles.frameContainer__right__contacts__social__text +
+                  " contactsSocial"
+                }
+              >
+                <div></div>
+              </div>
+            </a>
             <Image
               src={linkedinIcon}
               fill
@@ -260,29 +346,6 @@ export default function Frame({
               className="invertImg"
             />
           </div>
-          {/* <div
-              className={styles.frameContainer__right__contacts__social}
-              onMouseOver={(e) => hoverSocialButtons(e)}
-              onMouseLeave={(e) => unhoverSocialButtons(e)}
-            >
-              <a
-                href="https://github.com/YassineGallaoui"
-                rel="noreferrer noopener"
-                target="_blank"
-              >
-              </a>
-                <div className={styles.frameContainer__right__contacts__social__text+" contactsSocial"}>
-                  <span>
-                    {"Code"}
-                  </span>
-                </div>
-                <Image
-                  src={githubIcon}
-                  fill
-                  alt="github"
-                  className="invertImg"
-                />
-            </div> */}
         </div>
       </div>
     </div>

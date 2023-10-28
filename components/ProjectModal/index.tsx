@@ -143,14 +143,6 @@ export default function ProjectModal({
                 </th>
                 <td>{content.workingFor}</td>
               </tr>
-              {content.awards != null && (
-                <tr className={styles.bottomBorder + " bottomBorder"}>
-                  <th className={styles.characteristic + " characteristic"}>
-                    <span>{"Awards"}</span>
-                  </th>
-                  <td>{content.awards}</td>
-                </tr>
-              )}
               <tr aria-rowspan={2} className={styles.descriptionTitle}>
                 <th
                   colSpan={2}
@@ -172,12 +164,20 @@ export default function ProjectModal({
                 </th>
                 <td>{content.frontend}</td>
               </tr>
-              <tr>
+              <tr className={styles.bottomBorder + " bottomBorder"}>
                 <th className={styles.characteristic + " characteristic"}>
                   <span>{"Backend"}</span>
                 </th>
                 <td>{content.backend}</td>
               </tr>
+              {content.recognitions != null && (
+                <tr>
+                  <th className={styles.characteristic + " characteristic"}>
+                    <span>{"Recognitions"}</span>
+                  </th>
+                  <td>{content.recognitions}</td>
+                </tr>
+              )}
             </tbody>
           </table>
           <div className={styles.fadeEffect + " fadeEffectBox"}></div>

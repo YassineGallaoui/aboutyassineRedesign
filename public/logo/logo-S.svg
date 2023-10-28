@@ -10,7 +10,7 @@
         fill: #1d1d1b;
       }
     </style>
-    <linearGradient id="Sfumatura_senza_nome_13" data-name="Sfumatura senza nome 13" x1="64.06" y1="150.81" x2="100.43" y2="159.37" gradientUnits="userSpaceOnUse">
+    <linearGradient id="Sfumatura_senza_nome_13" x1="64.06" y1="150.81" x2="100.43" y2="159.37" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#fff" stop-opacity="0"/>
       <stop offset=".81" stop-color="#000"/>
     </linearGradient>

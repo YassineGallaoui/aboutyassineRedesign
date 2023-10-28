@@ -13,7 +13,6 @@ export default function TypingText({ text, updateCompletion }) {
       if (currentIndex < text.length) {
         const nextCharacter = text[currentIndex];
         const typingSpeed = getRandomInt(50, 150); // Random speed between 100 and 500 ms
-
         setTimeout(() => {
           setDisplayText(displayText + nextCharacter);
           currentIndex !== text.length - 1

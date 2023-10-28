@@ -6,9 +6,12 @@ import TypingText from "../TypingText";
 import gsap from "gsap";
 import ProgressBarCMD from "../ProgressBarCMD";
 
-export default function SplashScreen({ updateCursorText, updateCursorStatus }) {
+export default function SplashScreen({
+  setSSAnimFinished,
+  deviceType
+}) {
   const tl = gsap.timeline({});
-  const displaySS = false;
+  const displaySS = true;
   const baseDirectory = `C:\\Users\\yas> `;
   const directoryProjects = `C:\\Users\\yas\\projects> `;
   const directoryYassineRedesign = `C:\\Users\\yas\\projects\\yasRedesign> `;
@@ -29,11 +32,11 @@ export default function SplashScreen({ updateCursorText, updateCursorStatus }) {
       const SSContainer = document.querySelector(".SSContainer");
       setTimeout(() => {
         tl.to(SSContainer, {
-          top: -100,
-          opacity: 0,
-          zIndex: 0,
+          top: "-200vh",
+          duration: 1,
         });
-      }, 1200);
+      }, 500);
+      setSSAnimFinished(true);
     }
   }, [text5Completed]);
 

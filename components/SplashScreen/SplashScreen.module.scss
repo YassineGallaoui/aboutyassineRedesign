@@ -2,7 +2,7 @@
 
 .SSContainer {
   position: fixed;
-  width: 100vw;
+  width: 100dvw;
   height: 150vh;
   top: 0;
   background-color: $black;
@@ -21,6 +21,9 @@
     top: 2px;
     background-color: lime !important;
     animation: blinkCursor infinite 1s;
+    @media screen and (max-width: $breakpointMobileSmall) {
+        height: 0.8rem;
+      }
   }
   @keyframes blinkCursor {
     0% {
@@ -39,6 +42,14 @@
     left: 5rem;
     font-family: "Courier New", Courier, monospace;
     font-size: 2rem;
+    @media screen and (max-width: $breakpointMobileSmall) {
+      top: 1.5rem;
+      left: 1.5rem;
+      font-size: 0.8rem;
+    }
+  }
+  pre{
+    overflow: hidden;
   }
 }
 
