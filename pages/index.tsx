@@ -39,44 +39,22 @@ export default function Home({
   const zIndexMatteBKGClosed: number = -1;
   const [hasComponentMounted, setHasComponentMounted] = useState(false);
 
-  function mouseMoveHomepage(event: MouseEvent | Event) {
-    parallax(
-      event,
-      document.querySelectorAll(".sectionBkgrdTxt"),
-      distanceLevels.Second
-    );
-  }
-
-  function setIndexSettings() {
-    let IH = window.innerHeight;
-    let IW = window.innerWidth;
-    setTriangleRowsNumber(Math.ceil(IH / 300));
-    let tempNumber =
-      (Math.ceil((IW / 300) * 2) + 2) % 2 === 1
-        ? Math.ceil((IW / 300) * 2) + 30
-        : Math.ceil((IW / 300) * 2) + 29;
-    setTrianglesPerRow(tempNumber);
-    setFirstPositionProject(
-      tempNumber % 2 === 0
-        ? tempNumber / 2 - (projectsDataset.length - 1) / 2
-        : (tempNumber - 1) / 2 - (projectsDataset.length - 1) / 2
-    );
-  }
 
   useEffect(() => {
+    colorApplicator(lightColor, darkColor);
+
     document.addEventListener("mousemove", (event) => mouseMoveHomepage(event));
 
-    setIndexSettings();
-    window.addEventListener("resize", () => setIndexSettings());
-
-    colorApplicator(lightColor, darkColor);
+    setMainStructureParams();
+    window.addEventListener("resize", () => setMainStructureParams());
 
     // Clean up the event listener when the component unmounts
     return () => {
       document.addEventListener("mousemove", mouseMoveHomepage);
-      window.addEventListener("resize", setIndexSettings);
+      window.addEventListener("resize", setMainStructureParams);
     };
   }, []);
+
 
   useEffect(() => {
     if (SSAnimFinished && hasComponentMounted) {
@@ -98,6 +76,7 @@ export default function Home({
       setHasComponentMounted(true);
     }
   }, [SSAnimFinished]);
+
 
   useEffect(() => {
     let projects = document.querySelectorAll(".triangleProjectImg");
@@ -130,6 +109,49 @@ export default function Home({
     });
   }, [trianglesPerRow]);
 
+  useEffect(() => {
+    if (projectOpenedBoolean) {
+      gsap.to(`.modalMatteBkgrd`, {
+        background: "rgba(0,0,0,0.8)",
+        zIndex: zIndexMatteBKGOpen,
+      });
+    } else {
+      gsap.to(`.modalMatteBkgrd`, {
+        background: "rgba(0,0,0,0)",
+        zIndex: zIndexMatteBKGClosed,
+      });
+    }
+  }, [projectOpenedBoolean]);
+
+  function mouseMoveHomepage(event: MouseEvent | Event) {
+    parallax(
+      event,
+      document.querySelectorAll(".sectionBkgrdTxt"),
+      distanceLevels.Second
+    );
+  }
+
+  function setMainStructureParams() {
+    let IH = window.innerHeight;
+    let IW = window.innerWidth;
+    let trianglesWidth = 0.22 * IW;
+    let tempR =
+      Math.ceil(IH / trianglesWidth) % 2 === 1
+        ? Math.ceil(IH / trianglesWidth)
+        : Math.ceil(IH / trianglesWidth) + 1; //BECAUSE I WANT A CENTRAL ROW FOR PROJECT TRIANGLES, SO THE NUMBER MUST BE ODD
+    setTriangleRowsNumber(tempR);
+    let tempTPR =
+      (Math.ceil(IW / trianglesWidth) * 2) % 2 === 1
+        ? Math.ceil((IW / trianglesWidth) * 2) + 3
+        : Math.ceil((IW / trianglesWidth) * 2) + 2;
+    setTrianglesPerRow(tempTPR);
+    setFirstPositionProject(
+      tempTPR % 2 === 0
+        ? tempTPR / 2 - (projectsDataset.length - 1) / 2
+        : (tempTPR - 1) / 2 - (projectsDataset.length - 1) / 2
+    );
+  }
+
   const handleImageHover = (id: number) => {
     gsap.to(`#image-${id}`, { duration: 0.5, scale: 1.1 });
     gsap.to(`.image:not(#image-${id})`, {
@@ -151,20 +173,6 @@ export default function Home({
     setProjectOpened(currentPrj);
     setProjectOpenedBoolean(true);
   };
-
-  useEffect(() => {
-    if (projectOpenedBoolean) {
-      gsap.to(`.modalMatteBkgrd`, {
-        background: "rgba(0,0,0,0.8)",
-        zIndex: zIndexMatteBKGOpen,
-      });
-    } else {
-      gsap.to(`.modalMatteBkgrd`, {
-        background: "rgba(0,0,0,0)",
-        zIndex: zIndexMatteBKGClosed,
-      });
-    }
-  }, [projectOpenedBoolean]);
 
   const renderNonProjectTriangles = (upper = false) => {
     return [...Array(triangleRowsNumber).keys()].map((index) => {
@@ -193,17 +201,17 @@ export default function Home({
                   className={stylesHome.triangleProjectWrapper__NoProj}
                   style={
                     {
-                      "--index": index2 + 2 - trianglesPerRow / 2,
+                      "--index": index2 - trianglesPerRow / 2,
                     } as React.CSSProperties
                   }
                 >
-                  {index === 0 && upper && SSAnimFinished && (
+                  {(index === 0 || index2 === 0) && upper && SSAnimFinished && (
                     <div
                       className={stylesHome.obliqueLineP}
                       style={{ "--i": index2 } as React.CSSProperties}
                     ></div>
                   )}
-                  {index === 0 && upper && SSAnimFinished && (
+                  {(index === 0 || index2 === 0) && upper && SSAnimFinished && (
                     <div
                       className={stylesHome.obliqueLineN}
                       style={{ "--i": index2 } as React.CSSProperties}
@@ -271,7 +279,7 @@ export default function Home({
                     className={stylesHome.triangleProjectWrapper__NoProj}
                     style={
                       {
-                        "--index": index2 + 2 - trianglesPerRow / 2,
+                        "--index": index2 + 1 - (trianglesPerRow / 2),
                       } as React.CSSProperties
                     }
                   >
@@ -285,7 +293,7 @@ export default function Home({
                     className={stylesHome.triangleProjectWrapper}
                     style={
                       {
-                        "--index": index2 + 2 - trianglesPerRow / 2,
+                        "--index": index2 + 1 - trianglesPerRow / 2,
                       } as React.CSSProperties
                     }
                     id={`triangleProjectWrapper-${
