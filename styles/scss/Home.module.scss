@@ -46,7 +46,6 @@
   align-items: center;
   height: 100dvh;
   width: 100dvw;
-  transform: translateX(5.5vw);
   .triangleProjectRow {
     position: relative;
     display: flex;
@@ -126,14 +125,14 @@
       &:nth-child(odd) {
         border-top: 22vw solid transparent;
         border-bottom: 0px solid transparent;
-        left: calc(-11vw * var(--index));
+        left: calc(-11vw * var(--index) - 11vw);
         > div {
           bottom: 0.7vw;
           clip-path: polygon(0 0, 100% 0, 50% 100%, 50% 100%);
         }
       }
       &:nth-child(even) {
-        left: calc(-11vw * var(--index));
+        left: calc(-11vw * var(--index) - 11vw);
         > div {
           top: 0.7vw;
           clip-path: polygon(50% 0, 50% 0, 100% 100%, 0% 100%);

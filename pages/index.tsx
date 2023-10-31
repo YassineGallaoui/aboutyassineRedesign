@@ -175,7 +175,13 @@ export default function Home({
   };
 
   const renderNonProjectTriangles = (upper = false) => {
-    return [...Array(triangleRowsNumber).keys()].map((index) => {
+    return [
+      ...Array(
+        ((triangleRowsNumber - 1) / 2) % 2 === 1
+          ? (triangleRowsNumber - 1) / 2
+          : (triangleRowsNumber - 1) / 2 + 1
+      ).keys(),
+    ].map((index) => {
       return (
         <div
           key={index}
@@ -201,22 +207,33 @@ export default function Home({
                   className={stylesHome.triangleProjectWrapper__NoProj}
                   style={
                     {
-                      "--index": index2 - trianglesPerRow / 2,
+                      "--index":
+                        triangleRowsNumber % 2 === 0
+                          ? index2 - trianglesPerRow / 2
+                          : index2 - trianglesPerRow / 2 + 1,
                     } as React.CSSProperties
                   }
                 >
-                  {(index === 0 || index2 === 0) && upper && SSAnimFinished && (
-                    <div
-                      className={stylesHome.obliqueLineP}
-                      style={{ "--i": index2 } as React.CSSProperties}
-                    ></div>
-                  )}
-                  {(index === 0 || index2 === 0) && upper && SSAnimFinished && (
-                    <div
-                      className={stylesHome.obliqueLineN}
-                      style={{ "--i": index2 } as React.CSSProperties}
-                    ></div>
-                  )}
+                  {(index === 0 ||
+                    index2 === 1 ||
+                    index2 === trianglesPerRow - 1) &&
+                    upper &&
+                    SSAnimFinished && (
+                      <div
+                        className={stylesHome.obliqueLineP}
+                        style={{ "--i": index2 } as React.CSSProperties}
+                      ></div>
+                    )}
+                  {(index === 0 ||
+                    index2 === 1 ||
+                    index2 === trianglesPerRow - 1) &&
+                    upper &&
+                    SSAnimFinished && (
+                      <div
+                        className={stylesHome.obliqueLineN}
+                        style={{ "--i": index2 } as React.CSSProperties}
+                      ></div>
+                    )}
                   <div className={stylesHome.triangleProjectContent}></div>
                 </div>
               );
@@ -264,7 +281,14 @@ export default function Home({
       <div className={stylesHome.modalMatteBkgrd + " modalMatteBkgrd"}></div>
       <div className={stylesHome.expContainer + " expContainer col-12"}>
         {triangleRowsNumber > 0 && renderNonProjectTriangles(true)}
-        <div className={stylesHome.triangleProjectRow}>
+        <div
+          className={stylesHome.triangleProjectRow}
+          style={
+            {
+              "--index": Math.floor(triangleRowsNumber / 2),
+            } as React.CSSProperties
+          }
+        >
           <div className={stylesHome.horizontalLineL} />
           <div className={stylesHome.horizontalLineL} />
           {trianglesPerRow > 0 &&
@@ -279,7 +303,7 @@ export default function Home({
                     className={stylesHome.triangleProjectWrapper__NoProj}
                     style={
                       {
-                        "--index": index2 + 1 - (trianglesPerRow / 2),
+                        "--index": index2 - trianglesPerRow / 2,
                       } as React.CSSProperties
                     }
                   >
@@ -293,7 +317,7 @@ export default function Home({
                     className={stylesHome.triangleProjectWrapper}
                     style={
                       {
-                        "--index": index2 + 1 - trianglesPerRow / 2,
+                        "--index": index2 - trianglesPerRow / 2,
                       } as React.CSSProperties
                     }
                     id={`triangleProjectWrapper-${
@@ -344,7 +368,9 @@ export default function Home({
                           projectsDataset[index2 - firstPositionProject]?.id
                         }`}
                         className={stylesHome.seeMoreText}
-                      ></div>
+                      >
+                        {index2}
+                      </div>
                     </div>
                   </div>
                 );
