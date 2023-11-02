@@ -8,6 +8,8 @@ import gsap from "gsap";
 import ProjectModal from "../components/ProjectModal";
 import { colorApplicator } from "../utils/colorFunctions";
 import { motion } from "framer-motion";
+import ProjectModalVertical from "../components/ProjectModalVertical";
+import { breakpoints } from "../utils/breakpoints";
 
 type HomeProps = {
   updateCursorText: Function;
@@ -15,6 +17,7 @@ type HomeProps = {
   lightColor: string;
   darkColor: string;
   SSAnimFinished: Function;
+  deviceType: breakpoints;
 };
 
 export default function Home({
@@ -23,6 +26,7 @@ export default function Home({
   lightColor,
   darkColor,
   SSAnimFinished,
+  deviceType,
 }: HomeProps) {
   const [triangleRowsNumber, setTriangleRowsNumber] = useState<number>(0);
   const [trianglesPerRow, setTrianglesPerRow] = useState<number>(0);
@@ -39,7 +43,6 @@ export default function Home({
   const zIndexMatteBKGClosed: number = -1;
   const [hasComponentMounted, setHasComponentMounted] = useState(false);
 
-
   useEffect(() => {
     colorApplicator(lightColor, darkColor);
 
@@ -54,7 +57,6 @@ export default function Home({
       window.addEventListener("resize", setMainStructureParams);
     };
   }, []);
-
 
   useEffect(() => {
     if (SSAnimFinished && hasComponentMounted) {
@@ -76,7 +78,6 @@ export default function Home({
       setHasComponentMounted(true);
     }
   }, [SSAnimFinished]);
-
 
   useEffect(() => {
     let projects = document.querySelectorAll(".triangleProjectImg");
@@ -363,14 +364,6 @@ export default function Home({
                           )
                         }
                       />
-                      <div
-                        id={`see-more-${index2 % 2 === 1 ? "odd" : "even"}-${
-                          projectsDataset[index2 - firstPositionProject]?.id
-                        }`}
-                        className={stylesHome.seeMoreText}
-                      >
-                        {index2}
-                      </div>
                     </div>
                   </div>
                 );
@@ -381,13 +374,24 @@ export default function Home({
         </div>
         {triangleRowsNumber > 0 && renderNonProjectTriangles(false)}
       </div>
-      <ProjectModal
-        content={projectOpened}
-        open={projectOpenedBoolean}
-        updateOpen={setProjectOpenedBoolean}
-        updateCursorText={updateCursorText}
-        cursorIsHover={cursorIsHover}
-      />
+      {deviceType === breakpoints.mobileSmall ||
+      deviceType === breakpoints.mobile ? (
+        <ProjectModalVertical
+          content={projectOpened}
+          open={projectOpenedBoolean}
+          updateOpen={setProjectOpenedBoolean}
+          updateCursorText={updateCursorText}
+          cursorIsHover={cursorIsHover}
+        />
+      ) : (
+        <ProjectModal
+          content={projectOpened}
+          open={projectOpenedBoolean}
+          updateOpen={setProjectOpenedBoolean}
+          updateCursorText={updateCursorText}
+          cursorIsHover={cursorIsHover}
+        />
+      )}
     </motion.div>
   );
 }

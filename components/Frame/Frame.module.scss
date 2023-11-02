@@ -8,10 +8,11 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 1rem 1.25rem;
-  @media screen and (max-width: $breakpointMobileSmall) {
-    padding: 0.5rem 0.9rem;
-  }
   z-index: 5;
+  @media screen and (max-width: $breakpointMobile) {
+    padding: 0.5rem 0.9rem;
+    z-index: 1;
+  }
   pointer-events: none;
   &__left,
   &__right {
