@@ -8,6 +8,7 @@
   opacity: 0;
   width: 90vw;
   overflow: hidden;
+  background-color: inherit;
   .closeModalBtn {
     position: absolute;
     top: 2rem;
@@ -76,6 +77,8 @@
     flex: 1;
     .projectDescriptionComponent {
       height: 100%;
+      border-bottom-left-radius: 1.5rem;
+      border-bottom-right-radius: 1.5rem;
       overflow-y: scroll;
       overflow-x: hidden;
       -ms-overflow-style: none; // Hide for IE and Edge
@@ -90,11 +93,11 @@
       width: 0;
     }
     .projectModalVerticalName {
-      font-size: 3rem;
+      font-size: 2rem;
     }
     table {
       color: $dark-color;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       .bottomBorder {
         border-bottom: 1px solid $semitransparentDark2;
       }
@@ -103,8 +106,8 @@
           padding-top: 1rem;
           padding-bottom: 1rem;
         }
-        .characteristic {
-          color: $semitransparentDark2;
+        .characteristic > span{
+          width: max-content;
         }
         &.descriptionTitle > td {
           padding-bottom: 0rem;
@@ -113,16 +116,6 @@
           padding-top: 0rem;
         }
       }
-    }
-    .fadeEffect {
-      width: 100%;
-      height: 2rem;
-      display: flex;
-      bottom: -1px;
-      position: sticky;
-      background-color: linear-gradient(90deg, $dark-color 0%, rgba(255, 255, 255, 0) 100%);
-      background: -moz-linear-gradient(90deg, $dark-color 0%, rgba(255, 255, 255, 0) 100%);
-      background: -webkit-linear-gradient(90deg, $dark-color 0%, rgba(255, 255, 255, 0) 100%);
     }
   }
 }
@@ -153,10 +146,5 @@ html[data-theme="dark"] {
   }
   .projectCarouselWrapper {
     border-bottom-color: $semitransparentLight4;
-  }
-  .fadeEffect {
-    background-color: linear-gradient(90deg, $dark-color 0%, rgba(255, 255, 255, 0) 100%);
-    background: -moz-linear-gradient(90deg, $dark-color 0%, rgba(255, 255, 255, 0) 100%);
-    background: -webkit-linear-gradient(90deg, $dark-color 0%, rgba(255, 255, 255, 0) 100%);
   }
 }

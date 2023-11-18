@@ -3,6 +3,7 @@ import styles from "./ProjectModalVertical.module.scss";
 import gsap from "gsap";
 import { Project } from "../../dataset";
 import CarouselMobile from "../CarouselMobile";
+import { RotateDevice } from "../RotateDevice";
 
 type ModalProps = {
   content: Project;
@@ -22,12 +23,14 @@ export default function ProjectModalVertical({
   const [expandedCarousel, setExpandedCarousel] = useState<boolean>(false);
 
   useEffect(() => {
+    const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
     if (open) {
+      themeContainer.classList.add("quickTransition");
       gsap.to(`.projectModalContainer`, {
         position: "fixed",
         width: "90dvw",
         height: "90dvh",
-        borderRadius: "30px",
+        borderRadius: "2.5rem",
         left: "50%",
         top: "50%",
         xPercent: -50,
@@ -35,11 +38,36 @@ export default function ProjectModalVertical({
         zIndex: "20",
         opacity: 1,
       });
+      gsap.to(`.logoWrapper`, {
+        x: "-4rem",
+        y: "-4rem",
+        duration: 0.5
+      });
+      gsap.to(`.lastUpdateText`, {
+        x: "-4rem",
+        y: "4rem",
+        duration: 0.5
+      });
+      gsap.to(`.themeContainer`, {
+        x: "4rem",
+        y: "-4rem",
+        duration: 0.5,
+      });
+      gsap.to(`.sectionsNav`, {
+        x: "4.5rem",
+        y: 0,
+        duration: 0.3,
+      });
+      gsap.to(`.contacts`, {
+        x: "4rem",
+        y: "4rem",
+        duration: 0.5,
+      });
     } else {
       gsap.to(`.projectModalContainer`, {
         position: "fixed",
         height: "0vh",
-        borderRadius: "0px",
+        borderRadius: "0rem",
         left: "50%",
         top: "-50%",
         xPercent: -50,
@@ -47,6 +75,19 @@ export default function ProjectModalVertical({
         zIndex: "20",
         opacity: 0,
       });
+      gsap.to(`.logoWrapper, .lastUpdateText, .themeContainer, .contacts`, {
+        x: 0,
+        y: 0,
+        duration: 0.5,
+      });
+      gsap.to(`.sectionsNav`, {
+        x: "2rem",
+        y: 0,
+        duration: 0.7,
+      });
+      setTimeout(() => {
+        themeContainer.classList.remove("quickTransition");
+      }, 600);
     }
   }, [open]);
 
@@ -65,52 +106,10 @@ export default function ProjectModalVertical({
   };
 
   useEffect(() => {
-    const projectCarouselWrapper = document.querySelector(
-      ".projectCarouselWrapper",
-    );
-    const descriptionWrapper = document.querySelector(
-      ".projectModalVerticalDescriptionWrapper",
-    );
-    const closeModalBtn = document.querySelector(".closeModalBtn");
-    const fadeEffectBox = document.querySelector(
-      ".fadeEffectBox",
-    ) as HTMLElement;
-    if (expandedCarousel) {
-      fadeEffectBox.style.backgroundImage = "transparent";
-      gsap.to(descriptionWrapper, {
-        duration: 0.6,
-        opacity: 0,
-        y: 100,
-        flex: 0,
-        paddingTop: 0,
-        paddingBottom: 0,
-      });
-      gsap.to(projectCarouselWrapper, {
-        duration: 0.3,
-        borderBottomWidth: 0,
-      });
-      gsap.to(closeModalBtn, {
-        delay: 0.3,
-        duration: 0.3,
-        filter: "invert(1)",
-      });
+    if (!expandedCarousel) {
+      gsap.to("#arrExpand", { duration: 0, scale: 1 });
     } else {
-      gsap.to(descriptionWrapper, {
-        duration: 0.6,
-        opacity: 1,
-        y: 0,
-        flex: 1,
-        paddingTop: "1rem",
-        paddingBottom: "1rem",
-      });
-      gsap.to(projectCarouselWrapper, {
-        duration: 0.3,
-        borderBottomWidth: "1px",
-      });
-      gsap.to(closeModalBtn, {
-        duration: 0.3,
-        filter: "invert(0)",
-      });
+      gsap.to("#arrExpand", { duration: 0, scale: 1.4 });
     }
   }, [expandedCarousel]);
 
@@ -182,7 +181,6 @@ export default function ProjectModalVertical({
               )}
             </tbody>
           </table>
-          <div className={styles.fadeEffect + " fadeEffectBox"}></div>
         </div>
       </div>
       <div
@@ -195,6 +193,10 @@ export default function ProjectModalVertical({
         onMouseLeave={() => notHoverCloseBtn()}
         onClick={() => closeModal()}
       />
+      <RotateDevice
+        showComponent={expandedCarousel}
+        animationFinished={setExpandedCarousel}
+      ></RotateDevice>
     </div>
   );
 }

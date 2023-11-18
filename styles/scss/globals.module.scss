@@ -16,19 +16,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Playfair--Display", serif;
-  font-size: 14px; 
-  /* @media screen and (max-width: $breakpointDesktop) {
-    font-size: 13px;
-  }
-  @media screen and (max-width: $breakpointTablet){
-    font-size: 12px;
-  }
-  @media screen and (max-width: $breakpointMobile) {
-    font-size: 11px;
-  }
-  @media screen and (max-width: $breakpointMobileSmall) {
-    font-size: 14px;
-  } */
+  font-size: 14px;
   -ms-overflow-style: none;
   scrollbar-width: none;
   max-height: 100dvh;
@@ -57,6 +45,11 @@ body {
     left: 0px;
     height: 100dvh;
     width: 100dvw;
+    background-color: inherit;
+  }
+  
+  .quickTransition {
+    transition: all 0.1s !important;
   }
 
   &.lightMode {
@@ -98,7 +91,6 @@ body {
     }
     .projectModalContainer {
       color: $semitransparentDark1;
-      background-color: $light-color;
       transition: background-color $change-theme-duration linear;
       .carouselComponent {
         background-color: $semitransparentDark1;
@@ -114,7 +106,6 @@ body {
             span {
               position: relative;
               display: inline-block;
-              width: auto;
               &:after {
                 content: "";
                 position: absolute;
@@ -127,9 +118,6 @@ body {
             }
           }
         }
-      }
-      .fadeEffectBox {
-        background-image: linear-gradient(0deg, inherit, transparent);
       }
     }
     .invertImg {
@@ -152,7 +140,6 @@ body {
     }
     .projectModalContainer {
       color: $semitransparentLight1;
-      background-color: $dark-color;
       transition: background-color $change-theme-duration linear;
       .carouselComponent {
         background-color: $semitransparentDark1;
@@ -168,7 +155,6 @@ body {
             span {
               position: relative;
               display: inline-block;
-              width: auto;
               &:after {
                 content: "";
                 position: absolute;
@@ -181,9 +167,6 @@ body {
             }
           }
         }
-      }
-      .fadeEffectBox {
-        background-image: linear-gradient(0deg, inherit, transparent);
       }
     }
     .invertImg {
@@ -203,6 +186,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    background-color: inherit;
   }
 
   a {

@@ -66,173 +66,13 @@ function CarouselMobile({
     }, 200);
   }, [open]);
 
-  const expandBtnMouseOver = () => {
-    expandedCarousel
-      ? tl.to(expandBtnRef.current, { duration: 0.3, scale: 1 })
-      : tl.to(expandBtnRef.current, { duration: 0.3, scale: 1.4 });
-    cursorIsHover(true);
-  };
-
-  const expandBtnMouseLeave = () => {
-    expandedCarousel
-      ? tl.to(expandBtnRef.current, { duration: 0.3, scale: 1.4 })
-      : tl.to(expandBtnRef.current, { duration: 0.3, scale: 1 });
-    cursorIsHover(false);
-  };
-
   const expandBtnClick = () => {
     setExpandedCarousel(!expandedCarousel);
     if (expandedCarousel) {
-      compressCarousel();
+      tl.to(expandBtnRef.current, { duration: 0, scale: 1 });
     } else {
-      expandCarousel();
+      tl.to(expandBtnRef.current, { duration: 0, scale: 1.4 });
     }
-  };
-
-  const expandCarousel = () => {
-    tl.to(".expandCarouselWrapper", {
-      duration: 0.4,
-      right: "3rem",
-    })
-      .to(expandBtnRef.current, { duration: 0, scale: 1.4 })
-      .to(
-        ".upperControls",
-        {
-          duration: 0.4,
-          height: "0rem",
-        },
-        0,
-      )
-      .to(
-        ".thumbnailControls",
-        {
-          duration: 0.4,
-          y: 100,
-          opacity: 0,
-          height: 0,
-        },
-        0,
-      )
-      .to(
-        ".indexWrapper",
-        {
-          duration: 0.4,
-          x: -40,
-          opacity: 0,
-        },
-        0,
-      )
-      .to(
-        ".imageContainer",
-        {
-          duration: 0.4,
-          height: "100%",
-          gap: "1rem",
-        },
-        0,
-      )
-      .to(
-        ".imageStackContainer",
-        {
-          duration: 0.6,
-          flex: "1 0 calc(90% - 1rem)",
-        },
-        0,
-      )
-      .to(
-        ".thumbnailControlsVertical",
-        {
-          duration: 0.6,
-          opacity: 1,
-          x: 0,
-          flex: "1 0 10%",
-        },
-        0,
-      );
-  };
-
-  const compressCarousel = () => {
-    tl.to(".expandCarouselWrapper", {
-      duration: 0.6,
-      right: "0rem",
-    })
-      .to(expandBtnRef.current, { duration: 0, scale: 1 })
-      .to(
-        ".thumbnailControlsVertical",
-        {
-          duration: 0.6,
-          x: 100,
-          opacity: 0,
-          flex: "0 0 0",
-        },
-        0,
-      )
-      .to(
-        ".upperControls",
-        {
-          duration: 0.4,
-          height: "2rem",
-        },
-        0,
-      )
-      .to(
-        ".imageStackContainer",
-        {
-          duration: 0.6,
-          flex: "1 0 100%",
-        },
-        0,
-      )
-      .to(
-        ".imageContainer",
-        {
-          duration: 0.4,
-          height: "90%",
-          gap: "0rem",
-        },
-        0,
-      )
-      .to(
-        ".indexWrapper",
-        {
-          duration: 0.4,
-          x: 0,
-          opacity: 1,
-        },
-        0,
-      )
-      .to(
-        ".thumbnailControls",
-        {
-          duration: 0.4,
-          y: 0,
-          opacity: 1,
-          height: "10%",
-        },
-        0,
-      );
-  };
-
-  const prevBtnMouseOver = () => {
-    tl.to(prevBtnRef.current, { duration: 0.2, x: -20 })
-      .to(prevBtnRef.current, { duration: 0, x: 20, y: 0 })
-      .to(prevBtnRef.current, { x: 0 });
-    tl2
-      .to(prevBtnVerticalRef.current, { duration: 0.2, y: -20 })
-      .to(prevBtnVerticalRef.current, { duration: 0, y: 20, x: 0 })
-      .to(prevBtnVerticalRef.current, { y: 0 });
-    cursorIsHover(true);
-  };
-
-  const nextBtnMouseOver = () => {
-    tl.to(nextBtnRef.current, { duration: 0.2, x: 20 })
-      .to(nextBtnRef.current, { duration: 0, x: -20, y: 0 })
-      .to(nextBtnRef.current, { x: 0 });
-    tl2
-      .to(nextBtnVerticalRef.current, { duration: 0.2, y: 20 })
-      .to(nextBtnVerticalRef.current, { duration: 0, y: -20, x: 0 })
-      .to(nextBtnVerticalRef.current, { y: 0 });
-    cursorIsHover(true);
   };
 
   const prevBtnClick = (vertical = null) => {
@@ -408,8 +248,6 @@ function CarouselMobile({
 
         <div
           className={styles.expandCarouselWrapper + " expandCarouselWrapper"}
-          onMouseOver={() => expandBtnMouseOver()}
-          onMouseLeave={() => expandBtnMouseLeave()}
           onClick={() => expandBtnClick()}
         >
           <Image
@@ -475,8 +313,6 @@ function CarouselMobile({
             <div className={styles.controlsVertical}>
               <div
                 className={styles.prevButtonVertical}
-                onMouseOver={() => prevBtnMouseOver()}
-                onMouseLeave={() => cursorIsHover(false)}
                 onClick={() => prevBtnClick(true)}
               >
                 <Image
@@ -489,8 +325,6 @@ function CarouselMobile({
               </div>
               <div
                 className={styles.nextButtonVertical}
-                onMouseOver={() => nextBtnMouseOver()}
-                onMouseLeave={() => cursorIsHover(false)}
                 onClick={() => nextBtnClick(true)}
               >
                 <Image
@@ -525,8 +359,6 @@ function CarouselMobile({
         <div className={styles.controls}>
           <div
             className={styles.prevButton}
-            onMouseOver={() => prevBtnMouseOver()}
-            onMouseLeave={() => cursorIsHover(false)}
             onClick={() => prevBtnClick()}
           >
             <Image
@@ -539,8 +371,6 @@ function CarouselMobile({
           </div>
           <div
             className={styles.nextButton}
-            onMouseOver={() => nextBtnMouseOver()}
-            onMouseLeave={() => cursorIsHover(false)}
             onClick={() => nextBtnClick()}
           >
             <Image

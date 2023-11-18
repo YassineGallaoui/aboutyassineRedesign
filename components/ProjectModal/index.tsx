@@ -27,7 +27,7 @@ export default function ProjectModal({
         position: "fixed",
         width: "90vw",
         height: "90vh",
-        borderRadius: "30px",
+        borderRadius: "2.5rem",
         left: "50%",
         top: "50%",
         xPercent: -50,
@@ -39,7 +39,7 @@ export default function ProjectModal({
       gsap.to(`.projectModalContainer`, {
         position: "fixed",
         height: "0vh",
-        borderRadius: "0px",
+        borderRadius: "0rem",
         left: "50%",
         top: "-50%",
         xPercent: -50,
@@ -72,11 +72,8 @@ export default function ProjectModal({
       ".projectModalDescriptionWrapper",
     );
     const closeModalBtn = document.querySelector(".closeModalBtn");
-    const fadeEffectBox = document.querySelector(
-      ".fadeEffectBox",
-    ) as HTMLElement;
+
     if (expandedCarousel) {
-      fadeEffectBox.style.backgroundImage = "none";
       gsap.to(descriptionWrapper, {
         duration: 0.6,
         opacity: 0,
@@ -180,7 +177,6 @@ export default function ProjectModal({
               )}
             </tbody>
           </table>
-          <div className={styles.fadeEffect + " fadeEffectBox"}></div>
         </div>
       </div>
       <div
