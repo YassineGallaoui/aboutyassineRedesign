@@ -12,7 +12,10 @@ const HorizontalLines = () => {
     const deviceType: breakpoints = getDeviceType();
     const rem:number = rootFontSize(deviceType);
     
-    if (deviceType === breakpoints.mobileSmall) {
+    if (
+      deviceType === breakpoints.mobileSmall ||
+      deviceType === breakpoints.mobile
+    ) {
       setReferenceLine("3rem + 15vh");
       setLineDistanceRem(3);
     } else {

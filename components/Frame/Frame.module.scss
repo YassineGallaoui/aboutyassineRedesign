@@ -8,10 +8,11 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 1rem 1.25rem;
-  @media screen and (max-width: $breakpointMobileSmall) {
-    padding: 0.5rem 0.9rem;
-  }
   z-index: 5;
+  @media screen and (max-width: $breakpointMobile) {
+    padding: 0.5rem 0.9rem;
+    z-index: 1;
+  }
   pointer-events: none;
   &__left,
   &__right {
@@ -53,7 +54,8 @@
       transform-origin: top left;
       position: relative;
       top: 1.25rem;
-      color: $semitransparentLight4;
+      color: $semitransparentDark4;
+      transition: color $change-theme-duration;
       @media screen and (max-width: $breakpointMobileSmall) {
         right: 5px;
       }
@@ -287,6 +289,7 @@
       display: flex;
       flex-direction: column;
       pointer-events: auto;
+      height: 6.25rem;
       &__social {
         position: relative;
         width: 4rem;
@@ -383,5 +386,10 @@ html[data-theme="dark"] {
     &::after{transition: background-color $change-theme-duration;
       background-color: $black;
     }
+  }
+
+  .frameContainer__left__lastUpdate{
+    transition: color $change-theme-duration;
+    color: $semitransparentLight4;
   }
 }

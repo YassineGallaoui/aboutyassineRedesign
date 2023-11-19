@@ -23,11 +23,7 @@ export function colorApplicator(lightColor: string, darkColor: string): void {
 
   if (body.classList.contains(themeMode[themeMode.lightMode])) {
     body.style.setProperty("background-color", lightColor);
-    projectModalContainer != null &&
-      projectModalContainer.style.setProperty("background-color", lightColor);
   } else {
     body.style.setProperty("background-color", darkColor);
-    projectModalContainer != null &&
-      projectModalContainer.style.setProperty("background-color", darkColor);
   }
 }

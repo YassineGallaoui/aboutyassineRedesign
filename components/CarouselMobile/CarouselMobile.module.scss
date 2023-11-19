@@ -13,13 +13,16 @@
   .upperControls {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
+    justify-content: flex-start;
+    align-items: center;
     width: 100%;
+    gap: 1rem;
 
     .indexWrapper {
       position: relative;
-
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
       span {
         display: inline-block;
         overflow: hidden;
@@ -212,16 +215,16 @@
     }
 
     .thumbnails {
-      width: calc(100% - 110px);
+      width: calc(100% - 80px);
       height: 100%;
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
       align-items: center;
-      gap: 0.7rem;
+      gap: 0.2rem;
 
       .singleThumbnail {
-        width: calc(20% - 10px);
+        width: calc(20% - 3px);
         height: 100%;
         transform: translateZ(0);
         filter: grayscale(1);
@@ -246,19 +249,19 @@
         }
 
         img {
-          border-radius: 5px;
+          border-radius: 3px;
         }
       }
     }
 
     .controls {
-      width: 110px;
+      width: 4.6rem;
       height: 100%;
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      gap: 15px;
+      gap: 0.6rem;
 
       .prevButton,
       .nextButton {

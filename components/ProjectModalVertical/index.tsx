@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import styles from "./ProjectModal.module.scss";
+import styles from "./ProjectModalVertical.module.scss";
 import gsap from "gsap";
-import Carousel from "../Carousel";
 import { Project } from "../../dataset";
+import CarouselMobile from "../CarouselMobile";
+import { RotateDevice } from "../RotateDevice";
 
 type ModalProps = {
   content: Project;
@@ -12,7 +13,7 @@ type ModalProps = {
   cursorIsHover: Function;
 };
 
-export default function ProjectModal({
+export default function ProjectModalVertical({
   content,
   open,
   updateOpen,
@@ -22,11 +23,13 @@ export default function ProjectModal({
   const [expandedCarousel, setExpandedCarousel] = useState<boolean>(false);
 
   useEffect(() => {
+    const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
     if (open) {
+      themeContainer.classList.add("quickTransition");
       gsap.to(`.projectModalContainer`, {
         position: "fixed",
-        width: "90vw",
-        height: "90vh",
+        width: "90dvw",
+        height: "90dvh",
         borderRadius: "2.5rem",
         left: "50%",
         top: "50%",
@@ -34,6 +37,31 @@ export default function ProjectModal({
         yPercent: -50,
         zIndex: "20",
         opacity: 1,
+      });
+      gsap.to(`.logoWrapper`, {
+        x: "-4rem",
+        y: "-4rem",
+        duration: 0.5
+      });
+      gsap.to(`.lastUpdateText`, {
+        x: "-4rem",
+        y: "4rem",
+        duration: 0.5
+      });
+      gsap.to(`.themeContainer`, {
+        x: "4rem",
+        y: "-4rem",
+        duration: 0.5,
+      });
+      gsap.to(`.sectionsNav`, {
+        x: "4.5rem",
+        y: 0,
+        duration: 0.3,
+      });
+      gsap.to(`.contacts`, {
+        x: "4rem",
+        y: "4rem",
+        duration: 0.5,
       });
     } else {
       gsap.to(`.projectModalContainer`, {
@@ -47,6 +75,19 @@ export default function ProjectModal({
         zIndex: "20",
         opacity: 0,
       });
+      gsap.to(`.logoWrapper, .lastUpdateText, .themeContainer, .contacts`, {
+        x: 0,
+        y: 0,
+        duration: 0.5,
+      });
+      gsap.to(`.sectionsNav`, {
+        x: "2rem",
+        y: 0,
+        duration: 0.7,
+      });
+      setTimeout(() => {
+        themeContainer.classList.remove("quickTransition");
+      }, 600);
     }
   }, [open]);
 
@@ -65,47 +106,10 @@ export default function ProjectModal({
   };
 
   useEffect(() => {
-    const projectCarouselWrapper = document.querySelector(
-      ".projectCarouselWrapper",
-    );
-    const descriptionWrapper = document.querySelector(
-      ".projectModalDescriptionWrapper",
-    );
-    const closeModalBtn = document.querySelector(".closeModalBtn");
-
-    if (expandedCarousel) {
-      gsap.to(descriptionWrapper, {
-        duration: 0.6,
-        opacity: 0,
-        x: 100,
-        flex: 0,
-        padding: 0,
-      });
-      gsap.to(projectCarouselWrapper, {
-        duration: 0.3,
-        borderRightWidth: 0,
-      });
-      gsap.to(closeModalBtn, {
-        delay: 0.3,
-        duration: 0.3,
-        filter: "invert(1)",
-      });
+    if (!expandedCarousel) {
+      gsap.to("#arrExpand", { duration: 0, scale: 1 });
     } else {
-      gsap.to(descriptionWrapper, {
-        duration: 0.6,
-        opacity: 1,
-        x: 0,
-        flex: 1,
-        padding: "1rem",
-      });
-      gsap.to(projectCarouselWrapper, {
-        duration: 0.3,
-        borderWidth: "1px",
-      });
-      gsap.to(closeModalBtn, {
-        duration: 0.3,
-        filter: "invert(0)",
-      });
+      gsap.to("#arrExpand", { duration: 0, scale: 1.4 });
     }
   }, [expandedCarousel]);
 
@@ -115,23 +119,23 @@ export default function ProjectModal({
         id="projectCarouselWrapper"
         className={styles.projectCarouselWrapper + " projectCarouselWrapper"}
       >
-        <Carousel
+        <CarouselMobile
           content={content}
           open={open}
           updateCursorText={updateCursorText}
           cursorIsHover={cursorIsHover}
           expandedCarousel={expandedCarousel}
           setExpandedCarousel={setExpandedCarousel}
-        ></Carousel>
+        ></CarouselMobile>
       </div>
       <div
         className={
-          styles.projectModalDescriptionWrapper +
-          " projectModalDescriptionWrapper"
+          styles.projectModalVerticalDescriptionWrapper +
+          " projectModalVerticalDescriptionWrapper"
         }
       >
         <div className={styles.projectDescriptionComponent}>
-          <div className={styles.projectModalName}>{content.name}</div>
+          <div className={styles.projectModalVerticalName}>{content.name}</div>
           <table>
             <tbody>
               <tr className={styles.bottomBorder + " bottomBorder"}>
@@ -189,6 +193,10 @@ export default function ProjectModal({
         onMouseLeave={() => notHoverCloseBtn()}
         onClick={() => closeModal()}
       />
+      <RotateDevice
+        showComponent={expandedCarousel}
+        animationFinished={setExpandedCarousel}
+      ></RotateDevice>
     </div>
   );
 }

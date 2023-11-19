@@ -143,7 +143,9 @@ export default function Frame({
       <div className={styles.frameContainer__left}>
         <Link href="/">
           <div
-            className={styles.frameContainer__left__logoWrapper}
+            className={
+              styles.frameContainer__left__logoWrapper + " logoWrapper"
+            }
             onMouseOver={() => updateCursorStatus(true)}
             onMouseLeave={() => updateCursorStatus(false)}
           >
@@ -157,7 +159,11 @@ export default function Frame({
             </div>
           </div>
         </Link>
-        <div className={styles.frameContainer__left__lastUpdate}>
+        <div
+          className={
+            styles.frameContainer__left__lastUpdate + " lastUpdateText"
+          }
+        >
           Last update: {websiteLastUpdateDate.getLastUpdateDate()}
         </div>
       </div>
@@ -280,7 +286,7 @@ export default function Frame({
             )} */}
           </div>
         }
-        <div className={styles.frameContainer__right__contacts}>
+        <div className={styles.frameContainer__right__contacts + " contacts"}>
           <div
             className={styles.frameContainer__right__contacts__social}
             onMouseOver={(e) => hoverSocialButtons(e)}

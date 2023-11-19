@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import { AnimatePresence } from "framer-motion";
 import { breakpoints, getDeviceType } from "../utils/breakpoints";
+import CenterGuidelines from "../components/Guidelines";
 
 export enum themeMode {
   lightMode,
@@ -87,6 +88,7 @@ export default function MyApp({ Component, pageProps, router }) {
       setSSAnimFinished={setSSAnimFinished}
       deviceType={deviceType}
     >
+      {/* <CenterGuidelines /> */}
       <AnimatePresence mode="sync" initial={false}>
         <Component
           {...pageProps}
