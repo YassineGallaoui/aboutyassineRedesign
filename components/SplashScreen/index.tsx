@@ -11,7 +11,7 @@ export default function SplashScreen({
   deviceType
 }) {
   const tl = gsap.timeline({});
-  const displaySS = true;
+  const displaySS = false;
   const baseDirectory = `C:\\Users\\yas> `;
   const directoryProjects = `C:\\Users\\yas\\projects> `;
   const directoryYassineRedesign = `C:\\Users\\yas\\projects\\yasRedesign> `;

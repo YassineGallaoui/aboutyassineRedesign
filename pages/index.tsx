@@ -41,7 +41,7 @@ export default function Home({
   const [projectIsHovered, setProjectIsHovered] = useState<boolean>(false);
   const zIndexMatteBKGOpen: number = 5;
   const zIndexMatteBKGClosed: number = -1;
-  const [hasComponentMounted, setHasComponentMounted] = useState(false);
+  const [hasComponentMounted, setHasComponentMounted] = useState(true);
 
   useEffect(() => {
     colorApplicator(lightColor, darkColor);
@@ -215,21 +215,15 @@ export default function Home({
                     } as React.CSSProperties
                   }
                 >
-                  {(index === 0 ||
-                    index2 === 1 ||
-                    index2 === trianglesPerRow - 1) &&
-                    upper &&
-                    SSAnimFinished && (
+                  {(index === 0) &&
+                    (
                       <div
                         className={stylesHome.obliqueLineP}
                         style={{ "--i": index2 } as React.CSSProperties}
                       ></div>
                     )}
-                  {(index === 0 ||
-                    index2 === 1 ||
-                    index2 === trianglesPerRow - 1) &&
-                    upper &&
-                    SSAnimFinished && (
+                  {(index === 0) &&
+                    (
                       <div
                         className={stylesHome.obliqueLineN}
                         style={{ "--i": index2 } as React.CSSProperties}
