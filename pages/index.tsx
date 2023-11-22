@@ -41,7 +41,7 @@ export default function Home({
   const [projectIsHovered, setProjectIsHovered] = useState<boolean>(false);
   const zIndexMatteBKGOpen: number = 5;
   const zIndexMatteBKGClosed: number = -1;
-  const [hasComponentMounted, setHasComponentMounted] = useState(true);
+  const [hasComponentMounted, setHasComponentMounted] = useState(false);
 
   useEffect(() => {
     colorApplicator(lightColor, darkColor);
