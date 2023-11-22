@@ -59,7 +59,7 @@
       width: max(200vh, 200vw);
       height: 1px;
       opacity: 0.2;
-      background-color: $semitransparentDark5;
+      background-color: red;
       transition: background-color $change-theme-duration;
       animation: drawOrizLine cubic-bezier(.34,.65,.46,.76) 5s;
       animation-iteration-count: 1;
@@ -154,13 +154,21 @@
   .noProjRow:nth-child(even) {
     transform: translateX(11vw);
   }
+  .seeMoreText{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 html[data-theme="dark"] {
   .horizontalLineL,
     .horizontalLineR{
       transition: background-color $change-theme-duration !important;
-      background-color: $semitransparentLight5 !important;
+      background-color: red !important;
     }
   .triangleProjectWrapper,
   .triangleProjectWrapper__NoProj  {

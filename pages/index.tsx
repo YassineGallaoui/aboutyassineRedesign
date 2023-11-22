@@ -215,21 +215,34 @@ export default function Home({
                     } as React.CSSProperties
                   }
                 >
-                  {(index === 0) &&
-                    (
-                      <div
-                        className={stylesHome.obliqueLineP}
-                        style={{ "--i": index2 } as React.CSSProperties}
-                      ></div>
-                    )}
-                  {(index === 0) &&
-                    (
-                      <div
-                        className={stylesHome.obliqueLineN}
-                        style={{ "--i": index2 } as React.CSSProperties}
-                      ></div>
-                    )}
-                  <div className={stylesHome.triangleProjectContent}></div>
+                  {/* (index === 0 ||
+                    index2 === 1 ||
+                    index2 === trianglesPerRow - 1) &&
+                    upper &&
+                    SSAnimFinished && */}
+                  {index === 0 && upper && SSAnimFinished && (
+                    <div
+                      className={stylesHome.obliqueLineP}
+                      style={{ "--i": index2 } as React.CSSProperties}
+                    ></div>
+                  )}
+                  {index === 0 && upper && SSAnimFinished && (
+                    <div
+                      className={stylesHome.obliqueLineN}
+                      style={{ "--i": index2 } as React.CSSProperties}
+                    ></div>
+                  )}
+                  <div className={stylesHome.triangleProjectContent}>
+                    <div
+                      id={`see-more-${index2 % 2 === 1 ? "odd" : "even"}-${
+                        projectsDataset[index2 - firstPositionProject]?.id
+                      }`}
+                      className={stylesHome.seeMoreText}
+                    >
+                      <span>{index}</span>
+                      <span>{index2}</span>
+                    </div>
+                  </div>
                 </div>
               );
             })}
@@ -358,6 +371,16 @@ export default function Home({
                           )
                         }
                       />
+                      <div
+                        id={`see-more-${index2 % 2 === 1 ? "odd" : "even"}-${
+                          projectsDataset[index2 - firstPositionProject]?.id
+                        }`}
+                        className={stylesHome.seeMoreText}
+                      >
+                        <span>
+                          {index2}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 );
