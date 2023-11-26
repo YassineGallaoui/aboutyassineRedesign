@@ -3,6 +3,8 @@ import styles from "./ProjectModal.module.scss";
 import gsap from "gsap";
 import Carousel from "../Carousel";
 import { Project } from "../../dataset";
+import {hideFrame, unhideFrame} from "../../utils/utility";
+import {breakpoints, getDeviceType} from "../../utils/breakpoints";
 
 type ModalProps = {
   content: Project;
@@ -22,6 +24,7 @@ export default function ProjectModal({
   const [expandedCarousel, setExpandedCarousel] = useState<boolean>(false);
 
   useEffect(() => {
+    const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
     if (open) {
       gsap.to(`.projectModalContainer`, {
         position: "fixed",
@@ -35,6 +38,8 @@ export default function ProjectModal({
         zIndex: "20",
         opacity: 1,
       });
+      if (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)
+        hideFrame(themeContainer);
     } else {
       gsap.to(`.projectModalContainer`, {
         position: "fixed",
@@ -47,6 +52,8 @@ export default function ProjectModal({
         zIndex: "20",
         opacity: 0,
       });
+      if (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)
+        unhideFrame(themeContainer);
     }
   }, [open]);
 

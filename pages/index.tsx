@@ -215,23 +215,26 @@ export default function Home({
                     } as React.CSSProperties
                   }
                 >
-                  {/* (index === 0 ||
-                    index2 === 1 ||
-                    index2 === trianglesPerRow - 1) &&
-                    upper &&
-                    SSAnimFinished && */}
-                  {index === 0 && upper && SSAnimFinished && (
-                    <div
-                      className={stylesHome.obliqueLineP}
-                      style={{ "--i": index2 } as React.CSSProperties}
-                    ></div>
-                  )}
-                  {index === 0 && upper && SSAnimFinished && (
-                    <div
-                      className={stylesHome.obliqueLineN}
-                      style={{ "--i": index2 } as React.CSSProperties}
-                    ></div>
-                  )}
+                  {((index === 0 && upper) ||
+                          index2 === 0 ||
+                          index2 === trianglesPerRow - 1)
+                      && (index2 % 2 === 0 || index2 === trianglesPerRow - 1)
+                      && SSAnimFinished && (
+                          <div
+                              className={stylesHome.obliqueLineP}
+                              style={{"--i": index2} as React.CSSProperties}
+                          ></div>
+                      )}
+                  {((index === 0 && upper) ||
+                          index2 === 0 ||
+                          index2 === trianglesPerRow - 1)
+                      && (index2 % 2 === 0 || index2 === trianglesPerRow - 1)
+                      && SSAnimFinished && (
+                          <div
+                              className={stylesHome.obliqueLineN}
+                              style={{"--i": index2} as React.CSSProperties}
+                          ></div>
+                      )}
                   <div className={stylesHome.triangleProjectContent}>
                     <div
                       id={`see-more-${index2 % 2 === 1 ? "odd" : "even"}-${
@@ -239,7 +242,8 @@ export default function Home({
                       }`}
                       className={stylesHome.seeMoreText}
                     >
-                      <span>{index}</span>
+                      <span>{trianglesPerRow}</span>
+                      <span>{trianglesPerRow - 1}</span>
                       <span>{index2}</span>
                     </div>
                   </div>

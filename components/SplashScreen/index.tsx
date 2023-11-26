@@ -33,6 +33,7 @@ export default function SplashScreen({
       setTimeout(() => {
         tl.to(SSContainer, {
           top: "-200vh",
+          opacity: "0",
           duration: 1,
         });
       }, 500);

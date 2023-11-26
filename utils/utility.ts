@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import gsap from "gsap";
 
 export function createSpanStructure(w) {
@@ -72,3 +71,48 @@ export const calculateScrollPercentage = (pageContent) => {
   // Return the calculated percentage
   return scrollPercentage.toFixed(0);
 };
+
+export const hideFrame = (themeContainer) => {
+  themeContainer.classList.add("quickTransition");
+  gsap.to(`.logoWrapper`, {
+    x: "-4rem",
+    y: "-4rem",
+    duration: 0.5
+  });
+  gsap.to(`.lastUpdateText`, {
+    x: "-4rem",
+    y: "4rem",
+    duration: 0.5
+  });
+  gsap.to(`.themeContainer`, {
+    x: "4rem",
+    y: "-4rem",
+    duration: 0.5,
+  });
+  gsap.to(`.sectionsNav`, {
+    x: "4.5rem",
+    y: 0,
+    duration: 0.3,
+  });
+  gsap.to(`.contacts`, {
+    x: "4rem",
+    y: "4rem",
+    duration: 0.5,
+  });
+}
+
+export const unhideFrame = (themeContainer) => {
+  gsap.to(`.logoWrapper, .lastUpdateText, .themeContainer, .contacts`, {
+    x: 0,
+    y: 0,
+    duration: 0.5,
+  });
+  gsap.to(`.sectionsNav`, {
+    x: "2rem",
+    y: 0,
+    duration: 0.7,
+  });
+  setTimeout(() => {
+    themeContainer.classList.remove("quickTransition");
+  }, 600);
+}

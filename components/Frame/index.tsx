@@ -43,10 +43,6 @@ export default function Frame({
   const sectionNamesRC = ["About", "Projects"];
   const tl = gsap.timeline({});
 
-  useEffect(()=>{
-    console.log("pathname", pathname);
-  })
-
   const themeChange = () => {
     setThemeIconRot((t) => t + 180);
 

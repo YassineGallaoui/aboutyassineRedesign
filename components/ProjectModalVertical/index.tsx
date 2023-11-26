@@ -4,6 +4,8 @@ import gsap from "gsap";
 import { Project } from "../../dataset";
 import CarouselMobile from "../CarouselMobile";
 import { RotateDevice } from "../RotateDevice";
+import {hideFrame, unhideFrame} from "../../utils/utility";
+import {breakpoints, getDeviceType} from "../../utils/breakpoints";
 
 type ModalProps = {
   content: Project;
@@ -25,7 +27,6 @@ export default function ProjectModalVertical({
   useEffect(() => {
     const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
     if (open) {
-      themeContainer.classList.add("quickTransition");
       gsap.to(`.projectModalContainer`, {
         position: "fixed",
         width: "90dvw",
@@ -38,31 +39,8 @@ export default function ProjectModalVertical({
         zIndex: "20",
         opacity: 1,
       });
-      gsap.to(`.logoWrapper`, {
-        x: "-4rem",
-        y: "-4rem",
-        duration: 0.5
-      });
-      gsap.to(`.lastUpdateText`, {
-        x: "-4rem",
-        y: "4rem",
-        duration: 0.5
-      });
-      gsap.to(`.themeContainer`, {
-        x: "4rem",
-        y: "-4rem",
-        duration: 0.5,
-      });
-      gsap.to(`.sectionsNav`, {
-        x: "4.5rem",
-        y: 0,
-        duration: 0.3,
-      });
-      gsap.to(`.contacts`, {
-        x: "4rem",
-        y: "4rem",
-        duration: 0.5,
-      });
+      if (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)
+        hideFrame(themeContainer);
     } else {
       gsap.to(`.projectModalContainer`, {
         position: "fixed",
@@ -75,19 +53,8 @@ export default function ProjectModalVertical({
         zIndex: "20",
         opacity: 0,
       });
-      gsap.to(`.logoWrapper, .lastUpdateText, .themeContainer, .contacts`, {
-        x: 0,
-        y: 0,
-        duration: 0.5,
-      });
-      gsap.to(`.sectionsNav`, {
-        x: "2rem",
-        y: 0,
-        duration: 0.7,
-      });
-      setTimeout(() => {
-        themeContainer.classList.remove("quickTransition");
-      }, 600);
+      if (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)
+        unhideFrame(themeContainer);
     }
   }, [open]);
 
