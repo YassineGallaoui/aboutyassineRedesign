@@ -57,14 +57,14 @@
       position: absolute;
       width: max(200vh, 200vw);
       height: 1px;
+      opacity: 0.3;
       background-color: $semitransparentDark5;
       transition: background-color $change-theme-duration;
       animation: drawOrizLine cubic-bezier(.34,.65,.46,.76) 5s;
       animation-iteration-count: 1;
       animation-fill-mode: forwards;
-      margin-top: 21.8vw;
+      margin-top: 22vw;
       transform: translateX(max(200vh, 200vw));
-      z-index: 300;
     }
     .horizontalLineL {
       transform: translateX(calc(max(200vh, 200vw) * -1));
@@ -78,24 +78,22 @@
 
     .obliqueLineP, .obliqueLineN {
       position: absolute;
-      top: 1vh;
-      margin-top: -1.3vh;
-      left: calc(-0.1px * var(--i));
+      top: 0vh;
+      margin-top: -44vw;
+      margin-left: 0vw;
       width: 1px;
       height: 0vw;
       background-color: $semitransparentDark5;
       transition: background-color $change-theme-duration;
-      transform: rotate(26.5deg);
+      transform: rotate(26.55deg);
       transform-origin: top;
       animation: drawObliqueLine cubic-bezier(.34, .65, .46, .76) 5s;
       animation-iteration-count: 1;
       animation-fill-mode: forwards;
-      z-index: 300;
     }
 
     .obliqueLineN {
-      transform: rotate(-26.5deg);
-      z-index: 300;
+      transform: rotate(-26.55deg);
     }
 
     @keyframes drawObliqueLine {
@@ -125,7 +123,7 @@
         position: absolute;
         height: 21vw;
         width: 21vw;
-        background-color: blue;
+        background-color: rgba(0, 0, 0, 0.1);
         img {
           object-fit: cover;
           pointer-events: auto;
@@ -179,14 +177,14 @@ html[data-theme="dark"] {
   .horizontalLineL,
     .horizontalLineR{
       transition: background-color $change-theme-duration !important;
-    background-color: red !important;
+    background-color: $semitransparentLight5 !important;
     }
   .triangleProjectWrapper,
   .triangleProjectWrapper__NoProj  {
     .obliqueLineP,
     .obliqueLineN {
       transition: background-color $change-theme-duration!important;
-      background-color: red !important;
+      background-color: $semitransparentLight5 !important;
     }
   }
 }

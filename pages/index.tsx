@@ -218,21 +218,24 @@ export default function Home({
                   {((index === 0 && upper) ||
                           index2 === 0 ||
                           index2 === trianglesPerRow - 1)
-                      && (index2 % 2 === 0 || index2 === trianglesPerRow - 1)
+                      && (index2 % 2 === 0)
                       && SSAnimFinished && (
                           <div
                               className={stylesHome.obliqueLineP}
-                              style={{"--i": index2} as React.CSSProperties}
+                              style={{"--i": triangleRowsNumber % 2 === 0
+                                    ? index2 - trianglesPerRow / 2
+                                    : index2 - trianglesPerRow / 2 + 1,} as React.CSSProperties}
                           ></div>
                       )}
                   {((index === 0 && upper) ||
-                          index2 === 0 ||
                           index2 === trianglesPerRow - 1)
                       && (index2 % 2 === 0 || index2 === trianglesPerRow - 1)
                       && SSAnimFinished && (
                           <div
                               className={stylesHome.obliqueLineN}
-                              style={{"--i": index2} as React.CSSProperties}
+                              style={{"--i": triangleRowsNumber % 2 === 0
+                                    ? index2 - trianglesPerRow / 2
+                                    : index2 - trianglesPerRow / 2 + 1,} as React.CSSProperties}
                           ></div>
                       )}
                   <div className={stylesHome.triangleProjectContent}>
@@ -242,9 +245,6 @@ export default function Home({
                       }`}
                       className={stylesHome.seeMoreText}
                     >
-                      <span>{trianglesPerRow}</span>
-                      <span>{trianglesPerRow - 1}</span>
-                      <span>{index2}</span>
                     </div>
                   </div>
                 </div>
