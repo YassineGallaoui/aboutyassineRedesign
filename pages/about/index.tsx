@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import stylesAbout from "../../styles/scss/General.module.scss";
 import {
   createSpanStructure,
@@ -8,8 +8,33 @@ import {
 } from "../../utils/utility";
 import HorizontalLines from "../../components/HorizontalLines";
 import { motion } from "framer-motion";
+import gsap from "gsap";
 
 export default function About({ SSAnimFinished }) {
+
+  const [hasComponentMounted, setHasComponentMounted] = useState(false);
+
+  useEffect(() => {
+    if (SSAnimFinished && hasComponentMounted) {
+      const tlInitial = gsap.timeline({ delay: 0.2 });
+      tlInitial
+          .to(".mainMotionDiv", {
+            duration: 0,
+            top: 80,
+            scale: 1,
+            opacity: 0.8,
+          })
+          .to(".mainMotionDiv", {
+            duration: 1.8,
+            top: 0,
+            scale: 1,
+            opacity: 1,
+          });
+    } else {
+      setHasComponentMounted(true);
+    }
+  }, [SSAnimFinished]);
+
   useEffect(() => {
     const welcomeArray = ["Hi!", "Hallo!", "¡Hola!", "Salut!", "Ciao!"];
     const welcomeWord = document.querySelector(".welcomeWord");
@@ -65,7 +90,7 @@ export default function About({ SSAnimFinished }) {
       {SSAnimFinished && <div className={stylesAbout.verticalLine}></div>}
       {SSAnimFinished && <div className={stylesAbout.horizontalLine}></div>}
       {SSAnimFinished && <HorizontalLines />}
-      <div className={stylesAbout.meContainer}>
+      <div className={stylesAbout.meContainer + ' meContainer'}>
         <div
           className={stylesAbout.meContainer__txt + " meContainerRow row gx-5"}
         >

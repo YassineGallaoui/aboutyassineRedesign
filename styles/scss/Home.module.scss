@@ -87,7 +87,7 @@
       transition: background-color $change-theme-duration;
       transform: rotate(26.55deg);
       transform-origin: top;
-      animation: drawObliqueLine cubic-bezier(.34, .65, .46, .76) 5s;
+      animation: drawObliqueLine cubic-bezier(.7,.3,.7,.5) 5s;
       animation-iteration-count: 1;
       animation-fill-mode: forwards;
     }
