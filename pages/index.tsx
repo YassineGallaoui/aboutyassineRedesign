@@ -234,7 +234,7 @@ export default function Home({
                           <div
                               className={stylesHome.obliqueLineN}
                               style={{"--j": upper ? index : index + ((triangleRowsNumber + 1) / 2) } as React.CSSProperties}
-                          >{index}</div>
+                          ></div>
                       )}
                   <div className={stylesHome.triangleProjectContent}>
                     <div
