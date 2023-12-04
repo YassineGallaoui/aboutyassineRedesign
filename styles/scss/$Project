@@ -368,14 +368,14 @@ html[data-theme=dark] .percentageBarBar {
   position: absolute;
   width: max(200vh, 200vw);
   height: 1px;
+  opacity: 0.3;
   background-color: hsla(0, 0%, 0%, 0.1);
   transition: background-color 0.4s;
   animation: drawOrizLine cubic-bezier(0.34, 0.65, 0.46, 0.76) 5s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  margin-top: 21.8vw;
+  margin-top: 22vw;
   transform: translateX(max(200vh, 200vw));
-  z-index: 300;
 }
 .expContainer .triangleProjectRow .horizontalLineL {
   transform: translateX(calc(max(200vh, 200vw) * -1));
@@ -387,23 +387,23 @@ html[data-theme=dark] .percentageBarBar {
 }
 .expContainer .triangleProjectRow .obliqueLineP, .expContainer .triangleProjectRow .obliqueLineN {
   position: absolute;
-  top: 1vh;
-  margin-top: -1.3vh;
-  left: calc(-0.1px * var(--i));
+  top: 0vh;
+  margin-top: -44vw;
+  margin-left: 0vw;
   width: 1px;
   height: 0vw;
   background-color: hsla(0, 0%, 0%, 0.1);
   transition: background-color 0.4s;
-  transform: rotate(26.5deg);
+  transform: rotate(26.55deg);
   transform-origin: top;
-  animation: drawObliqueLine cubic-bezier(0.34, 0.65, 0.46, 0.76) 5s;
+  animation: drawObliqueLine cubic-bezier(0.7, 0.3, 0.7, 0.5) 5s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  z-index: 300;
+  animation-delay: calc(0.2s * var(--j));
 }
 .expContainer .triangleProjectRow .obliqueLineN {
-  transform: rotate(-26.5deg);
-  z-index: 300;
+  transform: rotate(-26.55deg);
+  animation-delay: calc(0.2s * var(--j));
 }
 @keyframes drawObliqueLine {
   0% {
@@ -432,7 +432,7 @@ html[data-theme=dark] .percentageBarBar {
   position: absolute;
   height: 21vw;
   width: 21vw;
-  background-color: blue;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 .expContainer .triangleProjectRow .triangleProjectWrapper > div.triangleProjectContent img,
 .expContainer .triangleProjectRow .triangleProjectWrapper__NoProj > div.triangleProjectContent img {
@@ -483,14 +483,14 @@ html[data-theme=dark] .percentageBarBar {
 html[data-theme=dark] .horizontalLineL,
 html[data-theme=dark] .horizontalLineR {
   transition: background-color 0.4s !important;
-  background-color: red !important;
+  background-color: hsla(0, 0%, 100%, 0.1) !important;
 }
 html[data-theme=dark] .triangleProjectWrapper .obliqueLineP,
 html[data-theme=dark] .triangleProjectWrapper .obliqueLineN,
 html[data-theme=dark] .triangleProjectWrapper__NoProj .obliqueLineP,
 html[data-theme=dark] .triangleProjectWrapper__NoProj .obliqueLineN {
   transition: background-color 0.4s !important;
-  background-color: red !important;
+  background-color: hsla(0, 0%, 100%, 0.1) !important;
 }
 
 /*# sourceMappingURL=$Project.map */

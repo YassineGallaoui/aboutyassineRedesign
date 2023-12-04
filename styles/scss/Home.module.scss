@@ -90,10 +90,12 @@
       animation: drawObliqueLine cubic-bezier(.7,.3,.7,.5) 5s;
       animation-iteration-count: 1;
       animation-fill-mode: forwards;
+      animation-delay: calc(0.2s * var(--j));
     }
 
     .obliqueLineN {
       transform: rotate(-26.55deg);
+      animation-delay: calc(0.2s * var(--j));
     }
 
     @keyframes drawObliqueLine {

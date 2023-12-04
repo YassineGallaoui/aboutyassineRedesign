@@ -219,24 +219,22 @@ export default function Home({
                           index2 === 0 ||
                           index2 === trianglesPerRow - 1)
                       && (index2 % 2 === 0)
+                      && (index % 2 === 0)
                       && SSAnimFinished && (
                           <div
                               className={stylesHome.obliqueLineP}
-                              style={{"--i": triangleRowsNumber % 2 === 0
-                                    ? index2 - trianglesPerRow / 2
-                                    : index2 - trianglesPerRow / 2 + 1,} as React.CSSProperties}
+                              style={{"--j": upper ? index : index + ((triangleRowsNumber + 1) / 2) } as React.CSSProperties}
                           ></div>
                       )}
                   {((index === 0 && upper) ||
                           index2 === trianglesPerRow - 1)
-                      && (index2 % 2 === 0 || index2 === trianglesPerRow - 1)
+                      && (index2 % 2 === 0 || (index2 === trianglesPerRow - 1 && index !== 0) || !upper)
+                      && (index % 2 === 0)
                       && SSAnimFinished && (
                           <div
                               className={stylesHome.obliqueLineN}
-                              style={{"--i": triangleRowsNumber % 2 === 0
-                                    ? index2 - trianglesPerRow / 2
-                                    : index2 - trianglesPerRow / 2 + 1,} as React.CSSProperties}
-                          ></div>
+                              style={{"--j": upper ? index : index + ((triangleRowsNumber + 1) / 2) } as React.CSSProperties}
+                          >{index}</div>
                       )}
                   <div className={stylesHome.triangleProjectContent}>
                     <div
@@ -245,6 +243,8 @@ export default function Home({
                       }`}
                       className={stylesHome.seeMoreText}
                     >
+                        <span>
+                        </span>
                     </div>
                   </div>
                 </div>
@@ -301,8 +301,8 @@ export default function Home({
             } as React.CSSProperties
           }
         >
-          <div className={stylesHome.horizontalLineL} />
-          <div className={stylesHome.horizontalLineL} />
+          <div className={stylesHome.horizontalLineL} style={{ "--i": triangleRowsNumber } as React.CSSProperties}/>
+          <div className={stylesHome.horizontalLineL} style={{ "--i": triangleRowsNumber } as React.CSSProperties}/>
           {trianglesPerRow > 0 &&
             [...Array(trianglesPerRow).keys()].map((index2) => {
               if (
@@ -382,7 +382,6 @@ export default function Home({
                         className={stylesHome.seeMoreText}
                       >
                         <span>
-                          {index2}
                         </span>
                       </div>
                     </div>

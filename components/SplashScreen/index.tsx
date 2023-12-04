@@ -45,7 +45,13 @@ export default function SplashScreen({
         }, '>').to(SSWrapper, {
           height: "0vh",
           duration: 0,
-        }, '>');
+        }, '>').to(SSContainer, {
+          zIndex: "-1",
+          duration: 0,
+        }, '>').to(SSWrapper, {
+          zIndex: "-1",
+          duration: 0,
+        }, '>');;
       }, 200);
       setSSAnimFinished(true);
     }
