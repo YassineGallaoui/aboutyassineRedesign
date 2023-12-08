@@ -22,6 +22,21 @@ export default function ProjectModal({
   cursorIsHover,
 }: ModalProps) {
   const [expandedCarousel, setExpandedCarousel] = useState<boolean>(false);
+  const [deviceType, setDeviceType] = useState(breakpoints.desktop);
+
+  useEffect(() => {
+    const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
+    if (open && (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)) {
+      hideFrame(themeContainer);
+    }
+    if (getDeviceType() === breakpoints.desktop || getDeviceType() === breakpoints.desktopLarge) {
+      unhideFrame(themeContainer);
+    }
+  }, [deviceType]);
+
+  useEffect(() => {
+    window.addEventListener("resize", (event) => setDeviceType(getDeviceType()));
+  }, []);
 
   useEffect(() => {
     const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
