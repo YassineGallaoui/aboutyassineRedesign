@@ -153,10 +153,10 @@ export default function About({ SSAnimFinished }) {
                 >{`a`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
-                >{` software developer, `}</span>
+                >{` software developer `}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__small}
-                >{`particularly capable in`}</span>
+                >{`specialized in`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
                 >{` frontend development. `}</span>
@@ -184,32 +184,6 @@ export default function About({ SSAnimFinished }) {
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
                 >{` is aesthetically captivating. `}</span>
-                <span
-                  className={stylesAbout.meContainer__txt__description__small}
-                >{`Generally I am also`}</span>
-                <span
-                  className={stylesAbout.meContainer__txt__description__big}
-                >{` interested in art and architecture.`}</span>
-              </p>
-              <p>
-                <span
-                  className={stylesAbout.meContainer__txt__description__small}
-                >{`→ Although I am currently working`}</span>
-                <span
-                  className={stylesAbout.meContainer__txt__description__big}
-                >{` full time at Deloitte Digital, in Milan, `}</span>
-                <span
-                  className={stylesAbout.meContainer__txt__description__small}
-                >{`I am always interested in`}</span>
-                <span
-                  className={stylesAbout.meContainer__txt__description__big}
-                >{` new stimulating and meaningful projects, `}</span>
-                <span
-                  className={stylesAbout.meContainer__txt__description__small}
-                >{` so if you feel like it, reach me thru `}</span>
-                <span
-                  className={stylesAbout.meContainer__txt__description__big}
-                >{` email or LinkedIn.`}</span>
               </p>
               <p>
                 <span
@@ -223,19 +197,19 @@ export default function About({ SSAnimFinished }) {
                 >{`is`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
-                >{` Italian `}</span>
+                >{` italian `}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__small}
                 >{`but I also speak`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
-                >{` fluent English, `}</span>
+                >{` fluent english, `}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__small}
-                >{`a rusty `}</span>
+                >{`a bit of`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
-                >{` French, `}</span>
+                >{` french, `}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__small}
                 >{`as well as an informal`}</span>
@@ -245,6 +219,20 @@ export default function About({ SSAnimFinished }) {
                 <span
                   className={stylesAbout.meContainer__txt__description__small}
                 >{`.`}</span>
+              </p>
+              <p>
+                <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                >{`I am always interested in`}</span>
+                <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                >{` new meaningful and stimulating projects, `}</span>
+                <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                >{` so if you think we can do something great together please reach me thru `}</span>
+                <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                >{` email or LinkedIn.`}</span>
               </p>
             </div>
           )}
