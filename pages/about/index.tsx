@@ -86,7 +86,13 @@ export default function About({ SSAnimFinished }) {
       exit={{ x: "50vw", opacity: 0 }}
       transition={{ duration: 1, ease: [0.8, 0.28, 0, 1] }}
     >
-      <div className={stylesAbout.meBkgrdTxt + " sectionBkgrdTxt"}>About</div>
+      <div className={stylesAbout.meBkgrdTxt + " sectionBkgrdTxt"}>
+        <span>A</span>
+        <span>b</span>
+        <span>o</span>
+        <span>u</span>
+        <span>t</span>
+      </div>
       {SSAnimFinished && <div className={stylesAbout.verticalLine}></div>}
       {SSAnimFinished && <div className={stylesAbout.horizontalLine}></div>}
       {SSAnimFinished && <HorizontalLines />}

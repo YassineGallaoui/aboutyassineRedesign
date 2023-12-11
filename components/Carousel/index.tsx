@@ -518,7 +518,7 @@ function Carousel({
               }
               onClick={() => thumbnailClickHandle(index)}
             >
-              <Image src={el} alt={altText} fill></Image>
+              <Image src={el} alt={altText} fill={true} placeholder={"blur"}></Image>
             </div>
           ))}
         </div>

@@ -275,7 +275,16 @@ export default function Home({
       exit={{ x: "-50vw", opacity: 0 }}
       transition={{ duration: 1, ease: [0.8, 0.28, 0, 1] }}
     >
-      <div className={stylesHome.expBkgrdTxt + " sectionBkgrdTxt"}>Exp</div>
+      <div className={stylesHome.expBkgrdTxt + " sectionBkgrdTxt"}>
+        <span>P</span>
+        <span>r</span>
+        <span>o</span>
+        <span>j</span>
+        <span>e</span>
+        <span>c</span>
+        <span>t</span>
+        <span>s</span>
+      </div>
       <div
         className={
           stylesHome.currentPrjHovered +
@@ -301,8 +310,8 @@ export default function Home({
             } as React.CSSProperties
           }
         >
-          <div className={stylesHome.horizontalLineL} style={{ "--i": triangleRowsNumber } as React.CSSProperties}/>
-          <div className={stylesHome.horizontalLineL} style={{ "--i": triangleRowsNumber } as React.CSSProperties}/>
+          {SSAnimFinished && (<div className={stylesHome.horizontalLineL} style={{ "--i": triangleRowsNumber } as React.CSSProperties}/>)}
+          {SSAnimFinished && (<div className={stylesHome.horizontalLineL} style={{ "--i": triangleRowsNumber } as React.CSSProperties}/>)}
           {trianglesPerRow > 0 &&
             [...Array(trianglesPerRow).keys()].map((index2) => {
               if (
@@ -369,6 +378,16 @@ export default function Home({
                             projectsDataset[index2 - firstPositionProject]?.id
                           )
                         }
+                        onTouchEnd={(event) => {
+                            event.preventDefault()
+                            handleImageClick(
+                                projectsDataset[index2 - firstPositionProject]?.id
+                            )
+                          }
+                        }
+                        onTouchStart={(event) =>
+                            event.preventDefault()
+                        }
                         onClick={() =>
                           handleImageClick(
                             projectsDataset[index2 - firstPositionProject]?.id
@@ -389,8 +408,8 @@ export default function Home({
                 );
               }
             })}
-          <div className={stylesHome.horizontalLineR} />
-          <div className={stylesHome.horizontalLineR} />
+          {SSAnimFinished && (<div className={stylesHome.horizontalLineR} />)}
+          {SSAnimFinished && (<div className={stylesHome.horizontalLineR} />)}
         </div>
         {triangleRowsNumber > 0 && renderNonProjectTriangles(false)}
       </div>

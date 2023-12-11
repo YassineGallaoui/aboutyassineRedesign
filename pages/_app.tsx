@@ -79,7 +79,7 @@ export default function MyApp({Component, pageProps, router}) {
     return (
         <>
             <Head>
-                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
             </Head>
             <Layout
                 updateCursorText={setCursorText}
