@@ -3,7 +3,6 @@ import styles from "./ProjectModal.module.scss";
 import gsap from "gsap";
 import Carousel from "../Carousel";
 import { Project } from "../../dataset";
-import {hideFrame, unhideFrame} from "../../utils/utility";
 import {breakpoints, getDeviceType} from "../../utils/breakpoints";
 
 type ModalProps = {
@@ -25,17 +24,14 @@ export default function ProjectModal({
   const [deviceType, setDeviceType] = useState(breakpoints.desktop);
 
   useEffect(() => {
-    const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
-    if (open && (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)) {
-      hideFrame(themeContainer);
+    const changeDeviceType = () => {
+      setDeviceType(getDeviceType())
     }
-    if (getDeviceType() === breakpoints.desktop || getDeviceType() === breakpoints.desktopLarge) {
-      unhideFrame(themeContainer);
-    }
-  }, [deviceType]);
+    window.addEventListener("resize", changeDeviceType);
 
-  useEffect(() => {
-    window.addEventListener("resize", (event) => setDeviceType(getDeviceType()));
+    return()=> {
+      window.removeEventListener("resize", changeDeviceType)
+    }
   }, []);
 
   useEffect(() => {
@@ -53,8 +49,6 @@ export default function ProjectModal({
         zIndex: "20",
         opacity: 1,
       });
-      if (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)
-        hideFrame(themeContainer);
     } else {
       gsap.to(`.projectModalContainer`, {
         position: "fixed",
@@ -67,8 +61,6 @@ export default function ProjectModal({
         zIndex: "20",
         opacity: 0,
       });
-      if (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)
-        unhideFrame(themeContainer);
     }
   }, [open]);
 

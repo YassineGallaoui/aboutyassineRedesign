@@ -36,9 +36,9 @@ export default function MyApp({Component, pageProps, router}) {
         const themePreferenceSelection = (): themeMode => {
             return storedThemePreference != null
                 ? storedThemePreference
-                : prefersDarkMode || !prefersLightMode
-                    ? themeMode.darkMode
-                    : themeMode.lightMode;
+                : prefersLightMode
+                    ? themeMode.lightMode
+                    : themeMode.darkMode;
         };
 
         let themePreference: themeMode = themePreferenceSelection();
@@ -62,17 +62,23 @@ export default function MyApp({Component, pageProps, router}) {
 
         let portrait = window.matchMedia("(orientation: portrait)");
         setDeviceType(getDeviceType());
-        window.addEventListener("resize", () => setDeviceType(getDeviceType())); //resize
-        portrait.addEventListener("change", function (e) {
+        const changeDeviceType = () => {
+            setDeviceType(getDeviceType())
+        }
+        const portraitChange = (e) => {
             //changing display orientation
             if (e.matches) {
                 setDeviceType(getDeviceType());
             }
-        });
+        }
+        window.addEventListener("resize", changeDeviceType);
+        portrait.addEventListener("change",  portraitChange);
 
 
         return () => {
             clearInterval(intervalColor); // Clear the interval when component unmounts or effect re-runs
+            window.removeEventListener("resize", changeDeviceType)
+            portrait.removeEventListener("change", portraitChange);
         };
     }, []);
 

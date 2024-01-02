@@ -56,7 +56,7 @@ export default function Cursor({ hovered, txt }) {
     // Clean up the event listener when the component unmounts
     return () => {
       document.removeEventListener("click", handleClick);
-      document.addEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", checkTouchOnlyDevice);
     };
   }, []);

@@ -36,7 +36,7 @@ export default function Frame({
   darkColor,
   deviceType,
 }: FrameType) {
-  const [themeIconRot, setThemeIconRot] = useState(0);
+  const [themeIconRot, setThemeIconRot] = useState<number>(0);
   const [currentTheme, setCurrentTheme] = useState<themeMode>(preferredTheme);
   const router = useRouter();
   const { pathname } = router;
@@ -170,6 +170,7 @@ export default function Frame({
           onMouseOver={() => updateCursorStatus(true)}
           onMouseLeave={() => updateCursorStatus(false)}
           onClick={() => themeChange()}
+          tabIndex={0}
         >
           <div
             className={
@@ -230,8 +231,6 @@ export default function Frame({
         </div>
         {
           <div className={styles.frameContainer__right__nav + " sectionsNav"}>
-            {/* {deviceType === breakpoints.mobileSmall ||
-            deviceType === breakpoints.mobile ? ( */}
             <Link
               href={pathname === "/about" ? "/" : "/about"}
               className="invertImg"
@@ -258,28 +257,6 @@ export default function Frame({
                 ></div>
               </div>
             </Link>
-            {/* ) : (
-              <ul>
-                <Link href="/about">
-                  <li
-                    className="invertImg"
-                    onMouseOver={() => updateCursorStatus(true)}
-                    onMouseLeave={() => updateCursorStatus(false)}
-                  >
-                    <div className={"twoNavItem"}></div>
-                  </li>
-                </Link>
-                <Link href="/">
-                  <li
-                    className="invertImg"
-                    onMouseOver={() => updateCursorStatus(true)}
-                    onMouseLeave={() => updateCursorStatus(false)}
-                  >
-                    <div className={"twoNavItem"}></div>
-                  </li>
-                </Link>
-              </ul>
-            )} */}
           </div>
         }
         <div className={styles.frameContainer__right__contacts + " contacts"}>

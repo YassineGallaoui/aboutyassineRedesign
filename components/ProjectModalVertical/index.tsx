@@ -4,8 +4,7 @@ import gsap from "gsap";
 import { Project } from "../../dataset";
 import CarouselMobile from "../CarouselMobile";
 import { RotateDevice } from "../RotateDevice";
-import {hideFrame, unhideFrame} from "../../utils/utility";
-import {breakpoints, getDeviceType} from "../../utils/breakpoints";
+
 
 type ModalProps = {
   content: Project;
@@ -39,8 +38,6 @@ export default function ProjectModalVertical({
         zIndex: "20",
         opacity: 1,
       });
-      if (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)
-        hideFrame(themeContainer);
     } else {
       gsap.to(`.projectModalContainer`, {
         position: "fixed",
@@ -53,8 +50,6 @@ export default function ProjectModalVertical({
         zIndex: "20",
         opacity: 0,
       });
-      if (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)
-        unhideFrame(themeContainer);
     }
   }, [open]);
 

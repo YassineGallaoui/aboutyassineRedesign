@@ -46,14 +46,15 @@ export default function About({ SSAnimFinished }) {
       }, 5000);
     };
     startWelcomeAnimation(i);
-
-    document.addEventListener("mousemove", (event) => {
+    const documentMouseMove = (event) => {
       parallax(
-        event,
-        document.querySelectorAll(".sectionBkgrdTxt"),
-        distanceLevels.Second
+          event,
+          document.querySelectorAll(".sectionBkgrdTxt"),
+          distanceLevels.Second
       );
-    });
+    }
+
+    document.addEventListener("mousemove", documentMouseMove);
 
     const pageContent = document.querySelector(".aboutContent");
 
@@ -63,6 +64,7 @@ export default function About({ SSAnimFinished }) {
       );
     return () => {
       pageContent?.removeEventListener("scroll", scrollPercentageFunction);
+      document.removeEventListener("mousemove", documentMouseMove);
     };
   }, [SSAnimFinished]);
 

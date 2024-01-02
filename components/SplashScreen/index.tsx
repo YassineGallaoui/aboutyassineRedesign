@@ -15,11 +15,11 @@ export default function SplashScreen({
   const baseDirectory = `C:\\Users\\yas> `;
   const directoryProjects = `C:\\Users\\yas\\projects> `;
   const directoryYassineRedesign = `C:\\Users\\yas\\projects\\yasRedesign> `;
-  const texhnicalText1 = `cd projects`;
-  const texhnicalText2 = `cd yasRedesign`;
-  const texhnicalText3 = `code .`;
-  const texhnicalText4 = `npm run dev`;
-  const texhnicalText5 = `[··············································]`;
+  const technicalText1 = `cd projects`;
+  const technicalText2 = `cd yasRedesign`;
+  const technicalText3 = `code .`;
+  const technicalText4 = `npm run dev`;
+  const technicalText5 = `[··············································]`;
 
   const [text1Completed, setText1Completed] = useState(false);
   const [text2Completed, setText2Completed] = useState(false);
@@ -70,7 +70,7 @@ export default function SplashScreen({
           <span>{baseDirectory}</span>
           <span>
             <TypingText
-              text={texhnicalText1}
+              text={technicalText1}
               updateCompletion={setText1Completed}
             />
           </span>
@@ -83,7 +83,7 @@ export default function SplashScreen({
           <span>
             {text1Completed && (
               <TypingText
-                text={texhnicalText2}
+                text={technicalText2}
                 updateCompletion={setText2Completed}
               />
             )}
@@ -97,7 +97,7 @@ export default function SplashScreen({
           <span>
             {text2Completed && (
               <TypingText
-                text={texhnicalText3}
+                text={technicalText3}
                 updateCompletion={setText3Completed}
               />
             )}
@@ -111,7 +111,7 @@ export default function SplashScreen({
           <span>
             {text3Completed && (
               <TypingText
-                text={texhnicalText4}
+                text={technicalText4}
                 updateCompletion={setText4Completed}
               />
             )}
@@ -121,7 +121,7 @@ export default function SplashScreen({
               <>
                 <br />
                 <ProgressBarCMD
-                  text={texhnicalText5}
+                  text={technicalText5}
                   updateCompletion={setText5Completed}
                 />
               </>

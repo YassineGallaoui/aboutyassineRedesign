@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import stylesHome from "../styles/scss/General.module.scss";
-import { distanceLevels, parallax } from "../utils/utility";
+import {distanceLevels, hideFrame, parallax, unhideFrame} from "../utils/utility";
 import defaultImg from "../public/imgs/default.webp";
 import Image, { StaticImageData } from "next/image";
 import { Project, projectsDataset } from "../dataset";
@@ -9,7 +9,7 @@ import ProjectModal from "../components/ProjectModal";
 import { colorApplicator } from "../utils/colorFunctions";
 import { motion } from "framer-motion";
 import ProjectModalVertical from "../components/ProjectModalVertical";
-import { breakpoints } from "../utils/breakpoints";
+import {breakpoints, getDeviceType} from "../utils/breakpoints";
 
 type HomeProps = {
   updateCursorText: Function;
@@ -46,15 +46,15 @@ export default function Home({
   useEffect(() => {
     colorApplicator(lightColor, darkColor);
 
-    document.addEventListener("mousemove", (event) => mouseMoveHomepage(event));
+    document.addEventListener("mousemove", mouseMoveHomepage);
 
     setMainStructureParams();
-    window.addEventListener("resize", () => setMainStructureParams());
+    window.addEventListener("resize", setMainStructureParams);
 
     // Clean up the event listener when the component unmounts
     return () => {
-      document.addEventListener("mousemove", mouseMoveHomepage);
-      window.addEventListener("resize", setMainStructureParams);
+      document.removeEventListener("mousemove", mouseMoveHomepage);
+      window.removeEventListener("resize", setMainStructureParams);
     };
   }, []);
 
@@ -80,34 +80,66 @@ export default function Home({
   }, [SSAnimFinished]);
 
   useEffect(() => {
+    const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
+    if (projectOpenedBoolean && (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)) {
+      console.log('projectOpenedBoolean', projectOpenedBoolean);
+      hideFrame(themeContainer);
+    }
+    if (projectOpenedBoolean && (getDeviceType() === breakpoints.desktop || getDeviceType() === breakpoints.desktopLarge)) {
+      unhideFrame(themeContainer);
+    }
+  }, [deviceType]);
+
+  useEffect(() => {
+    const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
+    if (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)
+      if(projectOpenedBoolean)
+        hideFrame(themeContainer);
+      else
+        unhideFrame(themeContainer);
+  }, [projectOpenedBoolean]);
+
+  useEffect(() => {
     let projects = document.querySelectorAll(".triangleProjectImg");
-    projects.forEach((el) => {
-      el.addEventListener("mouseover", () => {
-        const elementId = el.getAttribute("data-project-id");
-        setProjectIsHovered(true);
-        if (elementId != null) {
-          const elementData = projectsDataset.find(
+
+    const elMouseOver = (el) => () => {
+      const elementId = el.getAttribute("data-project-id");
+      setProjectIsHovered(true);
+      if (elementId != null) {
+        const elementData = projectsDataset.find(
             (el) => el.id + "" === elementId
-          );
-          setTempImageHover(elementData.media[0]);
-          const tl1 = gsap.timeline({ delay: 0 });
-          tl1.fromTo(
+        );
+        setTempImageHover(elementData.media[0]);
+        const tl1 = gsap.timeline({ delay: 0 });
+        tl1.fromTo(
             ".bigBackgroundImage",
             { scale: 1.1, opacity: 0 },
             { scale: 1.02, opacity: 1, duration: 1, ease: "power3.out" }
-          );
-        }
-      });
-      el.addEventListener("mouseout", () => {
-        setProjectIsHovered(false);
-        const tl1 = gsap.timeline({ delay: 0 });
-        tl1.fromTo(
+        );
+      }
+    }
+
+    const elMouseOut = () => {
+      setProjectIsHovered(false);
+      const tl1 = gsap.timeline({ delay: 0 });
+      tl1.fromTo(
           ".bigBackgroundImage",
           { scale: 1.02, opacity: 1 },
           { scale: 1.1, opacity: 0, duration: 1, ease: "power3.out" }
-        );
-      });
+      );
+    }
+
+    projects.forEach((el) => {
+      el.addEventListener("mouseover", elMouseOver(el));
+      el.addEventListener("mouseout", elMouseOut);
     });
+
+    return () => {
+      projects?.forEach((el) => {
+        el.removeEventListener("mouseover", elMouseOver(el));
+        el.removeEventListener("mouseout", elMouseOut);
+      });
+    }
   }, [trianglesPerRow]);
 
   useEffect(() => {
