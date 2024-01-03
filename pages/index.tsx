@@ -82,7 +82,6 @@ export default function Home({
   useEffect(() => {
     const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
     if (projectOpenedBoolean && (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)) {
-      console.log('projectOpenedBoolean', projectOpenedBoolean);
       hideFrame(themeContainer);
     }
     if (projectOpenedBoolean && (getDeviceType() === breakpoints.desktop || getDeviceType() === breakpoints.desktopLarge)) {
