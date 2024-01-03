@@ -90,15 +90,6 @@ export default function Home({
   }, [deviceType]);
 
   useEffect(() => {
-    const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
-    if (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)
-      if(projectOpenedBoolean)
-        hideFrame(themeContainer);
-      else
-        unhideFrame(themeContainer);
-  }, [projectOpenedBoolean]);
-
-  useEffect(() => {
     let projects = document.querySelectorAll(".triangleProjectImg");
 
     const elMouseOver = (el) => () => {
@@ -110,10 +101,10 @@ export default function Home({
         );
         setTempImageHover(elementData.media[0]);
         const tl1 = gsap.timeline({ delay: 0 });
-        tl1.fromTo(
+        gsap.killTweensOf(".bigBackgroundImage");
+        tl1.to(
             ".bigBackgroundImage",
-            { scale: 1.1, opacity: 0 },
-            { scale: 1.02, opacity: 1, duration: 1, ease: "power3.out" }
+            { scale: 1.02, opacity: 1, duration: 5, ease: "expo.out", }
         );
       }
     }
@@ -121,10 +112,10 @@ export default function Home({
     const elMouseOut = () => {
       setProjectIsHovered(false);
       const tl1 = gsap.timeline({ delay: 0 });
-      tl1.fromTo(
+      gsap.killTweensOf(".bigBackgroundImage");
+      tl1.to(
           ".bigBackgroundImage",
-          { scale: 1.02, opacity: 1 },
-          { scale: 1.1, opacity: 0, duration: 1, ease: "power3.out" }
+          { scale: 1.1, opacity: 0, duration: 1, ease: "expo.out" }
       );
     }
 
@@ -153,6 +144,13 @@ export default function Home({
         zIndex: zIndexMatteBKGClosed,
       });
     }
+
+    const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
+    if (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)
+      if(projectOpenedBoolean)
+        hideFrame(themeContainer);
+      else
+        unhideFrame(themeContainer);
   }, [projectOpenedBoolean]);
 
   function mouseMoveHomepage(event: MouseEvent | Event) {
@@ -185,7 +183,8 @@ export default function Home({
   }
 
   const handleImageHover = (id: number) => {
-    gsap.to(`#image-${id}`, { duration: 0.5, scale: 1.1 });
+    gsap.killTweensOf(`#image`);
+    gsap.to(`#image-${id}`, { duration: 5, scale: 1.1, ease: "expo.out" });
     gsap.to(`.image:not(#image-${id})`, {
       duration: 0.5,
       scale: 0.95,
@@ -195,7 +194,8 @@ export default function Home({
   };
 
   const handleImageLeave = (id: number) => {
-    gsap.to(`#image-${id}`, { duration: 0.5, scale: 1 });
+    gsap.killTweensOf(`.image`);
+    gsap.to(`#image-${id}`, { duration: 1, scale: 1, ease: "expo.out" });
     gsap.to(".image", { duration: 0.5, scale: 1, opacity: 1 });
     cursorIsHover(false);
   };
