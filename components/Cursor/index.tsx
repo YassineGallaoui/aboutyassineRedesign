@@ -5,11 +5,13 @@ import gsap from "gsap";
 export default function Cursor({ hovered, txt }) {
   const [isTouchOnlyDevice, setIsTouchOnlyDevice] = useState(false);
   const tl = gsap.timeline({});
+  const [movedPointer, setMovedPointer] = useState<boolean>(false);
 
   useEffect(() => {
     const ccc: HTMLElement = document.querySelector(".customCursorContainer");
     const cc: HTMLElement = document.querySelector(".customCursor");
     const handleMouseMove = (event: MouseEvent) => {
+      setMovedPointer(true);
       ccc.style.left = event.clientX + "px";
       ccc.style.top = event.clientY + "px";
     };
@@ -66,7 +68,7 @@ export default function Cursor({ hovered, txt }) {
       className={
         styles.customCursorContainer +
         " customCursorContainer " +
-        (isTouchOnlyDevice ? styles.hiddenPointer : "")
+        (isTouchOnlyDevice ? styles.hiddenPointer : !movedPointer ? styles.hiddenPointer : "")
       }
     >
       <div
