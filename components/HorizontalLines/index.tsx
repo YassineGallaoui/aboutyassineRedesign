@@ -29,7 +29,7 @@ const HorizontalLines = () => {
 
     const maxLinesBefore = Math.floor(existingLineTop / minDistance);
     const maxLinesAfter = Math.floor(
-      (windowHeight - existingLineTop) / minDistance + 1,
+      (windowHeight - existingLineTop) / minDistance + 3,
     );
 
     setLineCountBefore(maxLinesBefore);

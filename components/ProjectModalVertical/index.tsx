@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./ProjectModalVertical.module.scss";
 import gsap from "gsap";
-import { Project } from "../../dataset";
+import { Project } from "../../utils/dataset";
 import CarouselMobile from "../CarouselMobile";
 import { RotateDevice } from "../RotateDevice";
 

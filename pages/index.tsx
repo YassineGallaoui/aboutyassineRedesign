@@ -3,7 +3,7 @@ import stylesHome from "../styles/scss/General.module.scss";
 import {distanceLevels, hideFrame, parallax, unhideFrame} from "../utils/utility";
 import defaultImg from "../public/imgs/default.webp";
 import Image, { StaticImageData } from "next/image";
-import { Project, projectsDataset } from "../dataset";
+import { Project, projectsDataset } from "../utils/dataset";
 import gsap from "gsap";
 import ProjectModal from "../components/ProjectModal";
 import { colorApplicator } from "../utils/colorFunctions";

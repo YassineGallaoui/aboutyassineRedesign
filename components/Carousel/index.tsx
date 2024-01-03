@@ -4,7 +4,7 @@ import Image from "next/image";
 import arrRight from "../../public/icons/arr.svg";
 import arrExpand from "../../public/icons/expand.svg";
 import gsap from "gsap";
-import { Project } from "../../dataset";
+import { Project } from "../../utils/dataset";
 import {
   textAnimationBackward,
   textAnimationForward,
