@@ -122,7 +122,12 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
               <p>
                 <span
                   className={stylesAbout.singleWord}
-                >{`software developer`}</span>
+                >{`software engineer`}</span>
+              </p>
+              <p>
+                <span
+                  className={stylesAbout.singleWord}
+                >{`frontend expert`}</span>
               </p>
               <p>
                 <span
