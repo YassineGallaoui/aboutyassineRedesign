@@ -44,6 +44,7 @@ body {
     }
 
     .underlineLineWithAnim {
+        display: inline-block;
         &::before {
             display: inline;
             position: absolute;

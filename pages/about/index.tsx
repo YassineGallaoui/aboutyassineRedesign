@@ -256,17 +256,14 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                   className={stylesAbout.meContainer__txt__description__big}
                 >
                   <a
-                    className={
-                      stylesAbout.underlineLineWithAnim +
-                      " underlineLineWithAnim"
-                    }
+                    className={" underlineLineWithAnim"}
                     href={"mailto:myassine.gallaoui@gmail.com"}
                     onMouseOver={() => cursorIsHover(true)}
                     onMouseLeave={() => cursorIsHover(false)}
                     rel="noreferrer noopener"
                     target="_blank"
                   >
-                    {` email`}
+                    {`email`}
                   </a>
                 </span>
                 <span
@@ -288,7 +285,7 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                     rel="noreferrer noopener"
                     target="_blank"
                   >
-                    {` LinkedIn`}
+                    {`LinkedIn`}
                   </a>
                 </span>
                 <span
