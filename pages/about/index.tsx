@@ -242,7 +242,7 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                 >{`as well as an informal`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
-                >{` Arabic`}</span>
+                >{` arabic`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__small}
                 >{`.`}</span>
