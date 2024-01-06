@@ -106,6 +106,12 @@ export default function ProjectModalVertical({
                 </th>
                 <td>{content.workingFor}</td>
               </tr>
+              <tr className={styles.bottomBorder + " bottomBorder"}>
+                <th className={styles.characteristic + " characteristic"}>
+                  <span>{"Year"}</span>
+                </th>
+                <td>{content.year}</td>
+              </tr>
               <tr aria-rowspan={2} className={styles.descriptionTitle}>
                 <th
                   colSpan={2}

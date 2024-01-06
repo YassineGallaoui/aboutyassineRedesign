@@ -90,7 +90,7 @@ export const hideFrame = (themeContainer) => {
     duration: 0.5,
   });
   gsap.to(`.sectionsNav`, {
-    x: "4.5rem",
+    x: "5rem",
     y: 0,
     duration: 0.3,
   });
