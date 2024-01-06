@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import stylesAbout from "../../styles/scss/General.module.scss";
 import {
   createSpanStructure,
@@ -8,8 +8,33 @@ import {
 } from "../../utils/utility";
 import HorizontalLines from "../../components/HorizontalLines";
 import { motion } from "framer-motion";
+import gsap from "gsap";
 
-export default function About({ SSAnimFinished }) {
+export default function About({ SSAnimFinished, cursorIsHover }) {
+
+  const [hasComponentMounted, setHasComponentMounted] = useState(false);
+
+  useEffect(() => {
+    if (SSAnimFinished && hasComponentMounted) {
+      const tlInitial = gsap.timeline({ delay: 0.2 });
+      tlInitial
+          .to(".mainMotionDiv", {
+            duration: 0,
+            top: 80,
+            scale: 1,
+            opacity: 0.8,
+          })
+          .to(".mainMotionDiv", {
+            duration: 1.8,
+            top: 0,
+            scale: 1,
+            opacity: 1,
+          });
+    } else {
+      setHasComponentMounted(true);
+    }
+  }, [SSAnimFinished]);
+
   useEffect(() => {
     const welcomeArray = ["Hi!", "Hallo!", "¡Hola!", "Salut!", "Ciao!"];
     const welcomeWord = document.querySelector(".welcomeWord");
@@ -21,14 +46,15 @@ export default function About({ SSAnimFinished }) {
       }, 5000);
     };
     startWelcomeAnimation(i);
-
-    document.addEventListener("mousemove", (event) => {
+    const documentMouseMove = (event) => {
       parallax(
-        event,
-        document.querySelectorAll(".sectionBkgrdTxt"),
-        distanceLevels.Second
+          event,
+          document.querySelectorAll(".sectionBkgrdTxt"),
+          distanceLevels.Second
       );
-    });
+    }
+
+    document.addEventListener("mousemove", documentMouseMove);
 
     const pageContent = document.querySelector(".aboutContent");
 
@@ -38,6 +64,7 @@ export default function About({ SSAnimFinished }) {
       );
     return () => {
       pageContent?.removeEventListener("scroll", scrollPercentageFunction);
+      document.removeEventListener("mousemove", documentMouseMove);
     };
   }, [SSAnimFinished]);
 
@@ -61,11 +88,17 @@ export default function About({ SSAnimFinished }) {
       exit={{ x: "50vw", opacity: 0 }}
       transition={{ duration: 1, ease: [0.8, 0.28, 0, 1] }}
     >
-      <div className={stylesAbout.meBkgrdTxt + " sectionBkgrdTxt"}>About</div>
+      <div className={stylesAbout.meBkgrdTxt + " sectionBkgrdTxt"}>
+        <span>A</span>
+        <span>b</span>
+        <span>o</span>
+        <span>u</span>
+        <span>t</span>
+      </div>
       {SSAnimFinished && <div className={stylesAbout.verticalLine}></div>}
       {SSAnimFinished && <div className={stylesAbout.horizontalLine}></div>}
       {SSAnimFinished && <HorizontalLines />}
-      <div className={stylesAbout.meContainer}>
+      <div className={stylesAbout.meContainer + " meContainer"}>
         <div
           className={stylesAbout.meContainer__txt + " meContainerRow row gx-5"}
         >
@@ -128,10 +161,10 @@ export default function About({ SSAnimFinished }) {
                 >{`a`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
-                >{` software developer, `}</span>
+                >{` software engineer `}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__small}
-                >{`particularly capable in`}</span>
+                >{`specialized in`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
                 >{` frontend development. `}</span>
@@ -140,10 +173,24 @@ export default function About({ SSAnimFinished }) {
                 >{`The majority of my`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
-                >{` interests gravitate around IT and CS, `}</span>
+                >{` interests gravitate around IT and CS `}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__small}
-                >{`going from digital ethics to digital law and from UX/UI design to software development. My focus is always into making`}</span>
+                >
+                  {`- going from digital ethics to digital law and from UX/UI design to software development-, but generally I'm also interested in`}
+                </span>
+                <span
+                  className={stylesAbout.meContainer__txt__description__big}
+                >{` architecture `}</span>
+                <span
+                  className={stylesAbout.meContainer__txt__description__small}
+                >{`and`}</span>
+                <span
+                  className={stylesAbout.meContainer__txt__description__big}
+                >{` art`}</span>
+                <span
+                  className={stylesAbout.meContainer__txt__description__small}
+                >{`. My focus is always into making`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
                 >{` software `}</span>
@@ -159,32 +206,6 @@ export default function About({ SSAnimFinished }) {
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
                 >{` is aesthetically captivating. `}</span>
-                <span
-                  className={stylesAbout.meContainer__txt__description__small}
-                >{`Generally I am also`}</span>
-                <span
-                  className={stylesAbout.meContainer__txt__description__big}
-                >{` interested in art and architecture.`}</span>
-              </p>
-              <p>
-                <span
-                  className={stylesAbout.meContainer__txt__description__small}
-                >{`→ Although I am currently working`}</span>
-                <span
-                  className={stylesAbout.meContainer__txt__description__big}
-                >{` full time at Deloitte Digital, in Milan, `}</span>
-                <span
-                  className={stylesAbout.meContainer__txt__description__small}
-                >{`I am always interested in`}</span>
-                <span
-                  className={stylesAbout.meContainer__txt__description__big}
-                >{` new stimulating and meaningful projects, `}</span>
-                <span
-                  className={stylesAbout.meContainer__txt__description__small}
-                >{` so if you feel like it, reach me thru `}</span>
-                <span
-                  className={stylesAbout.meContainer__txt__description__big}
-                >{` email or LinkedIn.`}</span>
               </p>
               <p>
                 <span
@@ -198,25 +219,78 @@ export default function About({ SSAnimFinished }) {
                 >{`is`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
-                >{` Italian `}</span>
+                >{` italian `}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__small}
                 >{`but I also speak`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
-                >{` fluent English, `}</span>
+                >{` fluent english, `}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__small}
-                >{`a rusty `}</span>
+                >{`a bit of`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
-                >{` French, `}</span>
+                >{` french, `}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__small}
                 >{`as well as an informal`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
                 >{` Arabic`}</span>
+                <span
+                  className={stylesAbout.meContainer__txt__description__small}
+                >{`.`}</span>
+              </p>
+              <p>
+                <span
+                  className={stylesAbout.meContainer__txt__description__small}
+                >{`→ I am always interested in`}</span>
+                <span
+                  className={stylesAbout.meContainer__txt__description__big}
+                >{` new meaningful and stimulating projects, `}</span>
+                <span
+                  className={stylesAbout.meContainer__txt__description__small}
+                >{` so if you think we can do something great together please reach me thru `}</span>
+                <span
+                  className={stylesAbout.meContainer__txt__description__big}
+                >
+                  <a
+                    className={
+                      stylesAbout.underlineLineWithAnim +
+                      " underlineLineWithAnim"
+                    }
+                    href={"mailto:myassine.gallaoui@gmail.com"}
+                    onMouseOver={() => cursorIsHover(true)}
+                    onMouseLeave={() => cursorIsHover(false)}
+                    rel="noreferrer noopener"
+                    target="_blank"
+                  >
+                    {` email`}
+                  </a>
+                </span>
+                <span
+                  className={stylesAbout.meContainer__txt__description__small}
+                >{` or `}</span>
+                <span
+                  className={stylesAbout.meContainer__txt__description__big}
+                >
+                  <a
+                    className={
+                      stylesAbout.underlineLineWithAnimTwo +
+                      " underlineLineWithAnim"
+                    }
+                    href={
+                      "https://www.linkedin.com/in/mohamed-yassine-gallaoui/"
+                    }
+                    onMouseOver={() => cursorIsHover(true)}
+                    onMouseLeave={() => cursorIsHover(false)}
+                    rel="noreferrer noopener"
+                    target="_blank"
+                  >
+                    {` LinkedIn`}
+                  </a>
+                </span>
                 <span
                   className={stylesAbout.meContainer__txt__description__small}
                 >{`.`}</span>

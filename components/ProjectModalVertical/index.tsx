@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import styles from "./ProjectModalVertical.module.scss";
 import gsap from "gsap";
-import { Project } from "../../dataset";
+import { Project } from "../../utils/dataset";
 import CarouselMobile from "../CarouselMobile";
 import { RotateDevice } from "../RotateDevice";
+
 
 type ModalProps = {
   content: Project;
@@ -25,7 +26,6 @@ export default function ProjectModalVertical({
   useEffect(() => {
     const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
     if (open) {
-      themeContainer.classList.add("quickTransition");
       gsap.to(`.projectModalContainer`, {
         position: "fixed",
         width: "90dvw",
@@ -37,31 +37,6 @@ export default function ProjectModalVertical({
         yPercent: -50,
         zIndex: "20",
         opacity: 1,
-      });
-      gsap.to(`.logoWrapper`, {
-        x: "-4rem",
-        y: "-4rem",
-        duration: 0.5
-      });
-      gsap.to(`.lastUpdateText`, {
-        x: "-4rem",
-        y: "4rem",
-        duration: 0.5
-      });
-      gsap.to(`.themeContainer`, {
-        x: "4rem",
-        y: "-4rem",
-        duration: 0.5,
-      });
-      gsap.to(`.sectionsNav`, {
-        x: "4.5rem",
-        y: 0,
-        duration: 0.3,
-      });
-      gsap.to(`.contacts`, {
-        x: "4rem",
-        y: "4rem",
-        duration: 0.5,
       });
     } else {
       gsap.to(`.projectModalContainer`, {
@@ -75,19 +50,6 @@ export default function ProjectModalVertical({
         zIndex: "20",
         opacity: 0,
       });
-      gsap.to(`.logoWrapper, .lastUpdateText, .themeContainer, .contacts`, {
-        x: 0,
-        y: 0,
-        duration: 0.5,
-      });
-      gsap.to(`.sectionsNav`, {
-        x: "2rem",
-        y: 0,
-        duration: 0.7,
-      });
-      setTimeout(() => {
-        themeContainer.classList.remove("quickTransition");
-      }, 600);
     }
   }, [open]);
 
@@ -143,6 +105,12 @@ export default function ProjectModalVertical({
                   <span>{"Working for"}</span>
                 </th>
                 <td>{content.workingFor}</td>
+              </tr>
+              <tr className={styles.bottomBorder + " bottomBorder"}>
+                <th className={styles.characteristic + " characteristic"}>
+                  <span>{"Year"}</span>
+                </th>
+                <td>{content.year}</td>
               </tr>
               <tr aria-rowspan={2} className={styles.descriptionTitle}>
                 <th

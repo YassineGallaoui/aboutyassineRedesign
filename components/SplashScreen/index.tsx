@@ -15,11 +15,11 @@ export default function SplashScreen({
   const baseDirectory = `C:\\Users\\yas> `;
   const directoryProjects = `C:\\Users\\yas\\projects> `;
   const directoryYassineRedesign = `C:\\Users\\yas\\projects\\yasRedesign> `;
-  const texhnicalText1 = `cd projects`;
-  const texhnicalText2 = `cd yasRedesign`;
-  const texhnicalText3 = `code .`;
-  const texhnicalText4 = `npm run dev`;
-  const texhnicalText5 = `[··············································]`;
+  const technicalText1 = `cd projects`;
+  const technicalText2 = `cd yasRedesign`;
+  const technicalText3 = `code .`;
+  const technicalText4 = `npm run dev`;
+  const technicalText5 = `[··············································]`;
 
   const [text1Completed, setText1Completed] = useState(false);
   const [text2Completed, setText2Completed] = useState(false);
@@ -30,12 +30,29 @@ export default function SplashScreen({
   useEffect(() => {
     if (text5Completed) {
       const SSContainer = document.querySelector(".SSContainer");
+      const SSWrapper = document.querySelector(".SSWrapper");
       setTimeout(() => {
-        tl.to(SSContainer, {
-          top: "-200vh",
-          duration: 1,
-        });
-      }, 500);
+        tl.to(SSWrapper, {
+          top: "-200",
+          opacity: "0",
+          duration: 0.6,
+        }, 0).to(SSContainer, {
+          opacity: "0",
+          duration: 0.5,
+        }, 0.1).to(SSContainer, {
+          height: "0vh",
+          duration: 0,
+        }, '>').to(SSWrapper, {
+          height: "0vh",
+          duration: 0,
+        }, '>').to(SSContainer, {
+          zIndex: "-1",
+          duration: 0,
+        }, '>').to(SSWrapper, {
+          zIndex: "-1",
+          duration: 0,
+        }, '>');;
+      }, 200);
       setSSAnimFinished(true);
     }
   }, [text5Completed]);
@@ -43,73 +60,75 @@ export default function SplashScreen({
   return displaySS ? (
     <div className={styles.SSContainer + " SSContainer"}>
       <Image
-        id={styles.logoImageSS}
-        src={logoY}
-        alt={`Yassine's Portfolio logo`}
-        fill
+          id={styles.logoImageSS}
+          src={logoY}
+          alt={`Yassine's Portfolio logo`}
+          fill
       ></Image>
-      <div className={styles.codeText}>
-        <span>{baseDirectory}</span>
-        <span>
-          <TypingText
-            text={texhnicalText1}
-            updateCompletion={setText1Completed}
-          />
-        </span>
-        {text1Completed && (
-          <>
-            <br />
-            <span>{directoryProjects}</span>
-          </>
-        )}
-        <span>
+      <div className={styles.SSWrapper + " SSWrapper"}>
+        <div className={styles.codeText}>
+          <span>{baseDirectory}</span>
+          <span>
+            <TypingText
+              text={technicalText1}
+              updateCompletion={setText1Completed}
+            />
+          </span>
           {text1Completed && (
-            <TypingText
-              text={texhnicalText2}
-              updateCompletion={setText2Completed}
-            />
-          )}
-        </span>
-        {text2Completed && (
-          <>
-            <br />
-            <span>{directoryYassineRedesign}</span>
-          </>
-        )}
-        <span>
-          {text2Completed && (
-            <TypingText
-              text={texhnicalText3}
-              updateCompletion={setText3Completed}
-            />
-          )}
-        </span>
-        {text3Completed && (
-          <>
-            <br />
-            <span>{directoryYassineRedesign}</span>
-          </>
-        )}
-        <span>
-          {text3Completed && (
-            <TypingText
-              text={texhnicalText4}
-              updateCompletion={setText4Completed}
-            />
-          )}
-        </span>
-        <span>
-          {text4Completed && (
             <>
               <br />
-              <ProgressBarCMD
-                text={texhnicalText5}
-                updateCompletion={setText5Completed}
-              />
+              <span>{directoryProjects}</span>
             </>
           )}
-        </span>
-        {!text4Completed && <div className={styles.textCursor}></div>}
+          <span>
+            {text1Completed && (
+              <TypingText
+                text={technicalText2}
+                updateCompletion={setText2Completed}
+              />
+            )}
+          </span>
+          {text2Completed && (
+            <>
+              <br />
+              <span>{directoryYassineRedesign}</span>
+            </>
+          )}
+          <span>
+            {text2Completed && (
+              <TypingText
+                text={technicalText3}
+                updateCompletion={setText3Completed}
+              />
+            )}
+          </span>
+          {text3Completed && (
+            <>
+              <br />
+              <span>{directoryYassineRedesign}</span>
+            </>
+          )}
+          <span>
+            {text3Completed && (
+              <TypingText
+                text={technicalText4}
+                updateCompletion={setText4Completed}
+              />
+            )}
+          </span>
+          <span>
+            {text4Completed && (
+              <>
+                <br />
+                <ProgressBarCMD
+                  text={technicalText5}
+                  updateCompletion={setText5Completed}
+                />
+              </>
+            )}
+          </span>
+          {!text4Completed && <div className={styles.textCursor}></div>}
+        </div>
       </div>
     </div>
   ) : (

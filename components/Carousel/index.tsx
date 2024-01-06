@@ -4,7 +4,7 @@ import Image from "next/image";
 import arrRight from "../../public/icons/arr.svg";
 import arrExpand from "../../public/icons/expand.svg";
 import gsap from "gsap";
-import { Project } from "../../dataset";
+import { Project } from "../../utils/dataset";
 import {
   textAnimationBackward,
   textAnimationForward,
@@ -69,13 +69,13 @@ function Carousel({
   const expandBtnMouseOver = () => {
     expandedCarousel
       ? tl.to(expandBtnRef.current, { duration: 0.3, scale: 1 })
-      : tl.to(expandBtnRef.current, { duration: 0.3, scale: 1.4 });
+      : tl.to(expandBtnRef.current, { duration: 0.3, scale: 1.2 });
     cursorIsHover(true);
   };
 
   const expandBtnMouseLeave = () => {
     expandedCarousel
-      ? tl.to(expandBtnRef.current, { duration: 0.3, scale: 1.4 })
+      ? tl.to(expandBtnRef.current, { duration: 0.3, scale: 1.2 })
       : tl.to(expandBtnRef.current, { duration: 0.3, scale: 1 });
     cursorIsHover(false);
   };
@@ -94,7 +94,7 @@ function Carousel({
       duration: 0.4,
       right: "3rem",
     })
-      .to(expandBtnRef.current, { duration: 0, scale: 1.4 })
+      .to(expandBtnRef.current, { duration: 0, scale: 1.2 })
       .to(
         ".upperControls",
         {
@@ -518,7 +518,7 @@ function Carousel({
               }
               onClick={() => thumbnailClickHandle(index)}
             >
-              <Image src={el} alt={altText} fill></Image>
+              <Image src={el} alt={altText} fill={true} placeholder={"blur"}></Image>
             </div>
           ))}
         </div>

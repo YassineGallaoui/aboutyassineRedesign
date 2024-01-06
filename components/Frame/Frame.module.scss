@@ -148,7 +148,7 @@
     }
     &__nav {
       padding: 1rem 2rem 1rem 1rem;
-      transform: translateX(2rem);
+      transform: rotateZ(90deg) translate(0%, calc(-50% - 1.2rem));
       box-sizing: content-box;
       pointer-events: auto;
       display: flex;
@@ -237,51 +237,10 @@
           }
         }
       }
-      &__singleNavItem {
-        position: relative;
-        transform: rotateZ(90deg) translate(50%, 30%);
-        transform-origin: right;
-      }
-      &__singleNavItemUnderline {
-        height: 0.05rem;
-        width: 100%;
-        transition: background-color $change-theme-duration;
-        background-color: $black;
-        margin-right: 1.2rem;
-        &::after{
-          content: '';
+      &__navItem{
+        &__singleNavItem {
           position: relative;
-          display: block;
-          top: 0;
-          left: 0;
-          width: 0;
-          height: 0.05rem;
-          transition: background-color $change-theme-duration;
-          background-color: $white;
-          animation: underlineAnimation 4s linear infinite;
-
-        }
-        @keyframes underlineAnimation {
-          0% {
-            width: 0;
-            left: 0;
-          }
-          40% {
-            width: 0;
-            left: 0;
-          }
-          50% {
-            width: 20%;
-            left: 50%;
-          }
-          60% {
-            width: 0;
-            left: 100%;
-          }
-          100% {
-            width: 0;
-            left: 100%;
-          }
+          transform-origin: right;
         }
       }
     }
@@ -379,15 +338,6 @@
 }
 
 html[data-theme="dark"] {
-
-  .frameContainer__right__nav__singleNavItemUnderline {
-    transition: background-color $change-theme-duration;
-    background-color: $white !important;
-    &::after{transition: background-color $change-theme-duration;
-      background-color: $black;
-    }
-  }
-
   .frameContainer__left__lastUpdate{
     transition: color $change-theme-duration;
     color: $semitransparentLight4;

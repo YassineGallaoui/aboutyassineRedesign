@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import stylesHome from "../styles/scss/General.module.scss";
-import { distanceLevels, parallax } from "../utils/utility";
+import {distanceLevels, hideFrame, parallax, unhideFrame} from "../utils/utility";
 import defaultImg from "../public/imgs/default.webp";
 import Image, { StaticImageData } from "next/image";
-import { Project, projectsDataset } from "../dataset";
+import { Project, projectsDataset } from "../utils/dataset";
 import gsap from "gsap";
 import ProjectModal from "../components/ProjectModal";
 import { colorApplicator } from "../utils/colorFunctions";
 import { motion } from "framer-motion";
 import ProjectModalVertical from "../components/ProjectModalVertical";
-import { breakpoints } from "../utils/breakpoints";
+import {breakpoints, getDeviceType} from "../utils/breakpoints";
 
 type HomeProps = {
   updateCursorText: Function;
@@ -46,15 +46,15 @@ export default function Home({
   useEffect(() => {
     colorApplicator(lightColor, darkColor);
 
-    document.addEventListener("mousemove", (event) => mouseMoveHomepage(event));
+    document.addEventListener("mousemove", mouseMoveHomepage);
 
     setMainStructureParams();
-    window.addEventListener("resize", () => setMainStructureParams());
+    window.addEventListener("resize", setMainStructureParams);
 
     // Clean up the event listener when the component unmounts
     return () => {
-      document.addEventListener("mousemove", mouseMoveHomepage);
-      window.addEventListener("resize", setMainStructureParams);
+      document.removeEventListener("mousemove", mouseMoveHomepage);
+      window.removeEventListener("resize", setMainStructureParams);
     };
   }, []);
 
@@ -80,34 +80,56 @@ export default function Home({
   }, [SSAnimFinished]);
 
   useEffect(() => {
+    const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
+    if (projectOpenedBoolean && (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)) {
+      hideFrame(themeContainer);
+    }
+    if (projectOpenedBoolean && (getDeviceType() === breakpoints.desktop || getDeviceType() === breakpoints.desktopLarge)) {
+      unhideFrame(themeContainer);
+    }
+  }, [deviceType]);
+
+  useEffect(() => {
     let projects = document.querySelectorAll(".triangleProjectImg");
-    projects.forEach((el) => {
-      el.addEventListener("mouseover", () => {
-        const elementId = el.getAttribute("data-project-id");
-        setProjectIsHovered(true);
-        if (elementId != null) {
-          const elementData = projectsDataset.find(
+
+    const elMouseOver = (el) => () => {
+      const elementId = el.getAttribute("data-project-id");
+      setProjectIsHovered(true);
+      if (elementId != null) {
+        const elementData = projectsDataset.find(
             (el) => el.id + "" === elementId
-          );
-          setTempImageHover(elementData.media[0]);
-          const tl1 = gsap.timeline({ delay: 0 });
-          tl1.fromTo(
-            ".bigBackgroundImage",
-            { scale: 1.1, opacity: 0 },
-            { scale: 1.02, opacity: 1, duration: 1, ease: "power3.out" }
-          );
-        }
-      });
-      el.addEventListener("mouseout", () => {
-        setProjectIsHovered(false);
-        const tl1 = gsap.timeline({ delay: 0 });
-        tl1.fromTo(
-          ".bigBackgroundImage",
-          { scale: 1.02, opacity: 1 },
-          { scale: 1.1, opacity: 0, duration: 1, ease: "power3.out" }
         );
-      });
+        setTempImageHover(elementData.media[0]);
+        const tl1 = gsap.timeline({ delay: 0 });
+        gsap.killTweensOf(".bigBackgroundImage");
+        tl1.to(
+            ".bigBackgroundImage",
+            { scale: 1.02, opacity: 1, duration: 5, ease: "expo.out", }
+        );
+      }
+    }
+
+    const elMouseOut = () => {
+      setProjectIsHovered(false);
+      const tl1 = gsap.timeline({ delay: 0 });
+      gsap.killTweensOf(".bigBackgroundImage");
+      tl1.to(
+          ".bigBackgroundImage",
+          { scale: 1.1, opacity: 0, duration: 1, ease: "expo.out" }
+      );
+    }
+
+    projects.forEach((el) => {
+      el.addEventListener("mouseover", elMouseOver(el));
+      el.addEventListener("mouseout", elMouseOut);
     });
+
+    return () => {
+      projects?.forEach((el) => {
+        el.removeEventListener("mouseover", elMouseOver(el));
+        el.removeEventListener("mouseout", elMouseOut);
+      });
+    }
   }, [trianglesPerRow]);
 
   useEffect(() => {
@@ -122,6 +144,13 @@ export default function Home({
         zIndex: zIndexMatteBKGClosed,
       });
     }
+
+    const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
+    if (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)
+      if(projectOpenedBoolean)
+        hideFrame(themeContainer);
+      else
+        unhideFrame(themeContainer);
   }, [projectOpenedBoolean]);
 
   function mouseMoveHomepage(event: MouseEvent | Event) {
@@ -154,7 +183,8 @@ export default function Home({
   }
 
   const handleImageHover = (id: number) => {
-    gsap.to(`#image-${id}`, { duration: 0.5, scale: 1.1 });
+    gsap.killTweensOf(`#image`);
+    gsap.to(`#image-${id}`, { duration: 5, scale: 1.1, ease: "expo.out" });
     gsap.to(`.image:not(#image-${id})`, {
       duration: 0.5,
       scale: 0.95,
@@ -164,7 +194,8 @@ export default function Home({
   };
 
   const handleImageLeave = (id: number) => {
-    gsap.to(`#image-${id}`, { duration: 0.5, scale: 1 });
+    gsap.killTweensOf(`.image`);
+    gsap.to(`#image-${id}`, { duration: 1, scale: 1, ease: "expo.out" });
     gsap.to(".image", { duration: 0.5, scale: 1, opacity: 1 });
     cursorIsHover(false);
   };
@@ -215,27 +246,38 @@ export default function Home({
                     } as React.CSSProperties
                   }
                 >
-                  {(index === 0 ||
-                    index2 === 1 ||
-                    index2 === trianglesPerRow - 1) &&
-                    upper &&
-                    SSAnimFinished && (
-                      <div
-                        className={stylesHome.obliqueLineP}
-                        style={{ "--i": index2 } as React.CSSProperties}
-                      ></div>
-                    )}
-                  {(index === 0 ||
-                    index2 === 1 ||
-                    index2 === trianglesPerRow - 1) &&
-                    upper &&
-                    SSAnimFinished && (
-                      <div
-                        className={stylesHome.obliqueLineN}
-                        style={{ "--i": index2 } as React.CSSProperties}
-                      ></div>
-                    )}
-                  <div className={stylesHome.triangleProjectContent}></div>
+                  {((index === 0 && upper) ||
+                          index2 === 0 ||
+                          index2 === trianglesPerRow - 1)
+                      && (index2 % 2 === 0)
+                      && (index % 2 === 0)
+                      && SSAnimFinished && (
+                          <div
+                              className={stylesHome.obliqueLineP}
+                              style={{"--j": upper ? index : index + ((triangleRowsNumber + 1) / 2) } as React.CSSProperties}
+                          ></div>
+                      )}
+                  {((index === 0 && upper) ||
+                          index2 === trianglesPerRow - 1)
+                      && (index2 % 2 === 0 || (index2 === trianglesPerRow - 1 && index !== 0) || !upper)
+                      && (index % 2 === 0)
+                      && SSAnimFinished && (
+                          <div
+                              className={stylesHome.obliqueLineN}
+                              style={{"--j": upper ? index : index + ((triangleRowsNumber + 1) / 2) } as React.CSSProperties}
+                          ></div>
+                      )}
+                  <div className={stylesHome.triangleProjectContent}>
+                    <div
+                      id={`see-more-${index2 % 2 === 1 ? "odd" : "even"}-${
+                        projectsDataset[index2 - firstPositionProject]?.id
+                      }`}
+                      className={stylesHome.seeMoreText}
+                    >
+                        <span>
+                        </span>
+                    </div>
+                  </div>
                 </div>
               );
             })}
@@ -264,7 +306,16 @@ export default function Home({
       exit={{ x: "-50vw", opacity: 0 }}
       transition={{ duration: 1, ease: [0.8, 0.28, 0, 1] }}
     >
-      <div className={stylesHome.expBkgrdTxt + " sectionBkgrdTxt"}>Exp</div>
+      <div className={stylesHome.expBkgrdTxt + " sectionBkgrdTxt"}>
+        <span>P</span>
+        <span>r</span>
+        <span>o</span>
+        <span>j</span>
+        <span>e</span>
+        <span>c</span>
+        <span>t</span>
+        <span>s</span>
+      </div>
       <div
         className={
           stylesHome.currentPrjHovered +
@@ -290,8 +341,8 @@ export default function Home({
             } as React.CSSProperties
           }
         >
-          <div className={stylesHome.horizontalLineL} />
-          <div className={stylesHome.horizontalLineL} />
+          {SSAnimFinished && (<div className={stylesHome.horizontalLineL} style={{ "--i": triangleRowsNumber } as React.CSSProperties}/>)}
+          {SSAnimFinished && (<div className={stylesHome.horizontalLineL} style={{ "--i": triangleRowsNumber } as React.CSSProperties}/>)}
           {trianglesPerRow > 0 &&
             [...Array(trianglesPerRow).keys()].map((index2) => {
               if (
@@ -358,19 +409,38 @@ export default function Home({
                             projectsDataset[index2 - firstPositionProject]?.id
                           )
                         }
+                        onTouchEnd={(event) => {
+                            event.preventDefault()
+                            handleImageClick(
+                                projectsDataset[index2 - firstPositionProject]?.id
+                            )
+                          }
+                        }
+                        onTouchStart={(event) =>
+                            event.preventDefault()
+                        }
                         onClick={() =>
                           handleImageClick(
                             projectsDataset[index2 - firstPositionProject]?.id
                           )
                         }
                       />
+                      <div
+                        id={`see-more-${index2 % 2 === 1 ? "odd" : "even"}-${
+                          projectsDataset[index2 - firstPositionProject]?.id
+                        }`}
+                        className={stylesHome.seeMoreText}
+                      >
+                        <span>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 );
               }
             })}
-          <div className={stylesHome.horizontalLineR} />
-          <div className={stylesHome.horizontalLineR} />
+          {SSAnimFinished && (<div className={stylesHome.horizontalLineR} />)}
+          {SSAnimFinished && (<div className={stylesHome.horizontalLineR} />)}
         </div>
         {triangleRowsNumber > 0 && renderNonProjectTriangles(false)}
       </div>

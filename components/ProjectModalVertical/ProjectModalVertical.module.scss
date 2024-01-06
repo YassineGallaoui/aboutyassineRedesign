@@ -27,7 +27,7 @@
       position: absolute;
       width: 3px;
       height: 24px;
-      background-color: $semitransparentDark1;
+      background-color: $semitransparentLight1;
       transition:
         width $carousel-duration,
         height $carousel-duration,
@@ -62,7 +62,7 @@
     position: relative;
     padding: 1rem;
     flex: 1;
-    border-bottom: 3px dashed $semitransparentDark4;
+    border-bottom: 1px dashed $semitransparentDark4;
   }
 
   .projectModalVerticalDescriptionWrapper {

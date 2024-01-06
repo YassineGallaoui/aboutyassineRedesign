@@ -12,7 +12,11 @@
   mix-blend-mode: difference;
   pointer-events: none;
   &.hiddenPointer {
-    display: none;
+    opacity: 0;
+    .customCursor{
+      height: 0;
+      width: 0;
+    }
   }
   .customCursor {
     position: relative;
@@ -30,6 +34,7 @@
       background-color 0.6s;
     overflow: visible;
     display: flex;
+    opacity: 1;
     justify-content: center;
     align-items: center;
     animation: rotateCursor infinite 20s linear;
@@ -41,7 +46,7 @@
     .cursorDecoration2 {
       position: absolute;
       height: 10%;
-      width: 100%;
+      width: 102%;
       background: rgb(2, 0, 36);
       background: -moz-linear-gradient(
         90deg,

@@ -1,33 +1,50 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+
+interface TypingTextProps {
+  text: string;
+  updateCompletion: (isComplete: boolean) => void;
+}
 
 const getRandomInt = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-export default function TypingText({ text, updateCompletion }) {
+const TypingText: React.FC<TypingTextProps> = ({ text, updateCompletion }) => {
   const [displayText, setDisplayText] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const currentIndexRef = useRef(0);
 
   useEffect(() => {
+    let isMounted = true;
+
     const typeNextCharacter = () => {
-      if (currentIndex < text.length) {
-        const nextCharacter = text[currentIndex];
-        const typingSpeed = getRandomInt(50, 150); // Random speed between 100 and 500 ms
+      if (currentIndexRef.current < text.length) {
+        const nextCharacter = text[currentIndexRef.current];
+        const typingSpeed = getRandomInt(50, 150);
+
         setTimeout(() => {
-          setDisplayText(displayText + nextCharacter);
-          currentIndex !== text.length - 1
-            ? setCurrentIndex(currentIndex + 1)
-            : updateCompletion(true);
+          if (isMounted) {
+            setDisplayText((prevDisplayText) => prevDisplayText + nextCharacter);
+
+            currentIndexRef.current += 1;
+
+            if (currentIndexRef.current === text.length) {
+              updateCompletion(true);
+            } else {
+              typeNextCharacter();
+            }
+          }
         }, typingSpeed);
       }
     };
-    /* if(currentIndex===0)
-      setTimeout(() => {
-        typeNextCharacter();
-      }, getRandomInt(400, 900));
-    else */
+
     typeNextCharacter();
-  }, [currentIndex]);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [text, updateCompletion]);
 
   return <>{displayText}</>;
-}
+};
+
+export default TypingText;
