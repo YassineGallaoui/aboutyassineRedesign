@@ -10,6 +10,9 @@ import imgBeeTickets4 from "../public/imgs/bee-tickets-4.webp";
 import imgAutotorino1 from "../public/imgs/autotorino-1.webp";
 import imgAutotorino2 from "../public/imgs/autotorino-2.webp";
 import imgAutotorino3 from "../public/imgs/autotorino-3.webp";
+import imgAutotorino4 from "../public/imgs/autotorino-4.webp";
+import imgAutotorino5 from "../public/imgs/autotorino-5.webp";
+import imgAutotorino6 from "../public/imgs/autotorino-6.webp";
 import { StaticImageData } from "next/image";
 
 export type Project = {
@@ -35,6 +38,9 @@ export const projectsDatasetArray: Project[] = [
       imgAutotorino1,
       imgAutotorino2,
       imgAutotorino3,
+      imgAutotorino4,
+      imgAutotorino5,
+      imgAutotorino6
     ],
     workingFor: "Deloitte",
     description:
