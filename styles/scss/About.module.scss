@@ -166,13 +166,13 @@ html[data-theme="dark"] {
     }
     &__description {
       position: fixed;
-      padding-top: calc(15vh + 12.2rem);
-      padding-bottom: 9rem;
+      padding-top: calc(15vh + 12.8rem);
+      padding-bottom: 10rem;
       overflow: visible;
       overflow-y: scroll;
       z-index: 5;
       font-size: 3rem;
-      line-height: 4.7rem;
+      line-height: 4.75rem;
       height: 100dvh;
       scrollbar-width: none;
       @media screen and (max-width: $breakpointMobileSmall) {
@@ -192,34 +192,38 @@ html[data-theme="dark"] {
         display: none;
         width: 0;
       }
-      span {
-        position: relative;
-        top: 3rem;
-        opacity: 0;
+      p {
+        display: block;
         overflow: hidden;
+        margin-bottom: 4.6rem;
+        @media screen and (max-width: $breakpointMobileSmall) {
+            padding-bottom: 1.9rem;
+          }
+        span {
+          position: relative;
+          top: 3rem;
+          opacity: 0;
+          overflow: hidden;
+        }
+        .underlineLineWithAnimTwo:after{
+          animation-delay: 1s;
+        }
       }
       &__small {
         animation:
-          animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
-          animOpacitySmall cubic-bezier(1, 0, 0.75, 1) 2s;
+                animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
+                animOpacitySmall cubic-bezier(1, 0, 0.75, 1) 2s;
         animation-delay: 0.9s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
       }
       &__big {
         animation:
-          animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
-          animOpacity cubic-bezier(1, 0, 0.5, 1) 2s;
+                animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
+                animOpacity cubic-bezier(1, 0, 0.5, 1) 2s;
         animation-delay: 0.9s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
-      }
-      p {
-        display: block;
-        overflow: hidden;
-        @media screen and (max-width: $breakpointMobileSmall) {
-            padding-bottom: 1.9rem;
-          }
       }
     }
   }

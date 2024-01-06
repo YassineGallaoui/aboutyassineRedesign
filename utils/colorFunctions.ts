@@ -26,4 +26,12 @@ export function colorApplicator(lightColor: string, darkColor: string): void {
   } else {
     body.style.setProperty("background-color", darkColor);
   }
+      document.documentElement.style.setProperty(
+        "--underline-color-dark",
+        darkColor
+      );
+      document.documentElement.style.setProperty(
+        "--underline-color-light",
+        lightColor
+      );
 }

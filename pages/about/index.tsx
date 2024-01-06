@@ -10,7 +10,7 @@ import HorizontalLines from "../../components/HorizontalLines";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 
-export default function About({ SSAnimFinished }) {
+export default function About({ SSAnimFinished, cursorIsHover }) {
 
   const [hasComponentMounted, setHasComponentMounted] = useState(false);
 
@@ -98,7 +98,7 @@ export default function About({ SSAnimFinished }) {
       {SSAnimFinished && <div className={stylesAbout.verticalLine}></div>}
       {SSAnimFinished && <div className={stylesAbout.horizontalLine}></div>}
       {SSAnimFinished && <HorizontalLines />}
-      <div className={stylesAbout.meContainer + ' meContainer'}>
+      <div className={stylesAbout.meContainer + " meContainer"}>
         <div
           className={stylesAbout.meContainer__txt + " meContainerRow row gx-5"}
         >
@@ -161,7 +161,7 @@ export default function About({ SSAnimFinished }) {
                 >{`a`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
-                >{` software developer `}</span>
+                >{` software engineer `}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__small}
                 >{`specialized in`}</span>
@@ -173,10 +173,24 @@ export default function About({ SSAnimFinished }) {
                 >{`The majority of my`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
-                >{` interests gravitate around IT and CS, `}</span>
+                >{` interests gravitate around IT and CS `}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__small}
-                >{`going from digital ethics to digital law and from UX/UI design to software development. My focus is always into making`}</span>
+                >
+                  {`- going from digital ethics to digital law and from UX/UI design to software development-, but generally I'm also interested in`}
+                </span>
+                <span
+                  className={stylesAbout.meContainer__txt__description__big}
+                >{` architecture `}</span>
+                <span
+                  className={stylesAbout.meContainer__txt__description__small}
+                >{`and`}</span>
+                <span
+                  className={stylesAbout.meContainer__txt__description__big}
+                >{` art`}</span>
+                <span
+                  className={stylesAbout.meContainer__txt__description__small}
+                >{`. My focus is always into making`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
                 >{` software `}</span>
@@ -230,17 +244,56 @@ export default function About({ SSAnimFinished }) {
               </p>
               <p>
                 <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                >{`I am always interested in`}</span>
+                  className={stylesAbout.meContainer__txt__description__small}
+                >{`→ I am always interested in`}</span>
                 <span
-                    className={stylesAbout.meContainer__txt__description__big}
+                  className={stylesAbout.meContainer__txt__description__big}
                 >{` new meaningful and stimulating projects, `}</span>
                 <span
-                    className={stylesAbout.meContainer__txt__description__small}
+                  className={stylesAbout.meContainer__txt__description__small}
                 >{` so if you think we can do something great together please reach me thru `}</span>
                 <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                >{` email or LinkedIn.`}</span>
+                  className={stylesAbout.meContainer__txt__description__big}
+                >
+                  <a
+                    className={
+                      stylesAbout.underlineLineWithAnim +
+                      " underlineLineWithAnim"
+                    }
+                    href={"mailto:myassine.gallaoui@gmail.com"}
+                    onMouseOver={() => cursorIsHover(true)}
+                    onMouseLeave={() => cursorIsHover(false)}
+                    rel="noreferrer noopener"
+                    target="_blank"
+                  >
+                    {` email`}
+                  </a>
+                </span>
+                <span
+                  className={stylesAbout.meContainer__txt__description__small}
+                >{` or `}</span>
+                <span
+                  className={stylesAbout.meContainer__txt__description__big}
+                >
+                  <a
+                    className={
+                      stylesAbout.underlineLineWithAnimTwo +
+                      " underlineLineWithAnim"
+                    }
+                    href={
+                      "https://www.linkedin.com/in/mohamed-yassine-gallaoui/"
+                    }
+                    onMouseOver={() => cursorIsHover(true)}
+                    onMouseLeave={() => cursorIsHover(false)}
+                    rel="noreferrer noopener"
+                    target="_blank"
+                  >
+                    {` LinkedIn`}
+                  </a>
+                </span>
+                <span
+                  className={stylesAbout.meContainer__txt__description__small}
+                >{`.`}</span>
               </p>
             </div>
           )}

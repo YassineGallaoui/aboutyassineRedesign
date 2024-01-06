@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.css";
-import "../styles/css/globals.module.min.css";
+import "../styles/css/Globals.module.min.css";
 import {colorApplicator, generateColors} from "../utils/colorFunctions";
 import {useEffect, useState} from "react";
 import Layout from "../components/Layout";

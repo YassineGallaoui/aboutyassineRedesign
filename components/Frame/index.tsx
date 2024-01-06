@@ -102,7 +102,7 @@ export default function Frame({
   useEffect(() => {
     const navTagRC = document.querySelector(".sectionsNav div.singleNavItem");
     tl.to(navTagRC, {
-      left: "0rem",
+      top: "0rem",
       duration: 0.8,
       delay: 0.85,
     });
@@ -111,7 +111,7 @@ export default function Frame({
   const singleNavItemAnimation = () => {
     const navTagRC = document.querySelector(".sectionsNav div.singleNavItem");
     tl.to(navTagRC, {
-      left: "5rem",
+      top: "-5rem",
       duration: 0.8,
       delay: 0,
     });
@@ -233,26 +233,21 @@ export default function Frame({
           <div className={styles.frameContainer__right__nav + " sectionsNav"}>
             <Link
               href={pathname === "/about" ? "/" : "/about"}
-              className="invertImg"
+              className={styles.frameContainer__right__nav__navItem}
               onMouseOver={() => updateCursorStatus(true)}
               onMouseLeave={() => updateCursorStatus(false)}
             >
               <div
                 className={
-                  styles.frameContainer__right__nav__singleNavItem +
-                  " singleNavItem"
+                  styles.frameContainer__right__nav__navItem__singleNavItem +
+                  " singleNavItem underlineLineWithAnim"
                 }
                 onClick={() => singleNavItemAnimation()}
               >
                 <div
                   className={
-                    styles.frameContainer__right__nav__singleNavItemText +
+                    styles.frameContainer__right__nav__navItem__singleNavItemText +
                     " singleNavItemText"
-                  }
-                ></div>
-                <div
-                  className={
-                    styles.frameContainer__right__nav__singleNavItemUnderline
                   }
                 ></div>
               </div>
