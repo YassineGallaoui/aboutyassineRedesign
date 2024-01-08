@@ -7,6 +7,8 @@ import imgBeeTickets1 from "../public/imgs/bee-tickets-1.webp";
 import imgBeeTickets2 from "../public/imgs/bee-tickets-2.webp";
 import imgBeeTickets3 from "../public/imgs/bee-tickets-3.webp";
 import imgBeeTickets4 from "../public/imgs/bee-tickets-4.webp";
+import imgBeeTickets5 from "../public/imgs/bee-tickets-5.webp";
+import imgBeeTickets6 from "../public/imgs/bee-tickets-6.webp";
 import imgAutotorino1 from "../public/imgs/autotorino-1.webp";
 import imgAutotorino2 from "../public/imgs/autotorino-2.webp";
 import imgAutotorino3 from "../public/imgs/autotorino-3.webp";
@@ -40,7 +42,7 @@ export const projectsDatasetArray: Project[] = [
       imgAutotorino3,
       imgAutotorino4,
       imgAutotorino5,
-      imgAutotorino6
+      imgAutotorino6,
     ],
     workingFor: "Deloitte",
     description:
@@ -72,7 +74,14 @@ export const projectsDatasetArray: Project[] = [
     codeName: "BeeTickets",
     name: "Bee Tickets",
     year: 2021,
-    media: [imgBeeTickets1, imgBeeTickets2, imgBeeTickets3, imgBeeTickets4],
+    media: [
+      imgBeeTickets1,
+      imgBeeTickets2,
+      imgBeeTickets3,
+      imgBeeTickets4,
+      imgBeeTickets5,
+      imgBeeTickets6,
+    ],
     workingFor: "Once Upon A Time SA",
     description:
       "Worked with a team of 7+ people on creating a whole new tickets selling platform for internal use. Implemented all the frontend side of the website and also contributed, in some cases, in the design process.",
