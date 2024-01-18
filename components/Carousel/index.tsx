@@ -516,9 +516,16 @@ function Carousel({
                 " " +
                 (index === currentIndex ? styles.currentImg : "")
               }
+              onMouseOver={() => cursorIsHover(true)}
+              onMouseLeave={() => cursorIsHover(false)}
               onClick={() => thumbnailClickHandle(index)}
             >
-              <Image src={el} alt={altText} fill={true} placeholder={"blur"}></Image>
+              <Image
+                src={el}
+                alt={altText}
+                fill={true}
+                placeholder={"blur"}
+              ></Image>
             </div>
           ))}
         </div>

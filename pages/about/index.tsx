@@ -122,7 +122,12 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
               <p>
                 <span
                   className={stylesAbout.singleWord}
-                >{`software developer`}</span>
+                >{`software engineer`}</span>
+              </p>
+              <p>
+                <span
+                  className={stylesAbout.singleWord}
+                >{`frontend expert`}</span>
               </p>
               <p>
                 <span
@@ -237,7 +242,7 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                 >{`as well as an informal`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__big}
-                >{` Arabic`}</span>
+                >{` arabic`}</span>
                 <span
                   className={stylesAbout.meContainer__txt__description__small}
                 >{`.`}</span>

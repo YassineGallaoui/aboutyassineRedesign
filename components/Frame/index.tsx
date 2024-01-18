@@ -260,7 +260,11 @@ export default function Frame({
             onMouseOver={(e) => hoverSocialButtons(e)}
             onMouseLeave={(e) => unhoverSocialButtons(e)}
           >
-            <a href="/cv.pdf" rel="noreferrer noopener" target="_blank">
+            <a
+              href="/cv-gallaoui.pdf"
+              rel="noreferrer noopener"
+              target="_blank"
+            >
               <div
                 className={
                   styles.frameContainer__right__contacts__social__text +
