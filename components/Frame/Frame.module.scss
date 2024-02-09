@@ -41,7 +41,6 @@
         img {
           width: 40px !important;
           height: 40px !important;
-          overflow: visible !important;
         }
         .letterY {
           opacity: 1;
@@ -54,7 +53,7 @@
       transform-origin: top left;
       position: relative;
       top: 1.25rem;
-      color: $semitransparentDark4;
+      color: $semitransparentDark3;
       transition: color $change-theme-duration;
       @media screen and (max-width: $breakpointMobileSmall) {
         right: 5px;
@@ -340,6 +339,6 @@
 html[data-theme="dark"] {
   .frameContainer__left__lastUpdate{
     transition: color $change-theme-duration;
-    color: $semitransparentLight4;
+    color: $semitransparentLight3;
   }
 }

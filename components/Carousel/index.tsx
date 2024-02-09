@@ -50,11 +50,11 @@ function Carousel({
   const tl3 = gsap.timeline({});
 
   useEffect(() => {
-    let imagesNumber = document.querySelectorAll(".indexWrapper > span > span");
+    let imagesNumber = document.querySelectorAll(".indexWrapperToAnimate");
     setImageNumberSpanTags(imagesNumber);
 
     let verticalImagesNumber = document.querySelectorAll(
-      ".verticalIndexWrapper > span > span",
+      ".verticalIndexWrapperToAnimate",
     );
     setVerticalImageNumberSpanTags(verticalImagesNumber);
   }, []);
@@ -399,10 +399,10 @@ function Carousel({
       <div className={styles.upperControls + " upperControls"}>
         <div className={styles.indexWrapper + " indexWrapper"}>
           <span>
-            <span>{"0"}</span>
+            <span className={"indexWrapperToAnimate"}>{"0"}</span>
           </span>
           <span>
-            <span>{currentIndex + 1}</span>
+            <span className={"indexWrapperToAnimate"}>{currentIndex + 1}</span>
           </span>
         </div>
 
@@ -466,10 +466,12 @@ function Carousel({
               className={styles.verticalIndexWrapper + " verticalIndexWrapper"}
             >
               <span>
-                <span>{"0"}</span>
+                <span className={"verticalIndexWrapperToAnimate"}>{"0"}</span>
               </span>
               <span>
-                <span>{currentIndex + 1}</span>
+                <span className={"verticalIndexWrapperToAnimate"}>
+                  {currentIndex + 1}
+                </span>
               </span>
             </div>
             <div className={styles.controlsVertical}>

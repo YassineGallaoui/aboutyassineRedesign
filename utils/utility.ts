@@ -46,14 +46,12 @@ export enum distanceLevels {
 }
 
 export function parallax(event, element, distance) {
-  element.forEach((el) => {
-    const x = (window.innerWidth - event.pageX * 2) / distance;
-    const y = (window.innerHeight - event.pageY * 2) / distance;
-    /*const xDeg = (window.innerHeight - event.pageY * 2) / (window.innerHeight * 0.05);
+  const x = (window.innerWidth - event.pageX * 2) / distance;
+  const y = (window.innerHeight - event.pageY * 2) / distance;
+  /*const xDeg = (window.innerHeight - event.pageY * 2) / (window.innerHeight * 0.05);
     const yDeg = (window.innerWidth - event.pageY * 2) / (window.innerWidth * 0.05);*/
 
-    el.style.transform = `translateX(${x}px) translateY(${y}px)`;
-  });
+  element.style.transform = `translateX(${x}px) translateY(${y}px)`;
 }
 
 export const calculateScrollPercentage = (pageContent) => {

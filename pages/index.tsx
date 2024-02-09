@@ -10,6 +10,7 @@ import { colorApplicator } from "../utils/colorFunctions";
 import { motion } from "framer-motion";
 import ProjectModalVertical from "../components/ProjectModalVertical";
 import {breakpoints, getDeviceType} from "../utils/breakpoints";
+import Head from "next/head";
 
 type HomeProps = {
   updateCursorText: Function;
@@ -156,7 +157,7 @@ export default function Home({
   function mouseMoveHomepage(event: MouseEvent | Event) {
     parallax(
       event,
-      document.querySelectorAll(".sectionBkgrdTxt"),
+      document.querySelector(".sectionBkgrdTxt"),
       distanceLevels.Second
     );
   }
@@ -299,169 +300,187 @@ export default function Home({
   };
 
   return (
-    <motion.div
-      className={stylesHome.mainMotionDiv + " mainMotionDiv"}
-      initial={{ x: "-50vw", opacity: 0 }}
-      animate={{ x: "0vw", opacity: 1 }}
-      exit={{ x: "-50vw", opacity: 0 }}
-      transition={{ duration: 1, ease: [0.8, 0.28, 0, 1] }}
-    >
-      <div className={stylesHome.expBkgrdTxt + " sectionBkgrdTxt"}>
-        <span>P</span>
-        <span>r</span>
-        <span>o</span>
-        <span>j</span>
-        <span>e</span>
-        <span>c</span>
-        <span>t</span>
-        <span>s</span>
-      </div>
-      <div
-        className={
-          stylesHome.currentPrjHovered +
-          " currentPrjHovered " +
-          (projectIsHovered ? stylesHome.hover : "")
-        }
+    <>
+      <Head>
+        <title>Yassine Gallaoui - Selected Projects</title>
+      </Head>
+      <motion.div
+        className={stylesHome.mainMotionDiv + " mainMotionDiv"}
+        initial={{ x: "-50vw", opacity: 0 }}
+        animate={{ x: "0vw", opacity: 1 }}
+        exit={{ x: "-50vw", opacity: 0 }}
+        transition={{ duration: 1, ease: [0.8, 0.28, 0, 1] }}
       >
-        <Image
-          className={"bigBackgroundImage"}
-          src={tempImgHover}
-          fill
-          alt="project"
-        ></Image>
-      </div>
-      <div className={stylesHome.modalMatteBkgrd + " modalMatteBkgrd"}></div>
-      <div className={stylesHome.expContainer + " expContainer col-12"}>
-        {triangleRowsNumber > 0 && renderNonProjectTriangles(true)}
+        <div className={stylesHome.expBkgrdTxt + " sectionBkgrdTxt"}>
+          <span>P</span>
+          <span>r</span>
+          <span>o</span>
+          <span>j</span>
+          <span>e</span>
+          <span>c</span>
+          <span>t</span>
+          <span>s</span>
+        </div>
         <div
-          className={stylesHome.triangleProjectRow}
-          style={
-            {
-              "--index": Math.floor(triangleRowsNumber / 2),
-            } as React.CSSProperties
+          className={
+            stylesHome.currentPrjHovered +
+            " currentPrjHovered " +
+            (projectIsHovered ? stylesHome.hover : "")
           }
         >
-          {SSAnimFinished && (<div className={stylesHome.horizontalLineL} style={{ "--i": triangleRowsNumber } as React.CSSProperties}/>)}
-          {SSAnimFinished && (<div className={stylesHome.horizontalLineL} style={{ "--i": triangleRowsNumber } as React.CSSProperties}/>)}
-          {trianglesPerRow > 0 &&
-            [...Array(trianglesPerRow).keys()].map((index2) => {
-              if (
-                index2 < firstPositionProject ||
-                index2 >= firstPositionProject + projectsDataset.length
-              ) {
-                return (
-                  <div
-                    key={index2}
-                    className={stylesHome.triangleProjectWrapper__NoProj}
-                    style={
-                      {
-                        "--index": index2 - trianglesPerRow / 2,
-                      } as React.CSSProperties
-                    }
-                  >
-                    <div className={stylesHome.triangleProjectContent}></div>
-                  </div>
-                );
-              } else {
-                return (
-                  <div
-                    key={index2}
-                    className={stylesHome.triangleProjectWrapper}
-                    style={
-                      {
-                        "--index": index2 - trianglesPerRow / 2,
-                      } as React.CSSProperties
-                    }
-                    id={`triangleProjectWrapper-${
-                      projectsDataset[index2 - firstPositionProject]?.id
-                    }`}
-                  >
+          <Image
+            className={"bigBackgroundImage"}
+            priority={true}
+            src={tempImgHover}
+            fill
+            alt="project"
+          />
+        </div>
+        <div className={stylesHome.modalMatteBkgrd + " modalMatteBkgrd"}></div>
+        <div className={stylesHome.expContainer + " expContainer"}>
+          {triangleRowsNumber > 0 && renderNonProjectTriangles(true)}
+          <div
+            className={stylesHome.triangleProjectRow}
+            style={
+              {
+                "--index": Math.floor(triangleRowsNumber / 2),
+              } as React.CSSProperties
+            }
+          >
+            {SSAnimFinished && (
+              <div
+                className={stylesHome.horizontalLineL}
+                style={{ "--i": triangleRowsNumber } as React.CSSProperties}
+              />
+            )}
+            {SSAnimFinished && (
+              <div
+                className={stylesHome.horizontalLineL}
+                style={{ "--i": triangleRowsNumber } as React.CSSProperties}
+              />
+            )}
+            {trianglesPerRow > 0 &&
+              [...Array(trianglesPerRow).keys()].map((index2) => {
+                if (
+                  index2 < firstPositionProject ||
+                  index2 >= firstPositionProject + projectsDataset.length
+                ) {
+                  return (
                     <div
-                      className={
-                        stylesHome.triangleProjectContent +
-                        " triangleProjectImg"
-                      }
-                      id={`triangleProjectContent-${
-                        projectsDataset[index2 - firstPositionProject]?.id
-                      }`}
-                      data-project-id={
-                        projectsDataset[index2 - firstPositionProject]?.id
+                      key={index2}
+                      className={stylesHome.triangleProjectWrapper__NoProj}
+                      style={
+                        {
+                          "--index": index2 - trianglesPerRow / 2,
+                        } as React.CSSProperties
                       }
                     >
-                      <Image
-                        src={
-                          projectsDataset[index2 - firstPositionProject]
-                            ?.media[0]
+                      <div className={stylesHome.triangleProjectContent}></div>
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div
+                      key={index2}
+                      className={stylesHome.triangleProjectWrapper}
+                      style={
+                        {
+                          "--index": index2 - trianglesPerRow / 2,
+                        } as React.CSSProperties
+                      }
+                      id={`triangleProjectWrapper-${
+                        projectsDataset[index2 - firstPositionProject]?.id
+                      }`}
+                    >
+                      <div
+                        className={
+                          stylesHome.triangleProjectContent +
+                          " triangleProjectImg"
                         }
-                        id={`image-${
+                        id={`triangleProjectContent-${
                           projectsDataset[index2 - firstPositionProject]?.id
                         }`}
-                        className={"image"}
-                        fill
-                        alt="project"
-                        onMouseOver={() =>
-                          handleImageHover(
-                            projectsDataset[index2 - firstPositionProject]?.id
-                          )
+                        data-project-id={
+                          projectsDataset[index2 - firstPositionProject]?.id
                         }
-                        onMouseLeave={() =>
-                          handleImageLeave(
+                      >
+                        <Image
+                          src={
+                            projectsDataset[index2 - firstPositionProject]
+                              ?.media[0]
+                          }
+                          priority={true}
+                          id={`image-${
                             projectsDataset[index2 - firstPositionProject]?.id
-                          )
-                        }
-                        onTouchEnd={(event) => {
-                            event.preventDefault()
-                            handleImageClick(
-                                projectsDataset[index2 - firstPositionProject]?.id
+                          }`}
+                          className={"image"}
+                          placeholder="blur"
+                          quality={100}
+                          fill={true}
+                          sizes="30vw"
+                          alt={`Project ${
+                            projectsDataset[index2 - firstPositionProject]?.name
+                          }`}
+                          onMouseOver={() =>
+                            handleImageHover(
+                              projectsDataset[index2 - firstPositionProject]?.id
                             )
                           }
-                        }
-                        onTouchStart={(event) =>
-                            event.preventDefault()
-                        }
-                        onClick={() =>
-                          handleImageClick(
+                          onMouseLeave={() =>
+                            handleImageLeave(
+                              projectsDataset[index2 - firstPositionProject]?.id
+                            )
+                          }
+                          onTouchEnd={(event) => {
+                            event.preventDefault();
+                            handleImageClick(
+                              projectsDataset[index2 - firstPositionProject]?.id
+                            );
+                          }}
+                          onTouchStart={(event) => event.preventDefault()}
+                          onClick={() =>
+                            handleImageClick(
+                              projectsDataset[index2 - firstPositionProject]?.id
+                            )
+                          }
+                        />
+                        <div
+                          id={`see-more-${index2 % 2 === 1 ? "odd" : "even"}-${
                             projectsDataset[index2 - firstPositionProject]?.id
-                          )
-                        }
-                      />
-                      <div
-                        id={`see-more-${index2 % 2 === 1 ? "odd" : "even"}-${
-                          projectsDataset[index2 - firstPositionProject]?.id
-                        }`}
-                        className={stylesHome.seeMoreText}
-                      >
-                        <span>
-                        </span>
+                          }`}
+                          className={stylesHome.seeMoreText}
+                        >
+                          <span></span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              }
-            })}
-          {SSAnimFinished && (<div className={stylesHome.horizontalLineR} />)}
-          {SSAnimFinished && (<div className={stylesHome.horizontalLineR} />)}
+                  );
+                }
+              })}
+            {SSAnimFinished && <div className={stylesHome.horizontalLineR} />}
+            {SSAnimFinished && <div className={stylesHome.horizontalLineR} />}
+          </div>
+          {triangleRowsNumber > 0 && renderNonProjectTriangles(false)}
         </div>
-        {triangleRowsNumber > 0 && renderNonProjectTriangles(false)}
-      </div>
-      {deviceType === breakpoints.mobileSmall ||
-      deviceType === breakpoints.mobile ? (
-        <ProjectModalVertical
-          content={projectOpened}
-          open={projectOpenedBoolean}
-          updateOpen={setProjectOpenedBoolean}
-          updateCursorText={updateCursorText}
-          cursorIsHover={cursorIsHover}
-        />
-      ) : (
-        <ProjectModal
-          content={projectOpened}
-          open={projectOpenedBoolean}
-          updateOpen={setProjectOpenedBoolean}
-          updateCursorText={updateCursorText}
-          cursorIsHover={cursorIsHover}
-        />
-      )}
-    </motion.div>
+        {deviceType === breakpoints.mobileSmall ||
+        deviceType === breakpoints.mobile ? (
+          <ProjectModalVertical
+            content={projectOpened}
+            open={projectOpenedBoolean}
+            updateOpen={setProjectOpenedBoolean}
+            updateCursorText={updateCursorText}
+            cursorIsHover={cursorIsHover}
+          />
+        ) : (
+          <ProjectModal
+            content={projectOpened}
+            open={projectOpenedBoolean}
+            updateOpen={setProjectOpenedBoolean}
+            updateCursorText={updateCursorText}
+            cursorIsHover={cursorIsHover}
+          />
+        )}
+      </motion.div>
+    </>
   );
 }

@@ -73,13 +73,8 @@ export default function Frame({
   useEffect(() => {
     //menu navigation
     const body = document.querySelector("body");
-    const liTagsRC = body.querySelectorAll(".sectionsNav li div.twoNavItem");
-    const liTagsRB = body.querySelectorAll(".contactsSocial div");
+    const liTagsRB = body.querySelectorAll(".contactsSocialDiv");
     const sectionNamesRB = ["Download", "Send", "More"];
-    if (liTagsRC != null)
-      liTagsRC.forEach((element, index) => {
-        element.innerHTML = createSpanStructure(sectionNamesRC[index]);
-      });
     liTagsRB.forEach((element, index) => {
       element.innerHTML = createSpanStructure(sectionNamesRB[index]);
     });
@@ -264,6 +259,7 @@ export default function Frame({
               href="/cv-gallaoui.pdf"
               rel="noreferrer noopener"
               target="_blank"
+              aria-label="Click here to download my curriculum"
             >
               <div
                 className={
@@ -271,7 +267,7 @@ export default function Frame({
                   " contactsSocial"
                 }
               >
-                <div></div>
+                <div className={"contactsSocialDiv"}></div>
               </div>
             </a>
             <Image
@@ -286,14 +282,17 @@ export default function Frame({
             onMouseOver={(e) => hoverSocialButtons(e)}
             onMouseLeave={(e) => unhoverSocialButtons(e)}
           >
-            <a href="mailto:myassine.gallaoui@gmail.com">
+            <a
+              href="mailto:myassine.gallaoui@gmail.com"
+              aria-label="Click here to send me an email"
+            >
               <div
                 className={
                   styles.frameContainer__right__contacts__social__text +
                   " contactsSocial"
                 }
               >
-                <div></div>
+                <div className={"contactsSocialDiv"}></div>
               </div>
             </a>
             <Image src={mailIcon} fill alt="mail" className="invertImg" />
@@ -307,6 +306,7 @@ export default function Frame({
               href="https://www.linkedin.com/in/mohamed-yassine-gallaoui/"
               rel="noreferrer noopener"
               target="_blank"
+              aria-label="Click here to check my LinkedIn profile"
             >
               <div
                 className={
@@ -314,7 +314,7 @@ export default function Frame({
                   " contactsSocial"
                 }
               >
-                <div></div>
+                <div className={"contactsSocialDiv"}></div>
               </div>
             </a>
             <Image
