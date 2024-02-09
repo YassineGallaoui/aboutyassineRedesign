@@ -20,7 +20,7 @@ export default function MyApp({Component, pageProps, router}) {
     );
     const [lightColor, setLightColor] = useState<string>("");
     const [darkColor, setDarkColor] = useState<string>("");
-    const [SSAnimFinished, setSSAnimFinished] = useState<boolean>(false);
+    const [SSAnimFinished, setSSAnimFinished] = useState<boolean>(true);
     const [deviceType, setDeviceType] = useState<breakpoints>();
 
     useEffect(() => {
@@ -83,34 +83,37 @@ export default function MyApp({Component, pageProps, router}) {
     }, []);
 
     return (
-        <>
-            <Head>
-                <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-            </Head>
-            <Layout
-                updateCursorText={setCursorText}
-                updateCursorStatus={setCursorHover}
-                cursorText={cursorText}
-                cursorHover={cursorHover}
-                preferredTheme={preferredTheme}
-                lightColor={lightColor}
-                darkColor={darkColor}
-                setSSAnimFinished={setSSAnimFinished}
-                deviceType={deviceType}
-            >
-                <AnimatePresence mode="sync" initial={false}>
-                    <Component
-                        {...pageProps}
-                        updateCursorText={setCursorText}
-                        cursorIsHover={setCursorHover}
-                        lightColor={lightColor}
-                        darkColor={darkColor}
-                        SSAnimFinished={SSAnimFinished}
-                        deviceType={deviceType}
-                        key={router.pathname}
-                    />
-                </AnimatePresence>
-            </Layout>
-        </>
+      <>
+        <Head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=5"
+          />
+        </Head>
+        <Layout
+          updateCursorText={setCursorText}
+          updateCursorStatus={setCursorHover}
+          cursorText={cursorText}
+          cursorHover={cursorHover}
+          preferredTheme={preferredTheme}
+          lightColor={lightColor}
+          darkColor={darkColor}
+          setSSAnimFinished={setSSAnimFinished}
+          deviceType={deviceType}
+        >
+          <AnimatePresence mode="sync" initial={false}>
+            <Component
+              {...pageProps}
+              updateCursorText={setCursorText}
+              cursorIsHover={setCursorHover}
+              lightColor={lightColor}
+              darkColor={darkColor}
+              SSAnimFinished={SSAnimFinished}
+              deviceType={deviceType}
+              key={router.pathname}
+            />
+          </AnimatePresence>
+        </Layout>
+      </>
     );
 }

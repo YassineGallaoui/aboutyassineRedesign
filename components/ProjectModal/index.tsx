@@ -160,7 +160,7 @@ export default function ProjectModal({
               </th>
               <td>{content.year}</td>
             </tr>
-            <tr aria-rowspan={2} className={styles.descriptionTitle}>
+            <tr className={styles.descriptionTitle}>
               <th
                   colSpan={2}
                   className={styles.characteristic + " characteristic"}
