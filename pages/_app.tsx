@@ -20,7 +20,7 @@ export default function MyApp({Component, pageProps, router}) {
     );
     const [lightColor, setLightColor] = useState<string>("");
     const [darkColor, setDarkColor] = useState<string>("");
-    const [SSAnimFinished, setSSAnimFinished] = useState<boolean>(true);
+    const [SSAnimFinished, setSSAnimFinished] = useState<boolean>(false);
     const [deviceType, setDeviceType] = useState<breakpoints>();
 
     useEffect(() => {
