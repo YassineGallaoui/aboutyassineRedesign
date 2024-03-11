@@ -12,7 +12,6 @@ import darkIconStars2 from "../../public/icons/dark_mode_stars_2.svg";
 import cvIcon from "../../public/icons/CV.svg";
 import mailIcon from "../../public/icons/mail.svg";
 import linkedinIcon from "../../public/icons/linkedin.svg";
-import websiteLastUpdateDate from "../../websiteLastUpdateDate";
 import { colorApplicator } from "../../utils/colorFunctions";
 import { themeMode } from "../../pages/_app";
 import { breakpoints } from "../../utils/breakpoints";
@@ -87,10 +86,10 @@ export default function Frame({
     );
 
     setTimeout(() => {
-    if (navTagRC != null)
-      navTagRC.innerHTML = createSpanStructure(
-        sectionNamesRC[pathname === "/about" ? 1 : 0]
-      );
+      if (navTagRC != null)
+        navTagRC.innerHTML = createSpanStructure(
+          sectionNamesRC[pathname === "/about" ? 1 : 0]
+        );
     }, 800);
   }, [deviceType, pathname]);
 
@@ -155,7 +154,7 @@ export default function Frame({
             styles.frameContainer__left__lastUpdate + " lastUpdateText"
           }
         >
-          Last update: {websiteLastUpdateDate.getLastUpdateDate()}
+          Last update: <span id="lastUpdateDate"></span>
         </div>
       </div>
       <div className={styles.frameContainer__right}>

@@ -19,6 +19,7 @@ type HomeProps = {
   darkColor: string;
   SSAnimFinished: Function;
   deviceType: breakpoints;
+  lastEditDate: string
 };
 
 export default function Home({
@@ -28,6 +29,7 @@ export default function Home({
   darkColor,
   SSAnimFinished,
   deviceType,
+  lastEditDate,
 }: HomeProps) {
   const [triangleRowsNumber, setTriangleRowsNumber] = useState<number>(0);
   const [trianglesPerRow, setTrianglesPerRow] = useState<number>(0);
@@ -51,6 +53,10 @@ export default function Home({
 
     setMainStructureParams();
     window.addEventListener("resize", setMainStructureParams);
+
+    const lastEditTag = document.querySelector("#lastUpdateDate");
+    if (lastEditTag && lastEditDate != null) 
+      lastEditTag.innerHTML = lastEditDate;
 
     // Clean up the event listener when the component unmounts
     return () => {
@@ -81,11 +87,22 @@ export default function Home({
   }, [SSAnimFinished]);
 
   useEffect(() => {
-    const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
-    if (projectOpenedBoolean && (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)) {
+    const themeContainer = document.querySelector(
+      ".themeContainer"
+    ) as HTMLElement;
+    if (
+      projectOpenedBoolean &&
+      (getDeviceType() === breakpoints.mobile ||
+        getDeviceType() === breakpoints.mobileSmall ||
+        getDeviceType() === breakpoints.tablet)
+    ) {
       hideFrame(themeContainer);
     }
-    if (projectOpenedBoolean && (getDeviceType() === breakpoints.desktop || getDeviceType() === breakpoints.desktopLarge)) {
+    if (
+      projectOpenedBoolean &&
+      (getDeviceType() === breakpoints.desktop ||
+        getDeviceType() === breakpoints.desktopLarge)
+    ) {
       unhideFrame(themeContainer);
     }
   }, [deviceType]);
@@ -98,27 +115,31 @@ export default function Home({
       setProjectIsHovered(true);
       if (elementId != null) {
         const elementData = projectsDataset.find(
-            (el) => el.id + "" === elementId
+          (el) => el.id + "" === elementId
         );
         setTempImageHover(elementData.media[0]);
         const tl1 = gsap.timeline({ delay: 0 });
         gsap.killTweensOf(".bigBackgroundImage");
-        tl1.to(
-            ".bigBackgroundImage",
-            { scale: 1.02, opacity: 1, duration: 5, ease: "expo.out", }
-        );
+        tl1.to(".bigBackgroundImage", {
+          scale: 1.02,
+          opacity: 1,
+          duration: 5,
+          ease: "expo.out",
+        });
       }
-    }
+    };
 
     const elMouseOut = () => {
       setProjectIsHovered(false);
       const tl1 = gsap.timeline({ delay: 0 });
       gsap.killTweensOf(".bigBackgroundImage");
-      tl1.to(
-          ".bigBackgroundImage",
-          { scale: 1.1, opacity: 0, duration: 1, ease: "expo.out" }
-      );
-    }
+      tl1.to(".bigBackgroundImage", {
+        scale: 1.1,
+        opacity: 0,
+        duration: 1,
+        ease: "expo.out",
+      });
+    };
 
     projects.forEach((el) => {
       el.addEventListener("mouseover", elMouseOver(el));
@@ -130,7 +151,7 @@ export default function Home({
         el.removeEventListener("mouseover", elMouseOver(el));
         el.removeEventListener("mouseout", elMouseOut);
       });
-    }
+    };
   }, [trianglesPerRow]);
 
   useEffect(() => {
@@ -146,12 +167,16 @@ export default function Home({
       });
     }
 
-    const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
-    if (getDeviceType() === breakpoints.mobile || getDeviceType() === breakpoints.mobileSmall || getDeviceType() === breakpoints.tablet)
-      if(projectOpenedBoolean)
-        hideFrame(themeContainer);
-      else
-        unhideFrame(themeContainer);
+    const themeContainer = document.querySelector(
+      ".themeContainer"
+    ) as HTMLElement;
+    if (
+      getDeviceType() === breakpoints.mobile ||
+      getDeviceType() === breakpoints.mobileSmall ||
+      getDeviceType() === breakpoints.tablet
+    )
+      if (projectOpenedBoolean) hideFrame(themeContainer);
+      else unhideFrame(themeContainer);
   }, [projectOpenedBoolean]);
 
   function mouseMoveHomepage(event: MouseEvent | Event) {
@@ -248,26 +273,39 @@ export default function Home({
                   }
                 >
                   {((index === 0 && upper) ||
-                          index2 === 0 ||
-                          index2 === trianglesPerRow - 1)
-                      && (index2 % 2 === 0)
-                      && (index % 2 === 0)
-                      && SSAnimFinished && (
-                          <div
-                              className={stylesHome.obliqueLineP}
-                              style={{"--j": upper ? index : index + ((triangleRowsNumber + 1) / 2) } as React.CSSProperties}
-                          ></div>
-                      )}
-                  {((index === 0 && upper) ||
-                          index2 === trianglesPerRow - 1)
-                      && (index2 % 2 === 0 || (index2 === trianglesPerRow - 1 && index !== 0) || !upper)
-                      && (index % 2 === 0)
-                      && SSAnimFinished && (
-                          <div
-                              className={stylesHome.obliqueLineN}
-                              style={{"--j": upper ? index : index + ((triangleRowsNumber + 1) / 2) } as React.CSSProperties}
-                          ></div>
-                      )}
+                    index2 === 0 ||
+                    index2 === trianglesPerRow - 1) &&
+                    index2 % 2 === 0 &&
+                    index % 2 === 0 &&
+                    SSAnimFinished && (
+                      <div
+                        className={stylesHome.obliqueLineP}
+                        style={
+                          {
+                            "--j": upper
+                              ? index
+                              : index + (triangleRowsNumber + 1) / 2,
+                          } as React.CSSProperties
+                        }
+                      ></div>
+                    )}
+                  {((index === 0 && upper) || index2 === trianglesPerRow - 1) &&
+                    (index2 % 2 === 0 ||
+                      (index2 === trianglesPerRow - 1 && index !== 0) ||
+                      !upper) &&
+                    index % 2 === 0 &&
+                    SSAnimFinished && (
+                      <div
+                        className={stylesHome.obliqueLineN}
+                        style={
+                          {
+                            "--j": upper
+                              ? index
+                              : index + (triangleRowsNumber + 1) / 2,
+                          } as React.CSSProperties
+                        }
+                      ></div>
+                    )}
                   <div className={stylesHome.triangleProjectContent}>
                     <div
                       id={`see-more-${index2 % 2 === 1 ? "odd" : "even"}-${
@@ -275,8 +313,7 @@ export default function Home({
                       }`}
                       className={stylesHome.seeMoreText}
                     >
-                        <span>
-                        </span>
+                      <span></span>
                     </div>
                   </div>
                 </div>
@@ -483,4 +520,18 @@ export default function Home({
       </motion.div>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const lastEditDate = new Date().toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  return {
+    props: {
+      lastEditDate,
+    },
+  };
 }

@@ -11,26 +11,31 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 import Head from "next/head";
 
-export default function About({ SSAnimFinished, cursorIsHover }) {
-
+export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
   const [hasComponentMounted, setHasComponentMounted] = useState(false);
+
+  useEffect(() => {
+    const lastEditTag = document.querySelector("#lastUpdateDate");
+    if (lastEditTag && lastEditDate != null)
+      lastEditTag.innerHTML = lastEditDate;
+  }, []);
 
   useEffect(() => {
     if (SSAnimFinished && hasComponentMounted) {
       const tlInitial = gsap.timeline({ delay: 0.2 });
       tlInitial
-          .to(".mainMotionDiv", {
-            duration: 0,
-            top: 80,
-            scale: 1,
-            opacity: 0.8,
-          })
-          .to(".mainMotionDiv", {
-            duration: 1.8,
-            top: 0,
-            scale: 1,
-            opacity: 1,
-          });
+        .to(".mainMotionDiv", {
+          duration: 0,
+          top: 80,
+          scale: 1,
+          opacity: 0.8,
+        })
+        .to(".mainMotionDiv", {
+          duration: 1.8,
+          top: 0,
+          scale: 1,
+          opacity: 1,
+        });
     } else {
       setHasComponentMounted(true);
     }
@@ -49,11 +54,11 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
     startWelcomeAnimation(i);
     const documentMouseMove = (event) => {
       parallax(
-          event,
-          document.querySelector(".sectionBkgrdTxt"),
-          distanceLevels.Second
+        event,
+        document.querySelector(".sectionBkgrdTxt"),
+        distanceLevels.Second
       );
-    }
+    };
 
     document.addEventListener("mousemove", documentMouseMove);
 
@@ -316,4 +321,18 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
       </motion.div>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const lastEditDate = new Date().toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  return {
+    props: {
+      lastEditDate,
+    },
+  };
 }
