@@ -275,6 +275,7 @@ html[data-theme="dark"] {
     line-height: 0.8rem;
     color: $semitransparentLight1;
     background-color: $semitransparentDark1;
+    transition: background-color $change-theme-duration, color $change-theme-duration;
     writing-mode: vertical-rl;
     text-align: left;
     overflow: hidden;
