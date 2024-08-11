@@ -276,11 +276,14 @@ html[data-theme="dark"] {
     color: $semitransparentLight1;
     background-color: $semitransparentDark1;
     writing-mode: vertical-rl;
-    transform: rotate(180deg);
     text-align: left;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     span {
       position: relative;
-      top: 0.4rem;
       font-weight: 900;
     }
   }

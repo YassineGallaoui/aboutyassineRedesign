@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import stylesAbout from "../../styles/scss/General.module.scss";
-import {
-  createSpanStructure,
-  parallax,
-  calculateScrollPercentage,
-  distanceLevels,
-} from "../../utils/utility";
-import HorizontalLines from "../../components/HorizontalLines";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import Head from "next/head";
+import React, { useEffect, useState } from "react";
+import HorizontalLines from "../../components/HorizontalLines";
+import stylesAbout from "../../styles/scss/General.module.scss";
+import {
+  calculateScrollPercentage,
+  createSpanStructure,
+  distanceLevels,
+  parallax,
+} from "../../utils/utility";
 
 export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
   const [hasComponentMounted, setHasComponentMounted] = useState(false);
@@ -89,7 +89,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
   return (
     <>
       <Head>
-        <title>Yassine Gallaoui - About Me</title>
+        <title>Yassine - About Me</title>
       </Head>
       <motion.div
         className={stylesAbout.mainMotionDiv + " mainMotionDiv"}
@@ -152,9 +152,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                   >{`a bit workaholic`}</span>
                 </p>
                 <p>
-                  <span
-                    className={stylesAbout.singleWord}
-                  >{`teamwork & team support`}</span>
+                  <span className={stylesAbout.singleWord}>{`teamworker`}</span>
                 </p>
               </div>
             )}
@@ -169,7 +167,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                 <p>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`→ I'm`}</span>
+                  >{`1/ I'm `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   >{` Yassine, `}</span>
@@ -190,44 +188,35 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                   >{`The majority of my`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` interests gravitate around IT and CS `}</span>
+                  >{` interests gravitate around IT and CS`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
                   >
-                    {`- going from digital ethics to digital law and from UX/UI design to software development-, but generally I'm also interested in`}
+                    {`, going from digital ethics to digital law and from UX/UI design to software development. `}
                   </span>
                   <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  >{` architecture `}</span>
-                  <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`and`}</span>
+                  >{`My focus is always on `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` art`}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                  >{`. My focus is always into making`}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  >{` software `}</span>
+                  >{`creating software `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
                   >{`which`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` works flawless `}</span>
+                  >{` works flawlessly `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`and`}</span>
+                  >{`and, whenever possible, `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` is aesthetically captivating. `}</span>
+                  >{`is aesthetically captivating. `}</span>
                 </p>
                 <p>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`→ My`}</span>
+                  >{`2/ My`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   >{` native language `}</span>
@@ -262,10 +251,10 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                 <p>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`→ I am always interested in`}</span>
+                  >{`3/ I am always interested in`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` new meaningful and stimulating projects, `}</span>
+                  >{` new stimulating projects, `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
                   >{` so if you think we can do something great together please reach me thru `}</span>

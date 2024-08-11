@@ -120,6 +120,7 @@
           aspect-ratio: 1.6;
           transform: translateZ(0);
           filter: grayscale(1);
+          opacity: 0.3;
           transition: all 0.3s;
 
           &:hover {
@@ -130,6 +131,7 @@
           &.currentImg {
             transform: translateZ(0);
             filter: grayscale(0);
+            opacity: 1;
           }
 
           &.nextImg {
@@ -227,6 +229,7 @@
         height: 100%;
         transform: translateZ(0);
         filter: grayscale(1);
+        opacity: 0.3;
         transition: all 0.3s;
 
         &:hover {
@@ -237,6 +240,7 @@
         &.currentImg {
           transform: translateZ(0);
           filter: grayscale(0);
+          opacity: 1;
         }
 
         &.nextImg {

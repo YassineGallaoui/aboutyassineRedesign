@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
-import stylesHome from "../styles/scss/General.module.scss";
-import {distanceLevels, hideFrame, parallax, unhideFrame} from "../utils/utility";
-import defaultImg from "../public/imgs/default.webp";
-import Image, { StaticImageData } from "next/image";
-import { Project, projectsDataset } from "../utils/dataset";
-import gsap from "gsap";
-import ProjectModal from "../components/ProjectModal";
-import { colorApplicator } from "../utils/colorFunctions";
 import { motion } from "framer-motion";
-import ProjectModalVertical from "../components/ProjectModalVertical";
-import {breakpoints, getDeviceType} from "../utils/breakpoints";
+import gsap from "gsap";
 import Head from "next/head";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import ProjectModal from "../components/ProjectModal";
+import ProjectModalVertical from "../components/ProjectModalVertical";
+import stylesHome from "../styles/scss/General.module.scss";
+import { breakpoints, getDeviceType } from "../utils/breakpoints";
+import { colorApplicator } from "../utils/colorFunctions";
+import { Project, projectsDataset } from "../utils/dataset";
+import { distanceLevels, hideFrame, parallax, unhideFrame } from "../utils/utility";
 
 type HomeProps = {
   updateCursorText: Function;
@@ -34,8 +33,7 @@ export default function Home({
   const [triangleRowsNumber, setTriangleRowsNumber] = useState<number>(0);
   const [trianglesPerRow, setTrianglesPerRow] = useState<number>(0);
   const [firstPositionProject, setFirstPositionProject] = useState<number>(0);
-  const [tempImgHover, setTempImageHover] =
-    useState<StaticImageData>(defaultImg);
+  const [hoveredProjectID, setHoveredProjectID] = useState<number>(0);
   const [projectOpened, setProjectOpened] = useState<Project>(
     projectsDataset[0]
   );
@@ -110,48 +108,65 @@ export default function Home({
   useEffect(() => {
     let projects = document.querySelectorAll(".triangleProjectImg");
 
-    const elMouseOver = (el) => () => {
+    const elMouseOver = (el) => {
       const elementId = el.getAttribute("data-project-id");
-      setProjectIsHovered(true);
-      if (elementId != null) {
-        const elementData = projectsDataset.find(
-          (el) => el.id + "" === elementId
-        );
-        setTempImageHover(elementData.media[0]);
-        const tl1 = gsap.timeline({ delay: 0 });
-        gsap.killTweensOf(".bigBackgroundImage");
-        tl1.to(".bigBackgroundImage", {
+      const elementData = projectsDataset.find(
+        (proj) => proj.id + "" === elementId
+      );
+      if (elementId != null && elementData != null) {
+        setProjectIsHovered(true);
+        setHoveredProjectID(elementId);
+        const tl1 = gsap.timeline();
+        tl1.to(`#bigBackgroundImage-${elementId}`, {
           scale: 1.02,
-          opacity: 1,
           duration: 5,
+          ease: "expo.out",
+        });
+        tl1.to(
+          `#bigBackgroundImage-${elementId}`,
+          {
+            opacity: 1,
+            duration: 2,
+            ease: "expo.out",
+          },
+          0
+        );
+      }
+    };
+
+    const elMouseOut = (el) => {
+      const elementId = el.getAttribute("data-project-id");
+      const elementData = projectsDataset.find(
+        (proj) => proj.id + "" === elementId
+      );
+      if (elementId != null && elementData != null) {
+        setProjectIsHovered(false);
+        const tl1 = gsap.timeline();
+        gsap.killTweensOf(`#bigBackgroundImage-${elementId}`);
+        tl1.to(`#bigBackgroundImage-${elementId}`, {
+          scale: 1.1,
+          opacity: 0,
+          duration: 0.5,
+          delay: 0,
           ease: "expo.out",
         });
       }
     };
 
-    const elMouseOut = () => {
-      setProjectIsHovered(false);
-      const tl1 = gsap.timeline({ delay: 0 });
-      gsap.killTweensOf(".bigBackgroundImage");
-      tl1.to(".bigBackgroundImage", {
-        scale: 1.1,
-        opacity: 0,
-        duration: 1,
-        ease: "expo.out",
-      });
-    };
 
     projects.forEach((el) => {
-      el.addEventListener("mouseover", elMouseOver(el));
-      el.addEventListener("mouseout", elMouseOut);
+      el.addEventListener("mouseover", () => elMouseOver(el));
+      el.addEventListener("mouseout", () => elMouseOut(el));
     });
 
+    //cleanup function
     return () => {
-      projects?.forEach((el) => {
-        el.removeEventListener("mouseover", elMouseOver(el));
-        el.removeEventListener("mouseout", elMouseOut);
+      projects.forEach((el) => {
+        el.removeEventListener("mouseover", () => elMouseOver(el));
+        el.removeEventListener("mouseout", () => elMouseOut(el));
       });
     };
+
   }, [trianglesPerRow]);
 
   useEffect(() => {
@@ -339,7 +354,7 @@ export default function Home({
   return (
     <>
       <Head>
-        <title>Yassine Gallaoui - Selected Projects</title>
+        <title>Yassine - Selected Projects</title>
       </Head>
       <motion.div
         className={stylesHome.mainMotionDiv + " mainMotionDiv"}
@@ -365,13 +380,19 @@ export default function Home({
             (projectIsHovered ? stylesHome.hover : "")
           }
         >
-          <Image
-            className={"bigBackgroundImage"}
-            priority={true}
-            src={tempImgHover}
-            fill
-            alt="project"
-          />
+          {projectsDataset.map((proj) => (
+              <Image
+                key={proj.id}
+                id={`bigBackgroundImage-${proj.id}`}
+                className={`bigBackgroundImage`}
+                priority={true}
+                src={proj.media[0]}
+                placeholder="blur"
+                fill
+                alt="project"
+              />
+            )
+          )}
         </div>
         <div className={stylesHome.modalMatteBkgrd + " modalMatteBkgrd"}></div>
         <div className={stylesHome.expContainer + " expContainer"}>
@@ -454,7 +475,7 @@ export default function Home({
                           placeholder="blur"
                           quality={100}
                           fill={true}
-                          sizes="30vw"
+                          sizes="70dvw"
                           alt={`Project ${
                             projectsDataset[index2 - firstPositionProject]?.name
                           }`}

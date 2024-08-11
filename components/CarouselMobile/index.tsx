@@ -1,9 +1,8 @@
-import styles from "./CarouselMobile.module.scss";
-import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import arrRight from "../../public/icons/arr.svg";
 import arrExpand from "../../public/icons/expand.svg";
-import gsap from "gsap";
 import { Project } from "../../utils/dataset";
 import {
   textAnimationBackward,
@@ -11,6 +10,7 @@ import {
   verticalTextAnimationBackward,
   verticalTextAnimationForward,
 } from "../../utils/utility";
+import styles from "./CarouselMobile.module.scss";
 
 interface CarouselProps {
   content: Project;
@@ -270,7 +270,7 @@ function CarouselMobile({
                 key={index}
                 style={{ zIndex: 5 - index }}
               >
-                <Image src={el} alt={altText} fill />
+                <Image src={el} alt={altText} fill sizes="100dvw" />
               </div>
             );
           })}
@@ -294,7 +294,7 @@ function CarouselMobile({
                 }
                 onClick={() => thumbnailClickHandle(index, true)}
               >
-                <Image src={el} alt={altText} fill></Image>
+                <Image src={el} alt={altText} fill sizes="20dvh"></Image>
               </div>
             ))}
           </div>
@@ -354,7 +354,7 @@ function CarouselMobile({
               }
               onClick={() => thumbnailClickHandle(index)}
             >
-              <Image src={el} alt={altText} fill></Image>
+              <Image src={el} alt={altText} fill sizes="20dvh"></Image>
             </div>
           ))}
         </div>
