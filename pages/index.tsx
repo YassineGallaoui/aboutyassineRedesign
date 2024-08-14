@@ -218,7 +218,7 @@ export default function Home({
     setTrianglesPerRow(tempTPR);
     setFirstPositionProject(
       tempTPR % 2 === 0
-        ? tempTPR / 2 - (projectsDataset.length - 1) / 2
+        ? tempTPR / 2 - (projectsDataset.length) / 2
         : (tempTPR - 1) / 2 - (projectsDataset.length - 1) / 2
     );
   }
@@ -381,21 +381,23 @@ export default function Home({
           }
         >
           {projectsDataset.map((proj) => (
-              <Image
-                key={proj.id}
-                id={`bigBackgroundImage-${proj.id}`}
-                className={`bigBackgroundImage`}
-                priority={true}
-                src={proj.media[0]}
-                placeholder="blur"
-                fill
-                alt="project"
-              />
-            )
-          )}
+            <Image
+              key={proj.id}
+              id={`bigBackgroundImage-${proj.id}`}
+              className={`bigBackgroundImage`}
+              priority={true}
+              src={proj.media[0]}
+              fill
+              alt="project"
+            />
+          ))}
         </div>
         <div className={stylesHome.modalMatteBkgrd + " modalMatteBkgrd"}></div>
-        <div className={stylesHome.expContainer + " expContainer"}>
+        <div
+          className={
+            stylesHome.expContainer + ' ' + (projectsDataset.length % 2 ? stylesHome.odd : stylesHome.even) + " expContainer" 
+          }
+        >
           {triangleRowsNumber > 0 && renderNonProjectTriangles(true)}
           <div
             className={stylesHome.triangleProjectRow}
@@ -463,6 +465,7 @@ export default function Home({
                         }
                       >
                         <Image
+                          tabIndex={0}
                           src={
                             projectsDataset[index2 - firstPositionProject]
                               ?.media[0]
@@ -472,7 +475,6 @@ export default function Home({
                             projectsDataset[index2 - firstPositionProject]?.id
                           }`}
                           className={"image"}
-                          placeholder="blur"
                           quality={100}
                           fill={true}
                           sizes="70dvw"

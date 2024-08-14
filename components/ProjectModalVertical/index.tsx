@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
-import styles from "./ProjectModalVertical.module.scss";
 import gsap from "gsap";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import linkArrow from "../../public/icons/linkArrow.svg";
 import { Project } from "../../utils/dataset";
 import CarouselMobile from "../CarouselMobile";
 import { RotateDevice } from "../RotateDevice";
+import styles from "./ProjectModalVertical.module.scss";
 
 
 type ModalProps = {
@@ -22,6 +24,15 @@ export default function ProjectModalVertical({
   cursorIsHover,
 }: ModalProps) {
   const [expandedCarousel, setExpandedCarousel] = useState<boolean>(false);
+  const arrowLinkRef = useRef(null);
+  const tl = gsap.timeline({});
+  
+  const arrowLinkMouseOver = () => {
+    tl.to(arrowLinkRef.current, { duration: 0.2, x: 20, y: -20 })
+      .to(arrowLinkRef.current, { duration: 0, x: -20, y: 20 })
+      .to(arrowLinkRef.current, { x: 0, y: 0 });
+    cursorIsHover(true);
+  };
 
   useEffect(() => {
     const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
@@ -149,6 +160,27 @@ export default function ProjectModalVertical({
               )}
             </tbody>
           </table>
+          {content.link != null && (
+            <a
+              type="button"
+              className={styles.projectModalLink}
+              aria-label="Click this link to go to the project's website"
+              href={content.link}
+              onMouseOver={() => arrowLinkMouseOver()}
+              onMouseLeave={() => cursorIsHover(false)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                id="arrRight"
+                ref={arrowLinkRef}
+                className={styles.linkArrow}
+                src={linkArrow}
+                alt={""}
+                role="presentation"
+              ></Image>
+            </a>
+          )}
         </div>
       </div>
       <div

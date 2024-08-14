@@ -527,7 +527,6 @@ function Carousel({
                 alt={altText}
                 fill={true}
                 sizes="20dvh"
-                placeholder={"blur"}
               ></Image>
             </div>
           ))}

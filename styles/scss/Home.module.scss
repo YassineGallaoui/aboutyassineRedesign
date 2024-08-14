@@ -61,6 +61,9 @@
   align-items: center;
   height: 100dvh;
   width: 100dvw;
+  &.even{
+    left: -5.5dvw;
+  }
   .triangleProjectRow {
     position: relative;
     display: flex;
@@ -167,6 +170,17 @@
     }
     .triangleProjectWrapper {
       z-index: 10;
+      img {
+        filter: grayscale(1);
+        transition: filter $change-theme-duration;
+      }
+      .triangleProjectContent {
+        &:hover {
+          img {
+            filter: none;
+          }
+        }
+      }
     }
     .triangleProjectWrapper__NoProj {
       &:nth-child(odd) {

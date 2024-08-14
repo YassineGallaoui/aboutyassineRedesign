@@ -295,3 +295,22 @@ html[data-theme="dark"] {
         }
     }
 }
+
+#guidelines{
+    position: absolute;
+    height: 100dvh;
+    width: 100dvw;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    div {
+        opacity: 0;
+        height: 50dvh;
+        width: 50dvw;
+        border: 1px solid red;
+        z-index: 1;
+        pointer-events: none;
+    }
+}

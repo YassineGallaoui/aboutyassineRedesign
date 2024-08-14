@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
-import styles from "./ProjectModal.module.scss";
 import gsap from "gsap";
-import Carousel from "../Carousel";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import linkArrow from "../../public/icons/linkArrow.svg";
+import { breakpoints, getDeviceType } from "../../utils/breakpoints";
 import { Project } from "../../utils/dataset";
-import {breakpoints, getDeviceType} from "../../utils/breakpoints";
+import Carousel from "../Carousel";
+import styles from "./ProjectModal.module.scss";
 
 type ModalProps = {
   content: Project;
@@ -22,6 +24,8 @@ export default function ProjectModal({
 }: ModalProps) {
   const [expandedCarousel, setExpandedCarousel] = useState<boolean>(false);
   const [deviceType, setDeviceType] = useState(breakpoints.desktop);
+  const arrowLinkRef = useRef(null);
+  const tl = gsap.timeline({});
 
   useEffect(() => {
     const changeDeviceType = () => {
@@ -76,6 +80,13 @@ export default function ProjectModal({
   const notHoverCloseBtn = () => {
     cursorIsHover(false);
     gsap.to(`.closeModalBtn`, { transform: "rotate(0deg)" });
+  };
+
+  const arrowLinkMouseOver = () => {
+    tl.to(arrowLinkRef.current, { duration: 0.2, x: 20, y: -20 })
+      .to(arrowLinkRef.current, { duration: 0, x: -20, y: 20 })
+      .to(arrowLinkRef.current, { x: 0, y: 0 });
+    cursorIsHover(true);
   };
 
   useEffect(() => {
@@ -148,65 +159,86 @@ export default function ProjectModal({
           <div className={styles.projectModalName}>{content.name}</div>
           <table>
             <tbody>
-            <tr className={styles.bottomBorder + " bottomBorder"}>
-              <th className={styles.characteristic + " characteristic"}>
-                <span>{"Working for"}</span>
-              </th>
-              <td>{content.workingFor}</td>
-            </tr>
-            <tr className={styles.bottomBorder + " bottomBorder"}>
-              <th className={styles.characteristic + " characteristic"}>
-                <span>{"Year"}</span>
-              </th>
-              <td>{content.year}</td>
-            </tr>
-            <tr className={styles.descriptionTitle}>
-              <th
+              <tr className={styles.bottomBorder + " bottomBorder"}>
+                <th className={styles.characteristic + " characteristic"}>
+                  <span>{"Working for"}</span>
+                </th>
+                <td>{content.workingFor}</td>
+              </tr>
+              <tr className={styles.bottomBorder + " bottomBorder"}>
+                <th className={styles.characteristic + " characteristic"}>
+                  <span>{"Year"}</span>
+                </th>
+                <td>{content.year}</td>
+              </tr>
+              <tr className={styles.descriptionTitle}>
+                <th
                   colSpan={2}
                   className={styles.characteristic + " characteristic"}
-              >
-                <span>{"Description"}</span>
-              </th>
-            </tr>
-            <tr
+                >
+                  <span>{"Description"}</span>
+                </th>
+              </tr>
+              <tr
                 className={
-                    styles.bottomBorder + " bottomBorder " + styles.description
+                  styles.bottomBorder + " bottomBorder " + styles.description
                 }
-            >
-              <td colSpan={2}>{content.description}</td>
-            </tr>
-            <tr className={styles.bottomBorder + " bottomBorder"}>
-              <th className={styles.characteristic + " characteristic"}>
-                <span>{"Frontend"}</span>
-              </th>
-              <td>{content.frontend}</td>
-            </tr>
-            <tr className={styles.bottomBorder + " bottomBorder"}>
-              <th className={styles.characteristic + " characteristic"}>
-                <span>{"Backend"}</span>
-              </th>
-              <td>{content.backend}</td>
-            </tr>
-            {content.recognitions != null && (
+              >
+                <td colSpan={2}>{content.description}</td>
+              </tr>
+              <tr className={styles.bottomBorder + " bottomBorder"}>
+                <th className={styles.characteristic + " characteristic"}>
+                  <span>{"Frontend"}</span>
+                </th>
+                <td>{content.frontend}</td>
+              </tr>
+              <tr className={styles.bottomBorder + " bottomBorder"}>
+                <th className={styles.characteristic + " characteristic"}>
+                  <span>{"Backend"}</span>
+                </th>
+                <td>{content.backend}</td>
+              </tr>
+              {content.recognitions != null && (
                 <tr>
                   <th className={styles.characteristic + " characteristic"}>
                     <span>{"Recognitions"}</span>
                   </th>
                   <td>{content.recognitions}</td>
                 </tr>
-            )}
+              )}
             </tbody>
           </table>
+          {content.link != null && (
+            <a
+              type="button"
+              className={styles.projectModalLink}
+              aria-label="Click this link to go to the project's website"
+              href={content.link}
+              onMouseOver={() => arrowLinkMouseOver()}
+              onMouseLeave={() => cursorIsHover(false)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                id="arrRight"
+                ref={arrowLinkRef}
+                className={styles.linkArrow}
+                src={linkArrow}
+                alt={""}
+                role="presentation"
+              ></Image>
+            </a>
+          )}
         </div>
       </div>
       <div
-          className={
-              styles.closeModalBtn +
-              (expandedCarousel ? " " + styles.light : "") +
-              " closeModalBtn"
-          }
-          onMouseOver={() => hoverCloseBtn()}
-          onMouseLeave={() => notHoverCloseBtn()}
+        className={
+          styles.closeModalBtn +
+          (expandedCarousel ? " " + styles.light : "") +
+          " closeModalBtn"
+        }
+        onMouseOver={() => hoverCloseBtn()}
+        onMouseLeave={() => notHoverCloseBtn()}
         onClick={() => closeModal()}
       />
     </div>

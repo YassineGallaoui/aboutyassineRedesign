@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react";
-import styles from "./Frame.module.scss";
-import { createSpanStructure } from "../../utils/utility";
-import Link from "next/link";
+import gsap from "gsap";
 import Image from "next/image";
-import logoY from "../../public/logo/logo-Y.svg";
-import lightIcon from "../../public/icons/light_mode.svg";
-import lightIconBase from "../../public/icons/light_mode_base.svg";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { themeMode } from "../../pages/_app";
+import cvIcon from "../../public/icons/CV.svg";
 import darkIcon from "../../public/icons/dark_mode.svg";
 import darkIconStars1 from "../../public/icons/dark_mode_stars_1.svg";
 import darkIconStars2 from "../../public/icons/dark_mode_stars_2.svg";
-import cvIcon from "../../public/icons/CV.svg";
-import mailIcon from "../../public/icons/mail.svg";
+import lightIcon from "../../public/icons/light_mode.svg";
+import lightIconBase from "../../public/icons/light_mode_base.svg";
 import linkedinIcon from "../../public/icons/linkedin.svg";
-import { colorApplicator } from "../../utils/colorFunctions";
-import { themeMode } from "../../pages/_app";
+import mailIcon from "../../public/icons/mail.svg";
+import logoY from "../../public/logo/logo-Y.svg";
 import { breakpoints } from "../../utils/breakpoints";
-import { useRouter } from "next/router";
-import gsap from "gsap";
+import { colorApplicator } from "../../utils/colorFunctions";
+import { createSpanStructure } from "../../utils/utility";
+import styles from "./Frame.module.scss";
 
 type FrameType = {
   updateCursorText: Function;
@@ -131,7 +131,7 @@ export default function Frame({
   return (
     <div className={styles.frameContainer}>
       <div className={styles.frameContainer__left}>
-        <Link href="/">
+        <Link href="/" aria-label="Click here to go to the homepage">
           <div
             className={
               styles.frameContainer__left__logoWrapper + " logoWrapper"
@@ -158,13 +158,15 @@ export default function Frame({
         </div>
       </div>
       <div className={styles.frameContainer__right}>
-        <div
+        <button
           className={styles.frameContainer__right__theme + " themeContainer"}
           style={{ transform: "rotate(" + themeIconRot + "deg)" }}
           onMouseOver={() => updateCursorStatus(true)}
           onMouseLeave={() => updateCursorStatus(false)}
           onClick={() => themeChange()}
+          onSubmit={() => themeChange()}
           tabIndex={0}
+          aria-label="Click here to toggle the theme between light and dark"
         >
           <div
             className={
@@ -222,7 +224,7 @@ export default function Frame({
               alt="dark mode"
             />
           </div>
-        </div>
+        </button>
         {
           <div className={styles.frameContainer__right__nav + " sectionsNav"}>
             <Link

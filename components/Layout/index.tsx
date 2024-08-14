@@ -1,9 +1,9 @@
-import React, { ReactNode, useEffect, useState } from "react";
-import Cursor from "../Cursor";
-import SplashScreen from "../SplashScreen";
-import Frame from "../Frame";
+import { ReactNode, useEffect, useState } from "react";
 import { themeMode } from "../../pages/_app";
 import { breakpoints } from "../../utils/breakpoints";
+import Cursor from "../Cursor";
+import Frame from "../Frame";
+import SplashScreen from "../SplashScreen";
 
 type Props = {
   updateCursorText: Function;
@@ -53,6 +53,12 @@ const Layout = ({
 
   return (
     <main>
+      <div id="guidelines">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
       {!isTouchDevice && <Cursor hovered={cursorHover} txt={cursorText} />}
       <SplashScreen
         setSSAnimFinished={setSSAnimFinished}

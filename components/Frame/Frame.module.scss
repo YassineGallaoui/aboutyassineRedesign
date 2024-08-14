@@ -63,6 +63,8 @@
   &__right {
     align-items: flex-end;
     &__theme {
+      border: none;
+      background: transparent;
       position: relative;
       width: 7rem;
       height: 6.25rem;
