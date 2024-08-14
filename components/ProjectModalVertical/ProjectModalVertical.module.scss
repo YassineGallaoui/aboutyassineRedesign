@@ -101,7 +101,8 @@
       height: 3rem;
       width: 3rem;
       background-color: transparent;
-      border: 1px solid white;
+      border: 1px solid $semitransparentDark1;
+      transition: $change-theme-duration border;
       border-radius: 50%;
       display: flex;
       flex-direction: row;
@@ -111,6 +112,10 @@
       position: absolute;
       top: 1rem;
       right: 1rem;
+      img {
+        filter: invert(0);
+        transition: $change-theme-duration filter;
+      }
     }
     table {
       color: $dark-color;
@@ -163,5 +168,11 @@ html[data-theme="dark"] {
   }
   .projectCarouselWrapper {
     border-bottom-color: $semitransparentLight4;
+  }
+  .projectModalLink {
+    border: 1px solid $semitransparentLight1 !important;
+    img {
+      filter: invert(1) !important;
+    }
   }
 }
