@@ -149,6 +149,14 @@ export default function Frame({
             </div>
           </div>
         </Link>
+        <div className={styles.frameContainer__left__available + " available"}>
+          <a
+            href="mailto:myassine.gallaoui@gmail.com"
+            aria-label="Click here to send me an email"
+          >
+            Available: October 2024
+          </a>
+        </div>
         <div
           className={
             styles.frameContainer__left__lastUpdate + " lastUpdateText"
