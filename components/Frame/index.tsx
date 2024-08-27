@@ -153,6 +153,8 @@ export default function Frame({
           <a
             href="mailto:myassine.gallaoui@gmail.com"
             aria-label="Click here to send me an email"
+            onMouseOver={() => updateCursorStatus(true)}
+            onMouseLeave={() => updateCursorStatus(false)}
           >
             Available: October 2024
           </a>
