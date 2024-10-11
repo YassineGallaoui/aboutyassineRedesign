@@ -363,16 +363,16 @@ export default function Home({
         exit={{ x: "-50vw", opacity: 0 }}
         transition={{ duration: 1, ease: [0.8, 0.28, 0, 1] }}
       >
-        <div className={stylesHome.expBkgrdTxt + " sectionBkgrdTxt"}>
-          <span>P</span>
-          <span>r</span>
-          <span>o</span>
-          <span>j</span>
-          <span>e</span>
-          <span>c</span>
-          <span>t</span>
-          <span>s</span>
-        </div>
+        <h1 className={stylesHome.expBkgrdTxt + " sectionBkgrdTxt"} aria-label="Projects">
+          <span aria-hidden="true">P</span>
+          <span aria-hidden="true">r</span>
+          <span aria-hidden="true">o</span>
+          <span aria-hidden="true">j</span>
+          <span aria-hidden="true">e</span>
+          <span aria-hidden="true">c</span>
+          <span aria-hidden="true">t</span>
+          <span aria-hidden="true">s</span>
+        </h1>
         <div
           className={
             stylesHome.currentPrjHovered +
