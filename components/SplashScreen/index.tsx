@@ -1,10 +1,10 @@
-import styles from "./SplashScreen.module.scss";
-import logoY from "../../public/logo/logo-Y.svg";
+import gsap from "gsap";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import TypingText from "../TypingText";
-import gsap from "gsap";
+import logoY from "../../public/logo/logo-Y.svg";
 import ProgressBarCMD from "../ProgressBarCMD";
+import TypingText from "../TypingText";
+import styles from "./SplashScreen.module.scss";
 
 export default function SplashScreen({
   setSSAnimFinished,
@@ -13,9 +13,9 @@ export default function SplashScreen({
   const tl = gsap.timeline({});
   const displaySS = true;
   const baseDirectory = `C:\\Users\\yas> `;
-  const directoryProjects = `C:\\Users\\yas\\projects> `;
+  const [directoryProjects, setDirectoryProjects] = useState(`C:\\Users\\yas\\projects> `);
   const directoryYassineRedesign = `C:\\Users\\yas\\projects\\yasRedesign> `;
-  const technicalText1 = `cd projects`;
+  const [technicalText1, setTechnicalText1] = useState(`cd projects`);
   const technicalText2 = `cd yasRedesign`;
   const technicalText3 = `code .`;
   const technicalText4 = `npm run dev`;
@@ -56,6 +56,11 @@ export default function SplashScreen({
       setSSAnimFinished(true);
     }
   }, [text5Completed]);
+
+  useEffect(()=>{
+    setDirectoryProjects(`C:\\Users\\yas\\${window.location.href.indexOf('about') > -1 ? 'about' : 'projects'}> `);
+    setTechnicalText1(`cd ${window.location.href.indexOf('about') > -1 ? 'about':'projects'}`);
+  }, [])
 
   return displaySS ? (
     <div className={styles.SSContainer + " SSContainer"}>

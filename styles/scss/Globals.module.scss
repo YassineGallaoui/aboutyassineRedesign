@@ -300,7 +300,7 @@ html[data-theme="dark"] {
     }
 }
 
-#guidelines{
+#guidelines {
     position: absolute;
     height: 100dvh;
     width: 100dvw;
@@ -313,7 +313,7 @@ html[data-theme="dark"] {
         opacity: 0;
         height: 50dvh;
         width: 50dvw;
-        border: 1px solid red;
+        border: 1px solid rgba(255, 0, 0, 0.571);
         z-index: 1;
         pointer-events: none;
     }
