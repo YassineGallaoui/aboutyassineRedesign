@@ -98,13 +98,13 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
         exit={{ x: "50vw", opacity: 0 }}
         transition={{ duration: 1, ease: [0.8, 0.28, 0, 1] }}
       >
-        <div className={stylesAbout.meBkgrdTxt + " sectionBkgrdTxt"}>
-          <span>A</span>
-          <span>b</span>
-          <span>o</span>
-          <span>u</span>
-          <span>t</span>
-        </div>
+        <h1 className={stylesAbout.meBkgrdTxt + " sectionBkgrdTxt"} aria-label="About">
+          <span aria-hidden="true">A</span>
+          <span aria-hidden="true">b</span>
+          <span aria-hidden="true">o</span>
+          <span aria-hidden="true">u</span>
+          <span aria-hidden="true">t</span>
+        </h1>
         {SSAnimFinished && <div className={stylesAbout.verticalLine}></div>}
         {SSAnimFinished && <div className={stylesAbout.horizontalLine}></div>}
         {SSAnimFinished && <HorizontalLines />}
@@ -164,16 +164,19 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                   " aboutContent col-10 col-sm-8 offset-1 offset-sm-3"
                 }
               >
+                <h2 className={stylesAbout.meContainer__txt__description__h2}>
+                  <span>1/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Who the heck am I ?</span>
+                </h2>
                 <p>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`1/ I'm `}</span>
+                  >Actually I dunno. Jk, my name is </span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` Yassine, `}</span>
+                  ><b>Yassine</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`a`}</span>
+                  >{`, Italian-Tunisian, `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   >{` software engineer `}</span>
@@ -182,82 +185,68 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                   >{`specialized in`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` frontend development. `}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                  >{`The majority of my`}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  >{` interests gravitate around IT and CS`}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                  >
-                    {`, going from digital ethics to digital law and from UX/UI design to software development. `}
-                  </span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                  >{`My focus is always on `}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  >{`creating software `}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                  >{`which`}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  >{` works flawlessly `}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                  >{`and, whenever possible, `}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  >{`is aesthetically captivating. `}</span>
+                  >{` frontend and creative development. `}</span>
                 </p>
+
+                <h2 className={stylesAbout.meContainer__txt__description__h2}>
+                  <span>2/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "What do you do for a living"?</span>
+                </h2>
                 <p>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`2/ My`}</span>
+                  >My </span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` native language `}</span>
+                  >services</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`is`}</span>
+                  >{` range from creating any kind of `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` italian `}</span>
+                  >{`portfolio, presentation, tribute or archive website`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`but I also speak`}</span>
+                  >{` to `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` fluent english, `}</span>
+                  >{` accessibility assessments on your already existing websites. `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`a bit of`}</span>
+                  >{` The `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` french, `}</span>
+                  >{` goals `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`as well as an informal`}</span>
+                  >{` and the `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` arabic`}</span>
+                  >{` main rules are always the same: the final product must works flawlessly `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`.`}</span>
+                  >{` and, whenever possible, `}</span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  >{`is aesthetically captivating.`}</span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{`Note: If your project has a really advanced and particular design, you need to already have the design part done, so that i can focus and work in hard core mode on the code side straight away.`}</span>
                 </p>
+
+
+                <h2 className={stylesAbout.meContainer__txt__description__h2}>
+                  <span>3/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Where can you find me?</span>
+                </h2>
                 <p>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`3/ I am always interested in`}</span>
+                  >Well for sure I will not tell you where I live, you wirdo...</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` new stimulating projects, `}</span>
+                  >{` But in case you want to work together or you have some new great project and you want two hands and a brain more on it, `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` so if you think we can do something great together please reach me thru `}</span>
+                  >{` you can reach me thru `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   >

@@ -3,7 +3,11 @@
 @font-face {
     font-family: "Playfair--Display";
     src: url("../../public/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf") format("ttf");
-    src: url("../../public/fonts/Playfair_Display/static/PlayfairDisplay-Regular.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("../../public/fonts/JetBrainsMono/JetBrainsMono-VariableFont_wght.ttf") format("ttf");
 }
 
 * {
@@ -19,7 +23,7 @@ html,
 body {
     padding: 0;
     margin: 0;
-    font-family: "Playfair--Display", serif;
+    font-family: "JetBrains Mono", monospace;
     font-size: 14px;
     -ms-overflow-style: none;
     scrollbar-width: none;
