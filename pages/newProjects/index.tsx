@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import * as THREE from 'three';
 import GenericTriangle from "../../components/GenericTriangle";
+import TestComp from "../../components/TestComponent";
 import stylesHome from "../../styles/scss/Projects.module.scss";
 import { breakpoints } from "../../utils/breakpoints";
 import { colorApplicator } from "../../utils/colorFunctions";
@@ -32,11 +33,13 @@ export default function NewProjects({
     lastEditDate,
 }: NewProjectsProps) {
     const [windowW, setWindowW] = useState<number>(0);
-    const [dimensionsScale, setDimensionsScale] = useState<number>(1.4);
-    const [triL, setTriL] = useState<number>(2 * dimensionsScale);
+    const [dimensionsScale, setDimensionsScale] = useState<number>(1);
+    const [triL, setTriL] = useState<number>(4 * dimensionsScale);
     const [halfTriL, setHalfTriL] = useState<number>(triL / 2);
-    const [triP, setTriP] = useState<number>(triL * 0.1);
+    const [triP, setTriP] = useState<number>(triL * 0.07);
+    const [triGap, setTriGap] = useState<number>(halfTriL + triP);
     const [triH, setTriH] = useState<number>((Math.sqrt(3) / 2) * triL);
+    const [projsNumber, setProjsNumber] = useState<number>(projectsDataset.length)
 
     const triangleVertices = [
         new THREE.Vector3(0, triH / 2, 0),   // Top vertex
@@ -72,28 +75,31 @@ export default function NewProjects({
         if (lastEditTag && lastEditDate != null)
             lastEditTag.innerHTML = lastEditDate;
 
-        // triangles Mgmt
         const updateTriangleCount = () => {
-            const trianglesPerRow = Math.floor(window.innerWidth / triL / 10 / 5) + 2;
-            console.log(window.innerWidth / triL, trianglesPerRow)
+            let trianglesPerRow = 40
+            let triangleRows = 11
+            /* if (trianglesPerRow % 2 === 0)
+                trianglesPerRow = trianglesPerRow + 1;
+            if (projectsDataset.length % 2 === 0)
+                trianglesPerRow = trianglesPerRow + 1;
+            if (triangleRows % 2 === 0)
+                triangleRows = triangleRows + 1; */
+            const fp = Math.ceil((trianglesPerRow - projsNumber) / 2) + (trianglesPerRow%2===1 && projsNumber%2===1? 1:0);
+
             setTrianglesPerRow(trianglesPerRow);
-
-            const triangleRows = Math.floor(window.innerHeight / triH / 10 / 5) + 2;
-            console.log(window.innerHeight, triH, triangleRows)
             setTriangleRows(triangleRows);
+            setFirstPositionProject(fp);
         };
-
-        // Initial calculation
+        
         updateTriangleCount();
-
-        // Recalculate on window resize
+        
         window.addEventListener("resize", updateTriangleCount);
-        // Clean up the event listener when the component unmounts
+
         return () => {
             document.removeEventListener("mousemove", mouseMoveHomepage);
             window.removeEventListener("resize", updateTriangleCount);
         };
-    }, [triL]);
+    }, [triL, projsNumber]);
 
     useEffect(() => {
         if (SSAnimFinished && hasComponentMounted) {
@@ -117,7 +123,6 @@ export default function NewProjects({
     }, [SSAnimFinished]);
 
 
-
     function mouseMoveHomepage(event: MouseEvent | Event) {
         parallax(
             event,
@@ -125,7 +130,6 @@ export default function NewProjects({
             distanceLevels.Second
         );
     }
-
 
     return (
         <>
@@ -139,6 +143,7 @@ export default function NewProjects({
                 exit={{ x: "-50vw", opacity: 0 }}
                 transition={{ duration: 1, ease: [0.8, 0.28, 0, 1] }}
             >
+                <TestComp projsNumber={projsNumber} setProjsNumber={setProjsNumber}/>
                 <h1 className={stylesHome.expBkgrdTxt + " sectionBkgrdTxt"} aria-label="Projects">
                     <span aria-hidden="true">P</span>
                     <span aria-hidden="true">r</span>
@@ -171,7 +176,7 @@ export default function NewProjects({
                 <div className={stylesHome.modalMatteBkgrd + " modalMatteBkgrd"}></div>
                 <div
                     className={
-                        stylesHome.expContainer + ' ' + (projectsDataset.length % 2 ? stylesHome.odd : stylesHome.even) + " expContainer"
+                        stylesHome.expContainer + ' ' + (projsNumber % 2 ? stylesHome.odd : stylesHome.even) + " expContainer"
                     }
                 >
                     <Canvas camera={{
@@ -185,53 +190,44 @@ export default function NewProjects({
                             const yIndex = Math.ceil(extIndex - (triangleRows / 2))
                             return <>
                                 {
-                                    [...Array(trianglesPerRow).keys()].map((_, intIndex) => {
-                                        const xIndex = Math.ceil(intIndex - (trianglesPerRow / 2));
+                                    [...Array(trianglesPerRow).keys()]
+                                    .map((_, intIndex) => {
+                                        const xIndex = Math.floor(intIndex - (trianglesPerRow / 2));
+                                        const posX = (xIndex < trianglesPerRow ?
+                                            xIndex * (-triGap) :
+                                            xIndex > trianglesPerRow ?
+                                                xIndex * (triGap) : 0)
+                                            - (projsNumber % 2 === 0 ? triGap / 2 : 0);
+                                        const posY = yIndex < triangleRows ?
+                                            yIndex * (-triH - (triP * 0.9)) :
+                                            yIndex > triangleRows ?
+                                                yIndex * (triH + (triP * 0.9)) : 0;
+                                        const isThisAProject = intIndex >= firstPositionProject
+                                            && intIndex < firstPositionProject + projsNumber
+                                            && extIndex === Math.floor(triangleRows / 2);
+                                        
                                         return (
                                             <GenericTriangle key={intIndex}
-                                                vertices={xIndex % 2 === 0 ? triangleInvVertices : triangleVertices}
+                                                vertices={intIndex % 2 === (extIndex % 2 === 1 ? 0 : 1) ? triangleInvVertices : triangleVertices}
                                                 position={
-                                                    new THREE.Vector3(
-                                                        (xIndex < trianglesPerRow ?
-                                                            xIndex * (-halfTriL - triP) :
-                                                            xIndex > trianglesPerRow ?
-                                                                xIndex * (halfTriL + triP) : 0) 
-                                                        - (yIndex % 2 === 0 ? halfTriL + triP : 0), 
-                                                        yIndex < triangleRows ? 
-                                                            yIndex * (-triH - triP) :
-                                                            yIndex > triangleRows ?
-                                                                yIndex * (triH + triP) : 0, 5)}
-                                                materialType="color"
-                                                color="blue"
-                                                opacity={0.3}
-                                                index={intIndex}
+                                                    new THREE.Vector3(posX, posY, 5)}
+                                                materialType={isThisAProject ? "image" : "color"}
+                                                color={
+                                                    isThisAProject ? "rgb(255,255,0)" : "rgb(0,0,0)" 
+                                                }
+                                                opacity={
+                                                    isThisAProject ? 1 : 0.1
+                                                }
+                                                imageUrl={isThisAProject ? projectsDataset[intIndex - firstPositionProject].media[0] : null}
+                                                indexX={intIndex}
+                                                indexY={extIndex}
+                                                totX={trianglesPerRow}
                                             />
                                         )
                                     })
                                 }
                             </>
                         })}
-
-                        {/* First triangle with color */}
-
-
-                        {/* Second triangle with color */}
-                        {/* <GenericTriangle
-                            vertices={triangleVertices}
-                            position={new THREE.Vector3(0, 0, 5)}
-                            materialType="color"
-                            imageUrl="green"
-                        /> */}
-
-                        {/* Third triangle with color */}
-                        {/* <GenericTriangle
-                            vertices={triangleInvVertices}
-                            position={new THREE.Vector3(halfTriL + triP, 0, 5)}
-                            materialType="color"
-                            color="blue"
-                        /> */}
-
-                        {/* <GenericTriangle vertices={vertices} position={[5, 5, 0]} color="red"/> */}
                     </Canvas>
                 </div>
             </motion.div>

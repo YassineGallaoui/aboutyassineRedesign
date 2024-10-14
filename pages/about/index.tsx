@@ -165,7 +165,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                 }
               >
                 <h2 className={stylesAbout.meContainer__txt__description__h2}>
-                  <span>1/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Who the heck am I ?</span>
+                  <span>1/&nbsp;Who the heck am I ?</span>
                 </h2>
                 <p>
                   <span
@@ -189,7 +189,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                 </p>
 
                 <h2 className={stylesAbout.meContainer__txt__description__h2}>
-                  <span>2/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {"What do you do for a living"}?</span>
+                  <span>2/&nbsp;{"What do you do for a living"}?</span>
                 </h2>
                 <p>
                   <span
@@ -235,7 +235,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
 
 
                 <h2 className={stylesAbout.meContainer__txt__description__h2}>
-                  <span>3/ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Where can you find me?</span>
+                  <span>3/&nbsp;Where can you find me?</span>
                 </h2>
                 <p>
                   <span
