@@ -258,27 +258,6 @@ export default function Frame({
                 ></div>
               </div>
             </Link>
-            <Link
-              href={"/newProjects"}
-              className={styles.frameContainer__right__nav__navItem}
-              onMouseOver={() => updateCursorStatus(true)}
-              onMouseLeave={() => updateCursorStatus(false)}
-            >
-              <div
-                className={
-                  styles.frameContainer__right__nav__navItem__singleNavItem +
-                  " singleNavItem underlineLineWithAnim"
-                }
-                onClick={() => singleNavItemAnimation()}
-              >
-                <div
-                  className={
-                    styles.frameContainer__right__nav__navItem__singleNavItemText +
-                    " singleNavItemText"
-                  }
-                >NewProjects</div>
-              </div>
-            </Link>
           </div>
         }
         <div className={styles.frameContainer__right__contacts + " contacts"}>

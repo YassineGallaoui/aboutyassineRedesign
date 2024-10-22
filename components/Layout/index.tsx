@@ -31,6 +31,7 @@ const Layout = ({
   children,
 }: Props) => {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const showGuideline = false;
 
   useEffect(() => {
     const onTouchStart = () => {
@@ -53,7 +54,7 @@ const Layout = ({
 
   return (
     <main>
-      <div id="guidelines">
+      <div id="guidelines" className={showGuideline ? 'show':''}>
         <div></div>
         <div></div>
         <div></div>

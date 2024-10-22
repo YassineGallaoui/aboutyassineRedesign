@@ -23,7 +23,7 @@ html,
 body {
     padding: 0;
     margin: 0;
-    font-family: "JetBrains Mono", monospace;
+    font-family: "Playfair--Display", serif;
     font-size: 14px;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -309,12 +309,14 @@ html[data-theme="dark"] {
     justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
-    div {
-        opacity: 1;
-        height: 50dvh;
-        width: 50dvw;
-        border: 1px solid rgba(255, 0, 0, 0.571);
-        z-index: 1;
-        pointer-events: none;
+    &.show{
+        div {
+            opacity: 1;
+            height: 50dvh;
+            width: 50dvw;
+            border: 1px solid rgba(255, 0, 0, 0.571);
+            z-index: 1;
+            pointer-events: none;
+        }
     }
 }

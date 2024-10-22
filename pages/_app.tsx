@@ -1,11 +1,11 @@
 import "bootstrap/dist/css/bootstrap.css";
-import "../styles/css/Globals.module.min.css";
-import {colorApplicator, generateColors} from "../utils/colorFunctions";
-import {useEffect, useState} from "react";
+import { AnimatePresence } from "framer-motion";
+import Head from 'next/head';
+import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import {AnimatePresence} from "framer-motion";
-import {breakpoints, getDeviceType} from "../utils/breakpoints";
-import Head from 'next/head'
+import "../styles/css/Globals.module.min.css";
+import { breakpoints, getDeviceType } from "../utils/breakpoints";
+import { colorApplicator, generateColors } from "../utils/colorFunctions";
 
 export enum themeMode {
     lightMode,

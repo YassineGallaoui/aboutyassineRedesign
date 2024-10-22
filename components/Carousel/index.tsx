@@ -66,6 +66,14 @@ function Carousel({
     }, 200);
   }, [open]);
 
+  useEffect(()=>{
+    if (expandedCarousel) {
+      expandCarousel();
+    } else {
+      compressCarousel();
+    }
+  }, [expandedCarousel])
+
   const expandBtnMouseOver = () => {
     expandedCarousel
       ? tl.to(expandBtnRef.current, { duration: 0.3, scale: 1 })
@@ -82,11 +90,6 @@ function Carousel({
 
   const expandBtnClick = () => {
     setExpandedCarousel(!expandedCarousel);
-    if (expandedCarousel) {
-      compressCarousel();
-    } else {
-      expandCarousel();
-    }
   };
 
   const expandCarousel = () => {

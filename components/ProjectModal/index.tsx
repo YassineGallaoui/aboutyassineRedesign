@@ -70,6 +70,9 @@ export default function ProjectModal({
 
   const closeModal = () => {
     updateOpen(false);
+    setTimeout(() => {
+      setExpandedCarousel(false);
+    }, 200);
   };
 
   const hoverCloseBtn = () => {
