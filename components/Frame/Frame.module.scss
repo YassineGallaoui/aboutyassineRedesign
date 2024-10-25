@@ -354,9 +354,9 @@
             max-width: 100rem;
             span {
               opacity: 1;
-              animation: slideIn 0.1s 1;
+              animation: slideIn 0.2s 1;
               animation-fill-mode: forwards;
-              animation-delay: calc(0.07s * var(--i));
+              animation-delay: calc(0.014s * var(--i) + 0.1s);
             }
           }
         }

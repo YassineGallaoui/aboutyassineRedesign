@@ -10,6 +10,7 @@ import { LightPointer } from "../components/LightPointer";
 import ProjectModal from "../components/ProjectModal";
 import ProjectModalVertical from "../components/ProjectModalVertical";
 import ProjectTriangle from "../components/ProjectTriangle";
+import SlideinText from "../components/SlideinText";
 import stylesHome from "../styles/scss/Projects.module.scss";
 import { breakpoints, getDeviceType } from "../utils/breakpoints";
 import { colorApplicator } from "../utils/colorFunctions";
@@ -60,9 +61,13 @@ export default function NewProjects({
   const [triangleRows, setTriangleRows] = useState<number>(3);
   const [trianglesPerRow, setTrianglesPerRow] = useState<number>(4);
   const [firstPositionProject, setFirstPositionProject] = useState<number>(0);
-  const [projectOpened, setProjectOpened] = useState<Project>(projectsDataset[0]);
+  
   const [projectOpenedBoolean, setProjectOpenedBoolean] = useState<boolean>(false);
+  const [projectOpened, setProjectOpened] = useState<Project>(projectsDataset[0]);
+  
   const [projectIsHovered, setProjectIsHovered] = useState<boolean>(false);
+  const [projectIsHoveredID, setProjectIsHoveredID] = useState<number|null>(null);
+  
   const zIndexMatteBKGOpen: number = 5;
   const zIndexMatteBKGClosed: number = -1;
   const [hasComponentMounted, setHasComponentMounted] = useState(false);
@@ -84,6 +89,8 @@ export default function NewProjects({
     );
     if (elementId != null && elementData != null) {
       setProjectIsHovered(true);
+      setProjectIsHoveredID(elementId);
+      
       const tl1 = gsap.timeline();
       tl1.to(`#bigBackgroundImage-${elementId}`, {
         scale: 1.02,
@@ -307,6 +314,16 @@ export default function NewProjects({
               fill
               alt="project"
             />
+          ))}
+        </div>
+        <div
+          className={
+            stylesHome.currentPrjHoveredText +
+            " currentPrjHoveredText "
+          }
+        >
+          {projectsDataset.map((proj) => (
+            <SlideinText key={proj.id} text={proj.name} isHovered={projectIsHoveredID === proj.id && projectIsHovered ? true : false}/>
           ))}
         </div>
         <div className={stylesHome.modalMatteBkgrd + " modalMatteBkgrd"}></div>

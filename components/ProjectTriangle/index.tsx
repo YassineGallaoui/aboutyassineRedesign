@@ -95,6 +95,7 @@ export default function ProjectTriangle({
             scale={[scale, scale, 1]}
             onPointerOver={() => setHovered(true)}
             onPointerOut={() => setHovered(false)}
+            onPointerMove={() => setHovered(true)}
             onPointerDown={() => triangleMouseClick(projectData.id)}
         >
             <bufferGeometry>

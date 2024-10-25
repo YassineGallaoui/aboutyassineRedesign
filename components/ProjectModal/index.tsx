@@ -164,7 +164,7 @@ export default function ProjectModal({
             <tbody>
               <tr className={styles.bottomBorder + " bottomBorder"}>
                 <th className={styles.characteristic + " characteristic"}>
-                  <span>{"Working for"}</span>
+                  <span>{"Working at"}</span>
                 </th>
                 <td>{content.workingFor}</td>
               </tr>

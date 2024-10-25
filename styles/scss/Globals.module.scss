@@ -153,7 +153,7 @@ body {
 
         .sectionBkgrdTxt {
             color: $semitransparentDark5;
-            transition: color $change-theme-duration;
+            transition: color $change-theme-duration, transform 0.5s linear;
         }
 
         .projectModalContainer {
@@ -213,7 +213,8 @@ body {
 
         .sectionBkgrdTxt {
             color: $semitransparentLight5;
-            transition: color $change-theme-duration linear;
+            transition: color $change-theme-duration linear,
+                transform 0.5s linear;
         }
 
         .projectModalContainer {

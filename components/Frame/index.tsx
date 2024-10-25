@@ -73,7 +73,7 @@ export default function Frame({
     //menu navigation
     const body = document.querySelector("body");
     const liTagsRB = body.querySelectorAll(".contactsSocialDiv");
-    const sectionNamesRB = ["Download", "Send", "More"];
+    const sectionNamesRB = ["Curriculum", "Send Mail", "Linkedin"];
     liTagsRB.forEach((element, index) => {
       element.innerHTML = createSpanStructure(sectionNamesRB[index]);
     });

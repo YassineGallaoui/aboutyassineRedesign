@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import { themeMode } from "../../pages/_app";
 import { breakpoints } from "../../utils/breakpoints";
+import CRTScreen from "../CRTScreen";
 import Cursor from "../Cursor";
 import Frame from "../Frame";
 import SplashScreen from "../SplashScreen";
@@ -60,6 +61,7 @@ const Layout = ({
         <div></div>
         <div></div>
       </div>
+      <CRTScreen />
       {!isTouchDevice && <Cursor hovered={cursorHover} txt={cursorText} />}
       <SplashScreen
         setSSAnimFinished={setSSAnimFinished}
