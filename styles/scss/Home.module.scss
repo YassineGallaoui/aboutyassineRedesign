@@ -43,6 +43,14 @@
     background-image: url("../../public/imgs/filter.webp");
   }
 }
+.currentPrjHoveredText{
+  font-size: 5rem;
+}
+@media screen and (max-width: 576px) {
+  .currentPrjHoveredText {
+    font-size: 5rem;
+  }
+}
 .modalMatteBkgrd {
   position: fixed;
   height: 100dvh;

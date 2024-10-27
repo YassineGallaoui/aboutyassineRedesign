@@ -1,6 +1,6 @@
 import gsap from "gsap";
 
-export function createSpanStructure(w) {
+export function createSpanStructureV2(w) {
   const charArr = w.split("");
   let returnString = "";
   charArr.forEach((element, index) => {

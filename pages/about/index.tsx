@@ -6,9 +6,9 @@ import HorizontalLines from "../../components/HorizontalLines";
 import stylesAbout from "../../styles/scss/General.module.scss";
 import {
   calculateScrollPercentage,
-  createSpanStructure,
+  createSpanStructureV2,
   distanceLevels,
-  parallax,
+  parallax
 } from "../../utils/utility";
 
 export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
@@ -47,7 +47,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
     let i = 1;
     const startWelcomeAnimation = function (i) {
       setTimeout(function () {
-        welcomeWord.innerHTML = createSpanStructure(welcomeArray[i]);
+        welcomeWord.innerHTML = createSpanStructureV2(welcomeArray[i]);
         startWelcomeAnimation(++i < welcomeArray.length ? i : 0);
       }, 5000);
     };

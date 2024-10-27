@@ -15,7 +15,7 @@ import mailIcon from "../../public/icons/mail.svg";
 import logoY from "../../public/logo/logo-Y.svg";
 import { breakpoints } from "../../utils/breakpoints";
 import { colorApplicator } from "../../utils/colorFunctions";
-import { createSpanStructure } from "../../utils/utility";
+import { createSpanStructureV2 } from "../../utils/utility";
 import styles from "./Frame.module.scss";
 
 type FrameType = {
@@ -75,7 +75,7 @@ export default function Frame({
     const liTagsRB = body.querySelectorAll(".contactsSocialDiv");
     const sectionNamesRB = ["Curriculum", "Send Mail", "Linkedin"];
     liTagsRB.forEach((element, index) => {
-      element.innerHTML = createSpanStructure(sectionNamesRB[index]);
+      element.innerHTML = createSpanStructureV2(sectionNamesRB[index]);
     });
   }, []);
 
@@ -87,7 +87,7 @@ export default function Frame({
 
     setTimeout(() => {
       if (navTagRC != null)
-        navTagRC.innerHTML = createSpanStructure(
+        navTagRC.innerHTML = createSpanStructureV2(
           sectionNamesRC[pathname === "/about" ? 1 : 0]
         );
     }, 800);

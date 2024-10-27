@@ -1,16 +1,14 @@
-import { Canvas, ThreeElements } from "@react-three/fiber";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import * as THREE from 'three';
-import GenericTriangle from "../components/GenericTriangle";
-import { LightPointer } from "../components/LightPointer";
+import { useEffect, useState } from "react";
 import ProjectModal from "../components/ProjectModal";
 import ProjectModalVertical from "../components/ProjectModalVertical";
-import ProjectTriangle from "../components/ProjectTriangle";
+import ProjectsCanvas from "../components/ProjectsCanvas";
+import ProjectsCanvasVertical from "../components/ProjectsCanvasVertical";
 import SlideinText from "../components/SlideinText";
+import useScreenSize from "../hooks/useScreenSize";
 import stylesHome from "../styles/scss/Projects.module.scss";
 import { breakpoints, getDeviceType } from "../utils/breakpoints";
 import { colorApplicator } from "../utils/colorFunctions";
@@ -27,21 +25,6 @@ type NewProjectsProps = {
   lastEditDate: string
 };
 
-function BoxCustom(props: ThreeElements['mesh']) {
-  const meshRef = useRef<THREE.Mesh>(null!)
-  const [active, setActive] = useState(false)
-  return (
-    <mesh
-      {...props}
-      ref={meshRef}
-      rotation={[1,1,1]}
-      scale={active ? 1.5 : 1}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={'#2f74c0'} />
-    </mesh>
-  )
-}
-
 export default function NewProjects({
   lightColor,
   darkColor,
@@ -51,17 +34,9 @@ export default function NewProjects({
   deviceType,
   lastEditDate,
 }: NewProjectsProps) {
-  const [dimensionsScale, setDimensionsScale] = useState<number>(1);
-  const [triL, setTriL] = useState<number>(4 * dimensionsScale);
-  const [halfTriL, setHalfTriL] = useState<number>(triL / 2);
-  const [triP, setTriP] = useState<number>(triL * 0.07);
-  const [triGap, setTriGap] = useState<number>(halfTriL + triP);
-  const [triH, setTriH] = useState<number>((Math.sqrt(3) / 2) * triL);
-  const [projsNumber, setProjsNumber] = useState<number>(projectsDataset.length)
-  const [triangleRows, setTriangleRows] = useState<number>(3);
-  const [trianglesPerRow, setTrianglesPerRow] = useState<number>(4);
-  const [firstPositionProject, setFirstPositionProject] = useState<number>(0);
-  
+  const screenSize = useScreenSize();
+  const [projsNumber, setProjsNumber] = useState(projectsDataset.length);
+
   const [projectOpenedBoolean, setProjectOpenedBoolean] = useState<boolean>(false);
   const [projectOpened, setProjectOpened] = useState<Project>(projectsDataset[0]);
   
@@ -71,17 +46,6 @@ export default function NewProjects({
   const zIndexMatteBKGOpen: number = 5;
   const zIndexMatteBKGClosed: number = -1;
   const [hasComponentMounted, setHasComponentMounted] = useState(false);
-
-  const [triangleVertices, setTriangleVertices] = useState([
-    new THREE.Vector3(0, triH / 2, 0),   // Top vertex
-    new THREE.Vector3(-triL / 2, -triH / 2, 0), // Bottom left vertex
-    new THREE.Vector3(triL / 2, -triH / 2, 0),  // Bottom right vertex
-  ]);
-  const [triangleInvVertices, setTriangleInvVertices] = useState([
-    new THREE.Vector3(0, -triH / 2, 0),   // Top vertex
-    new THREE.Vector3(-triL / 2, triH / 2, 0), // Bottom left vertex
-    new THREE.Vector3(triL / 2, triH / 2, 0),  // Bottom right vertex
-  ]);
 
   const triangleMouseOver = (elementId: number) => {
     const elementData = projectsDataset.find(
@@ -136,62 +100,6 @@ export default function NewProjects({
   }
 
   useEffect(() => {
-    const newTriL = 4 * dimensionsScale;
-    const newHalfTriL = newTriL / 2;
-    const newTriP = newTriL * 0.07;
-    const newTriGap = newHalfTriL + newTriP;
-    const newTriH = (Math.sqrt(3) / 2) * newTriL;
-    const newT = [
-      new THREE.Vector3(0, triH / 2, 0),   // Top vertex
-      new THREE.Vector3(-triL / 2, -triH / 2, 0), // Bottom left vertex
-      new THREE.Vector3(triL / 2, -triH / 2, 0),  // Bottom right vertex
-    ];
-    const newIT = [
-      new THREE.Vector3(0, -triH / 2, 0),   // Top vertex
-      new THREE.Vector3(-triL / 2, triH / 2, 0), // Bottom left vertex
-      new THREE.Vector3(triL / 2, triH / 2, 0),  // Bottom right vertex
-    ];
-
-    setTriL(newTriL);
-    setHalfTriL(newHalfTriL);
-    setTriP(newTriP);
-    setTriGap(newTriGap);
-    setTriH(newTriH);
-    setTriangleVertices(newT);
-    setTriangleInvVertices(newIT);
-  }, [dimensionsScale]);
-
-  // Calculate the scaling factor based on window width
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      let scale = 1;
-
-      const minW = 400;
-      const maxW = 1600;
-
-      if (width <= minW) {
-        scale = 0.6;
-      } else if (width >= maxW) {
-        scale = 1;
-      } else {
-        // Interpolate scale value between minW and maxW
-        scale = 0.6 + ((width - minW) / (maxW - minW)) * (1 - 0.6);
-      }
-
-      setDimensionsScale(scale);
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize(); // Set initial value
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-
-  useEffect(() => {
     if (projectOpenedBoolean) {
       gsap.to(`.modalMatteBkgrd`, {
         background: "rgba(0,0,0,0.8)",
@@ -224,26 +132,11 @@ export default function NewProjects({
     const lastEditTag = document.querySelector("#lastUpdateDate");
     if (lastEditTag && lastEditDate != null)
       lastEditTag.innerHTML = lastEditDate;
-
-    const updateTriangleCount = () => {
-      let trianglesPerRow = 40
-      let triangleRows = 11
-      const fp = Math.ceil((trianglesPerRow - projsNumber) / 2) + (trianglesPerRow % 2 === 1 && projsNumber % 2 === 1 ? 1 : 0);
-
-      setTrianglesPerRow(trianglesPerRow);
-      setTriangleRows(triangleRows);
-      setFirstPositionProject(fp);
-    };
-
-    updateTriangleCount();
-
-    window.addEventListener("resize", updateTriangleCount);
-
+    
     return () => {
       document.removeEventListener("mousemove", mouseMoveHomepage);
-      window.removeEventListener("resize", updateTriangleCount);
     };
-  }, [triL, projsNumber]);
+  }, []);
 
   useEffect(() => {
     if (SSAnimFinished && hasComponentMounted) {
@@ -329,69 +222,23 @@ export default function NewProjects({
         <div className={stylesHome.modalMatteBkgrd + " modalMatteBkgrd"}></div>
         <div
           className={
-            stylesHome.expContainer + ' ' + (projsNumber % 2 ? stylesHome.odd : stylesHome.even) + " expContainer"
+            stylesHome.expContainer + ' ' + (projectsDataset.length % 2 ? stylesHome.odd : stylesHome.even) + " expContainer"
           }
         >
-          <Canvas shadows camera={{
-            position: [0, 0, -0.1]
-          }}>
-            {/* <axesHelper args={[10]} /> */}
-            {/* <OrbitControls enableDamping regress={true} dampingFactor={0.01} rotateSpeed={1} /> */}
-            {/* <ambientLight color="blue" intensity={Math.PI * 40000} /> */}
-            {/* <directionalLight color="red" position={[0, 0, 5]} intensity={Math.PI * 4} /> */}
-            <LightPointer />
-            {[...Array(triangleRows).keys()].map((_, extIndex) => {
-              const yIndex = Math.ceil(extIndex - (triangleRows / 2))
-              return <mesh key={extIndex}>
-                {
-                  [...Array(trianglesPerRow).keys()]
-                    .map((_, intIndex) => {
-                      const xIndex = Math.floor(intIndex - (trianglesPerRow / 2));
-                      const posX = (xIndex < trianglesPerRow ?
-                        xIndex * (-triGap) :
-                        xIndex > trianglesPerRow ?
-                          xIndex * (triGap) : 0)
-                        - (projsNumber % 2 === 0 ? triGap / 2 : 0);
-                      const posY = (yIndex < triangleRows ?
-                        yIndex * (-triH - (triP * 0.9)) :
-                        yIndex > triangleRows ?
-                          yIndex * (triH + (triP * 0.9)) : 0);
-                      const isThisAProject = intIndex >= firstPositionProject
-                        && intIndex < firstPositionProject + projsNumber
-                        && extIndex === Math.floor(triangleRows / 2);
-
-                      return (
-                        !isThisAProject ?
-                          <GenericTriangle key={intIndex}
-                            vertices={intIndex % 2 === (extIndex % 2 === 1 ? 0 : 1) ? triangleInvVertices : triangleVertices}
-                            position={new THREE.Vector3(posX, posY, 6)}
-                            materialType={"color"}
-                            color={"rgb(0,0,0)"}
-                            opacity={0.1}
-                            indexX={intIndex}
-                            indexY={extIndex}
-                            totX={trianglesPerRow}
-                            scale={dimensionsScale}
-                          ></GenericTriangle> :
-                          <ProjectTriangle
-                            key={intIndex}
-                            upsideDown={intIndex % 2 === (extIndex % 2 === 1 ? 0 : 1)}
-                            vertices={intIndex % 2 === (extIndex % 2 === 1 ? 0 : 1) ? triangleInvVertices : triangleVertices}
-                            position={new THREE.Vector3(posX, posY, 6)}
-                            projectData={projectsDataset[intIndex - firstPositionProject]}
-                            imageUrl={projectsDataset[intIndex - firstPositionProject].media[0]}
-                            triangleMouseOver={(e) => { triangleMouseOver(e) }}
-                            triangleMouseOut={(e) => { triangleMouseOut(e) }}
-                            triangleMouseClick={(e) => { triangleMouseClick(e) }}
-                            scale={dimensionsScale}
-                          ></ProjectTriangle>
-                      )
-                    })
-                }
-              </mesh>
-            })}
-            {/* <BoxCustom position={[0, 0, 6]} /> */}
-          </Canvas>
+          {screenSize === null || screenSize.aspectRatio > 1 ?
+            <ProjectsCanvas 
+              triangleMouseOver={triangleMouseOver}
+              triangleMouseOut={triangleMouseOut}
+              triangleMouseClick={triangleMouseClick}
+              projsNumber={projsNumber}
+            /> :
+            <ProjectsCanvasVertical 
+              triangleMouseOver={triangleMouseOver}
+              triangleMouseOut={triangleMouseOut}
+              triangleMouseClick={triangleMouseClick}
+              projsNumber={projsNumber}
+            />
+          }
         </div>
         {deviceType === breakpoints.mobileSmall ||
           deviceType === breakpoints.mobile ? (

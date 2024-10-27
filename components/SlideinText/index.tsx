@@ -1,6 +1,6 @@
 import styles from "./SlideinText.module.scss";
 
-export function createSpanStructureV2(w) {
+export function createSpanStructure(w) {
   const charArr = w.split("");
   return charArr.map((element, index) => (
     <span key={index} className={styles.charContainer} style={{ "--i": index + 1 } as React.CSSProperties}>
@@ -15,7 +15,7 @@ export function createSpanStructureV2(w) {
 export default function SlideinText({ text, isHovered }) {
   return (
     <div className={`${styles.slideinContainer} slideinContainer ${isHovered ? styles.isHovered : ""}` }>
-        {createSpanStructureV2(text)}
+        {createSpanStructure(text)}
     </div>
   )
 }
