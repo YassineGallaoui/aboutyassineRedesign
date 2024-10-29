@@ -8,7 +8,7 @@ import ProjectModalVertical from "../components/ProjectModalVertical";
 import ProjectsCanvas from "../components/ProjectsCanvas";
 import ProjectsCanvasVertical from "../components/ProjectsCanvasVertical";
 import SlideinText from "../components/SlideinText";
-import useScreenSize from "../hooks/useScreenSize";
+import useScreenInfo from "../hooks/useScreenInfo";
 import stylesHome from "../styles/scss/Projects.module.scss";
 import { breakpoints, getDeviceType } from "../utils/breakpoints";
 import { colorApplicator } from "../utils/colorFunctions";
@@ -34,7 +34,7 @@ export default function NewProjects({
   deviceType,
   lastEditDate,
 }: NewProjectsProps) {
-  const screenSize = useScreenSize();
+  const screenSize = useScreenInfo();
   const [projsNumber, setProjsNumber] = useState(projectsDataset.length);
 
   const [projectOpenedBoolean, setProjectOpenedBoolean] = useState<boolean>(false);

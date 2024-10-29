@@ -1,4 +1,5 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode } from "react";
+import useScreenInfo from "../../hooks/useScreenInfo";
 import { themeMode } from "../../pages/_app";
 import { breakpoints } from "../../utils/breakpoints";
 import CRTScreen from "../CRTScreen";
@@ -32,27 +33,8 @@ const Layout = ({
   deviceType,
   children,
 }: Props) => {
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const screenInfo = useScreenInfo();
   const showGuideline = false;
-
-  useEffect(() => {
-    const onTouchStart = () => {
-      setIsTouchDevice(true);
-    };
-
-    if ("ontouchstart" in window) {
-      // The 'ontouchstart' event is supported, indicating a touch device.
-      setIsTouchDevice(true);
-    } else {
-      // Add an event listener to detect touch events.
-      window.addEventListener("touchstart", onTouchStart, { passive: true });
-    }
-
-    return () => {
-      // Clean up the event listener when the component unmounts.
-      window.removeEventListener("touchstart", onTouchStart);
-    };
-  }, []);
 
   return (
     <main>
@@ -64,7 +46,7 @@ const Layout = ({
       </div>
       <StatsComponent />
       <CRTScreen />
-      {!isTouchDevice && <Cursor hovered={cursorHover} txt={cursorText} />}
+      {!(screenInfo?.isTouchOnly) && screenInfo?.hasMouse && <Cursor hovered={cursorHover} txt={cursorText} />}
       <SplashScreen
         setSSAnimFinished={setSSAnimFinished}
         deviceType={deviceType}

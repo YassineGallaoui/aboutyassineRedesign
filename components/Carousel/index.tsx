@@ -1,6 +1,6 @@
 import gsap from "gsap";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import arrRight from "../../public/icons/arr.svg";
 import arrExpand from "../../public/icons/expand.svg";
 import { Project } from "../../utils/dataset";
@@ -449,6 +449,11 @@ function Carousel({
         >
           {/* immagini verticali */}
           <div className={styles.thumbnailsVertical + " thumbnailVertical"}>
+            <div className={styles.thumbnailBorder}
+              style={{
+                "--h": `calc((100% - ${images.length - 1}rem) / ${images.length})`,
+                "--ty": `calc(${currentIndex * 100}% + (${currentIndex} * 1rem) - (${currentIndex} * 10px) - 5px)`,
+              } as React.CSSProperties}></div>
             {images.map((el, index) => (
               <div
                 key={index}
@@ -457,6 +462,7 @@ function Carousel({
                   " " +
                   (index === currentIndex ? styles.currentImg : "")
                 }
+                style={{"--h": `${100 / images.length}%`} as React.CSSProperties}
                 onClick={() => thumbnailClickHandle(index, true)}
               >
                 <Image src={el} alt={altText} fill sizes="20dvh"></Image>
@@ -509,10 +515,16 @@ function Carousel({
             </div>
           </div>
         </div>
+
       </div>
 
       <div className={styles.thumbnailControls + " thumbnailControls"}>
         <div className={styles.thumbnails}>
+          <div className={styles.thumbnailBorder}
+            style={{
+              "--w": `calc((100% - ${images.length - 1}rem) / ${images.length})`,
+              "--ty": `calc(${currentIndex * 100}% + (${currentIndex} * 1rem) - (${currentIndex} * 8px) - 4px)`,
+            } as React.CSSProperties}></div>
           {images.map((el, index) => (
             <div
               key={index}

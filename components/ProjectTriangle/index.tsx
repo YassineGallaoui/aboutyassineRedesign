@@ -33,9 +33,10 @@ export default function ProjectTriangle({
     const [hovered, setHovered] = useState(false);
 
     useEffect(()=>{
-        if (hovered)
+        if (hovered) {
+            console.log(projectData.id);
             triangleMouseOver(projectData.id)
-        else 
+        } else 
             triangleMouseOut(projectData.id)
     }, [hovered])
     
@@ -113,9 +114,7 @@ export default function ProjectTriangle({
             <meshStandardMaterial
                 attach="material"
                 {...materialProps}
-                wireframe={false}/* 
-                roughness={0.7}
-                metalness={0.2} */
+                wireframe={false}
                 side={THREE.DoubleSide}
                 flatShading={true}
             />

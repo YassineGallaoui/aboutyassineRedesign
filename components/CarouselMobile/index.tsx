@@ -292,6 +292,11 @@ function CarouselMobile({
                   " " +
                   (index === currentIndex ? styles.currentImg : "")
                 }
+                style={{
+                  "--h": `${100 / images.length}%`,
+                  "--ty": `${currentIndex * 100}%`,
+                  "--i": `${images.length}`
+                } as React.CSSProperties}
                 onClick={() => thumbnailClickHandle(index, true)}
               >
                 <Image src={el} alt={altText} fill sizes="20dvh"></Image>
@@ -344,6 +349,11 @@ function CarouselMobile({
 
       <div className={styles.thumbnailControls + " thumbnailControls"}>
         <div className={styles.thumbnails}>
+          <div className={styles.thumbnailBorder}
+            style={{
+              "--w": `calc((100% - ${images.length - 1}rem) / ${images.length})`,
+              "--ty": `calc(${currentIndex * 100}% + (${currentIndex} * 0.2rem) - (${currentIndex} * 4px) - 2px)`,
+            } as React.CSSProperties}></div>
           {images.map((el, index) => (
             <div
               key={index}

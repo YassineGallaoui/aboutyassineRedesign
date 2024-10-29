@@ -17,9 +17,6 @@ export function generateColors(): string[] {
 
 export function colorApplicator(lightColor: string, darkColor: string): void {
   const body = document.querySelector("body") as HTMLElement;
-  const projectModalContainer = document.querySelector(
-    ".projectModalContainer",
-  ) as HTMLElement;
 
   if (body.classList.contains(themeMode[themeMode.lightMode])) {
     body.style.setProperty("background-color", lightColor);

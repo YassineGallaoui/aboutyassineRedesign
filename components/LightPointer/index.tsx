@@ -31,8 +31,8 @@ export const LightPointer = () => {
     return (
         <>
             <pointLight ref={lightRef} 
-                position={[0, 0, zPos]} 
-                decay={2.5} 
+                position={[0, 0, zPos]}
+                decay={2.5}
                 intensity={Math.PI * 10}
             />
             {/* {lightRef.current && (

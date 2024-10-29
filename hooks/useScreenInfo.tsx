@@ -2,15 +2,20 @@
 
 import { useEffect, useState } from 'react';
 
-const useScreenSize = () => {
-    const [screenSize, setScreenSize] = useState(null);
+const useScreenInfo = () => {
+    const [screenInfo, setScreenInfo] = useState(null);
 
     useEffect(() => {
         const handleResize = () => {
-            setScreenSize({
+            const isTouchOnly = matchMedia('(hover: none) and (pointer: coarse)').matches;
+            const hasMouse = matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+            setScreenInfo({
                 width: window.innerWidth,
                 height: window.innerHeight,
                 aspectRatio: window.innerWidth / window.innerHeight,
+                isTouchOnly: isTouchOnly,
+                hasMouse: hasMouse,
             });
         };
         
@@ -23,7 +28,7 @@ const useScreenSize = () => {
         };
     }, []);
 
-    return screenSize;
+    return screenInfo;
 };
 
-export default useScreenSize;
+export default useScreenInfo;

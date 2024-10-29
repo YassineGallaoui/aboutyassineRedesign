@@ -2,8 +2,8 @@ import { Canvas } from "@react-three/fiber";
 import { useEffect, useState } from "react";
 import * as THREE from 'three';
 import { projectsDataset } from "../../utils/dataset";
+import { CanvasLightning } from "../CanvasLightning";
 import GenericTriangle from "../GenericTriangle";
-import { LightPointer } from "../LightPointer";
 import ProjectTriangle from "../ProjectTriangle";
 
 type ProjectCanvasProps = {
@@ -115,15 +115,14 @@ export default function ProjectCanvas({
       window.removeEventListener("resize", updateTriangleCount);
     };
   }, [])
+
   return (
     <Canvas shadows camera={{
       position: [0, 0, -0.1]
     }}>
       {/* <axesHelper args={[10]} /> */}
       {/* <OrbitControls enableDamping regress={true} dampingFactor={0.01} rotateSpeed={1} /> */}
-      {/* <ambientLight color="blue" intensity={Math.PI * 40000} /> */}
-      {/* <directionalLight color="red" position={[0, 0, 5]} intensity={Math.PI * 4} /> */}
-      <LightPointer />
+      <CanvasLightning />
       {[...Array(triangleRows).keys()].map((_, extIndex) => {
         const yIndex = Math.ceil(extIndex - (triangleRows / 2))
         return <mesh key={extIndex}>
