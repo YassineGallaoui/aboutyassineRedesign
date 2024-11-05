@@ -47,14 +47,13 @@
     }
     .codeText {
       position: relative;
-      top: 5rem;
-      left: 5rem;
+      top: 3rem;
+      left: 3rem;
       font-family: "Courier New", Courier, monospace;
-      font-size: 2rem;
+      font-size: $l-fs;
       @media screen and (max-width: $breakpointMobileSmall) {
         top: 1.5rem;
         left: 1.5rem;
-        font-size: 0.8rem;
       }
     }
     pre{

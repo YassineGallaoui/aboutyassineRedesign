@@ -48,8 +48,6 @@ export enum distanceLevels {
 export function parallax(event, element, distance) {
   const x = (window.innerWidth - event.pageX * 2) / distance;
   const y = (window.innerHeight - event.pageY * 2) / distance;
-  /*const xDeg = (window.innerHeight - event.pageY * 2) / (window.innerHeight * 0.05);
-    const yDeg = (window.innerWidth - event.pageY * 2) / (window.innerWidth * 0.05);*/
 
   element.style.transform = `translateX(${x}px) translateY(${y}px)`;
 }
@@ -58,15 +56,12 @@ export const calculateScrollPercentage = (pageContent) => {
   const scrollTop = pageContent.scrollTop;
   const scrollHeight = pageContent.scrollHeight;
   const clientHeight = pageContent.clientHeight;
-
-  // Calculate the scrolled distance from the top of the content
+  
   const scrolledDistance = scrollTop;
-
-  // Calculate the percentage of scrolled distance
+  
   const scrollPercentage =
     (scrolledDistance / (scrollHeight - clientHeight)) * 100;
-
-  // Return the calculated percentage
+  
   return scrollPercentage.toFixed(0);
 };
 
@@ -75,11 +70,6 @@ export const hideFrame = (themeContainer) => {
   gsap.to(`.logoWrapper`, {
     x: "-4rem",
     y: "-4rem",
-    duration: 0.5
-  });
-  gsap.to(`.lastUpdateText`, {
-    x: "-4rem",
-    y: "4rem",
     duration: 0.5
   });
   gsap.to(`.themeContainer`, {
@@ -100,13 +90,23 @@ export const hideFrame = (themeContainer) => {
 }
 
 export const unhideFrame = (themeContainer) => {
-  gsap.to(`.logoWrapper, .lastUpdateText, .themeContainer, .contacts`, {
+  gsap.to(`.themeContainer`, {
     x: 0,
     y: 0,
     duration: 0.5,
   });
+  gsap.to(`.logoWrapper`, {
+    x: '0rem',
+    y: '-3rem',
+    duration: 0.5,
+  });
+  gsap.to(`.contacts`, {
+    x: '-1rem',
+    y: '1rem',
+    duration: 0.5,
+  });
   gsap.to(`.sectionsNav`, {
-    x: "2rem",
+    x: "0rem",
     y: 0,
     duration: 0.7,
   });

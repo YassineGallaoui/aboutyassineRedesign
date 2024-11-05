@@ -46,11 +46,6 @@
   font-size: 10dvw;
   letter-spacing: 1dvw;
 }
-@media screen and (max-width: 576px) {
-  .currentPrjHoveredText {
-    font-size: 10dvw;
-  }
-}
 .modalMatteBkgrd {
   position: fixed;
   height: 100dvh;
@@ -78,7 +73,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin: 11vw;
+    margin: 11dvw;
     .horizontalLineL, .horizontalLineR {
       position: absolute;
       width: max(200vh, 200vw);
@@ -138,7 +133,7 @@
       position: absolute;
       background: transparent;
       padding: 0px;
-      border: 11vw solid transparent;
+      border: 11dvw solid transparent;
       border-top: 0;
       border-bottom: 22vw solid transparent;
       display: flex;
@@ -149,8 +144,8 @@
 
       > div.triangleProjectContent {
         position: absolute;
-        height: 21vw;
-        width: 21vw;
+        height: 21dvw;
+        width: 21dvw;
         background-color: rgba(0, 0, 0, 0.1);
         img {
           object-fit: cover;
@@ -160,7 +155,7 @@
       &:nth-child(odd) {
         border-top: 22vw solid transparent;
         border-bottom: 0px solid transparent;
-        left: calc(-11vw * var(--index) - 11vw);
+        left: calc(-11dvw * var(--index) - 11dvw);
 
         > div.triangleProjectContent {
           bottom: 0.7vw;
@@ -168,7 +163,7 @@
         }
       }
       &:nth-child(even) {
-        left: calc(-11vw * var(--index) - 11vw);
+        left: calc(-11dvw * var(--index) - 11dvw);
 
         > div.triangleProjectContent {
           top: 0.7vw;
@@ -200,7 +195,7 @@
     }
   }
   .noProjRow:nth-child(even) {
-    transform: translateX(11vw);
+    transform: translateX(11dvw);
   }
   .seeMoreText{
     width: 100%;

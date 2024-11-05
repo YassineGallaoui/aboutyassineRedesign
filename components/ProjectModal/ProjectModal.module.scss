@@ -69,8 +69,8 @@
     position: relative;
     height: 100%;
     overflow-y: scroll;
-    -ms-overflow-style: none; // Hide for IE and Edge
-    scrollbar-width: none; //firefox
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     padding: 1rem;
     overflow-y: hidden;
     box-sizing: border-box;
@@ -81,19 +81,19 @@
       border-bottom-right-radius: 1.5rem;
       overflow-y: scroll;
       overflow-x: hidden;
-      -ms-overflow-style: none; // Hide for IE and Edge
-      scrollbar-width: none; //firefox
+      -ms-overflow-style: none;
+      scrollbar-width: none;
       &::-webkit-scrollbar {
-        display: none; //chrome and safari
+        display: none;
         width: 0;
       }
     }
     &::-webkit-scrollbar {
-      display: none; //chrome and safari
+      display: none;
       width: 0;
     }
     .projectModalName {
-      font-size: 3rem;
+      font-size: $l-fs;
       font-weight: bold;
     }
     .projectModalLink{
@@ -118,7 +118,7 @@
     }
     table {
       color: $dark-color;
-      font-size: 1.5rem;
+      font-size: $sm-fs;
       .bottomBorder {
         border-bottom: 1px solid $semitransparentDark2;
       }
@@ -127,8 +127,19 @@
           padding-top: 1rem;
           padding-bottom: 1rem;
         }
-        .characteristic > span {
-          width: max-content;
+        .characteristic {
+          text-align: left;
+          >span {
+            width: max-content;
+            &:after {
+              content: "";
+              position: absolute;
+              display: block;
+              width: 100%;
+              height: calc($xs-fs * 0.5);
+              top: calc($xs-fs * 0.8);
+            }
+          }
         }
         &.descriptionTitle > td {
           padding-bottom: 0rem;

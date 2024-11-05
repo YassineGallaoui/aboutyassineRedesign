@@ -113,7 +113,7 @@ export default function ProjectModalVertical({
             <tbody>
               <tr className={styles.bottomBorder + " bottomBorder"}>
                 <th className={styles.characteristic + " characteristic"}>
-                  <span>{"Working at"}</span>
+                  <span>{"Employer"}</span>
                 </th>
                 <td>{content.workingFor}</td>
               </tr>

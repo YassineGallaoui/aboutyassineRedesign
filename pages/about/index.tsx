@@ -13,6 +13,7 @@ import {
 
 export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
   const [hasComponentMounted, setHasComponentMounted] = useState(false);
+  const words = ["software engineer", "frontend expert", "proactive nerd", "a bit workaholic", "teamworker"];
 
   useEffect(() => {
     const lastEditTag = document.querySelector("#lastUpdateDate");
@@ -111,49 +112,33 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
         <div className={stylesAbout.meContainer + " meContainer"}>
           <div
             className={
-              stylesAbout.meContainer__txt + " meContainerRow row gx-5"
+              stylesAbout.meContainer__txt + " meContainerRow"
             }
           >
             <div
               className={
                 stylesAbout.meContainer__txt__big__welcome +
-                " col-10 col-sm-2 offset-1 offset-sm-1 welcomeWord"
+                " welcomeWord"
               }
             >
               <span style={{ "--i": 1 } as React.CSSProperties}>H</span>
               <span style={{ "--i": 2 } as React.CSSProperties}>i</span>
               <span style={{ "--i": 3 } as React.CSSProperties}>!</span>
             </div>
-            <div className="w-100"></div>
             {SSAnimFinished && (
               <div
                 className={
-                  stylesAbout.meContainer__txt__words + " col-2 offset-1"
+                  stylesAbout.meContainer__txt__words
                 }
               >
-                <p>
-                  <span
-                    className={stylesAbout.singleWord}
-                  >{`software engineer`}</span>
-                </p>
-                <p>
-                  <span
-                    className={stylesAbout.singleWord}
-                  >{`frontend expert`}</span>
-                </p>
-                <p>
-                  <span
-                    className={stylesAbout.singleWord}
-                  >{`proactive nerd`}</span>
-                </p>
-                <p>
-                  <span
-                    className={stylesAbout.singleWord}
-                  >{`a bit workaholic`}</span>
-                </p>
-                <p>
-                  <span className={stylesAbout.singleWord}>{`teamworker`}</span>
-                </p>
+                {words.map((el, index) => (
+                  <p key={index}>
+                    <span
+                      className={stylesAbout.singleWord}
+                      style={{"--i": index} as React.CSSProperties}
+                    >{el}</span>
+                  </p>
+                ))}
               </div>
             )}
 
@@ -161,11 +146,11 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
               <div
                 className={
                   stylesAbout.meContainer__txt__description +
-                  " aboutContent col-10 col-sm-8 offset-1 offset-sm-3"
+                  " aboutContent"
                 }
               >
-                <h2 className={stylesAbout.meContainer__txt__description__h2}>
-                  <span>1/&nbsp;Who the heck am I ?</span>
+                <h2>
+                  <span style={{ "--i": 0 } as React.CSSProperties}>1/&nbsp;&nbsp;Who the heck am I ?</span>
                 </h2>
                 <p>
                   <span
@@ -188,8 +173,8 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                   >{` frontend and creative development. `}</span>
                 </p>
 
-                <h2 className={stylesAbout.meContainer__txt__description__h2}>
-                  <span>2/&nbsp;{"What do you do for a living"}?</span>
+                <h2>
+                  <span style={{ "--i": 1 } as React.CSSProperties}>2/&nbsp;&nbsp;{"What do you do for a living"}?</span>
                 </h2>
                 <p>
                   <span
@@ -233,9 +218,8 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                   >{`Note: If your project has a really advanced and particular design, you need to already have the design part done, so that i can focus and work in hard core mode on the code side straight away.`}</span>
                 </p>
 
-
-                <h2 className={stylesAbout.meContainer__txt__description__h2}>
-                  <span>3/&nbsp;Where can you find me?</span>
+                <h2>
+                  <span style={{ "--i": 2 } as React.CSSProperties}>3/&nbsp;&nbsp;Where can you find me?</span>
                 </h2>
                 <p>
                   <span

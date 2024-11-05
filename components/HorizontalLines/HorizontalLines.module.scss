@@ -4,31 +4,48 @@
   position: fixed;
   top: 0;
   left: 0;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  pointer-events: none;
+  user-select: none;
 
-  .line {
+  .line__before, .line__after {
     position: absolute;
-    width: 0vw;
     height: 1px;
-    background-color: $semitransparentDark5;
+    width: 100dvw;
+    left: 0;
+    transform: translate(-100%,0);
+    background-color: rgba($semitransparentDark5, 0.2);
     transition: background-color $change-theme-duration;
     animation: drawHLine cubic-bezier(0.7, 0, 0.3, 1) 3s;
     animation-iteration-count: 1;
-    animation-fill-mode: forwards;
+    animation-fill-mode:  forwards;
+  }
+  .line__before {
+    bottom: calc(60dvh - var(--i) * $l-fs * 2);
+    animation-delay: calc(-0.15s * var(--i));
+  }
+  .line__after {
+    top: calc(40dvh + var(--i) * $l-fs * 2);
     animation-delay: calc(0.15s * var(--i));
   }
   @keyframes drawHLine {
     0% {
-      width: 0vw;
+      transform: translate(-100%, 0);
     }
     100% {
-      width: 100dvw;
+      transform: translate(0%, 0);
     }
   }
 }
 
 html[data-theme="dark"] {
-  .line {
+  .line__before,
+    .line__after {
     transition: background-color $change-theme-duration;
-    background-color: $semitransparentLight5;
+    background-color: $semitransparentLight4;
   }
 }

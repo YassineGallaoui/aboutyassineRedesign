@@ -12,6 +12,7 @@ import lightIcon from "../../public/icons/light_mode.svg";
 import lightIconBase from "../../public/icons/light_mode_base.svg";
 import linkedinIcon from "../../public/icons/linkedin.svg";
 import mailIcon from "../../public/icons/mail.svg";
+import xIcon from "../../public/icons/x.svg";
 import logoY from "../../public/logo/logo-Y.svg";
 import { breakpoints } from "../../utils/breakpoints";
 import { colorApplicator } from "../../utils/colorFunctions";
@@ -73,7 +74,7 @@ export default function Frame({
     //menu navigation
     const body = document.querySelector("body");
     const liTagsRB = body.querySelectorAll(".contactsSocialDiv");
-    const sectionNamesRB = ["Curriculum", "Mail", "Linkedin"];
+    const sectionNamesRB = ["Curriculum", "Mail", "Linkedin", "X"];
     liTagsRB.forEach((element, index) => {
       element.innerHTML = createSpanStructureV2(sectionNamesRB[index]);
     });
@@ -96,7 +97,7 @@ export default function Frame({
   useEffect(() => {
     const navTagRC = document.querySelector(".sectionsNav div.singleNavItem");
     tl.to(navTagRC, {
-      top: "0rem",
+      x: "0rem",
       duration: 0.8,
       delay: 0.85,
     });
@@ -105,7 +106,7 @@ export default function Frame({
   const singleNavItemAnimation = () => {
     const navTagRC = document.querySelector(".sectionsNav div.singleNavItem");
     tl.to(navTagRC, {
-      top: "-5rem",
+      x: "5rem",
       duration: 0.8,
       delay: 0,
     });
@@ -131,14 +132,14 @@ export default function Frame({
   return (
     <div className={styles.frameContainer}>
       <div className={styles.frameContainer__left}>
-        <Link href="/" aria-label="Click here to go to the homepage">
-          <div
-            className={
-              styles.frameContainer__left__logoWrapper + " logoWrapper"
-            }
-            onMouseOver={() => updateCursorStatus(true)}
-            onMouseLeave={() => updateCursorStatus(false)}
-          >
+        <div
+          className={
+            styles.frameContainer__left__logoWrapper + " logoWrapper"
+          }
+          onMouseOver={() => updateCursorStatus(true)}
+          onMouseLeave={() => updateCursorStatus(false)}
+        >
+          <Link href="/" aria-label="Click here to go to the homepage">
             <div className={styles.frameContainer__left__logoWrapper__logo}>
               <Image
                 src={logoY}
@@ -146,26 +147,31 @@ export default function Frame({
                 className={styles.letterY + " invertImg"}
                 fill
               />
-            </div>
-          </div>
-        </Link>
-        <div className={styles.frameContainer__left__available + " available"}>
+            </div> 
+          </Link>
+        </div>
+        <div className={styles.frameContainer__left__booking + " booking"}>
           <a
-            href="mailto:myassine.gallaoui@gmail.com"
-            aria-label="Click here to send me an email"
+            href="https://cal.com/yassine-gallaoui"
+            rel="noreferrer noopener"
+            target="_blank"
+            aria-label="Click here to book a call and discuss about your next website"
             onMouseOver={() => updateCursorStatus(true)}
             onMouseLeave={() => updateCursorStatus(false)}
           >
-            Available: October 2024
+            Book a call
           </a>
         </div>
-        <div
+        <div className={styles.frameContainer__left__available + " available"}>
+            Available: 15th November 2024.
+        </div>
+        {/* <div
           className={
             styles.frameContainer__left__lastUpdate + " lastUpdateText"
           }
         >
           Last update: <span id="lastUpdateDate"></span>
-        </div>
+        </div> */}
       </div>
       <div className={styles.frameContainer__right}>
         <button
@@ -246,7 +252,7 @@ export default function Frame({
               <div
                 className={
                   styles.frameContainer__right__nav__navItem__singleNavItem +
-                  " singleNavItem underlineLineWithAnim"
+                  " singleNavItem"
                 }
                 onClick={() => singleNavItemAnimation()}
               >
@@ -332,6 +338,33 @@ export default function Frame({
               src={linkedinIcon}
               fill
               alt="linkedin"
+              className="invertImg"
+            />
+          </div>
+          <div
+            className={styles.frameContainer__right__contacts__social}
+            onMouseOver={(e) => hoverSocialButtons(e)}
+            onMouseLeave={(e) => unhoverSocialButtons(e)}
+          >
+            <a
+              href="https://x.com/Yassine__G"
+              rel="noreferrer noopener"
+              target="_blank"
+              aria-label="Click here to check my Twitter X profile"
+            >
+              <div
+                className={
+                  styles.frameContainer__right__contacts__social__text +
+                  " contactsSocial"
+                }
+              >
+                <div className={"contactsSocialDiv"}></div>
+              </div>
+            </a>
+            <Image
+              src={xIcon}
+              fill
+              alt="twitter X"
               className="invertImg"
             />
           </div>

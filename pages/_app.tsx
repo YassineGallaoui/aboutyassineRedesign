@@ -1,4 +1,3 @@
-import "bootstrap/dist/css/bootstrap.css";
 import { AnimatePresence } from "framer-motion";
 import Head from 'next/head';
 import { useEffect, useState } from "react";

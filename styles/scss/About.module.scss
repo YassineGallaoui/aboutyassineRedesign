@@ -24,11 +24,11 @@
   position: fixed;
   height: 0dvh;
   width: 1px;
-  background-color: $semitransparentDark3;
+  background-color: $semitransparentDark1;
   transition: background-color $change-theme-duration;
   border: none;
   top: 0;
-  left: 24vw;
+  left: 33vw;
   animation: drawVLine cubic-bezier(0.72, 0.27, 0.3, 1) 3s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
@@ -40,17 +40,14 @@
 .horizontalLine {
   height: 1px;
   width: 0vw;
-  background-color: $semitransparentDark3;
+  background-color: $semitransparentDark1;
   transition: background-color $change-theme-duration;
   border: none;
   position: fixed;
-  top: calc(12.5rem + 15vh);
+  top: 40dvh;
   animation: drawHLine cubic-bezier(0.7, 0, 0.3, 1) 3s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  @media screen and (max-width: $breakpointMobileSmall) {
-    top: calc(3rem + 15vh);
-  }
 }
 
 html[data-theme="dark"] {
@@ -87,19 +84,23 @@ html[data-theme="dark"] {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  user-select: none;
+  box-sizing: border-box;
   &__txt {
     &__big__welcome {
       position: fixed;
-      top: 15vh;
+      top: calc(40dvh - ($xxl-fs / 2) - 1rem);
+      right: calc(67dvw + 1rem);
       display: flex;
       justify-content: flex-end;
       overflow: visible;
-      font-size: 8rem;
-      line-height: 14rem;
+      font-size: $xxl-fs;
+      font-weight: bold;
+      line-height: calc($xxl-fs * 0.3);
+      line-height: 0;
       opacity: 0.6;
       text-align: right;
       @media screen and (max-width: $breakpointMobileSmall) {
-        font-size: 4rem;
         line-height: 6rem;
         top: 8.9vh;
         left: 0;
@@ -139,18 +140,25 @@ html[data-theme="dark"] {
     }
     &__words {
       position: fixed;
-      top: calc(15vh + 13.2rem);
+      top: calc(40dvh + 0.1rem);
+      right: calc(67dvw + 1.4rem);
       @media screen and (max-width: $breakpointMobileSmall) {
         display: none;
       }
       p {
-        line-height: 1.3rem;
+        padding: 0;
+        margin: 0;
+        font-size: $m-fs;
+        line-height: calc($l-fs * 2);
         text-align: right;
         text-transform: uppercase;
         display: block;
-        @media screen and (max-width: $breakpointMobileSmall) {
-          font-size: 1rem;
-        }
+        overflow: hidden;
+        animation:
+            moveTextUp cubic-bezier(0.87, 0, 0.13, 1) 1s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+        animation-delay: 0.5s;
         .singleWord {
           display: block;
           opacity: 0;
@@ -160,23 +168,26 @@ html[data-theme="dark"] {
             animOpacity cubic-bezier(1, 0, 0.5, 1) 2s;
           animation-iteration-count: 1;
           animation-fill-mode: forwards;
-          animation-delay: 0.9s;
+          animation-delay: calc(0.3s + var(--i) * 0.07s) ;
         }
       }
     }
     &__description {
+      z-index: -1;
       position: fixed;
-      padding-top: calc(15vh + 12.8rem);
-      padding-bottom: 10rem;
+      left: calc(33dvw + 1.4rem);
+      padding-top: 40dvh;
+      padding-bottom: calc($l-fs * 2);
       overflow: visible;
       overflow-y: scroll;
-      z-index: 5;
-      font-size: 3rem;
+      z-index: 2;
       line-height: 4.75rem;
       height: 100dvh;
+      width: calc($l-fs * 30);
+      max-width: 55dvw;
       scrollbar-width: none;
+      scroll-behavior: smooth;
       @media screen and (max-width: $breakpointMobileSmall) {
-        font-size: 1.5rem;
         line-height: 3rem;
         padding-top: 0;
         margin-top: calc(3.1rem + 15vh);
@@ -193,47 +204,58 @@ html[data-theme="dark"] {
         width: 0;
       }
       h2 {
-        font-size: 4rem;
-        font-weight: 100;
-        overflow: hidden;
-        span {
-          display: inline-block;
-          transform: translate(0, 100%);
-          font-variation-settings: 'wght' 100;
-          transition: all .5s;
-          animation:
-                animTitle cubic-bezier(0.87, 0, 0.13, 1) 2s forwards;
-        }
+          margin: 0;
+          font-size: $xl-fs;
+          line-height: calc($l-fs * 2);
+          overflow: hidden;
+          scroll-snap-type: y mandatory;
+      
+          span {
+            display: inline-block;
+            transform: translate(0, 100%);
+            transition: all .5s;
+            animation:
+              animTitle cubic-bezier(0.87, 0, 0.13, 1) 2s forwards calc(0.4s + var(--i) * 0.2s);
+          }
       }
+      
       p {
         display: block;
         overflow: hidden;
-        margin-bottom: 4.6rem;
+        margin-top: 0rem;
+        margin-bottom: calc($l-fs * 2);
+        font-size: $l-fs;
+        line-height: calc($l-fs * 2.06);
+        scroll-snap-type: y mandatory;
+    
         @media screen and (max-width: $breakpointMobileSmall) {
-            padding-bottom: 1.9rem;
-          }
+          padding-bottom: 1.9rem;
+        }
+    
         span {
           position: relative;
-          top: 3rem;
           opacity: 0;
           overflow: hidden;
         }
-        .underlineLineWithAnimTwo:after{
+    
+        .underlineLineWithAnimTwo:after {
           animation-delay: 1s;
         }
       }
+      
       &__small {
         animation:
-                animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
-                animOpacitySmall cubic-bezier(1, 0, 0.75, 1) 2s;
+          animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
+          animOpacitySmall cubic-bezier(1, 0, 0.75, 1) 2s;
         animation-delay: 0.9s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
       }
+    
       &__big {
         animation:
-                animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
-                animOpacity cubic-bezier(1, 0, 0.5, 1) 2s;
+          animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
+          animOpacity cubic-bezier(1, 0, 0.5, 1) 2s;
         animation-delay: 0.9s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
@@ -262,22 +284,29 @@ html[data-theme="dark"] {
 
 @keyframes animTitle {
   0% {
-    transform: translate(0, 100%);
-    font-weight: 100;
+    transform: translate(0, 105%);
   }
   100% {
     transform: translate(0, 0%);
-    font-weight: 800;
+  }
+}
+
+@keyframes moveTextUp {
+  0%{
+    transform: translate(0, 3rem);
+  }
+  100%{
+    transform: translate(0, 0);
   }
 }
 
 @keyframes animText {
   0% {
-    transform: translate(0, 5rem);
+    transform: translate(0, 105%);
     top: 3rem;
   }
   100% {
-    transform: translate(0, 0rem);
+    transform: translate(0, 0%);
     top: 0rem;
   }
 }
@@ -295,7 +324,7 @@ html[data-theme="dark"] {
   .percentageBarBar {
     height: 0vh;
     transition: height 0.3s;
-    font-size: 0.8rem;
+    font-size: $xs-fs;
     line-height: 0.8rem;
     color: $semitransparentLight1;
     background-color: $semitransparentDark1;
