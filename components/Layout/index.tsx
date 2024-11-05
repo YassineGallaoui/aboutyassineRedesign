@@ -5,8 +5,8 @@ import { breakpoints } from "../../utils/breakpoints";
 import CRTScreen from "../CRTScreen";
 import Cursor from "../Cursor";
 import Frame from "../Frame";
+import Guidelines from "../Guidelines";
 import SplashScreen from "../SplashScreen";
-import CenterGuidelines from "../Guidelines";
 
 type Props = {
   updateCursorText: Function;
@@ -45,7 +45,7 @@ const Layout = ({
         <div></div>
       </div>
       {/* <StatsComponent /> */}
-      <CenterGuidelines />
+      <Guidelines />
       <CRTScreen />
       {!(screenInfo?.isTouchOnly) && screenInfo?.hasMouse && <Cursor hovered={cursorHover} txt={cursorText} />}
       <SplashScreen

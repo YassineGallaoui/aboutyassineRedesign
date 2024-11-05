@@ -267,80 +267,9 @@ export default function Frame({
           </div>
         }
         <div className={styles.frameContainer__right__contacts + " contacts"}>
-          <div
-            className={styles.frameContainer__right__contacts__social}
-            onMouseOver={(e) => hoverSocialButtons(e)}
-            onMouseLeave={(e) => unhoverSocialButtons(e)}
-          >
-            <a
-              href="/cv-gallaoui.pdf"
-              rel="noreferrer noopener"
-              target="_blank"
-              aria-label="Click here to download my curriculum"
-            >
-              <div
-                className={
-                  styles.frameContainer__right__contacts__social__text +
-                  " contactsSocial"
-                }
-              >
-                <div className={"contactsSocialDiv"}></div>
-              </div>
-            </a>
-            <Image
-              src={cvIcon}
-              fill
-              alt="my curriculum vitae"
-              className="invertImg"
-            />
-          </div>
-          <div
-            className={styles.frameContainer__right__contacts__social}
-            onMouseOver={(e) => hoverSocialButtons(e)}
-            onMouseLeave={(e) => unhoverSocialButtons(e)}
-          >
-            <a
-              href="mailto:myassine.gallaoui@gmail.com"
-              aria-label="Click here to send me an email"
-            >
-              <div
-                className={
-                  styles.frameContainer__right__contacts__social__text +
-                  " contactsSocial"
-                }
-              >
-                <div className={"contactsSocialDiv"}></div>
-              </div>
-            </a>
-            <Image src={mailIcon} fill alt="mail" className="invertImg" />
-          </div>
-          <div
-            className={styles.frameContainer__right__contacts__social}
-            onMouseOver={(e) => hoverSocialButtons(e)}
-            onMouseLeave={(e) => unhoverSocialButtons(e)}
-          >
-            <a
-              href="https://www.linkedin.com/in/mohamed-yassine-gallaoui/"
-              rel="noreferrer noopener"
-              target="_blank"
-              aria-label="Click here to check my LinkedIn profile"
-            >
-              <div
-                className={
-                  styles.frameContainer__right__contacts__social__text +
-                  " contactsSocial"
-                }
-              >
-                <div className={"contactsSocialDiv"}></div>
-              </div>
-            </a>
-            <Image
-              src={linkedinIcon}
-              fill
-              alt="linkedin"
-              className="invertImg"
-            />
-          </div>
+          
+
+          {/* X */}
           <div
             className={styles.frameContainer__right__contacts__social}
             onMouseOver={(e) => hoverSocialButtons(e)}
@@ -368,6 +297,88 @@ export default function Frame({
               className="invertImg"
             />
           </div>
+
+
+          {/* LinkedIn */}
+          <div
+            className={styles.frameContainer__right__contacts__social}
+            onMouseOver={(e) => hoverSocialButtons(e)}
+            onMouseLeave={(e) => unhoverSocialButtons(e)}
+          >
+            <a
+              href="https://www.linkedin.com/in/mohamed-yassine-gallaoui/"
+              rel="noreferrer noopener"
+              target="_blank"
+              aria-label="Click here to check my LinkedIn profile"
+            >
+              <div
+                className={
+                  styles.frameContainer__right__contacts__social__text +
+                  " contactsSocial"
+                }
+              >
+                <div className={"contactsSocialDiv"}></div>
+              </div>
+            </a>
+            <Image
+              src={linkedinIcon}
+              fill
+              alt="linkedin"
+              className="invertImg"
+            />
+          </div>
+
+          {/* Mail */}
+          <div
+            className={styles.frameContainer__right__contacts__social}
+            onMouseOver={(e) => hoverSocialButtons(e)}
+            onMouseLeave={(e) => unhoverSocialButtons(e)}
+          >
+            <a
+              href="mailto:myassine.gallaoui@gmail.com"
+              aria-label="Click here to send me an email"
+            >
+              <div
+                className={
+                  styles.frameContainer__right__contacts__social__text +
+                  " contactsSocial"
+                }
+              >
+                <div className={"contactsSocialDiv"}></div>
+              </div>
+            </a>
+            <Image src={mailIcon} fill alt="mail" className="invertImg" />
+          </div>
+
+          {/* CV */}
+          <div
+            className={styles.frameContainer__right__contacts__social}
+            onMouseOver={(e) => hoverSocialButtons(e)}
+            onMouseLeave={(e) => unhoverSocialButtons(e)}
+          >
+            <a
+              href="/cv-gallaoui.pdf"
+              rel="noreferrer noopener"
+              target="_blank"
+              aria-label="Click here to download my curriculum"
+            >
+              <div
+                className={
+                  styles.frameContainer__right__contacts__social__text +
+                  " contactsSocial"
+                }
+              >
+                <div className={"contactsSocialDiv"}></div>
+              </div>
+            </a>
+            <Image
+              src={cvIcon}
+              fill
+              alt="my curriculum vitae"
+              className="invertImg"
+            />
+          </div>
+
         </div>
       </div>
     </div>

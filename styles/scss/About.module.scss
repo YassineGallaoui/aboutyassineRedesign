@@ -173,7 +173,6 @@ html[data-theme="dark"] {
       }
     }
     &__description {
-      z-index: -1;
       position: fixed;
       left: calc(33dvw + 1.4rem);
       padding-top: 40dvh;
@@ -208,7 +207,6 @@ html[data-theme="dark"] {
           font-size: $xl-fs;
           line-height: calc($l-fs * 2);
           overflow: hidden;
-          scroll-snap-type: y mandatory;
       
           span {
             display: inline-block;
@@ -226,7 +224,6 @@ html[data-theme="dark"] {
         margin-bottom: calc($l-fs * 2);
         font-size: $l-fs;
         line-height: calc($l-fs * 2.06);
-        scroll-snap-type: y mandatory;
     
         @media screen and (max-width: $breakpointMobileSmall) {
           padding-bottom: 1.9rem;
@@ -245,31 +242,22 @@ html[data-theme="dark"] {
       
       &__small {
         animation:
-          animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
+          animText cubic-bezier(1, 0, 0.75, 1) 2s,
           animOpacitySmall cubic-bezier(1, 0, 0.75, 1) 2s;
-        animation-delay: 0.9s;
+        animation-delay: 0.7s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
       }
     
       &__big {
         animation:
-          animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
+          animText cubic-bezier(1, 0, 0.75, 1) 2s,
           animOpacity cubic-bezier(1, 0, 0.5, 1) 2s;
-        animation-delay: 0.9s;
+        animation-delay: 0.7s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
       }
     }
-  }
-}
-
-@keyframes animOpacity {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }
 
@@ -308,6 +296,16 @@ html[data-theme="dark"] {
   100% {
     transform: translate(0, 0%);
     top: 0rem;
+  }
+}
+
+@keyframes animOpacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
 

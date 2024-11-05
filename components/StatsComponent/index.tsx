@@ -6,11 +6,11 @@ import styles from "./StatsComponent.module.scss";
 
 export default function StatsComponent() {
   const screenInfo = useScreenInfo();
-  const [visibile, setVisibile] = useState<boolean>(true);
+  const [visibile, setVisibile] = useState<boolean>(false);
 
   useEffect(()=>{
     const handleKeyPress = (event) => {
-      if (event.key.toLowerCase() === 's') {
+      if (event.key.toLowerCase() === 's' || event.key.toLowerCase() === 'S') {
         setVisibile((prevState) => !prevState);
       }
     };
