@@ -23,7 +23,7 @@
 .verticalLine {
   position: fixed;
   height: 0dvh;
-  width: 1px;
+  width: 2px;
   background-color: $semitransparentDark1;
   transition: background-color $change-theme-duration;
   border: none;
@@ -38,7 +38,7 @@
   }
 }
 .horizontalLine {
-  height: 1px;
+  height: 2px;
   width: 0vw;
   background-color: $semitransparentDark1;
   transition: background-color $change-theme-duration;

@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
-import gsap from "gsap";
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import HorizontalLines from "../../components/HorizontalLines";
 import stylesAbout from "../../styles/scss/General.module.scss";
 import {
@@ -12,17 +11,16 @@ import {
 } from "../../utils/utility";
 
 export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
-  const [hasComponentMounted, setHasComponentMounted] = useState(false);
   const words = ["software engineer", "frontend expert", "proactive nerd", "a bit workaholic", "teamworker"];
 
-  useEffect(() => {
+/*   useEffect(() => {
     const lastEditTag = document.querySelector("#lastUpdateDate");
     if (lastEditTag && lastEditDate != null)
       lastEditTag.innerHTML = lastEditDate;
-  }, []);
+  }, []); */
 
-  useEffect(() => {
-    if (SSAnimFinished && hasComponentMounted) {
+/*   useEffect(() => {
+    if (SSAnimFinished) {
       const tlInitial = gsap.timeline({ delay: 0.2 });
       tlInitial
         .to(".mainMotionDiv", {
@@ -37,10 +35,8 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
           scale: 1,
           opacity: 1,
         });
-    } else {
-      setHasComponentMounted(true);
     }
-  }, [SSAnimFinished]);
+  }, [SSAnimFinished]); */
 
   useEffect(() => {
     const welcomeArray = ["Hi!", "Hallo!", "¡Hola!", "Salut!", "Ciao!"];
