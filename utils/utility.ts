@@ -39,12 +39,28 @@ export function verticalTextAnimationBackward(el, index) {
     .to(el, { duration: 0.25, y: -3 });
 }
 
-export function parallax(event, elements, distance) {
-  const x = (window.innerWidth - event.pageX) / distance;
-  const y = (window.innerHeight - event.pageY) / distance;
+export function parallax(event, elements) {
+  elements.forEach((el, i) => {
+    let mf = 0;
+    console.log(i);
+    switch (i) {
+      case 0:
+        mf=0;
+        break;
+      case 1:
+        mf = 0.5;
+        break;
+      case 2:
+        mf = 0.25;
+        break;
+      default:
+        break;
+    }
 
-  elements.forEach(el => {
-    el.style.transform = `translateX(${x}%) translateY(${y}%)`;  
+    const x = (window.innerWidth / 2 - event.pageX) / (window.innerWidth * mf);
+    const y = (window.innerHeight / 2 - event.pageY) / (window.innerHeight * -0.1);
+
+    el.style.transform = `translateX(${-x}%) translateY(${y}px)`;
   });
 }
 

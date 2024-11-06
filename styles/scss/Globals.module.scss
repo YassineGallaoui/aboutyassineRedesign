@@ -150,7 +150,7 @@ body {
         transition: background-color $change-theme-duration linear;
 
         .sectionBkgrdTxt {
-            color: $semitransparentDark5;
+            color: rgba($semitransparentDark5, 0.05);
             transition: color $change-theme-duration, transform 0.5s linear;
         }
 
@@ -204,7 +204,7 @@ body {
         transition: background-color $change-theme-duration linear;
 
         .sectionBkgrdTxt {
-            color: $semitransparentLight5;
+            color: rgba($semitransparentLight5, 0.05);
             transition: color $change-theme-duration linear,
                 transform 0.5s linear;
         }

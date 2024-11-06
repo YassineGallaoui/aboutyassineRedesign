@@ -167,7 +167,7 @@ export default function NewProjects({
         transition={{ duration: 1, ease: [0.8, 0.28, 0, 1] }}
       >
         {/* <TestComp projsNumber={projsNumber} setProjsNumber={setProjsNumber} /> */}
-        <TitleBackground text={"Projects"}/>
+        {SSAnimFinished && <TitleBackground text={"Projects"} />}
         <div
           className={
             stylesHome.currentPrjHovered +

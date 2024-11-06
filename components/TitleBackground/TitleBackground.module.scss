@@ -21,9 +21,19 @@
         span {
             display: inline-block;
             transform: translateX(-110%);
-            animation: 0.8s anim2 forwards calc(var(--delayIndex) * 0.05s + 0.5s);
+            animation: 0.8s anim2 forwards calc(var(--delayIndex) * 0.08s + 0.5s);
         }
     }
+}
+
+.likeH1 {
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
 }
 
 @keyframes anim1 {
