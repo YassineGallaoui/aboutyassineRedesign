@@ -11,6 +11,7 @@ import {
 } from "../../utils/utility";
 
 export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
+  const welcomeArray = ["Hi!", "Hallo!", "¡Hola!", "Salut!", "Ciao!"];
   const words = ["software engineer", "frontend expert", "proactive nerd", "a bit workaholic", "teamworker"];
 
 /*   useEffect(() => {
@@ -39,7 +40,6 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
   }, [SSAnimFinished]); */
 
   useEffect(() => {
-    const welcomeArray = ["Hi!", "Hallo!", "¡Hola!", "Salut!", "Ciao!"];
     const welcomeWord = document.querySelector(".welcomeWord");
     let i = 1;
     const startWelcomeAnimation = function (i) {
@@ -151,86 +151,86 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                 <p>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >Actually I dunno. Jk, my name is </span>
+                  >{`I'm`} </span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   ><b>Yassine</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`, Italian-Tunisian, `}</span>
+                  >{`, Italian-Tunisian `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` software engineer `}</span>
+                  ><b>{` software engineer `}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
                   >{`specialized in`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` frontend and creative development. `}</span>
+                  ><b>{` frontend and creative development. `}</b></span>
                 </p>
 
                 <h2>
-                  <span style={{ "--i": 1 } as React.CSSProperties}>2/&nbsp;&nbsp;{"What do you do for a living"}?</span>
+                  <span style={{ "--i": 1 } as React.CSSProperties}>2/&nbsp;&nbsp;{"What do I do for a living"}?</span>
                 </h2>
                 <p>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >My </span>
+                  >{`My`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >services</span>
+                  ><b>{` main services`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` range from creating any kind of `}</span>
+                  >{` focus on`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{`portfolio, presentation, tribute or archive website`}</span>
+                  ><b>{` delivering high-quality website`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` to `}</span>
+                  >{`, with particular attention to performance, responsiveness, motion, and accessibility.`}</span>
+
+                  <br/>
+
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` accessibility assessments on your already existing websites. `}</span>
+                  ><b>{` As a freelance, I work with startups, agencies, studios, and other professionals `}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` The `}</span>
+                  >{` worldwide, even though`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` goals `}</span>
+                  ><b>{` I'm still open to full-time employment`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` and the `}</span>
+                  >{` if the right opportunity arises — cause never say never!`}</span>
+
+                  <br/>
+
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` main rules are always the same: the final product must works flawlessly `}</span>
+                  ><b>{` Note:`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` and, whenever possible, `}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  >{`is aesthetically captivating.`}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                  >{`Note: If your project has a really advanced and particular design, you need to already have the design part done, so that i can focus and work in hard core mode on the code side straight away.`}</span>
+                  >{` you don't have the design for your website yet? Feel free to reach out anyways, I know some excellent designers who can help us on that.`}</span>
                 </p>
 
                 <h2>
-                  <span style={{ "--i": 2 } as React.CSSProperties}>3/&nbsp;&nbsp;Where can you find me?</span>
+                  <span style={{ "--i": 2 } as React.CSSProperties}>3/&nbsp;&nbsp;{`Where can you find me?`}</span>
                 </h2>
                 <p>
                   <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  ><b>{`In case you want to work together`}</b></span>
+                  <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >Well for sure I will not tell you where I live, you wirdo...</span>
+                  >{` or you have some new great project and you want two hands and a brain more on it`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` But in case you want to work together or you have some new great project and you want two hands and a brain more on it, `}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                  >{` you can reach me thru `}</span>
+                  ><b>{` you can reach me thru `}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   >
-                    <a
+                    <b><a
                       className={" underlineLineWithAnim"}
                       href={"mailto:myassine.gallaoui@gmail.com"}
                       onMouseOver={() => cursorIsHover(true)}
@@ -239,15 +239,15 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                       target="_blank"
                     >
                       {`email`}
-                    </a>
+                    </a></b>
                   </span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` or `}</span>
+                  >{`, `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   >
-                    <a
+                    <b><a
                       className={
                         stylesAbout.underlineLineWithAnimTwo +
                         " underlineLineWithAnim"
@@ -261,7 +261,29 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                       target="_blank"
                     >
                       {`LinkedIn`}
-                    </a>
+                    </a></b>
+                  </span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{` or `}</span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  >
+                    <b><a
+                      className={
+                        stylesAbout.underlineLineWithAnimTwo +
+                        " underlineLineWithAnim"
+                      }
+                      href={
+                        "https://x.com/Yassine__G"
+                      }
+                      onMouseOver={() => cursorIsHover(true)}
+                      onMouseLeave={() => cursorIsHover(false)}
+                      rel="noreferrer noopener"
+                      target="_blank"
+                    >
+                      {`X`}
+                    </a></b>
                   </span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}

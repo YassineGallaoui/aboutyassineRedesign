@@ -174,7 +174,7 @@ html[data-theme="dark"] {
     }
     &__description {
       position: fixed;
-      left: calc(33dvw + 1.4rem);
+      padding-left: calc(33dvw + 1.4rem);
       padding-top: 40dvh;
       padding-bottom: calc($l-fs * 2);
       overflow: visible;
@@ -182,8 +182,8 @@ html[data-theme="dark"] {
       z-index: 2;
       line-height: 4.75rem;
       height: 100dvh;
-      width: calc($l-fs * 30);
-      max-width: 55dvw;
+      width: calc($l-fs * 57);
+      max-width: 94dvw;
       scrollbar-width: none;
       scroll-behavior: smooth;
       @media screen and (max-width: $breakpointMobileSmall) {
