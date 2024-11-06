@@ -34,7 +34,6 @@ export default function ProjectTriangle({
 
     useEffect(()=>{
         if (hovered) {
-            console.log(projectData.id);
             triangleMouseOver(projectData.id)
         } else 
             triangleMouseOut(projectData.id)

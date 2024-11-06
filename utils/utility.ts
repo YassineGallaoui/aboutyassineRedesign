@@ -42,7 +42,6 @@ export function verticalTextAnimationBackward(el, index) {
 export function parallax(event, elements) {
   elements.forEach((el, i) => {
     let mf = 0;
-    console.log(i);
     switch (i) {
       case 0:
         mf=0;
