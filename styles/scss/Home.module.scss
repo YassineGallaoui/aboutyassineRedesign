@@ -1,24 +1,5 @@
 @import "./variables.scss";
 
-.expBkgrdTxt {
-  position: fixed;
-  height: 100dvh;
-  width: 100dvw;
-  top: 17dvh;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none;
-  user-select: none;
-  span {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20dvw;
-  }
-}
 .currentPrjHovered {
   position: fixed;
   top: -2.5vh;

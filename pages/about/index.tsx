@@ -2,12 +2,11 @@ import { motion } from "framer-motion";
 import Head from "next/head";
 import React, { useEffect } from "react";
 import HorizontalLines from "../../components/HorizontalLines";
+import { TitleBackground } from "../../components/TitleBackground";
 import stylesAbout from "../../styles/scss/General.module.scss";
 import {
   calculateScrollPercentage,
-  createSpanStructureV2,
-  distanceLevels,
-  parallax
+  createSpanStructureV2
 } from "../../utils/utility";
 
 export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
@@ -49,15 +48,6 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
       }, 5000);
     };
     startWelcomeAnimation(i);
-    const documentMouseMove = (event) => {
-      parallax(
-        event,
-        document.querySelector(".sectionBkgrdTxt"),
-        distanceLevels.Second
-      );
-    };
-
-    document.addEventListener("mousemove", documentMouseMove);
 
     const pageContent = document.querySelector(".aboutContent");
 
@@ -67,7 +57,6 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
       );
     return () => {
       pageContent?.removeEventListener("scroll", scrollPercentageFunction);
-      document.removeEventListener("mousemove", documentMouseMove);
     };
   }, [SSAnimFinished]);
 
@@ -95,13 +84,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
         exit={{ x: "50vw", opacity: 0 }}
         transition={{ duration: 1, ease: [0.8, 0.28, 0, 1] }}
       >
-        <h1 className={stylesAbout.meBkgrdTxt + " sectionBkgrdTxt"} aria-label="About">
-          <span aria-hidden="true">A</span>
-          <span aria-hidden="true">b</span>
-          <span aria-hidden="true">o</span>
-          <span aria-hidden="true">u</span>
-          <span aria-hidden="true">t</span>
-        </h1>
+        <TitleBackground text={"About"} />
         {SSAnimFinished && <div className={stylesAbout.verticalLine}></div>}
         {SSAnimFinished && <div className={stylesAbout.horizontalLine}></div>}
         {SSAnimFinished && <HorizontalLines />}

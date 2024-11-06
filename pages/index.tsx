@@ -8,12 +8,13 @@ import ProjectModalVertical from "../components/ProjectModalVertical";
 import ProjectsCanvas from "../components/ProjectsCanvas";
 import ProjectsCanvasVertical from "../components/ProjectsCanvasVertical";
 import SlideinText from "../components/SlideinText";
+import { TitleBackground } from "../components/TitleBackground";
 import useScreenInfo from "../hooks/useScreenInfo";
 import stylesHome from "../styles/scss/Projects.module.scss";
 import { breakpoints, getDeviceType } from "../utils/breakpoints";
 import { colorApplicator } from "../utils/colorFunctions";
 import { Project, projectsDataset } from "../utils/dataset";
-import { distanceLevels, hideFrame, parallax, unhideFrame } from "../utils/utility";
+import { hideFrame, unhideFrame } from "../utils/utility";
 
 type NewProjectsProps = {
   updateCursorText: Function;
@@ -127,15 +128,9 @@ export default function NewProjects({
   useEffect(() => {
     colorApplicator(lightColor, darkColor);
 
-    document.addEventListener("mousemove", mouseMoveHomepage);
-
     const lastEditTag = document.querySelector("#lastUpdateDate");
     if (lastEditTag && lastEditDate != null)
       lastEditTag.innerHTML = lastEditDate;
-    
-    return () => {
-      document.removeEventListener("mousemove", mouseMoveHomepage);
-    };
   }, []);
 
   useEffect(() => {
@@ -159,14 +154,6 @@ export default function NewProjects({
     }
   }, [SSAnimFinished]);
 
-  const mouseMoveHomepage = (event: MouseEvent | Event) => {
-    parallax(
-      event,
-      document.querySelector(".sectionBkgrdTxt"),
-      distanceLevels.Second
-    );
-  }
-
   return (
     <>
       <Head>
@@ -180,16 +167,7 @@ export default function NewProjects({
         transition={{ duration: 1, ease: [0.8, 0.28, 0, 1] }}
       >
         {/* <TestComp projsNumber={projsNumber} setProjsNumber={setProjsNumber} /> */}
-        <h1 className={stylesHome.expBkgrdTxt + " sectionBkgrdTxt"} aria-label="Projects">
-          <span aria-hidden="true">P</span>
-          <span aria-hidden="true">r</span>
-          <span aria-hidden="true">o</span>
-          <span aria-hidden="true">j</span>
-          <span aria-hidden="true">e</span>
-          <span aria-hidden="true">c</span>
-          <span aria-hidden="true">t</span>
-          <span aria-hidden="true">s</span>
-        </h1>
+        <TitleBackground text={"Projects"}/>
         <div
           className={
             stylesHome.currentPrjHovered +

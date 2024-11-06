@@ -1,0 +1,46 @@
+.backgroundText {
+    position: fixed;
+    height: 100dvh;
+    width: 100dvw;
+    top: 17dvh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    user-select: none;
+
+    span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--fs);
+        overflow: hidden;
+        transform: translateX(-30%);
+        animation: 0.8s anim1 forwards;
+        span {
+            display: inline-block;
+            transform: translateX(-110%);
+            animation: 0.8s anim2 forwards calc(var(--delayIndex) * 0.05s + 0.5s);
+        }
+    }
+}
+
+@keyframes anim1 {
+    0% {
+        transform: translateX(-110%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes anim2 {
+    0% {
+        transform: translateX(-110%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}

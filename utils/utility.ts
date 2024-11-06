@@ -39,17 +39,13 @@ export function verticalTextAnimationBackward(el, index) {
     .to(el, { duration: 0.25, y: -3 });
 }
 
-export enum distanceLevels {
-  First = 400,
-  Second = 800,
-  Third = 1200,
-}
+export function parallax(event, elements, distance) {
+  const x = (window.innerWidth - event.pageX) / distance;
+  const y = (window.innerHeight - event.pageY) / distance;
 
-export function parallax(event, element, distance) {
-  const x = (window.innerWidth - event.pageX * 2) / distance;
-  const y = (window.innerHeight - event.pageY * 2) / distance;
-
-  element.style.transform = `translateX(${x}px) translateY(${y}px)`;
+  elements.forEach(el => {
+    el.style.transform = `translateX(${x}%) translateY(${y}%)`;  
+  });
 }
 
 export const calculateScrollPercentage = (pageContent) => {
