@@ -43,7 +43,7 @@ export const projectsDatasetArray: Project[] = [
       "public/imgs/autotorino-3.webp",
       "public/imgs/autotorino-4.webp",
       "public/imgs/autotorino-5.webp"],
-    workingFor: "Deloitte",
+    workingFor: "Deloitte Digital",
     description:
       "Worked in a team of 15+ people on the redesign and implementation of a car auction platform, crafting both backoffice and frontoffice.",
     frontend: "Next.js + MUI",
@@ -62,7 +62,7 @@ export const projectsDatasetArray: Project[] = [
       "public/imgs/maserati-5.webp",
     ],
     recognitions: ["Awwwards Honorable Mention"],
-    workingFor: "Deloitte",
+    workingFor: "Deloitte Digital",
     description:
       "Joined the project during the UAT phase. Worked in a team of 30+ people. In the first period I worked mainly on bug fixing and analytics integration. After the go-live I joined a team of 5 people to develop from scratch the Owner Area section of the website, took care of all analytics and later I've also took care of bug fixing.",
     frontend: "AEM + Javascript + jQuery + gsap",

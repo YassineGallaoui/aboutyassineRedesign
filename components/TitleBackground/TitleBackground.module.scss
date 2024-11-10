@@ -17,11 +17,11 @@
         font-size: var(--fs);
         overflow: hidden;
         transform: translateX(-30%);
-        animation: 0.8s anim1 forwards;
+        animation: 0.8s anim1 ease-in-out forwards;
         span {
             display: inline-block;
             transform: translateX(-110%);
-            animation: 0.8s anim2 forwards calc(var(--delayIndex) * 0.08s + 0.5s);
+            animation: 0.8s anim2 ease-in-out forwards calc(var(--delayIndex) * 0.08s + 0.5s);
         }
     }
 }
@@ -36,9 +36,21 @@
     unicode-bidi: isolate;
 }
 
+/* .fromTop > .backgroundText {
+    span {
+        transform: translateY(-30%);
+        animation-name: anim1fromTop;
+        span {
+            transform: translateY(-110%);
+            animation-name: anim2fromTop;
+            animation-delay: calc(var(--delayIndex) * 0.08s + 0.2s);
+        }
+    }
+} */
+
 @keyframes anim1 {
     0% {
-        transform: translateX(-110%);
+        transform: translateX(-30%);
     }
 
     100% {
@@ -54,3 +66,22 @@
         transform: translateX(0%);
     }
 }
+
+/* @keyframes anim1fromTop {
+    0% {
+        transform: translateY(-30%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+@keyframes anim2fromTop {
+    0% {
+        transform: translateY(-110%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+} */

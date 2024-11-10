@@ -55,7 +55,6 @@ export default function ProjectCanvas({
       } else if (width >= maxW) {
         scale = 1;
       } else {
-        // Interpolate scale value between minW and maxW
         scale = 0.6 + ((width - minW) / (maxW - minW)) * (1 - 0.6);
       }
 

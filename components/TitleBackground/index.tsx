@@ -3,14 +3,12 @@ import { parallax } from "../../utils/utility";
 import styles from "./TitleBackground.module.scss";
 
 export const TitleBackground = ({text}) => {
-    
     const mouseMoveEffect = (event: MouseEvent | Event) => {
         parallax(
             event,
             document.querySelectorAll(".sectionBkgrdTxt")
         );
     }
-    
     useEffect(() => {
         document.addEventListener("mousemove", mouseMoveEffect);
         
@@ -20,9 +18,9 @@ export const TitleBackground = ({text}) => {
     }, []);
     
     return (
-        <div className="backgroundTitle">
+        <div>
             <h1 
-                className={styles.backgroundText + " sectionBkgrdTxt"}
+                className={styles.backgroundText +" sectionBkgrdTxt"}
                 style={{ "--fs": `calc(100dvw/(${text.length / 2 + 0.5}))`} as React.CSSProperties}
                 aria-label={text}>
                 {

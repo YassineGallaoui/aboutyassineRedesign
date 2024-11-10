@@ -204,13 +204,13 @@ export default function NewProjects({
           }
         >
           {screenSize === null || screenSize.aspectRatio > 1 ?
-            <ProjectsCanvas 
+            <ProjectsCanvas
               triangleMouseOver={triangleMouseOver}
               triangleMouseOut={triangleMouseOut}
               triangleMouseClick={triangleMouseClick}
               projsNumber={projsNumber}
             /> :
-            <ProjectsCanvasVertical 
+            <ProjectsCanvasVertical
               triangleMouseOver={triangleMouseOver}
               triangleMouseOut={triangleMouseOut}
               triangleMouseClick={triangleMouseClick}

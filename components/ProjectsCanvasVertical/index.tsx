@@ -32,14 +32,14 @@ export default function ProjectCanvasVertical({
   const [firstPositionProject, setFirstPositionProject] = useState<number>(0);
 
   const [triangleVertices, setTriangleVertices] = useState([
-    new THREE.Vector3(0, triH / 2, 0),   // Top vertex
-    new THREE.Vector3(-triL / 2, -triH / 2, 0), // Bottom left vertex
-    new THREE.Vector3(triL / 2, -triH / 2, 0),  // Bottom right vertex
+    new THREE.Vector3(0, triH / 2, 0),   // Right vertex
+    new THREE.Vector3(-triL / 2, -triH / 2, 0), // Left bottom vertex
+    new THREE.Vector3(triL / 2, -triH / 2, 0),  // Left top vertex
   ]);
   const [triangleInvVertices, setTriangleInvVertices] = useState([
-    new THREE.Vector3(0, -triH / 2, 0),   // Top vertex
-    new THREE.Vector3(-triL / 2, triH / 2, 0), // Bottom left vertex
-    new THREE.Vector3(triL / 2, triH / 2, 0),  // Bottom right vertex
+    new THREE.Vector3(0, -triH / 2, 0),   // Left vertex
+    new THREE.Vector3(-triL / 2, triH / 2, 0), // Right top vertex
+    new THREE.Vector3(triL / 2, triH / 2, 0),  // Right bottom vertex
   ]);
 
   useEffect(() => {
@@ -167,6 +167,7 @@ export default function ProjectCanvasVertical({
                       triangleMouseOut={(e) => { triangleMouseOut(e) }}
                       triangleMouseClick={(e) => { triangleMouseClick(e) }}
                       scale={dimensionsScale}
+                      vertical={true}
                     ></ProjectTriangle>
                 )
               })

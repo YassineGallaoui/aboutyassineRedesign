@@ -15,6 +15,7 @@ interface ProjectTriangleProps {
     triangleMouseOut: Function,
     triangleMouseClick: Function,
     scale?: number,
+    vertical?: boolean;
 }
 
 export default function ProjectTriangle({
@@ -28,11 +29,12 @@ export default function ProjectTriangle({
     triangleMouseOut,
     triangleMouseClick,
     scale=1,
+    vertical=null,
 }: ProjectTriangleProps) {
     const meshRef = useRef<THREE.Mesh>(null);
     const [hovered, setHovered] = useState(false);
 
-    useEffect(()=>{
+    useEffect(() => {
         if (hovered) {
             triangleMouseOver(projectData.id)
         } else 
@@ -47,25 +49,40 @@ export default function ProjectTriangle({
     }, [vertices]);
     
     const uvs = useMemo(() => {
-        const ratio = texture.image.width / texture.image.height;
-        let uvCoords;
+        const textureAspectRatio = texture.image.width / texture.image.height;
+        const triangleAspectRatio = Math.sqrt(3) / 2;
 
-        if (upsideDown) {
-            uvCoords = [
-                0.5, 0,
-                1, 1,
-                0, 1
-            ];
+        let uvCoords;
+        if (vertical) {
+            const scaleX = triangleAspectRatio / textureAspectRatio;
+            uvCoords = upsideDown
+                ? [ // right triangles
+                    0, 0.5,
+                    1 - (scaleX * 1.25), 1,
+                    1 - (scaleX * 1.25), 0,
+                ]
+                : [ // left triangles
+                    1, 0.5,
+                    0 + (scaleX * 1.25), 1,
+                    0 + (scaleX * 1.25), 0,
+                ];
         } else {
-            uvCoords = [
-                0.5, 1,
-                1, 0,
-                0, 0
-            ];
+            const scaleX = triangleAspectRatio / textureAspectRatio;
+            uvCoords = upsideDown
+                ? [ // upside-down base up
+                    0.5, 0,
+                    0.5 + (scaleX * 1.5) / 2, 1,
+                    0.5 - (scaleX * 1.5) / 2, 1
+                ]
+                : [ // normal base down
+                    0.5, 1,
+                    0.5 + (scaleX * 1.5) / 2, 0,
+                    0.5 - (scaleX * 1.5) / 2, 0
+                ];
         }
 
         return new THREE.BufferAttribute(new Float32Array(uvCoords), 2);
-    }, [upsideDown, texture]);
+    }, [upsideDown, vertical, texture]);
     
     const materialProps = imageUrl
         ? {
