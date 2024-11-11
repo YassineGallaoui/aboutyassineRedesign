@@ -4,9 +4,8 @@ export function createSpanStructureV2(w) {
   const charArr = w.split("");
   let returnString = "";
   charArr.forEach((element, index) => {
-    returnString += `<span style="--i:${
-      index + 1
-    }"><span>${element}</span></span>`;
+    returnString += `<span style="--i:${index + 1
+      }"><span>${element}</span></span>`;
   });
   return returnString;
 }
@@ -44,7 +43,7 @@ export function parallax(event, elements) {
     let mf = 0;
     switch (i) {
       case 0:
-        mf=0;
+        mf = 0;
         break;
       case 1:
         mf = 0.5;
@@ -67,20 +66,29 @@ export const calculateScrollPercentage = (pageContent) => {
   const scrollTop = pageContent.scrollTop;
   const scrollHeight = pageContent.scrollHeight;
   const clientHeight = pageContent.clientHeight;
-  
+
   const scrolledDistance = scrollTop;
-  
+
   const scrollPercentage =
     (scrolledDistance / (scrollHeight - clientHeight)) * 100;
-  
+
   return scrollPercentage.toFixed(0);
 };
 
 export const hideFrame = (themeContainer) => {
   themeContainer.classList.add("quickTransition");
   gsap.to(`.logoWrapper`, {
+    x: "-7rem",
+    y: "-7rem",
+    duration: 0.5
+  });
+  gsap.to(`.booking`, {
+    x: "-7rem",
+    duration: 0.5
+  });
+  gsap.to(`.available`, {
     x: "-4rem",
-    y: "-4rem",
+    y: "4rem",
     duration: 0.5
   });
   gsap.to(`.themeContainer`, {
@@ -101,25 +109,34 @@ export const hideFrame = (themeContainer) => {
 }
 
 export const unhideFrame = (themeContainer) => {
+  gsap.to(`.logoWrapper`, {
+    x: '-3rem',
+    y: '-3rem',
+    duration: 0.5,
+  });
+  gsap.to(`.booking`, {
+    x: "-2rem",
+    duration: 0.5
+  });
+  gsap.to(`.available`, {
+    x: "0rem",
+    y: "0rem",
+    duration: 0.5
+  });
   gsap.to(`.themeContainer`, {
     x: 0,
     y: 0,
     duration: 0.5,
   });
-  gsap.to(`.logoWrapper`, {
-    x: '0rem',
-    y: '-3rem',
+  gsap.to(`.sectionsNav`, {
+    x: "0rem",
+    y: 0,
     duration: 0.5,
   });
   gsap.to(`.contacts`, {
     x: '-1rem',
     y: '1rem',
     duration: 0.5,
-  });
-  gsap.to(`.sectionsNav`, {
-    x: "0rem",
-    y: 0,
-    duration: 0.7,
   });
   setTimeout(() => {
     themeContainer.classList.remove("quickTransition");

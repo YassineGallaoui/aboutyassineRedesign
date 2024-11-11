@@ -11,7 +11,7 @@ import SlideinText from "../components/SlideinText";
 import { TitleBackground } from "../components/TitleBackground";
 import useScreenInfo from "../hooks/useScreenInfo";
 import stylesHome from "../styles/scss/Projects.module.scss";
-import { breakpoints, getDeviceType } from "../utils/breakpoints";
+import { breakpoints } from "../utils/breakpoints";
 import { colorApplicator } from "../utils/colorFunctions";
 import { Project, projectsDataset } from "../utils/dataset";
 import { hideFrame, unhideFrame } from "../utils/utility";
@@ -40,10 +40,10 @@ export default function NewProjects({
 
   const [projectOpenedBoolean, setProjectOpenedBoolean] = useState<boolean>(false);
   const [projectOpened, setProjectOpened] = useState<Project>(projectsDataset[0]);
-  
+
   const [projectIsHovered, setProjectIsHovered] = useState<boolean>(false);
-  const [projectIsHoveredID, setProjectIsHoveredID] = useState<number|null>(null);
-  
+  const [projectIsHoveredID, setProjectIsHoveredID] = useState<number | null>(null);
+
   const zIndexMatteBKGOpen: number = 5;
   const zIndexMatteBKGClosed: number = -1;
   const [hasComponentMounted, setHasComponentMounted] = useState(false);
@@ -55,7 +55,7 @@ export default function NewProjects({
     if (elementId != null && elementData != null) {
       setProjectIsHovered(true);
       setProjectIsHoveredID(elementId);
-      
+
       const tl1 = gsap.timeline();
       tl1.to(`#bigBackgroundImage-${elementId}`, {
         scale: 1.02,
@@ -116,13 +116,8 @@ export default function NewProjects({
     const themeContainer = document.querySelector(
       ".themeContainer"
     ) as HTMLElement;
-    if (
-      getDeviceType() === breakpoints.mobile ||
-      getDeviceType() === breakpoints.mobileSmall ||
-      getDeviceType() === breakpoints.tablet
-    )
-      if (projectOpenedBoolean) hideFrame(themeContainer);
-      else unhideFrame(themeContainer);
+    if (projectOpenedBoolean) hideFrame(themeContainer);
+    else unhideFrame(themeContainer);
   }, [projectOpenedBoolean]);
 
   useEffect(() => {
@@ -194,7 +189,7 @@ export default function NewProjects({
           }
         >
           {projectsDataset.map((proj) => (
-            <SlideinText key={proj.id} text={proj.name} isHovered={projectIsHoveredID === proj.id && projectIsHovered ? true : false}/>
+            <SlideinText key={proj.id} text={proj.name} isHovered={projectIsHoveredID === proj.id && projectIsHovered ? true : false} />
           ))}
         </div>
         <div className={stylesHome.modalMatteBkgrd + " modalMatteBkgrd"}></div>

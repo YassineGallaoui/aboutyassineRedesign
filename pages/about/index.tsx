@@ -13,30 +13,30 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
   const welcomeArray = ["Hi!", "Hallo!", "¡Hola!", "Salut!", "Ciao!"];
   const words = ["software engineer", "frontend expert", "proactive nerd", "a bit workaholic", "teamworker"];
 
-/*   useEffect(() => {
-    const lastEditTag = document.querySelector("#lastUpdateDate");
-    if (lastEditTag && lastEditDate != null)
-      lastEditTag.innerHTML = lastEditDate;
-  }, []); */
+  /*   useEffect(() => {
+      const lastEditTag = document.querySelector("#lastUpdateDate");
+      if (lastEditTag && lastEditDate != null)
+        lastEditTag.innerHTML = lastEditDate;
+    }, []); */
 
-/*   useEffect(() => {
-    if (SSAnimFinished) {
-      const tlInitial = gsap.timeline({ delay: 0.2 });
-      tlInitial
-        .to(".mainMotionDiv", {
-          duration: 0,
-          top: 80,
-          scale: 1,
-          opacity: 0.8,
-        })
-        .to(".mainMotionDiv", {
-          duration: 1.8,
-          top: 0,
-          scale: 1,
-          opacity: 1,
-        });
-    }
-  }, [SSAnimFinished]); */
+  /*   useEffect(() => {
+      if (SSAnimFinished) {
+        const tlInitial = gsap.timeline({ delay: 0.2 });
+        tlInitial
+          .to(".mainMotionDiv", {
+            duration: 0,
+            top: 80,
+            scale: 1,
+            opacity: 0.8,
+          })
+          .to(".mainMotionDiv", {
+            duration: 1.8,
+            top: 0,
+            scale: 1,
+            opacity: 1,
+          });
+      }
+    }, [SSAnimFinished]); */
 
   useEffect(() => {
     const welcomeWord = document.querySelector(".welcomeWord");
@@ -114,7 +114,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                   <p key={index}>
                     <span
                       className={stylesAbout.singleWord}
-                      style={{"--i": index} as React.CSSProperties}
+                      style={{ "--i": index } as React.CSSProperties}
                     >{el}</span>
                   </p>
                 ))}
@@ -172,7 +172,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                     className={stylesAbout.meContainer__txt__description__small}
                   >{`, with particular attention to performance, responsiveness, motion, and accessibility.`}</span>
 
-                  <br/>
+                  <br />
 
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
@@ -185,9 +185,9 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                   ><b>{` I'm still open to full-time employment`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` if the right opportunity arises — cause never say never!`}</span>
+                  >{` if the right opportunity arises — never say never!`}</span>
 
-                  <br/>
+                  <br />
 
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
@@ -206,10 +206,10 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                   ><b>{`In case you want to work together`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` or you have some new great project and you want two hands and a brain more on it`}</span>
+                  >{` or you have some great project and you want some help on it,`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  ><b>{` you can reach me thru `}</b></span>
+                  ><b>{` you can reach out via `}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   >
