@@ -183,7 +183,7 @@ html[data-theme="dark"] {
       position: fixed;
       padding-left: calc(33dvw + 1.4rem);
       padding-top: 40dvh;
-      padding-bottom: calc($l-fs * 2);
+      padding-bottom: calc($l-fs * 3);
       overflow: visible;
       overflow-y: scroll;
       z-index: 2;
@@ -215,6 +215,7 @@ html[data-theme="dark"] {
       h2 {
         margin: 0;
         font-size: $xl-fs;
+        opacity: 0.4;
         line-height: calc($l-fs * 2);
         overflow: hidden;
 
@@ -231,7 +232,7 @@ html[data-theme="dark"] {
         display: block;
         overflow: hidden;
         margin-top: 0rem;
-        margin-bottom: calc($l-fs * 2);
+        margin-bottom: calc($l-fs * 4);
         font-size: $l-fs;
         line-height: calc($l-fs * 2);
 

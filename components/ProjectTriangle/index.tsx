@@ -1,6 +1,6 @@
 import { useFrame, useLoader } from "@react-three/fiber";
 import { StaticImageData } from "next/image";
-import { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from 'three';
 import { Project } from '../../utils/dataset';
 
@@ -18,18 +18,18 @@ interface ProjectTriangleProps {
     vertical?: boolean;
 }
 
-export default function ProjectTriangle({
+function ProjectTriangle({
     projectData,
     vertices,
     position,
     imageUrl,
     color,
     upsideDown,
-    triangleMouseOver, 
+    triangleMouseOver,
     triangleMouseOut,
     triangleMouseClick,
-    scale=1,
-    vertical=null,
+    scale = 1,
+    vertical = null,
 }: ProjectTriangleProps) {
     const meshRef = useRef<THREE.Mesh>(null);
     const [hovered, setHovered] = useState(false);
@@ -37,17 +37,17 @@ export default function ProjectTriangle({
     useEffect(() => {
         if (hovered) {
             triangleMouseOver(projectData.id)
-        } else 
+        } else
             triangleMouseOut(projectData.id)
     }, [hovered])
-    
+
     const texture = useLoader(THREE.TextureLoader, imageUrl?.src || '');
-    
+
     const vert = useMemo(() => {
         const p = vertices.flatMap((vertex) => vertex.toArray());
         return new THREE.BufferAttribute(new Float32Array(p), 3);
     }, [vertices]);
-    
+
     const uvs = useMemo(() => {
         const textureAspectRatio = texture.image.width / texture.image.height;
         const triangleAspectRatio = Math.sqrt(3) / 2;
@@ -83,7 +83,7 @@ export default function ProjectTriangle({
 
         return new THREE.BufferAttribute(new Float32Array(uvCoords), 2);
     }, [upsideDown, vertical, texture]);
-    
+
     const materialProps = imageUrl
         ? {
             map: texture,
@@ -93,7 +93,7 @@ export default function ProjectTriangle({
             transparent: true,
             color: color || 'gray',
         };
-    
+
     useFrame(() => {
         if (meshRef.current) {
             const targetZ = hovered ? position.z * 0.95 : position.z;
@@ -137,3 +137,7 @@ export default function ProjectTriangle({
         </mesh>
     );
 }
+const areEqual = (prevProps, nextProps) => {
+    return !(prevProps.position === nextProps.position);
+};
+export default React.memo(ProjectTriangle, areEqual)

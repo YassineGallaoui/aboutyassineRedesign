@@ -19,7 +19,7 @@ export default function ProjectCanvas({
   triangleMouseClick,
   projsNumber,
 }: ProjectCanvasProps) {
-  
+
   const [dimensionsScale, setDimensionsScale] = useState<number>(1);
   const [triL, setTriL] = useState<number>(4 * dimensionsScale);
   const [halfTriL, setHalfTriL] = useState<number>(triL / 2);
@@ -41,7 +41,7 @@ export default function ProjectCanvas({
     new THREE.Vector3(-triL / 2, triH / 2, 0),
     new THREE.Vector3(triL / 2, triH / 2, 0),
   ]);
-  
+
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
@@ -94,7 +94,7 @@ export default function ProjectCanvas({
     setTriangleVertices(newT);
     setTriangleInvVertices(newIT);
   }, [dimensionsScale]);
-  
+
   useEffect(() => {
     const updateTriangleCount = () => {
       let trianglesPerRow = 40

@@ -31,8 +31,10 @@
   font-size: 10dvw;
   letter-spacing: 1dvw;
   opacity: 0;
+  transition: 0s opacity 0.5s;
 
   &.show {
+    transition: 0s opacity 0s;
     opacity: 1;
   }
 }
