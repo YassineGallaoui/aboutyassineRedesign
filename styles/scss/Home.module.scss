@@ -7,12 +7,14 @@
   height: 105vh;
   width: 105vw;
   transform: translate(0) !important;
+
   img {
     object-fit: cover;
     filter: brightness(0.7);
     mix-blend-mode: difference;
     opacity: 0;
   }
+
   &.hover:after {
     content: " ";
     width: 100%;
@@ -23,10 +25,18 @@
     background-image: url("../../public/imgs/filter.webp");
   }
 }
-.currentPrjHoveredText{
+
+.currentPrjHoveredText {
+  position: absolute;
   font-size: 10dvw;
   letter-spacing: 1dvw;
+  opacity: 0;
+
+  &.show {
+    opacity: 1;
+  }
 }
+
 .modalMatteBkgrd {
   position: fixed;
   height: 100dvh;
@@ -34,9 +44,11 @@
   background-color: rgba(0, 0, 0, 0);
   z-index: -1;
 }
+
 .mainMotionDiv {
   overflow: hidden;
 }
+
 .expContainer {
   position: relative;
   display: flex;
@@ -45,9 +57,7 @@
   align-items: center;
   height: 100dvh;
   width: 100dvw;
-/*   &.even{
-    left: -5.5dvw;
-  } */
+
   .triangleProjectRow {
     position: relative;
     display: flex;
@@ -55,22 +65,26 @@
     justify-content: center;
     align-items: center;
     margin: 11dvw;
-    .horizontalLineL, .horizontalLineR {
+
+    .horizontalLineL,
+    .horizontalLineR {
       position: absolute;
       width: max(200vh, 200vw);
       height: 1px;
       opacity: 0.3;
       background-color: $semitransparentDark5;
       transition: background-color $change-theme-duration;
-      animation: drawOrizLine cubic-bezier(.34,.65,.46,.76) 5s;
+      animation: drawOrizLine cubic-bezier(.34, .65, .46, .76) 5s;
       animation-iteration-count: 1;
       animation-fill-mode: forwards;
       margin-top: 22vw;
       transform: translateX(max(200vh, 200vw));
     }
+
     .horizontalLineL {
       transform: translateX(calc(max(200vh, 200vw) * -1));
     }
+
     @keyframes drawOrizLine {
       100% {
         transform: translateX(0);
@@ -78,7 +92,8 @@
     }
 
 
-    .obliqueLineP, .obliqueLineN {
+    .obliqueLineP,
+    .obliqueLineN {
       position: absolute;
       top: 0vh;
       margin-top: -44vw;
@@ -89,7 +104,7 @@
       transition: background-color $change-theme-duration;
       transform: rotate(26.55deg);
       transform-origin: top;
-      animation: drawObliqueLine cubic-bezier(.7,.3,.7,.5) 5s;
+      animation: drawObliqueLine cubic-bezier(.7, .3, .7, .5) 5s;
       animation-iteration-count: 1;
       animation-fill-mode: forwards;
       animation-delay: calc(0.2s * var(--j));
@@ -104,6 +119,7 @@
       0% {
         height: 0vw;
       }
+
       100% {
         height: max(330vh, 330vw);
       }
@@ -123,41 +139,47 @@
       justify-content: center;
       pointer-events: none;
 
-      > div.triangleProjectContent {
+      >div.triangleProjectContent {
         position: absolute;
         height: 21dvw;
         width: 21dvw;
         background-color: rgba(0, 0, 0, 0.1);
+
         img {
           object-fit: cover;
           pointer-events: auto;
         }
       }
+
       &:nth-child(odd) {
         border-top: 22vw solid transparent;
         border-bottom: 0px solid transparent;
         left: calc(-11dvw * var(--index) - 11dvw);
 
-        > div.triangleProjectContent {
+        >div.triangleProjectContent {
           bottom: 0.7vw;
           clip-path: polygon(0 0, 100% 0, 50% 100%, 50% 100%);
         }
       }
+
       &:nth-child(even) {
         left: calc(-11dvw * var(--index) - 11dvw);
 
-        > div.triangleProjectContent {
+        >div.triangleProjectContent {
           top: 0.7vw;
           clip-path: polygon(50% 0, 50% 0, 100% 100%, 0% 100%);
         }
       }
     }
+
     .triangleProjectWrapper {
       z-index: 10;
+
       img {
         filter: grayscale(1);
         transition: filter $change-theme-duration;
       }
+
       .triangleProjectContent {
         &:hover {
           img {
@@ -166,19 +188,23 @@
         }
       }
     }
+
     .triangleProjectWrapper__NoProj {
       &:nth-child(odd) {
         border-top: 22vw solid transparent;
       }
+
       &:nth-child(even) {
         border-bottom: 22vw solid transparent;
       }
     }
   }
+
   .noProjRow:nth-child(even) {
     transform: translateX(11dvw);
   }
-  .seeMoreText{
+
+  .seeMoreText {
     width: 100%;
     height: 100%;
     display: flex;
@@ -189,16 +215,19 @@
 }
 
 html[data-theme="dark"] {
+
   .horizontalLineL,
-    .horizontalLineR{
-      transition: background-color $change-theme-duration !important;
+  .horizontalLineR {
+    transition: background-color $change-theme-duration !important;
     background-color: $semitransparentLight5 !important;
-    }
+  }
+
   .triangleProjectWrapper,
-  .triangleProjectWrapper__NoProj  {
+  .triangleProjectWrapper__NoProj {
+
     .obliqueLineP,
     .obliqueLineN {
-      transition: background-color $change-theme-duration!important;
+      transition: background-color $change-theme-duration !important;
       background-color: $semitransparentLight5 !important;
     }
   }

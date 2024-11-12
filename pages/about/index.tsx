@@ -149,7 +149,13 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                   >{`specialized in`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  ><b>{` frontend and creative development. `}</b></span>
+                  ><b>{` frontend`}</b></span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{` and trying to go all-in with`}</span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  ><b>{` creative development.`}</b></span>
                 </p>
 
                 <h2>
@@ -176,7 +182,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
 
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  ><b>{` As a freelance, I work with startups, agencies, studios, and other professionals `}</b></span>
+                  ><b>{` As a freelancer, I work with startups, agencies, studios, and other professionals `}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
                   >{` worldwide, even though`}</span>
@@ -191,10 +197,13 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
 
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  ><b>{` Note:`}</b></span>
+                  ><b>{` Don't have a design for your website yet?`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` you don't have the design for your website yet? Feel free to reach out anyways, I know some excellent designers who can help us on that.`}</span>
+                  >{` Feel free to reach out anyways, `}</span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  ><b>{` I know some excellent designers who can help us with that.`}</b></span>
                 </p>
 
                 <h2>

@@ -1,5 +1,3 @@
-@import "../../styles/scss/variables.scss";
-
 .slideinContainer {
   position: fixed;
   width: 100dvw;
@@ -18,21 +16,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   .charContainer {
     position: relative;
     display: inline-flex;
     overflow: hidden;
     animation: 0.5s extHideTextAnim ease-in-out forwards, 0.01s flickerTextAnim infinite alternate;
+
     .char {
-        display: flex;
-        position: relative;
-        text-shadow: 0.06rem 0 0.06rem #ea36af, -0.125rem 0 0.06rem #75fa69;
-        animation: 0.5s intHideTextAnim ease-in-out forwards, 0.01s flickerTextAnim infinite alternate;
-      }
+      display: flex;
+      position: relative;
+      text-shadow: 0.06rem 0 0.06rem #ea36af, -0.125rem 0 0.06rem #75fa69;
+      animation: 0.5s intHideTextAnim ease-in-out forwards, 0.01s flickerTextAnim infinite alternate;
+    }
   }
-  &.isHovered{
-    .charContainer{
+
+  &.isHovered {
+    .charContainer {
       animation: 0.5s extShowTextAnim ease-in-out forwards;
+
       .char {
         animation: 0.5s intShowTextAnim ease-in-out forwards;
       }
@@ -80,11 +82,12 @@
 
 
 @keyframes extShowTextAnim {
-  0%{
+  0% {
     opacity: 0;
     transform: translateX(100%);
   }
-  100%{
+
+  100% {
     opacity: 1;
     transform: translateX(0%);
   }
@@ -98,8 +101,4 @@
   100% {
     transform: translateX(0%);
   }
-}
-
-html[data-theme="dark"] {
-  
 }

@@ -10,7 +10,7 @@ import ProjectsCanvasVertical from "../components/ProjectsCanvasVertical";
 import SlideinText from "../components/SlideinText";
 import { TitleBackground } from "../components/TitleBackground";
 import useScreenInfo from "../hooks/useScreenInfo";
-import stylesHome from "../styles/scss/Projects.module.scss";
+import stylesHome from "../styles/scss/General.module.scss";
 import { breakpoints } from "../utils/breakpoints";
 import { colorApplicator } from "../utils/colorFunctions";
 import { Project, projectsDataset } from "../utils/dataset";
@@ -184,7 +184,7 @@ export default function NewProjects({
         </div>
         <div
           className={
-            stylesHome.currentPrjHoveredText +
+            stylesHome.currentPrjHoveredText + ' ' + (projectIsHovered ? stylesHome.show : '') +
             " currentPrjHoveredText "
           }
         >
