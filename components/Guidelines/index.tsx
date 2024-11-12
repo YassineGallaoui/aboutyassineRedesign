@@ -3,7 +3,7 @@ import styles from "./Guidelines.module.scss";
 
 const Guidelines = () => {
   const [visibile, setVisibile] = useState<boolean>(false);
-  
+
   useEffect(() => {
     const handleKeyPress = (event) => {
       if (event.key.toLowerCase() === 'g' || event.key.toLowerCase() === 'G') {

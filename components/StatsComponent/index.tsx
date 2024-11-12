@@ -6,9 +6,9 @@ import styles from "./StatsComponent.module.scss";
 
 export default function StatsComponent() {
   const screenInfo = useScreenInfo();
-  const [visibile, setVisibile] = useState<boolean>(false);
+  const [visibile, setVisibile] = useState<boolean>(true);
 
-  useEffect(()=>{
+  useEffect(() => {
     const handleKeyPress = (event) => {
       if (event.key.toLowerCase() === 's' || event.key.toLowerCase() === 'S') {
         setVisibile((prevState) => !prevState);
@@ -28,6 +28,7 @@ export default function StatsComponent() {
       <p>Aspect ratio: {screenInfo?.aspectRatio}</p>
       <p>Touch: {screenInfo?.isTouchOnly ? 'Yes' : 'No'}</p>
       <p>Has Mouse: {screenInfo?.hasMouse ? 'Yes' : 'No'}</p>
+      <p>xTilt: {screenInfo?.xTilt}</p>
     </div>
   )
 }

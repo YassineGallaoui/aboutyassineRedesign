@@ -18,13 +18,27 @@ const useScreenInfo = () => {
                 hasMouse: hasMouse,
             });
         };
-        
+        const handleOrientation = (event) => {
+            const tiltRight = event.gamma; // 'gamma' represents the left-right tilt in degrees (-90 to 90)
+
+            // Map the tilt to a suitable x-axis position range
+            const maxTilt = 30; // Adjust max tilt range as needed
+            const mappedX = Math.min(Math.max(tiltRight, -maxTilt), maxTilt) * 5; // Scale multiplier for effect strength
+
+            setScreenInfo({ xTilt: mappedX });
+        };
+
         handleResize();
 
         window.addEventListener('resize', handleResize);
-        
+
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('deviceorientation', handleOrientation, true);
+        }
+
         return () => {
             window.removeEventListener('resize', handleResize);
+            window.removeEventListener('deviceorientation', handleOrientation);
         };
     }, []);
 

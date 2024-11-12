@@ -7,6 +7,7 @@ import Cursor from "../Cursor";
 import Frame from "../Frame";
 import Guidelines from "../Guidelines";
 import SplashScreen from "../SplashScreen";
+import StatsComponent from "../StatsComponent";
 
 type Props = {
   updateCursorText: Function;
@@ -38,13 +39,7 @@ const Layout = ({
 
   return (
     <main>
-      <div id="guidelines" className={showGuideline ? 'show':''}>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      {/* <StatsComponent /> */}
+      <StatsComponent />
       <Guidelines />
       <CRTScreen />
       {!(screenInfo?.isTouchOnly) && screenInfo?.hasMouse && <Cursor hovered={cursorHover} txt={cursorText} />}
