@@ -198,8 +198,8 @@ html[data-theme="dark"] {
         margin-top: 20vh;
         height: calc(100dvh - 15vh);
         padding-bottom: 7rem;
-        padding-left: 4rem;
-        max-width: calc(100dvw - 4rem);
+        margin-left: 4rem;
+        max-width: calc(100dvw - 8rem);
       }
 
       &::-webkit-scrollbar-track {
