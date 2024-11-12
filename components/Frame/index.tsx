@@ -147,7 +147,7 @@ export default function Frame({
                 className={styles.letterY + " invertImg"}
                 fill
               />
-            </div> 
+            </div>
           </Link>
         </div>
         <div className={styles.frameContainer__left__booking + " booking"}>
@@ -163,7 +163,7 @@ export default function Frame({
           </a>
         </div>
         <div className={styles.frameContainer__left__available + " available"}>
-            Available: 15th November 2024
+          Available: 1st December 2024
         </div>
         {/* <div
           className={
@@ -267,7 +267,7 @@ export default function Frame({
           </div>
         }
         <div className={styles.frameContainer__right__contacts + " contacts"}>
-          
+
 
           {/* X */}
           <div

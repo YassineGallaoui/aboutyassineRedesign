@@ -13,7 +13,8 @@
 * {
     box-sizing: border-box;
 }
-html{
+
+html {
     font-size: 16px;
 }
 
@@ -47,6 +48,7 @@ body {
 
     .underlineLineWithAnim {
         display: inline-block;
+
         &::before {
             display: inline;
             position: absolute;
@@ -135,7 +137,6 @@ body {
 
     box-sizing: border-box;
     transition: all $change-theme-duration;
-    /* user-select: none; */
 
     img {
         pointer-events: none;
@@ -296,7 +297,8 @@ html[data-theme="dark"] {
     justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
-    &.show{
+
+    &.show {
         div {
             opacity: 1;
             height: 50dvh;
