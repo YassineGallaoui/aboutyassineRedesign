@@ -82,21 +82,20 @@ html[data-theme="dark"] {
   &__txt {
     &__big__welcome {
       position: fixed;
-      top: calc(40dvh - ($xxl-fs / 2) - 1rem);
+      top: calc(40dvh - ($xxl-fs * 1.4));
       right: calc(67dvw + 1rem);
       display: flex;
       justify-content: flex-end;
       overflow: visible;
       font-size: $xxl-fs;
       font-weight: bold;
-      line-height: calc($xxl-fs * 0.3);
-      line-height: 0;
+      line-height: calc($xxl-fs * 1.4);
       opacity: 0.6;
       text-align: right;
 
       @media screen and (max-width: $breakpointSmallDesktop) {
-        line-height: 6rem;
-        top: 8.9vh;
+        line-height: calc($xxl-fs * 1.4);
+        top: calc(20dvh - ($xxl-fs * 1.4));
         left: 0;
         right: 3rem;
         overflow: hidden;
