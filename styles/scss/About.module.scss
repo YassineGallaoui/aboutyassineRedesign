@@ -12,11 +12,13 @@
   animation: drawVLine cubic-bezier(0.72, 0.27, 0.3, 1) 3s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  @media screen and (max-width: $breakpointMobileSmall) {
+
+  @media screen and (max-width: $breakpointSmallDesktop) {
     top: calc(3rem + 15vh);
     animation: none;
   }
 }
+
 .horizontalLine {
   height: 2px;
   width: 0vw;
@@ -28,9 +30,14 @@
   animation: drawHLine cubic-bezier(0.7, 0, 0.3, 1) 3s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+
+  @media screen and (max-width: $breakpointSmallDesktop) {
+    top: 20vh;
+  }
 }
 
 html[data-theme="dark"] {
+
   .verticalLine,
   .horizontalLine {
     transition: background-color $change-theme-duration;
@@ -42,21 +49,26 @@ html[data-theme="dark"] {
   0% {
     width: 0vw;
   }
+
   100% {
     width: 100dvw;
   }
 }
+
 @keyframes drawVLine {
   0% {
     height: 0vw;
   }
+
   100% {
     height: 100dvh;
   }
 }
+
 .mainMotionDiv {
   overflow: hidden;
 }
+
 .meContainer {
   position: absolute;
   top: 0;
@@ -66,6 +78,7 @@ html[data-theme="dark"] {
   align-items: flex-start;
   user-select: none;
   box-sizing: border-box;
+
   &__txt {
     &__big__welcome {
       position: fixed;
@@ -80,13 +93,16 @@ html[data-theme="dark"] {
       line-height: 0;
       opacity: 0.6;
       text-align: right;
-      @media screen and (max-width: $breakpointMobileSmall) {
+
+      @media screen and (max-width: $breakpointSmallDesktop) {
         line-height: 6rem;
         top: 8.9vh;
         left: 0;
+        right: 3rem;
         overflow: hidden;
       }
-      > span {
+
+      >span {
         position: relative;
         transform: translateY(0);
         opacity: 0;
@@ -95,36 +111,45 @@ html[data-theme="dark"] {
         animation-fill-mode: forwards;
         animation-delay: calc(0.03s * var(--i));
       }
+
       @keyframes animHello {
         0% {
           transform: translateY(2.4rem);
         }
+
         5% {
           opacity: 0;
         }
+
         30% {
           transform: translateY(0rem);
           opacity: 1;
         }
+
         70% {
           transform: translateY(0rem);
           opacity: 1;
         }
+
         97% {
           opacity: 0;
         }
+
         100% {
           transform: translateY(-3rem);
         }
       }
     }
+
     &__words {
       position: fixed;
       top: calc(40dvh + 0.1rem);
       right: calc(67dvw + 1.4rem);
-      @media screen and (max-width: $breakpointMobileSmall) {
+
+      @media screen and (max-width: $breakpointSmallDesktop) {
         display: none;
       }
+
       p {
         padding: 0;
         margin: 0;
@@ -135,10 +160,11 @@ html[data-theme="dark"] {
         display: block;
         overflow: hidden;
         animation:
-            moveTextUp cubic-bezier(0.87, 0, 0.13, 1) 1s;
+          moveTextUp cubic-bezier(0.87, 0, 0.13, 1) 1s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
         animation-delay: 0.5s;
+
         .singleWord {
           display: block;
           opacity: 0;
@@ -148,10 +174,11 @@ html[data-theme="dark"] {
             animOpacity cubic-bezier(1, 0, 0.5, 1) 2s;
           animation-iteration-count: 1;
           animation-fill-mode: forwards;
-          animation-delay: calc(0.3s + var(--i) * 0.07s) ;
+          animation-delay: calc(0.3s + var(--i) * 0.07s);
         }
       }
     }
+
     &__description {
       position: fixed;
       padding-left: calc(33dvw + 1.4rem);
@@ -160,79 +187,78 @@ html[data-theme="dark"] {
       overflow: visible;
       overflow-y: scroll;
       z-index: 2;
-      line-height: 4.75rem;
       height: 100dvh;
       width: calc($l-fs * 57);
       max-width: 94dvw;
       scrollbar-width: none;
       scroll-behavior: smooth;
-      @media screen and (max-width: $breakpointMobileSmall) {
-        line-height: 3rem;
+
+      @media screen and (max-width: $breakpointSmallDesktop) {
         padding-top: 0;
-        margin-top: calc(3.1rem + 15vh);
+        margin-top: 20vh;
         height: calc(100dvh - 15vh);
-        left: 0;
         padding-bottom: 7rem;
+        padding-left: 4rem;
+        max-width: calc(100dvw - 4rem);
       }
+
       &::-webkit-scrollbar-track {
         display: none;
         width: 0;
       }
+
       &::-webkit-scrollbar {
         display: none;
         width: 0;
       }
+
       h2 {
-          margin: 0;
-          font-size: $xl-fs;
-          line-height: calc($l-fs * 2);
-          overflow: hidden;
-      
-          span {
-            display: inline-block;
-            transform: translate(0, 100%);
-            transition: all .5s;
-            animation:
-              animTitle cubic-bezier(0.87, 0, 0.13, 1) 2s forwards calc(0.4s + var(--i) * 0.2s);
-          }
+        margin: 0;
+        font-size: $xl-fs;
+        line-height: calc($l-fs * 2);
+        overflow: hidden;
+
+        span {
+          display: inline-block;
+          transform: translate(0, 100%);
+          transition: all .5s;
+          animation:
+            animTitle cubic-bezier(0.87, 0, 0.13, 1) 2s forwards calc(0.4s + var(--i) * 0.2s);
+        }
       }
-      
+
       p {
         display: block;
         overflow: hidden;
         margin-top: 0rem;
         margin-bottom: calc($l-fs * 2);
         font-size: $l-fs;
-        line-height: calc($l-fs * 2.06);
-    
-        @media screen and (max-width: $breakpointMobileSmall) {
-          padding-bottom: 1.9rem;
-        }
-    
+        line-height: calc($l-fs * 2);
+
         span {
           position: relative;
           opacity: 0;
           overflow: hidden;
         }
-    
+
         .underlineLineWithAnimTwo:after {
           animation-delay: 1s;
         }
       }
-      
+
       &__small {
         animation:
-          animText cubic-bezier(1, 0, 0.75, 1) 2s,
-          animOpacitySmall cubic-bezier(1, 0, 0.75, 1) 2s;
+          animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
+          animOpacitySmall cubic-bezier(0.87, 0, 0.13, 1) 2s;
         animation-delay: 0.7s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
       }
-    
+
       &__big {
         animation:
-          animText cubic-bezier(1, 0, 0.75, 1) 2s,
-          animOpacity cubic-bezier(1, 0, 0.5, 1) 2s;
+          animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
+          animOpacity cubic-bezier(0.87, 0, 0.13, 1) 2s;
         animation-delay: 0.7s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
@@ -241,29 +267,22 @@ html[data-theme="dark"] {
   }
 }
 
-@keyframes animOpacitySmall {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0.5;
-  }
-}
-
 @keyframes animTitle {
   0% {
     transform: translate(0, 105%);
   }
+
   100% {
     transform: translate(0, 0%);
   }
 }
 
 @keyframes moveTextUp {
-  0%{
+  0% {
     transform: translate(0, 3rem);
   }
-  100%{
+
+  100% {
     transform: translate(0, 0);
   }
 }
@@ -273,6 +292,7 @@ html[data-theme="dark"] {
     transform: translate(0, 105%);
     top: 3rem;
   }
+
   100% {
     transform: translate(0, 0%);
     top: 0rem;
@@ -289,6 +309,16 @@ html[data-theme="dark"] {
   }
 }
 
+@keyframes animOpacitySmall {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0.5;
+  }
+}
+
 .percentageBarContainer {
   position: fixed;
   top: 0;
@@ -299,6 +329,7 @@ html[data-theme="dark"] {
   flex-direction: column;
   justify-content: flex-start;
   width: 0.7rem;
+
   .percentageBarBar {
     height: 0vh;
     transition: height 0.3s;
@@ -314,6 +345,7 @@ html[data-theme="dark"] {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
     span {
       position: relative;
       font-weight: 900;

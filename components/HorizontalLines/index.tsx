@@ -4,16 +4,16 @@ const HorizontalLines = () => {
 
   return (
     <div className={styles.container}>
-      {([...Array(18)])?.map(
+      {([...Array(30)])?.map(
         (_, index) => (
           <div
             key={`before-${index}`}
             className={styles.line__before}
-            style={{"--i": -(index + 1)} as React.CSSProperties}
+            style={{ "--i": -(index + 1) } as React.CSSProperties}
           />
         ),
       )}
-      {([...Array(18)])?.map(
+      {([...Array(30)])?.map(
         (_, index) => (
           <div
             key={`before-${index}`}

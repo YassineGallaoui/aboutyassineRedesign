@@ -12,30 +12,43 @@
   pointer-events: none;
   user-select: none;
 
-  .line__before, .line__after {
+  .line__before,
+  .line__after {
     position: absolute;
     height: 1px;
     width: 100dvw;
     left: 0;
-    transform: translate(-100%,0);
+    transform: translate(-100%, 0);
     background-color: rgba($semitransparentDark5, 0.2);
     transition: background-color $change-theme-duration;
     animation: drawHLine cubic-bezier(0.7, 0, 0.3, 1) 3s;
     animation-iteration-count: 1;
-    animation-fill-mode:  forwards;
+    animation-fill-mode: forwards;
   }
+
   .line__before {
     bottom: calc(60dvh - var(--i) * $l-fs * 2);
     animation-delay: calc(-0.15s * var(--i));
+
+    @media screen and (max-width: $breakpointSmallDesktop) {
+      bottom: calc(80dvh - var(--i) * $l-fs * 2);
+    }
   }
+
   .line__after {
     top: calc(40dvh + var(--i) * $l-fs * 2);
     animation-delay: calc(0.15s * var(--i));
+
+    @media screen and (max-width: $breakpointSmallDesktop) {
+      top: calc(20dvh + var(--i) * $l-fs * 2);
+    }
   }
+
   @keyframes drawHLine {
     0% {
       transform: translate(-100%, 0);
     }
+
     100% {
       transform: translate(0%, 0);
     }
@@ -43,8 +56,9 @@
 }
 
 html[data-theme="dark"] {
+
   .line__before,
-    .line__after {
+  .line__after {
     transition: background-color $change-theme-duration;
     background-color: $semitransparentLight4;
   }

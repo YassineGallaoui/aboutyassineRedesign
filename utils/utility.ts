@@ -130,7 +130,6 @@ export const unhideFrame = (themeContainer) => {
   });
   gsap.to(`.sectionsNav`, {
     x: "0rem",
-    y: 0,
     duration: 0.5,
   });
   gsap.to(`.contacts`, {
