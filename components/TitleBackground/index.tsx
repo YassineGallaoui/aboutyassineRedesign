@@ -1,21 +1,41 @@
 import React, { useEffect } from "react";
-import { parallax } from "../../utils/utility";
+import useScreenInfo from "../../hooks/useScreenInfo";
+import { parallax, parallaxMobile } from "../../utils/utility";
 import styles from "./TitleBackground.module.scss";
 
 export const TitleBackground = ({ text }) => {
-    const mouseMoveEffect = (event: MouseEvent | Event) => {
-        parallax(
-            event,
-            document.querySelectorAll(".sectionBkgrdTxt")
-        );
-    }
-    useEffect(() => {
-        document.addEventListener("mousemove", mouseMoveEffect);
+    const screenInfo = useScreenInfo();
 
-        return () => {
-            document.removeEventListener("mousemove", mouseMoveEffect);
-        };
+    useEffect(() => {
+        const mouseMoveEffect = (event: MouseEvent | Event) => {
+            parallax(
+                event,
+                document.querySelectorAll(".sectionBkgrdTxt"),
+            );
+        }
+        setTimeout(() => {
+            if (!matchMedia('(hover: none) and (pointer: coarse)').matches) {
+                document.addEventListener("mousemove", mouseMoveEffect);
+            }
+        }, 2000);
+        return () => { document.removeEventListener("mousemove", mouseMoveEffect); };
     }, []);
+
+    useEffect(() => {
+        const tiltEffect = (event: DeviceOrientationEvent | Event) => {
+            parallaxMobile(
+                event,
+                document.querySelectorAll(".sectionBkgrdTxt"),
+                screenInfo,
+            );
+        }
+        setTimeout(() => {
+            if (window.DeviceOrientationEvent && matchMedia('(hover: none) and (pointer: coarse)').matches) {
+                window.addEventListener("deviceorientation", tiltEffect, true);
+            }
+        }, 2000);
+        return () => { window.removeEventListener("deviceorientation", tiltEffect); };
+    }, [screenInfo])
 
     return (
         <div>

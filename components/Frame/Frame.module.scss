@@ -275,6 +275,8 @@
         }
 
         &__text {
+          display: flex;
+          align-items: center;
           opacity: 0;
           visibility: hidden;
           width: auto;

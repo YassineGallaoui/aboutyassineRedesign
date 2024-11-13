@@ -1,6 +1,6 @@
 import { useFrame, useLoader } from "@react-three/fiber";
 import { StaticImageData } from "next/image";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from 'three';
 import { Project } from '../../utils/dataset';
 
@@ -18,7 +18,7 @@ interface ProjectTriangleProps {
     vertical?: boolean;
 }
 
-function ProjectTriangle({
+export default function ProjectTriangle({
     projectData,
     vertices,
     position,
@@ -137,7 +137,3 @@ function ProjectTriangle({
         </mesh>
     );
 }
-const areEqual = (prevProps, nextProps) => {
-    return !(prevProps.position === nextProps.position);
-};
-export default React.memo(ProjectTriangle, areEqual)

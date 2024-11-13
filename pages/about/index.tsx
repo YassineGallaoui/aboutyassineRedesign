@@ -129,7 +129,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                 }
               >
                 <h2>
-                  <span style={{ "--i": 0 } as React.CSSProperties}>1/&nbsp;&nbsp;Who the heck am I ?</span>
+                  <span style={{ "--i": 0 } as React.CSSProperties}>1/&nbsp;&nbsp;...Whooo?</span>
                 </h2>
                 <p>
                   <span
@@ -207,7 +207,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                 </p>
 
                 <h2>
-                  <span style={{ "--i": 2 } as React.CSSProperties}>3/&nbsp;&nbsp;{`Where can you find me?`}</span>
+                  <span style={{ "--i": 2 } as React.CSSProperties}>3/&nbsp;&nbsp;{`Contacts`}</span>
                 </h2>
                 <p>
                   <span

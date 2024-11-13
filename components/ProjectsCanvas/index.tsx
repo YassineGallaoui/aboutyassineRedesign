@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as THREE from 'three';
 import { projectsDataset } from "../../utils/dataset";
 import { CanvasLightning } from "../CanvasLightning";
@@ -13,7 +13,7 @@ type ProjectCanvasProps = {
   projsNumber: number
 };
 
-export default function ProjectCanvas({
+function ProjectCanvas({
   triangleMouseOver,
   triangleMouseOut,
   triangleMouseClick,
@@ -142,11 +142,13 @@ export default function ProjectCanvas({
                   && intIndex < firstPositionProject + projsNumber
                   && extIndex === Math.floor(triangleRows / 2);
 
+                const pos = new THREE.Vector3(posX, posY, 6);
+
                 return (
                   !isThisAProject ?
                     <GenericTriangle key={intIndex}
                       vertices={intIndex % 2 === (extIndex % 2 === 1 ? 0 : 1) ? triangleInvVertices : triangleVertices}
-                      position={new THREE.Vector3(posX, posY, 6)}
+                      position={pos}
                       materialType={"color"}
                       color={"rgb(0,0,0)"}
                       opacity={0.1}
@@ -159,7 +161,7 @@ export default function ProjectCanvas({
                       key={intIndex}
                       upsideDown={intIndex % 2 === (extIndex % 2 === 1 ? 0 : 1)}
                       vertices={intIndex % 2 === (extIndex % 2 === 1 ? 0 : 1) ? triangleInvVertices : triangleVertices}
-                      position={new THREE.Vector3(posX, posY, 6)}
+                      position={pos}
                       projectData={projectsDataset[intIndex - firstPositionProject]}
                       imageUrl={projectsDataset[intIndex - firstPositionProject].media[0]}
                       triangleMouseOver={(e) => { triangleMouseOver(e) }}
@@ -175,3 +177,7 @@ export default function ProjectCanvas({
     </Canvas>
   );
 }
+const toMemoize = (prevProps, nextProps) => {
+  return !(prevProps.triangleMouseOver === nextProps.triangleMouseOver);
+};
+export default React.memo(ProjectCanvas, toMemoize);
