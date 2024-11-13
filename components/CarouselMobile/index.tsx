@@ -276,7 +276,7 @@ function CarouselMobile({
           })}
         </div>
 
-        {/* THIS ACTIVATES ONLY WHEN THE CAROUSEL IS EXPANDED */}
+        {/* VERTICAL THUMBNAIL: THIS ACTIVATES ONLY WHEN THE CAROUSEL IS EXPANDED */}
         <div
           className={
             styles.thumbnailControlsVertical + " thumbnailControlsVertical"
@@ -347,11 +347,12 @@ function CarouselMobile({
         </div>
       </div>
 
+      {/* thumbnail: THIS ACTIVATES ONLY WHEN THE CAROUSEL IS NOT EXPANDED */}
       <div className={styles.thumbnailControls + " thumbnailControls"}>
         <div className={styles.thumbnails}>
           <div className={styles.thumbnailBorder}
             style={{
-              "--w": `calc((100% - ${images.length - 1}rem) / ${images.length})`,
+              "--w": `calc((100% - ${images.length - 4.6}rem) / ${images.length})`,
               "--ty": `calc(${currentIndex * 100}% + (${currentIndex} * 0.2rem) - (${currentIndex} * 4px) - 2px)`,
             } as React.CSSProperties}></div>
           {images.map((el, index) => (

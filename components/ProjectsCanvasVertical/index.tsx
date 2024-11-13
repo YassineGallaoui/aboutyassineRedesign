@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as THREE from 'three';
 import { projectsDataset } from "../../utils/dataset";
 import { CanvasLightning } from "../CanvasLightning";
@@ -13,7 +13,7 @@ type ProjectCanvasVerticalProps = {
   projsNumber: number
 };
 
-export default function ProjectCanvasVertical({
+function ProjectCanvasVertical({
   triangleMouseOver,
   triangleMouseOut,
   triangleMouseClick,
@@ -177,3 +177,8 @@ export default function ProjectCanvasVertical({
     </Canvas>
   );
 }
+
+const toMemoize = (prevProps, nextProps) => {
+  return !(prevProps.triangleMouseOver === nextProps.triangleMouseOver);
+};
+export default React.memo(ProjectCanvasVertical, toMemoize);

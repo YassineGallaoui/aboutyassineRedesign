@@ -13,15 +13,7 @@ export const TitleBackground = ({ text }) => {
                 document.querySelectorAll(".sectionBkgrdTxt"),
             );
         }
-        setTimeout(() => {
-            if (!matchMedia('(hover: none) and (pointer: coarse)').matches) {
-                document.addEventListener("mousemove", mouseMoveEffect);
-            }
-        }, 2000);
-        return () => { document.removeEventListener("mousemove", mouseMoveEffect); };
-    }, []);
 
-    useEffect(() => {
         const tiltEffect = (event: DeviceOrientationEvent | Event) => {
             parallaxMobile(
                 event,
@@ -29,12 +21,29 @@ export const TitleBackground = ({ text }) => {
                 screenInfo,
             );
         }
-        setTimeout(() => {
+
+        const resizeHandle = () => {
+            if (!matchMedia('(hover: none) and (pointer: coarse)').matches) {
+                document.addEventListener("mousemove", mouseMoveEffect);
+            }
+
             if (window.DeviceOrientationEvent && matchMedia('(hover: none) and (pointer: coarse)').matches) {
                 window.addEventListener("deviceorientation", tiltEffect, true);
             }
-        }, 2000);
-        return () => { window.removeEventListener("deviceorientation", tiltEffect); };
+        }
+
+        const lastLetterAnimEnd = () => {
+            resizeHandle();
+            window.addEventListener("resize", resizeHandle, true);
+        }
+
+        document.querySelector('#lastInnerSpan')?.addEventListener('animationend', lastLetterAnimEnd)
+
+        return () => {
+            window.removeEventListener("resize", resizeHandle);
+            document.removeEventListener("mousemove", mouseMoveEffect);
+            window.removeEventListener("deviceorientation", tiltEffect);
+        };
     }, [screenInfo])
 
     return (
@@ -76,7 +85,7 @@ export const TitleBackground = ({ text }) => {
                 {
                     text.split('').map((el, index) => (
                         <span key={index} aria-hidden="true">
-                            <span style={{ "--delayIndex": index } as React.CSSProperties}>
+                            <span id={index === text.split('').length - 1 ? "lastInnerSpan" : ""} style={{ "--delayIndex": index } as React.CSSProperties}>
                                 {el}
                             </span>
                         </span>

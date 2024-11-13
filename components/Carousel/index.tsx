@@ -66,7 +66,7 @@ function Carousel({
     }, 200);
   }, [open]);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (expandedCarousel) {
       expandCarousel();
     } else {
@@ -462,7 +462,7 @@ function Carousel({
                   " " +
                   (index === currentIndex ? styles.currentImg : "")
                 }
-                style={{"--h": `${100 / images.length}%`} as React.CSSProperties}
+                style={{ "--h": `${100 / images.length}%` } as React.CSSProperties}
                 onClick={() => thumbnailClickHandle(index, true)}
               >
                 <Image src={el} alt={altText} fill sizes="20dvh"></Image>

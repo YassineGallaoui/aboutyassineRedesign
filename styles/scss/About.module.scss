@@ -249,8 +249,8 @@ html[data-theme="dark"] {
 
       &__small {
         animation:
-          animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
-          animOpacitySmall cubic-bezier(0.87, 0, 0.13, 1) 2s;
+          animText cubic-bezier(0.87, 0, 0.13, 1) 1.6s,
+          animOpacitySmall cubic-bezier(0.87, 0, 0.13, 1) 1.6s;
         animation-delay: 0.7s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
@@ -258,8 +258,8 @@ html[data-theme="dark"] {
 
       &__big {
         animation:
-          animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
-          animOpacity cubic-bezier(0.87, 0, 0.13, 1) 2s;
+          animText cubic-bezier(0.87, 0, 0.13, 1) 1.6s,
+          animOpacity cubic-bezier(0.87, 0, 0.13, 1) 1.6s;
         animation-delay: 0.7s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
