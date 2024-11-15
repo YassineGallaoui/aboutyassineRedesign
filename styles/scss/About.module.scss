@@ -14,7 +14,6 @@
   animation-fill-mode: forwards;
 
   @media screen and (max-width: $breakpointSmallDesktop) {
-    top: calc(3rem + 15vh);
     animation: none;
   }
 }
@@ -32,7 +31,7 @@
   animation-fill-mode: forwards;
 
   @media screen and (max-width: $breakpointSmallDesktop) {
-    top: 20vh;
+    top: 20dvh;
   }
 }
 
@@ -182,7 +181,7 @@ html[data-theme="dark"] {
       position: fixed;
       padding-left: calc(33dvw + 1.4rem);
       padding-top: 40dvh;
-      padding-bottom: calc($l-fs * 3);
+      padding-bottom: calc(100dvh - (40dvh + $l-fs * 14));
       overflow: visible;
       overflow-y: scroll;
       z-index: 2;
@@ -193,10 +192,10 @@ html[data-theme="dark"] {
       scroll-behavior: smooth;
 
       @media screen and (max-width: $breakpointSmallDesktop) {
-        padding-top: 0;
+        padding-top: calc($l-fs * 2);
         margin-top: 20vh;
         height: calc(100dvh - 15vh);
-        padding-bottom: 7rem;
+        padding-bottom: calc(100dvh - (20dvh + $l-fs * 24));
         margin-left: 4rem;
         padding-left: 0;
         max-width: calc(100dvw - 8rem);
@@ -235,6 +234,10 @@ html[data-theme="dark"] {
         margin-bottom: calc($l-fs * 4);
         font-size: $l-fs;
         line-height: calc($l-fs * 2);
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
 
         span {
           position: relative;

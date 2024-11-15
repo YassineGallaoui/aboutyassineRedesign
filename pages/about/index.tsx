@@ -129,7 +129,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                 }
               >
                 <h2>
-                  <span style={{ "--i": 0 } as React.CSSProperties}>1/&nbsp;&nbsp;...Whooo?</span>
+                  <span style={{ "--i": 0 } as React.CSSProperties}>1/&nbsp;&nbsp;...whooo am I?</span>
                 </h2>
                 <p>
                   <span
@@ -155,7 +155,10 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                   >{` and trying to go all-in with`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  ><b>{` creative development.`}</b></span>
+                  ><b>{` creative development`}</b></span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{`.`}</span>
                 </p>
 
                 <h2>

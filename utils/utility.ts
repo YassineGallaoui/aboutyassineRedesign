@@ -43,12 +43,9 @@ export function parallax(event, elements) {
     let mf = 0;
     switch (i) {
       case 0:
-        mf = 0;
-        break;
-      case 1:
         mf = 0.5;
         break;
-      case 2:
+      case 1:
       default:
         mf = 0.25;
         break;
@@ -69,11 +66,8 @@ export function parallaxMobile(event, elements, screenInfo) {
         mf = 0;
         break;
       case 1:
-        mf = 0.5;
-        break;
-      case 2:
       default:
-        mf = 0.25;
+        mf = 0.5;
         break;
     }
 

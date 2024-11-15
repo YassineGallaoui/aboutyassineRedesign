@@ -10,14 +10,14 @@ export const TitleBackground = ({ text }) => {
         const mouseMoveEffect = (event: MouseEvent | Event) => {
             parallax(
                 event,
-                document.querySelectorAll(".sectionBkgrdTxt"),
+                document.querySelectorAll(".sectionBkgrdTxtToMove"),
             );
         }
 
         const tiltEffect = (event: DeviceOrientationEvent | Event) => {
             parallaxMobile(
                 event,
-                document.querySelectorAll(".sectionBkgrdTxt"),
+                document.querySelectorAll(".sectionBkgrdTxtToMove"),
                 screenInfo,
             );
         }
@@ -64,7 +64,7 @@ export const TitleBackground = ({ text }) => {
             </h1>
 
             <div
-                className={styles.backgroundText + " " + styles.likeH1 + " sectionBkgrdTxt"}
+                className={styles.backgroundText + " " + styles.likeH1 + " sectionBkgrdTxt sectionBkgrdTxtToMove"}
                 style={{ "--fs": `calc(100dvw/(${text.length / 2 + 0.5}) * 0.98)` } as React.CSSProperties}
                 aria-hidden="true">
                 {
@@ -79,7 +79,7 @@ export const TitleBackground = ({ text }) => {
             </div>
 
             <div
-                className={styles.backgroundText + " " + styles.likeH1 + " sectionBkgrdTxt"}
+                className={styles.backgroundText + " " + styles.likeH1 + " sectionBkgrdTxt sectionBkgrdTxtToMove"}
                 style={{ "--fs": `calc(100dvw/(${text.length / 2 + 0.5}) * 0.96)` } as React.CSSProperties}
                 aria-hidden="true">
                 {
