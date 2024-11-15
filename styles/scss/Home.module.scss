@@ -3,9 +3,9 @@
 .currentPrjHovered {
   position: fixed;
   top: -2.5vh;
-  left: -2.5vw;
+  left: -2.5dvw;
   height: 105vh;
-  width: 105vw;
+  width: 105dvw;
   transform: translate(0) !important;
 
   img {
@@ -71,7 +71,7 @@
     .horizontalLineL,
     .horizontalLineR {
       position: absolute;
-      width: max(200vh, 200vw);
+      width: max(200vh, 200dvw);
       height: 1px;
       opacity: 0.3;
       background-color: $semitransparentDark5;
@@ -79,12 +79,12 @@
       animation: drawOrizLine cubic-bezier(.34, .65, .46, .76) 5s;
       animation-iteration-count: 1;
       animation-fill-mode: forwards;
-      margin-top: 22vw;
-      transform: translateX(max(200vh, 200vw));
+      margin-top: 22dvw;
+      transform: translateX(max(200vh, 200dvw));
     }
 
     .horizontalLineL {
-      transform: translateX(calc(max(200vh, 200vw) * -1));
+      transform: translateX(calc(max(200vh, 200dvw) * -1));
     }
 
     @keyframes drawOrizLine {
@@ -98,10 +98,10 @@
     .obliqueLineN {
       position: absolute;
       top: 0vh;
-      margin-top: -44vw;
-      margin-left: 0vw;
+      margin-top: -44dvw;
+      margin-left: 0dvw;
       width: 1px;
-      height: 0vw;
+      height: 0dvw;
       background-color: $semitransparentDark5;
       transition: background-color $change-theme-duration;
       transform: rotate(26.55deg);
@@ -119,7 +119,7 @@
 
     @keyframes drawObliqueLine {
       0% {
-        height: 0vw;
+        height: 0dvw;
       }
 
       100% {
@@ -134,7 +134,7 @@
       padding: 0px;
       border: 11dvw solid transparent;
       border-top: 0;
-      border-bottom: 22vw solid transparent;
+      border-bottom: 22dvw solid transparent;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -154,12 +154,12 @@
       }
 
       &:nth-child(odd) {
-        border-top: 22vw solid transparent;
+        border-top: 22dvw solid transparent;
         border-bottom: 0px solid transparent;
         left: calc(-11dvw * var(--index) - 11dvw);
 
         >div.triangleProjectContent {
-          bottom: 0.7vw;
+          bottom: 0.7dvw;
           clip-path: polygon(0 0, 100% 0, 50% 100%, 50% 100%);
         }
       }
@@ -168,7 +168,7 @@
         left: calc(-11dvw * var(--index) - 11dvw);
 
         >div.triangleProjectContent {
-          top: 0.7vw;
+          top: 0.7dvw;
           clip-path: polygon(50% 0, 50% 0, 100% 100%, 0% 100%);
         }
       }
@@ -193,11 +193,11 @@
 
     .triangleProjectWrapper__NoProj {
       &:nth-child(odd) {
-        border-top: 22vw solid transparent;
+        border-top: 22dvw solid transparent;
       }
 
       &:nth-child(even) {
-        border-bottom: 22vw solid transparent;
+        border-bottom: 22dvw solid transparent;
       }
     }
   }

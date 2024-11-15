@@ -165,13 +165,6 @@ export default function Frame({
         <div className={styles.frameContainer__left__available + " available"}>
           Available: 1st December 2024
         </div>
-        {/* <div
-          className={
-            styles.frameContainer__left__lastUpdate + " lastUpdateText"
-          }
-        >
-          Last update: <span id="lastUpdateDate"></span>
-        </div> */}
       </div>
       <div className={styles.frameContainer__right}>
         <button
@@ -180,7 +173,6 @@ export default function Frame({
           onMouseOver={() => updateCursorStatus(true)}
           onMouseLeave={() => updateCursorStatus(false)}
           onClick={() => themeChange()}
-          onSubmit={() => themeChange()}
           tabIndex={0}
           aria-label="Click here to toggle the theme between light and dark"
         >
@@ -241,33 +233,30 @@ export default function Frame({
             />
           </div>
         </button>
-        {
-          <div className={styles.frameContainer__right__nav + " sectionsNav"}>
-            <Link
-              href={pathname === "/about" ? "/" : "/about"}
-              className={styles.frameContainer__right__nav__navItem}
-              onMouseOver={() => updateCursorStatus(true)}
-              onMouseLeave={() => updateCursorStatus(false)}
+        <div className={styles.frameContainer__right__nav + " sectionsNav"}>
+          <Link
+            href={pathname === "/about" ? "/" : "/about"}
+            className={styles.frameContainer__right__nav__navItem}
+            onMouseOver={() => updateCursorStatus(true)}
+            onMouseLeave={() => updateCursorStatus(false)}
+          >
+            <div
+              className={
+                styles.frameContainer__right__nav__navItem__singleNavItem +
+                " singleNavItem"
+              }
+              onClick={() => singleNavItemAnimation()}
             >
               <div
                 className={
-                  styles.frameContainer__right__nav__navItem__singleNavItem +
-                  " singleNavItem"
+                  styles.frameContainer__right__nav__navItem__singleNavItemText +
+                  " singleNavItemText"
                 }
-                onClick={() => singleNavItemAnimation()}
-              >
-                <div
-                  className={
-                    styles.frameContainer__right__nav__navItem__singleNavItemText +
-                    " singleNavItemText"
-                  }
-                ></div>
-              </div>
-            </Link>
-          </div>
-        }
+              ></div>
+            </div>
+          </Link>
+        </div>
         <div className={styles.frameContainer__right__contacts + " contacts"}>
-
 
           {/* X */}
           <div
@@ -297,7 +286,6 @@ export default function Frame({
               className="invertImg"
             />
           </div>
-
 
           {/* LinkedIn */}
           <div

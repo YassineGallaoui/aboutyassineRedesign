@@ -79,9 +79,9 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
       </Head>
       <motion.div
         className={stylesAbout.mainMotionDiv + " mainMotionDiv"}
-        initial={{ x: "50vw", opacity: 0 }}
-        animate={{ x: "0vw", opacity: 1 }}
-        exit={{ x: "50vw", opacity: 0 }}
+        initial={{ x: "50dvw", opacity: 0 }}
+        animate={{ x: "0dvw", opacity: 1 }}
+        exit={{ x: "50dvw", opacity: 0 }}
         transition={{ duration: 1, ease: [0.8, 0.28, 0, 1] }}
       >
         {SSAnimFinished && <TitleBackground text={"About"} />}

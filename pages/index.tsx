@@ -38,7 +38,7 @@ export default function NewProjects({
   const screenSize = useScreenInfo();
   const [projsNumber, setProjsNumber] = useState(projectsDataset.length);
 
-  const [projectOpenedBoolean, setProjectOpenedBoolean] = useState<boolean>(false);
+  const [projectOpenedBoolean, setProjectOpenedBoolean] = useState<boolean | null>(null);
   const [projectOpened, setProjectOpened] = useState<Project>(projectsDataset[0]);
 
   const [projectIsHovered, setProjectIsHovered] = useState<boolean>(false);
@@ -113,11 +113,13 @@ export default function NewProjects({
       });
     }
 
-    const themeContainer = document.querySelector(
+    const tc = document.querySelector(
       ".themeContainer"
     ) as HTMLElement;
-    if (projectOpenedBoolean) hideFrame(themeContainer);
-    else unhideFrame(themeContainer);
+    if (projectOpenedBoolean === true)
+      hideFrame(tc);
+    else if (projectOpenedBoolean === false)
+      unhideFrame(tc);
   }, [projectOpenedBoolean]);
 
   useEffect(() => {
@@ -156,9 +158,9 @@ export default function NewProjects({
       </Head>
       <motion.div
         className={stylesHome.mainMotionDiv + " mainMotionDiv"}
-        initial={{ x: "-50vw", opacity: 0 }}
-        animate={{ x: "0vw", opacity: 1 }}
-        exit={{ x: "-50vw", opacity: 0 }}
+        initial={{ x: "-50dvw", opacity: 0 }}
+        animate={{ x: "0dvw", opacity: 1 }}
+        exit={{ x: "-50dvw", opacity: 0 }}
         transition={{ duration: 1, ease: [0.8, 0.28, 0, 1] }}
       >
         {/* <TestComp projsNumber={projsNumber} setProjsNumber={setProjsNumber} /> */}

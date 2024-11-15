@@ -8,7 +8,7 @@
   transition: background-color $change-theme-duration;
   border: none;
   top: 0;
-  left: 33vw;
+  left: 33dvw;
   animation: drawVLine cubic-bezier(0.72, 0.27, 0.3, 1) 3s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
@@ -20,7 +20,7 @@
 
 .horizontalLine {
   height: 2px;
-  width: 0vw;
+  width: 0dvw;
   background-color: $semitransparentDark1;
   transition: background-color $change-theme-duration;
   border: none;
@@ -46,7 +46,7 @@ html[data-theme="dark"] {
 
 @keyframes drawHLine {
   0% {
-    width: 0vw;
+    width: 0dvw;
   }
 
   100% {
@@ -56,7 +56,7 @@ html[data-theme="dark"] {
 
 @keyframes drawVLine {
   0% {
-    height: 0vw;
+    height: 0dvw;
   }
 
   100% {

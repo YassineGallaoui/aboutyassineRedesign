@@ -33,24 +33,21 @@ export default function ProjectModal({
     }
     window.addEventListener("resize", changeDeviceType);
 
-    return()=> {
+    return () => {
       window.removeEventListener("resize", changeDeviceType)
     }
   }, []);
 
   useEffect(() => {
-    const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
     if (open) {
       gsap.to(`.projectModalContainer`, {
         position: "fixed",
-        width: "90vw",
         height: "90vh",
         borderRadius: "2.5rem",
         left: "50%",
         top: "50%",
         xPercent: -50,
         yPercent: -50,
-        zIndex: "20",
         opacity: 1,
       });
     } else {
@@ -62,7 +59,6 @@ export default function ProjectModal({
         top: "-50%",
         xPercent: -50,
         yPercent: 0,
-        zIndex: "20",
         opacity: 0,
       });
     }

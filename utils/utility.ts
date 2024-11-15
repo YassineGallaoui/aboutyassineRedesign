@@ -94,8 +94,8 @@ export const calculateScrollPercentage = (pageContent) => {
   return scrollPercentage.toFixed(0);
 };
 
-export const hideFrame = (themeContainer) => {
-  themeContainer.classList.add("quickTransition");
+export const hideFrame = (tc) => {
+  tc.classList.add("quickTransition");
   gsap.to(`.logoWrapper`, {
     x: "-7rem",
     y: "-7rem",
@@ -116,8 +116,8 @@ export const hideFrame = (themeContainer) => {
     duration: 0.5,
   });
   gsap.to(`.sectionsNav`, {
-    x: "5rem",
-    y: 0,
+    xPercent: 110,
+    yPercent: -50,
     duration: 0.3,
   });
   gsap.to(`.contacts`, {
@@ -127,7 +127,7 @@ export const hideFrame = (themeContainer) => {
   });
 }
 
-export const unhideFrame = (themeContainer) => {
+export const unhideFrame = (tc) => {
   gsap.to(`.logoWrapper`, {
     x: '-3rem',
     y: '-3rem',
@@ -148,7 +148,8 @@ export const unhideFrame = (themeContainer) => {
     duration: 0.5,
   });
   gsap.to(`.sectionsNav`, {
-    x: "0rem",
+    xPercent: 0,
+    yPercent: -50,
     duration: 0.5,
   });
   gsap.to(`.contacts`, {
@@ -157,6 +158,6 @@ export const unhideFrame = (themeContainer) => {
     duration: 0.5,
   });
   setTimeout(() => {
-    themeContainer.classList.remove("quickTransition");
+    tc.classList.remove("quickTransition");
   }, 600);
 }

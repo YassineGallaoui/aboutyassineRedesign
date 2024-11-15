@@ -1,7 +1,7 @@
 .centerGuidelines {
     position: fixed;
-    height: 100vh;
-    width: 100vw;
+    height: 100dvh;
+    width: 100dvw;
     z-index: 10000;
     top: 50%;
     left: 50%;
@@ -9,7 +9,8 @@
     pointer-events: none;
     user-select: none;
     display: none;
-    &.show{
+
+    &.show {
         display: block;
     }
 }

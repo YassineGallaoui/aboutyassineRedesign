@@ -26,7 +26,7 @@ export default function ProjectModalVertical({
   const [expandedCarousel, setExpandedCarousel] = useState<boolean>(false);
   const arrowLinkRef = useRef(null);
   const tl = gsap.timeline({});
-  
+
   const arrowLinkMouseOver = () => {
     tl.to(arrowLinkRef.current, { duration: 0.2, x: 20, y: -20 })
       .to(arrowLinkRef.current, { duration: 0, x: -20, y: 20 })
@@ -35,18 +35,15 @@ export default function ProjectModalVertical({
   };
 
   useEffect(() => {
-    const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
     if (open) {
       gsap.to(`.projectModalContainer`, {
         position: "fixed",
-        width: "90dvw",
         height: "90dvh",
         borderRadius: "2.5rem",
         left: "50%",
         top: "50%",
         xPercent: -50,
         yPercent: -50,
-        zIndex: "20",
         opacity: 1,
       });
     } else {
@@ -58,7 +55,6 @@ export default function ProjectModalVertical({
         top: "-50%",
         xPercent: -50,
         yPercent: 0,
-        zIndex: "20",
         opacity: 0,
       });
     }

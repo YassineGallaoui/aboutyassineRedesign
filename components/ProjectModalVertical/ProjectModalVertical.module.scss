@@ -5,10 +5,12 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  width: 90dvw;
   opacity: 0;
-  width: 90vw;
   overflow: hidden;
+  z-index: 20;
   background-color: inherit;
+
   .closeModalBtn {
     position: absolute;
     top: 2rem;
@@ -21,6 +23,7 @@
     align-items: center;
     border-radius: 2rem;
     transition: border $carousel-duration;
+
     &:before,
     &:after {
       content: "";
@@ -41,6 +44,7 @@
     &:after {
       transform: rotate(-45deg);
     }
+
     &.light {
       transition: border $carousel-duration;
       border: 1px solid $semitransparentDark1;
@@ -75,6 +79,7 @@
     overflow-y: hidden;
     box-sizing: border-box;
     flex: 1;
+
     .projectDescriptionComponent {
       height: 100%;
       border-bottom-left-radius: 1.5rem;
@@ -83,15 +88,18 @@
       overflow-x: hidden;
       -ms-overflow-style: none; // Hide for IE and Edge
       scrollbar-width: none; //firefox
+
       &::-webkit-scrollbar {
         display: none; //chrome and safari
         width: 0;
       }
     }
+
     &::-webkit-scrollbar {
       display: none; //chrome and safari
       width: 0;
     }
+
     .projectModalVerticalName {
       font-size: $l-fs;
       font-weight: bold;
@@ -112,40 +120,49 @@
       position: absolute;
       top: 1rem;
       right: 1rem;
+
       img {
         filter: invert(0);
         transition: $change-theme-duration filter;
       }
     }
+
     table {
       color: $dark-color;
       font-size: $sm-fs;
+
       .bottomBorder {
         border-bottom: 1px solid $semitransparentDark2;
       }
+
       tr {
         td:last-of-type {
           padding-top: 1rem;
           padding-bottom: 1rem;
         }
+
         .characteristic {
           text-align: left;
-          > span {
-              width: max-content;
-              &:after {
-                content: "";
-                position: absolute;
-                display: block;
-                width: 100%;
-                height: calc($xs-fs * 0.5);
-                top: calc($xs-fs * 0.8);
-              }
+
+          >span {
+            width: max-content;
+
+            &:after {
+              content: "";
+              position: absolute;
+              display: block;
+              width: 100%;
+              height: calc($xs-fs * 0.5);
+              top: calc($xs-fs * 0.8);
             }
+          }
         }
-        &.descriptionTitle > td {
+
+        &.descriptionTitle>td {
           padding-bottom: 0rem;
         }
-        &.description > td {
+
+        &.description>td {
           padding-top: 0rem;
         }
       }
@@ -155,6 +172,7 @@
 
 html[data-theme="dark"] {
   .closeModalBtn {
+
     &:before,
     &:after {
       background-color: $semitransparentLight1;
@@ -163,10 +181,12 @@ html[data-theme="dark"] {
         height $carousel-duration,
         background-color $carousel-duration;
     }
+
     &.light {
       transition: border $carousel-duration;
       border: 1px solid $semitransparentLight1;
       filter: invert(0) !important;
+
       &:before,
       &:after {
         width: 1px;
@@ -177,11 +197,14 @@ html[data-theme="dark"] {
       }
     }
   }
+
   .projectCarouselWrapper {
     border-bottom-color: $semitransparentLight4;
   }
+
   .projectModalLink {
     border: 1px solid $semitransparentLight1 !important;
+
     img {
       filter: invert(1) !important;
     }
