@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Head from "next/head";
 import React, { useEffect } from "react";
 import HorizontalLines from "../../components/HorizontalLines";
@@ -12,31 +12,6 @@ import {
 export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
   const welcomeArray = ["Hi!", "Hallo!", "¡Hola!", "Salut!", "Ciao!"];
   const words = ["software engineer", "frontend expert", "proactive nerd", "a bit workaholic", "teamworker"];
-
-  /*   useEffect(() => {
-      const lastEditTag = document.querySelector("#lastUpdateDate");
-      if (lastEditTag && lastEditDate != null)
-        lastEditTag.innerHTML = lastEditDate;
-    }, []); */
-
-  /*   useEffect(() => {
-      if (SSAnimFinished) {
-        const tlInitial = gsap.timeline({ delay: 0.2 });
-        tlInitial
-          .to(".mainMotionDiv", {
-            duration: 0,
-            top: 80,
-            scale: 1,
-            opacity: 0.8,
-          })
-          .to(".mainMotionDiv", {
-            duration: 1.8,
-            top: 0,
-            scale: 1,
-            opacity: 1,
-          });
-      }
-    }, [SSAnimFinished]); */
 
   useEffect(() => {
     const welcomeWord = document.querySelector(".welcomeWord");

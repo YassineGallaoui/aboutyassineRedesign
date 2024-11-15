@@ -1,4 +1,4 @@
-import gsap from "gsap";
+import { animate } from "motion";
 
 export function createSpanStructureV2(w) {
   const charArr = w.split("");
@@ -11,31 +11,35 @@ export function createSpanStructureV2(w) {
 }
 
 export function textAnimationForward(el, index) {
-  const tl = gsap.timeline({});
-  tl.to(el, { delay: 0.05 * index, duration: 0.25, x: "0.8rem" })
-    .to(el, { duration: 0, x: "-0.8rem" })
-    .to(el, { duration: 0.25, x: 0 });
+  animate([
+    [el, { x: "0.8rem" }, { duration: 0.25, delay: 0.05 * index }],
+    [el, { x: "-0.8rem" }, { duration: 0 }],
+    [el, { x: 0 }, { duration: 0.25 }]
+  ])
 }
 
 export function textAnimationBackward(el, index) {
-  const tl = gsap.timeline({});
-  tl.to(el, { delay: 0.05 * index, duration: 0.25, x: "-0.8rem" })
-    .to(el, { duration: 0, x: "0.8rem" })
-    .to(el, { duration: 0.25, x: 0 });
+  animate([
+    [el, { x: "-0.8rem" }, { duration: 0.25, delay: 0.05 * index }],
+    [el, { x: "0.8rem" }, { duration: 0, }],
+    [el, { x: 0 }, { duration: 0.25, }]
+  ])
 }
 
 export function verticalTextAnimationForward(el, index) {
-  const tl = gsap.timeline({});
-  tl.to(el, { delay: 0.05 * index, duration: 0.25, y: "1.5rem" })
-    .to(el, { duration: 0, y: "-1.5rem" })
-    .to(el, { duration: 0.25, y: -3 });
+  animate([
+    [el, { y: "1.5rem" }, { delay: 0.05 * index, duration: 0.25 }],
+    [el, { y: "-1.5rem" }, { duration: 0, }],
+    [el, { y: -3 }, { duration: 0.25, }]
+  ])
 }
 
 export function verticalTextAnimationBackward(el, index) {
-  const tl = gsap.timeline({});
-  tl.to(el, { delay: 0.05 * index, duration: 0.25, y: "-1.5rem" })
-    .to(el, { duration: 0, y: "1.5rem" })
-    .to(el, { duration: 0.25, y: -3 });
+  animate([
+    [el, { y: "-1.5rem" }, { delay: 0.05 * index, duration: 0.25 }],
+    [el, { y: "1.5rem" }, { duration: 0, }],
+    [el, { y: -3 }, { duration: 0.25, }]
+  ])
 }
 
 export function parallax(event, elements) {
@@ -94,70 +98,18 @@ export const calculateScrollPercentage = (pageContent) => {
   return scrollPercentage.toFixed(0);
 };
 
-export const hideFrame = (tc) => {
-  tc.classList.add("quickTransition");
-  gsap.to(`.logoWrapper`, {
-    x: "-7rem",
-    y: "-7rem",
+export const hideFrame = () => {
+  animate(`#frameContainer`, {
+    scale: 1.2,
+  }, {
     duration: 0.5
-  });
-  gsap.to(`.booking`, {
-    x: "-7rem",
-    duration: 0.5
-  });
-  gsap.to(`.available`, {
-    x: "-4rem",
-    y: "4rem",
-    duration: 0.5
-  });
-  gsap.to(`.themeContainer`, {
-    x: "4rem",
-    y: "-4rem",
-    duration: 0.5,
-  });
-  gsap.to(`.sectionsNav`, {
-    xPercent: 110,
-    yPercent: -50,
-    duration: 0.3,
-  });
-  gsap.to(`.contacts`, {
-    x: "4rem",
-    y: "4rem",
-    duration: 0.5,
   });
 }
 
-export const unhideFrame = (tc) => {
-  gsap.to(`.logoWrapper`, {
-    x: '-3rem',
-    y: '-3rem',
-    duration: 0.5,
-  });
-  gsap.to(`.booking`, {
-    x: "-2rem",
+export const unhideFrame = () => {
+  animate(`#frameContainer`, {
+    scale: 1,
+  }, {
     duration: 0.5
   });
-  gsap.to(`.available`, {
-    x: "0rem",
-    y: "0rem",
-    duration: 0.5
-  });
-  gsap.to(`.themeContainer`, {
-    x: 0,
-    y: 0,
-    duration: 0.5,
-  });
-  gsap.to(`.sectionsNav`, {
-    xPercent: 0,
-    yPercent: -50,
-    duration: 0.5,
-  });
-  gsap.to(`.contacts`, {
-    x: '-1rem',
-    y: '1rem',
-    duration: 0.5,
-  });
-  setTimeout(() => {
-    tc.classList.remove("quickTransition");
-  }, 600);
 }

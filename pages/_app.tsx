@@ -1,21 +1,17 @@
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "motion/react";
 import Head from 'next/head';
 import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
+import { themeMode } from "../store/themeStore";
 import "../styles/css/Globals.module.min.css";
 import { breakpoints, getDeviceType } from "../utils/breakpoints";
 import { colorApplicator, generateColors } from "../utils/colorFunctions";
-
-export enum themeMode {
-  lightMode,
-  darkMode,
-}
 
 export default function MyApp({ Component, pageProps, router }) {
   const [cursorText, setCursorText] = useState<string | null>(null);
   const [cursorHover, setCursorHover] = useState<boolean>(false);
   const [preferredTheme, setPreferredTheme] = useState<themeMode>(
-    themeMode.darkMode,
+    themeMode.dark,
   );
   const [lightColor, setLightColor] = useState<string>("");
   const [darkColor, setDarkColor] = useState<string>("");
@@ -23,10 +19,10 @@ export default function MyApp({ Component, pageProps, router }) {
   const [deviceType, setDeviceType] = useState<breakpoints>();
 
   useEffect(() => {
-    const prefersDarkMode = window.matchMedia(
+    const prefersdark = window.matchMedia(
       "(prefers-color-scheme: dark)",
     ).matches;
-    const prefersLightMode = window.matchMedia(
+    const preferslight = window.matchMedia(
       "(prefers-color-scheme: light)",
     ).matches;
 
@@ -35,14 +31,14 @@ export default function MyApp({ Component, pageProps, router }) {
     const themePreferenceSelection = (): themeMode => {
       return storedThemePreference != null
         ? storedThemePreference
-        : prefersLightMode
-          ? themeMode.lightMode
-          : themeMode.darkMode;
+        : preferslight
+          ? themeMode.light
+          : themeMode.dark;
     };
 
     let themePreference: themeMode = themePreferenceSelection();
 
-    themePreference === themeMode.darkMode
+    themePreference === themeMode.dark
       ? document.documentElement.setAttribute("data-theme", "dark")
       : document.documentElement.setAttribute("data-theme", "light");
 

@@ -1,4 +1,4 @@
-import { themeMode } from "../pages/_app";
+import { themeMode } from "../store/themeStore";
 
 export function generateColors(): string[] {
   const brightnessLight = 90;
@@ -18,17 +18,17 @@ export function generateColors(): string[] {
 export function colorApplicator(lightColor: string, darkColor: string): void {
   const body = document.querySelector("body") as HTMLElement;
 
-  if (body.classList.contains(themeMode[themeMode.lightMode])) {
+  if (body.classList.contains(themeMode[themeMode.light])) {
     body.style.setProperty("background-color", lightColor);
   } else {
     body.style.setProperty("background-color", darkColor);
   }
-      document.documentElement.style.setProperty(
-        "--underline-color-dark",
-        darkColor
-      );
-      document.documentElement.style.setProperty(
-        "--underline-color-light",
-        lightColor
-      );
+  document.documentElement.style.setProperty(
+    "--underline-color-dark",
+    darkColor
+  );
+  document.documentElement.style.setProperty(
+    "--underline-color-light",
+    lightColor
+  );
 }

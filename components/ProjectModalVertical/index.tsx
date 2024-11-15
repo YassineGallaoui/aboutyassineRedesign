@@ -1,4 +1,4 @@
-import gsap from "gsap";
+import { animate } from "motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import linkArrow from "../../public/icons/linkArrow.svg";
@@ -25,36 +25,35 @@ export default function ProjectModalVertical({
 }: ModalProps) {
   const [expandedCarousel, setExpandedCarousel] = useState<boolean>(false);
   const arrowLinkRef = useRef(null);
-  const tl = gsap.timeline({});
 
-  const arrowLinkMouseOver = () => {
-    tl.to(arrowLinkRef.current, { duration: 0.2, x: 20, y: -20 })
-      .to(arrowLinkRef.current, { duration: 0, x: -20, y: 20 })
-      .to(arrowLinkRef.current, { x: 0, y: 0 });
+  const arrowLinkMouseOver = async () => {
+    await animate(arrowLinkRef.current, { x: 20, y: -20 }, { duration: 0.2, })
+    await animate(arrowLinkRef.current, { x: -20, y: 20 }, { duration: 0, })
+    await animate(arrowLinkRef.current, { x: 0, y: 0 });
     cursorIsHover(true);
   };
 
   useEffect(() => {
     if (open) {
-      gsap.to(`.projectModalContainer`, {
+      animate(`.projectModalContainer`, {
         position: "fixed",
         height: "90dvh",
         borderRadius: "2.5rem",
         left: "50%",
         top: "50%",
-        xPercent: -50,
-        yPercent: -50,
+        x: "-50%",
+        y: "-50%",
         opacity: 1,
       });
     } else {
-      gsap.to(`.projectModalContainer`, {
+      animate(`.projectModalContainer`, {
         position: "fixed",
         height: "0vh",
         borderRadius: "0rem",
         left: "50%",
         top: "-50%",
-        xPercent: -50,
-        yPercent: 0,
+        x: "-50%",
+        y: "0%",
         opacity: 0,
       });
     }
@@ -66,19 +65,19 @@ export default function ProjectModalVertical({
 
   const hoverCloseBtn = () => {
     cursorIsHover(true);
-    gsap.to(`.closeModalBtn`, { transform: "rotate(-90deg)" });
+    animate(`.closeModalBtn`, { transform: "rotate(-90deg)" });
   };
 
   const notHoverCloseBtn = () => {
     cursorIsHover(false);
-    gsap.to(`.closeModalBtn`, { transform: "rotate(0deg)" });
+    animate(`.closeModalBtn`, { transform: "rotate(0deg)" });
   };
 
   useEffect(() => {
     if (!expandedCarousel) {
-      gsap.to("#arrExpand", { duration: 0, scale: 1 });
+      animate("#arrExpand", { scale: 1 }, { duration: 0 });
     } else {
-      gsap.to("#arrExpand", { duration: 0, scale: 1.4 });
+      animate("#arrExpand", { scale: 1.4 }, { duration: 0 });
     }
   }, [expandedCarousel]);
 

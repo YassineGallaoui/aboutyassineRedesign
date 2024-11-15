@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import gsap from "gsap";
+import { animate } from "motion";
+import { motion } from "motion/react";
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -56,20 +56,20 @@ export default function NewProjects({
       setProjectIsHovered(true);
       setProjectIsHoveredID(elementId);
 
-      const tl1 = gsap.timeline();
-      tl1.to(`#bigBackgroundImage-${elementId}`, {
+      animate(`#bigBackgroundImage-${elementId}`, {
         scale: 1.02,
+      }, {
         duration: 5,
-        ease: "expo.out",
+        ease: "easeOut",
       });
-      tl1.to(
+      animate(
         `#bigBackgroundImage-${elementId}`,
         {
           opacity: 1,
-          duration: 2,
-          ease: "expo.out",
-        },
-        0
+        }, {
+        duration: 2,
+        ease: "easeOut",
+      }
       );
       cursorIsHover(true);
     }
@@ -81,14 +81,14 @@ export default function NewProjects({
     );
     if (elementId != null && elementData != null) {
       setProjectIsHovered(false);
-      const tl1 = gsap.timeline();
-      gsap.killTweensOf(`#bigBackgroundImage-${elementId}`);
-      tl1.to(`#bigBackgroundImage-${elementId}`, {
+      /* .killTweensOf(`#bigBackgroundImage-${elementId}`); */
+      animate(`#bigBackgroundImage-${elementId}`, {
         scale: 1.1,
         opacity: 0,
+      }, {
+        ease: "easeOut",
         duration: 0.5,
         delay: 0,
-        ease: "expo.out",
       });
       cursorIsHover(false);
     }
@@ -102,24 +102,21 @@ export default function NewProjects({
 
   useEffect(() => {
     if (projectOpenedBoolean) {
-      gsap.to(`.modalMatteBkgrd`, {
+      animate(`.modalMatteBkgrd`, {
         background: "rgba(0,0,0,0.8)",
         zIndex: zIndexMatteBKGOpen,
       });
     } else {
-      gsap.to(`.modalMatteBkgrd`, {
+      animate(`.modalMatteBkgrd`, {
         background: "rgba(0,0,0,0)",
         zIndex: zIndexMatteBKGClosed,
       });
     }
 
-    const tc = document.querySelector(
-      ".themeContainer"
-    ) as HTMLElement;
     if (projectOpenedBoolean === true)
-      hideFrame(tc);
+      hideFrame();
     else if (projectOpenedBoolean === false)
-      unhideFrame(tc);
+      unhideFrame();
   }, [projectOpenedBoolean]);
 
   useEffect(() => {
@@ -132,20 +129,24 @@ export default function NewProjects({
 
   useEffect(() => {
     if (SSAnimFinished && hasComponentMounted) {
-      const tlInitial = gsap.timeline({ delay: 0.2 });
-      tlInitial
-        .to(".expContainer", {
-          duration: 0,
+      animate([
+        [".expContainer", {
           top: 80,
           scale: 1,
           opacity: 0.8,
-        })
-        .to(".expContainer", {
-          duration: 1.8,
-          top: 0,
-          scale: 1,
-          opacity: 1,
-        });
+        }, {
+            duration: 0,
+          }],
+        [
+          ".expContainer", {
+            top: 0,
+            scale: 1,
+            opacity: 1,
+          }, {
+            duration: 1.8,
+          }
+        ]
+      ]);
     } else {
       setHasComponentMounted(true);
     }

@@ -1,4 +1,4 @@
-import gsap from "gsap";
+import { animate } from "motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import logoY from "../../public/logo/logo-Y.svg";
@@ -10,7 +10,6 @@ export default function SplashScreen({
   setSSAnimFinished,
   deviceType
 }) {
-  const tl = gsap.timeline({});
   const displaySS = true;
   const baseDirectory = `C:\\Users\\yas> `;
   const [directoryProjects, setDirectoryProjects] = useState(`C:\\Users\\yas\\projects> `);
@@ -29,48 +28,65 @@ export default function SplashScreen({
 
   useEffect(() => {
     if (text5Completed) {
-      const SSContainer = document.querySelector(".SSContainer");
-      const SSWrapper = document.querySelector(".SSWrapper");
       setTimeout(() => {
-        tl.to(SSWrapper, {
-          top: "-200",
-          opacity: "0",
-          duration: 0.6,
-        }, 0).to(SSContainer, {
-          opacity: "0",
-          duration: 0.5,
-        }, 0.1).to(SSContainer, {
-          height: "0vh",
-          duration: 0,
-        }, '>').to(SSWrapper, {
-          height: "0vh",
-          duration: 0,
-        }, '>').to(SSContainer, {
-          zIndex: "-1",
-          duration: 0,
-        }, '>').to(SSWrapper, {
-          zIndex: "-1",
-          duration: 0,
-        }, '>');;
+        animate([
+          ["#SSWrapper", {
+            top: "-200",
+            opacity: "0",
+          }, {
+              duration: 0.6,
+            }], [
+            "#SSContainer", {
+              opacity: "0",
+            }, {
+              duration: 0.5,
+              delay: 0.1,
+            }
+          ], [
+            "#SSContainer", {
+              height: "0vh",
+            }, {
+              duration: 0
+            }
+          ], [
+            "#SSWrapper", {
+              height: "0vh",
+            }, {
+              duration: 0,
+            }
+          ], [
+            "#SSContainer", {
+              zIndex: "-1",
+            }, {
+              duration: 0,
+            }
+          ], [
+            "#SSWrapper", {
+              zIndex: "-1",
+            }, {
+              duration: 0,
+            }
+          ]
+        ]);
       }, 200);
       setSSAnimFinished(true);
     }
   }, [text5Completed]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setDirectoryProjects(`C:\\Users\\yas\\${window.location.href.indexOf('about') > -1 ? 'about' : 'projects'}> `);
-    setTechnicalText1(`cd ${window.location.href.indexOf('about') > -1 ? 'about':'projects'}`);
+    setTechnicalText1(`cd ${window.location.href.indexOf('about') > -1 ? 'about' : 'projects'}`);
   }, [])
 
   return displaySS ? (
-    <div className={styles.SSContainer + " SSContainer"}>
+    <div id={"SSContainer"} className={styles.SSContainer}>
       <Image
-          id={styles.logoImageSS}
-          src={logoY}
-          alt={`Yassine's Portfolio logo`}
-          fill
+        id={styles.logoImageSS}
+        src={logoY}
+        alt={`Yassine's Portfolio logo`}
+        fill
       ></Image>
-      <div className={styles.SSWrapper + " SSWrapper"}>
+      <div id={"SSWrapper"} className={styles.SSWrapper}>
         <div className={styles.codeText}>
           <span>{baseDirectory}</span>
           <span>

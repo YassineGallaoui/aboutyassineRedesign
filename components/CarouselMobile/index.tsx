@@ -1,4 +1,4 @@
-import gsap from "gsap";
+import { animate } from "motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import arrRight from "../../public/icons/arr.svg";
@@ -45,9 +45,6 @@ function CarouselMobile({
   const prevBtnVerticalRef = useRef(null);
   const nextBtnVerticalRef = useRef(null);
   const expandBtnRef = useRef(null);
-  const tl = gsap.timeline({});
-  const tl2 = gsap.timeline({});
-  const tl3 = gsap.timeline({});
 
   useEffect(() => {
     let imagesNumber = document.querySelectorAll(".indexWrapperToAnimate");
@@ -69,13 +66,13 @@ function CarouselMobile({
   const expandBtnClick = () => {
     setExpandedCarousel(!expandedCarousel);
     if (expandedCarousel) {
-      tl.to(expandBtnRef.current, { duration: 0, scale: 1 });
+      animate(expandBtnRef.current, { duration: 0, scale: 1 });
     } else {
-      tl.to(expandBtnRef.current, { duration: 0, scale: 1.4 });
+      animate(expandBtnRef.current, { duration: 0, scale: 1.4 });
     }
   };
 
-  const prevBtnClick = (vertical = null) => {
+  const prevBtnClick = async (vertical = null) => {
     imageNumberSpanTags.forEach((el, index) => {
       textAnimationForward(el, index + 1);
     });
@@ -97,17 +94,16 @@ function CarouselMobile({
         );
     }, 200);
 
-    if (vertical)
-      tl3
-        .to(prevBtnVerticalRef.current, { duration: 0.2, y: -3 })
-        .to(prevBtnVerticalRef.current, { y: 0 });
-    else
-      tl3
-        .to(prevBtnRef.current, { duration: 0.2, x: -3 })
-        .to(prevBtnRef.current, { x: 0 });
+    if (vertical) {
+      await animate(prevBtnVerticalRef.current, { y: -3 }, { duration: 0.2 })
+      await animate(prevBtnVerticalRef.current, { y: 0 });
+    } else {
+      await animate(prevBtnRef.current, { x: -3 }, { duration: 0.2 })
+      await animate(prevBtnRef.current, { x: 0 });
+    }
   };
 
-  const nextBtnClick = (vertical = null) => {
+  const nextBtnClick = async (vertical = null) => {
     imageNumberSpanTags.forEach((el, index) => {
       textAnimationBackward(el, index + 1);
     });
@@ -128,14 +124,13 @@ function CarouselMobile({
           "right",
         );
     }, 200);
-    if (vertical)
-      tl3
-        .to(nextBtnVerticalRef.current, { duration: 0.2, y: 3 })
-        .to(nextBtnVerticalRef.current, { y: 0 });
-    else
-      tl3
-        .to(nextBtnRef.current, { duration: 0.2, x: 3 })
-        .to(nextBtnRef.current, { x: 0 });
+    if (vertical) {
+      await animate(nextBtnVerticalRef.current, { y: 3 }, { duration: 0.2, })
+      await animate(nextBtnVerticalRef.current, { y: 0 })
+    } else {
+      await animate(nextBtnRef.current, { x: 3 }, { duration: 0.2, })
+      await animate(nextBtnRef.current, { x: 0 });
+    }
   };
 
   const thumbnailClickHandle = (imageIndex: number, vertical = null) => {
@@ -158,8 +153,7 @@ function CarouselMobile({
     }
   };
 
-  const goToImageIndex = (index, direction = null) => {
-    const imageToGo = document.querySelector("#image-" + codeName + index);
+  const goToImageIndex = async (index, direction = null) => {
     setNewZIndexLevel(newZIndexLevel + 1);
     if (index != currentIndex) {
       setCurrentIndex(index);
@@ -169,35 +163,40 @@ function CarouselMobile({
           (index > currentIndex ||
             (currentIndex === images.length - 1 && index === 0)))
       ) {
-        tl.to(imageToGo, {
-          duration: 0,
+        await animate(`#image-${+ codeName + index}`, {
           x: "100%",
           zIndex: newZIndexLevel,
           opacity: 1,
-        }).to(imageToGo, {
-          duration: 1,
+        }, {
+          duration: 0,
+        })
+        await animate(`#image-${+ codeName + index}`, {
           x: "0%",
           opacity: 1,
-          ease: "expo.out",
+        }, {
+          ease: "easeOut",
+          duration: 1,
         });
       } else {
-        tl.to(imageToGo, {
-          duration: 0,
+        await animate(`#image-${+ codeName + index}`, {
           x: "-100%",
           zIndex: newZIndexLevel,
           opacity: 1,
-        }).to(imageToGo, {
-          duration: 1,
+        }, {
+          duration: 0,
+        })
+        await animate(`#image-${+ codeName + index}`, {
           x: "0%",
           opacity: 1,
-          ease: "expo.out",
+        }, {
+          ease: "easeOut",
+          duration: 1,
         });
       }
     }
   };
 
-  const goToImageIndexVertical = (index, direction = null) => {
-    const imageToGo = document.querySelector("#image-" + codeName + index);
+  const goToImageIndexVertical = async (index, direction = null) => {
     setNewZIndexLevel(newZIndexLevel + 1);
     if (index != currentIndex) {
       setCurrentIndex(index);
@@ -207,28 +206,34 @@ function CarouselMobile({
           (index > currentIndex ||
             (currentIndex === images.length - 1 && index === 0)))
       ) {
-        tl.to(imageToGo, {
-          duration: 0,
+        await animate(`#image-${codeName + index}`, {
           y: "100%",
           zIndex: newZIndexLevel,
           opacity: 1,
-        }).to(imageToGo, {
-          duration: 1,
+        }, {
+          duration: 0,
+        })
+        await animate(`#image-${codeName + index}`, {
           y: "0%",
           opacity: 1,
-          ease: "expo.out",
+        }, {
+          duration: 1,
+          ease: "easeOut",
         });
       } else {
-        tl.to(imageToGo, {
-          duration: 0,
+        animate(`#image-${codeName + index}`, {
           y: "-100%",
           zIndex: newZIndexLevel,
           opacity: 1,
-        }).to(imageToGo, {
-          duration: 1,
+        }, {
+          duration: 0,
+        })
+        animate(`#image-${codeName + index}`, {
           y: "0%",
           opacity: 1,
-          ease: "expo.out",
+        }, {
+          duration: 1,
+          ease: "easeOut",
         });
       }
     }
@@ -247,7 +252,8 @@ function CarouselMobile({
         </div>
 
         <div
-          className={styles.expandCarouselWrapper + " expandCarouselWrapper"}
+          id={"#expandCarouselWrapper"}
+          className={styles.expandCarouselWrapper}
           onClick={() => expandBtnClick()}
         >
           <Image

@@ -1,10 +1,9 @@
+import { animate } from "motion";
 import { useEffect, useState } from "react";
 import styles from "./Cursor.module.scss";
-import gsap from "gsap";
 
 export default function Cursor({ hovered, txt }) {
   const [isTouchOnlyDevice, setIsTouchOnlyDevice] = useState(false);
-  const tl = gsap.timeline({});
   const [movedPointer, setMovedPointer] = useState<boolean>(false);
 
   useEffect(() => {
@@ -17,29 +16,31 @@ export default function Cursor({ hovered, txt }) {
     };
     document.addEventListener("mousemove", handleMouseMove);
 
-    const handleClick = (event: MouseEvent) => {
+    const handleClick = async (event: MouseEvent) => {
       const newDiv = document.createElement("div");
       newDiv.className = "cursorClickDecoration";
       if (cc) {
         cc.appendChild(newDiv);
-        tl.from(newDiv, {
-          duration: 0,
+        await animate(newDiv, {
           position: "absolute",
           width: "0rem",
           height: "0rem",
-          backgroundColor:
-            "radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)",
+          backgroundColor: "radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)",
           borderRadius: "100%",
           border: "1px solid rgba(0,0,0,1)",
-        }).to(newDiv, {
-          duration: 1,
+        }, {
+          duration: 0,
+        });
+
+        await animate(newDiv, {
           position: "absolute",
           width: "8rem",
           height: "8rem",
-          backgroundColor:
-            "radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)",
+          backgroundColor: "radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%)",
           border: "1px solid rgba(0,0,0,0.5)",
           borderRadius: "100%",
+        }, {
+          duration: 1,
         });
         setTimeout(() => {
           cc.removeChild(newDiv);

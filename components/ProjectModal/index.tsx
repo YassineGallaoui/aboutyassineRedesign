@@ -1,4 +1,4 @@
-import gsap from "gsap";
+import { animate } from "motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import linkArrow from "../../public/icons/linkArrow.svg";
@@ -25,7 +25,6 @@ export default function ProjectModal({
   const [expandedCarousel, setExpandedCarousel] = useState<boolean>(false);
   const [deviceType, setDeviceType] = useState(breakpoints.desktop);
   const arrowLinkRef = useRef(null);
-  const tl = gsap.timeline({});
 
   useEffect(() => {
     const changeDeviceType = () => {
@@ -40,25 +39,25 @@ export default function ProjectModal({
 
   useEffect(() => {
     if (open) {
-      gsap.to(`.projectModalContainer`, {
+      animate(`.projectModalContainer`, {
         position: "fixed",
         height: "90vh",
         borderRadius: "2.5rem",
         left: "50%",
         top: "50%",
-        xPercent: -50,
-        yPercent: -50,
+        x: "-50%",
+        y: "-50%",
         opacity: 1,
       });
     } else {
-      gsap.to(`.projectModalContainer`, {
+      animate(`.projectModalContainer`, {
         position: "fixed",
         height: "0vh",
         borderRadius: "0rem",
         left: "50%",
         top: "-50%",
-        xPercent: -50,
-        yPercent: 0,
+        x: "-50%",
+        y: "0%",
         opacity: 0,
       });
     }
@@ -73,18 +72,18 @@ export default function ProjectModal({
 
   const hoverCloseBtn = () => {
     cursorIsHover(true);
-    gsap.to(`.closeModalBtn`, { transform: "rotate(-90deg)" });
+    animate(`.closeModalBtn`, { transform: "rotate(-90deg)" });
   };
 
   const notHoverCloseBtn = () => {
     cursorIsHover(false);
-    gsap.to(`.closeModalBtn`, { transform: "rotate(0deg)" });
+    animate(`.closeModalBtn`, { transform: "rotate(0deg)" });
   };
 
-  const arrowLinkMouseOver = () => {
-    tl.to(arrowLinkRef.current, { duration: 0.2, x: 20, y: -20 })
-      .to(arrowLinkRef.current, { duration: 0, x: -20, y: 20 })
-      .to(arrowLinkRef.current, { x: 0, y: 0 });
+  const arrowLinkMouseOver = async () => {
+    await animate([arrowLinkRef.current, { duration: 0.2, x: 20, y: -20 }],)
+    await animate([arrowLinkRef.current, { duration: 0, x: -20, y: 20 }])
+    await animate([arrowLinkRef.current, { x: 0, y: 0 }])
     cursorIsHover(true);
   };
 
@@ -98,37 +97,43 @@ export default function ProjectModal({
     const closeModalBtn = document.querySelector(".closeModalBtn");
 
     if (expandedCarousel) {
-      gsap.to(descriptionWrapper, {
-        duration: 0.6,
+      animate(descriptionWrapper, {
         opacity: 0,
         x: 100,
         flex: 0,
         padding: 0,
+      }, {
+        duration: 0.6
       });
-      gsap.to(projectCarouselWrapper, {
-        duration: 0.3,
+      animate(projectCarouselWrapper, {
         borderRightWidth: 0,
+      }, {
+        duration: 0.3
       });
-      gsap.to(closeModalBtn, {
-        delay: 0.3,
-        duration: 0.3,
+      animate(closeModalBtn, {
         filter: "invert(1)",
+      }, {
+        duration: 0.3,
+        delay: 0.3
       });
     } else {
-      gsap.to(descriptionWrapper, {
-        duration: 0.6,
+      animate(descriptionWrapper, {
         opacity: 1,
         x: 0,
         flex: 1,
         padding: "1rem",
+      }, {
+        duration: 0.6,
       });
-      gsap.to(projectCarouselWrapper, {
-        duration: 0.3,
+      animate(projectCarouselWrapper, {
         borderWidth: "1px",
-      });
-      gsap.to(closeModalBtn, {
+      }, {
         duration: 0.3,
+      });
+      animate(closeModalBtn, {
         filter: "invert(0)",
+      }, {
+        duration: 0.3,
       });
     }
   }, [expandedCarousel]);

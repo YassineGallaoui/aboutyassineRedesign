@@ -1,4 +1,4 @@
-import gsap from "gsap";
+import { animate } from "motion";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import arrRight from "../../public/icons/arr.svg";
@@ -45,9 +45,6 @@ function Carousel({
   const prevBtnVerticalRef = useRef(null);
   const nextBtnVerticalRef = useRef(null);
   const expandBtnRef = useRef(null);
-  const tl = gsap.timeline({});
-  const tl2 = gsap.timeline({});
-  const tl3 = gsap.timeline({});
 
   useEffect(() => {
     let imagesNumber = document.querySelectorAll(".indexWrapperToAnimate");
@@ -76,15 +73,15 @@ function Carousel({
 
   const expandBtnMouseOver = () => {
     expandedCarousel
-      ? tl.to(expandBtnRef.current, { duration: 0.3, scale: 1 })
-      : tl.to(expandBtnRef.current, { duration: 0.3, scale: 1.2 });
+      ? animate(expandBtnRef.current, { duration: 0.3, scale: 1 })
+      : animate(expandBtnRef.current, { duration: 0.3, scale: 1.2 });
     cursorIsHover(true);
   };
 
   const expandBtnMouseLeave = () => {
     expandedCarousel
-      ? tl.to(expandBtnRef.current, { duration: 0.3, scale: 1.2 })
-      : tl.to(expandBtnRef.current, { duration: 0.3, scale: 1 });
+      ? animate(expandBtnRef.current, { duration: 0.3, scale: 1.2 })
+      : animate(expandBtnRef.current, { duration: 0.3, scale: 1 });
     cursorIsHover(false);
   };
 
@@ -92,153 +89,140 @@ function Carousel({
     setExpandedCarousel(!expandedCarousel);
   };
 
-  const expandCarousel = () => {
-    tl.to(".expandCarouselWrapper", {
-      duration: 0.4,
+  const expandCarousel = async () => {
+    await animate("#expandCarouselWrapper", {
       right: "3rem",
-    })
-      .to(expandBtnRef.current, { duration: 0, scale: 1.2 })
-      .to(
-        ".upperControls",
-        {
-          duration: 0.4,
-          height: "0rem",
-        },
-        0,
-      )
-      .to(
-        ".thumbnailControls",
-        {
-          duration: 0.4,
-          y: 100,
-          opacity: 0,
-          height: 0,
-        },
-        0,
-      )
-      .to(
-        ".indexWrapper",
-        {
-          duration: 0.4,
-          x: -40,
-          opacity: 0,
-        },
-        0,
-      )
-      .to(
-        ".imageContainer",
-        {
-          duration: 0.4,
-          height: "100%",
-          gap: "1rem",
-        },
-        0,
-      )
-      .to(
-        ".imageStackContainer",
-        {
-          duration: 0.6,
-          flex: "1 0 calc(90% - 1rem)",
-        },
-        0,
-      )
-      .to(
-        ".thumbnailControlsVertical",
-        {
-          duration: 0.6,
-          opacity: 1,
-          x: 0,
-          flex: "1 0 10%",
-        },
-        0,
-      );
+    }, { duration: 0.4, })
+    await animate(expandBtnRef.current, { duration: 0, scale: 1.2 })
+    await animate(
+      ".upperControls",
+      {
+        height: "0rem",
+      },
+      { duration: 0.4, }
+    )
+    await animate(
+      ".thumbnailControls",
+      {
+        y: 100,
+        opacity: 0,
+        height: 0,
+      },
+      { duration: 0.4, }
+    )
+    await animate(
+      ".indexWrapper",
+      {
+        x: -40,
+        opacity: 0,
+      },
+      { duration: 0.4, }
+    )
+    await animate(
+      ".imageContainer",
+      {
+        height: "100%",
+        gap: "1rem",
+      },
+      { duration: 0.4, }
+    )
+    await animate(
+      ".imageStackContainer",
+      {
+        flex: "1 0 calc(90% - 1rem)",
+      },
+      { duration: 0.6, }
+    )
+    await animate(
+      ".thumbnailControlsVertical",
+      {
+        opacity: 1,
+        x: 0,
+        flex: "1 0 10%",
+      },
+      { duration: 0.6, }
+    );
   };
 
-  const compressCarousel = () => {
-    tl.to(".expandCarouselWrapper", {
-      duration: 0.6,
+  const compressCarousel = async () => {
+    await animate("#expandCarouselWrapper", {
+
       right: "0rem",
-    })
-      .to(expandBtnRef.current, { duration: 0, scale: 1 })
-      .to(
-        ".thumbnailControlsVertical",
-        {
-          duration: 0.6,
-          x: 100,
-          opacity: 0,
-          flex: "0 0 0",
-        },
-        0,
-      )
-      .to(
-        ".upperControls",
-        {
-          duration: 0.4,
-          height: "2rem",
-        },
-        0,
-      )
-      .to(
-        ".imageStackContainer",
-        {
-          duration: 0.6,
-          flex: "1 0 100%",
-        },
-        0,
-      )
-      .to(
-        ".imageContainer",
-        {
-          duration: 0.4,
-          height: "90%",
-          gap: "0rem",
-        },
-        0,
-      )
-      .to(
-        ".indexWrapper",
-        {
-          duration: 0.4,
-          x: 0,
-          opacity: 1,
-        },
-        0,
-      )
-      .to(
-        ".thumbnailControls",
-        {
-          duration: 0.4,
-          y: 0,
-          opacity: 1,
-          height: "10%",
-        },
-        0,
-      );
+    }, { duration: 0.6, })
+    animate(expandBtnRef.current, { duration: 0, scale: 1 })
+    animate(
+      ".thumbnailControlsVertical",
+      {
+        x: 100,
+        opacity: 0,
+        flex: "0 0 0",
+      },
+      { duration: 0.6, }
+    )
+    animate(
+      ".upperControls",
+      {
+        height: "2rem",
+      },
+      { duration: 0.4, }
+    )
+    animate(
+      ".imageStackContainer",
+      {
+        flex: "1 0 100%",
+      },
+      { duration: 0.6, }
+    )
+    animate(
+      ".imageContainer",
+      {
+        height: "90%",
+        gap: "0rem",
+      },
+      { duration: 0.4, }
+    )
+    animate(
+      ".indexWrapper",
+      {
+        x: 0,
+        opacity: 1,
+      },
+      { duration: 0.4, }
+    )
+    animate(
+      ".thumbnailControls",
+      {
+        y: 0,
+        opacity: 1,
+        height: "10%",
+      },
+      { duration: 0.4, }
+    );
   };
 
   const prevBtnMouseOver = () => {
-    tl.to(prevBtnRef.current, { duration: 0.2, x: -20 })
-      .to(prevBtnRef.current, { duration: 0, x: 20, y: 0 })
-      .to(prevBtnRef.current, { x: 0 });
-    tl2
-      .to(prevBtnVerticalRef.current, { duration: 0.2, y: -20 })
-      .to(prevBtnVerticalRef.current, { duration: 0, y: 20, x: 0 })
-      .to(prevBtnVerticalRef.current, { y: 0 });
+    animate(prevBtnRef.current, { x: -20 }, { duration: 0.2 });
+    animate(prevBtnRef.current, { x: 20, y: 0 }, { duration: 0 });
+    animate(prevBtnRef.current, { x: 0 });
+
+    animate(prevBtnVerticalRef.current, { y: -20 }, { duration: 0.2 });
+    animate(prevBtnVerticalRef.current, { y: 20, x: 0 }, { duration: 0 });
+    animate(prevBtnVerticalRef.current, { y: 0 });
     cursorIsHover(true);
   };
 
-  const nextBtnMouseOver = () => {
-    tl.to(nextBtnRef.current, { duration: 0.2, x: 20 })
-      .to(nextBtnRef.current, { duration: 0, x: -20, y: 0 })
-      .to(nextBtnRef.current, { x: 0 });
-    tl2
-      .to(nextBtnVerticalRef.current, { duration: 0.2, y: 20 })
-      .to(nextBtnVerticalRef.current, { duration: 0, y: -20, x: 0 })
-      .to(nextBtnVerticalRef.current, { y: 0 });
+  const nextBtnMouseOver = async () => {
+    await animate(nextBtnRef.current, { x: 20 }, { duration: 0.2 });
+    await animate(nextBtnRef.current, { x: -20, y: 0 }, { duration: 0 });
+    await animate(nextBtnRef.current, { x: 0 });
+
+    await animate(nextBtnVerticalRef.current, { y: 20 }, { duration: 0.2 });
+    await animate(nextBtnVerticalRef.current, { y: -20, x: 0 }, { duration: 0 });
+    await animate(nextBtnVerticalRef.current, { y: 0 });
     cursorIsHover(true);
   };
 
-  const prevBtnClick = (vertical = null) => {
+  const prevBtnClick = async (vertical = null) => {
     imageNumberSpanTags.forEach((el, index) => {
       textAnimationForward(el, index + 1);
     });
@@ -260,17 +244,16 @@ function Carousel({
         );
     }, 200);
 
-    if (vertical)
-      tl3
-        .to(prevBtnVerticalRef.current, { duration: 0.2, y: -3 })
-        .to(prevBtnVerticalRef.current, { y: 0 });
-    else
-      tl3
-        .to(prevBtnRef.current, { duration: 0.2, x: -3 })
-        .to(prevBtnRef.current, { x: 0 });
+    if (vertical) {
+      await animate(prevBtnVerticalRef.current, { y: -3 }, { duration: 0.2 });
+      await animate(prevBtnVerticalRef.current, { y: 0 });
+    } else {
+      await animate(prevBtnRef.current, { x: -3 }, { duration: 0.2 });
+      await animate(prevBtnRef.current, { x: 0 });
+    }
   };
 
-  const nextBtnClick = (vertical = null) => {
+  const nextBtnClick = async (vertical = null) => {
     imageNumberSpanTags.forEach((el, index) => {
       textAnimationBackward(el, index + 1);
     });
@@ -291,14 +274,13 @@ function Carousel({
           "right",
         );
     }, 200);
-    if (vertical)
-      tl3
-        .to(nextBtnVerticalRef.current, { duration: 0.2, y: 3 })
-        .to(nextBtnVerticalRef.current, { y: 0 });
-    else
-      tl3
-        .to(nextBtnRef.current, { duration: 0.2, x: 3 })
-        .to(nextBtnRef.current, { x: 0 });
+    if (vertical) {
+      await animate(nextBtnVerticalRef.current, { y: 3 }, { duration: 0.2 });
+      await animate(nextBtnVerticalRef.current, { y: 0 });
+    } else {
+      await animate(nextBtnRef.current, { x: 3 }, { duration: 0.2 });
+      await animate(nextBtnRef.current, { x: 0 });
+    }
   };
 
   const thumbnailClickHandle = (imageIndex: number, vertical = null) => {
@@ -321,46 +303,51 @@ function Carousel({
     }
   };
 
-  const goToImageIndex = (index, direction = null) => {
-    const imageToGo = document.querySelector("#image-" + codeName + index);
+  const goToImageIndex = async (index: number, direction: string | null = null) => {
     setNewZIndexLevel(newZIndexLevel + 1);
-    if (index != currentIndex) {
+
+    if (index !== currentIndex) {
       setCurrentIndex(index);
-      if (
+
+      const isRight =
         direction === "right" ||
         (direction == null &&
-          (index > currentIndex ||
-            (currentIndex === images.length - 1 && index === 0)))
-      ) {
-        tl.to(imageToGo, {
-          duration: 0,
+          (index > currentIndex || (currentIndex === images.length - 1 && index === 0)));
+
+      if (isRight) {
+        await animate(`#image-${codeName}${index}`, {
           x: "100%",
           zIndex: newZIndexLevel,
           opacity: 1,
-        }).to(imageToGo, {
-          duration: 1,
+
+        }, { duration: 0, });
+        await animate(`#image-${codeName}${index}`, {
           x: "0%",
           opacity: 1,
-          ease: "expo.out",
+        }, {
+          ease: "easeOut",
+          duration: 1,
         });
       } else {
-        tl.to(imageToGo, {
-          duration: 0,
+        await animate(`#image-${codeName}${index}`, {
           x: "-100%",
           zIndex: newZIndexLevel,
           opacity: 1,
-        }).to(imageToGo, {
-          duration: 1,
+        }, {
+          duration: 0,
+        });
+        await animate(`#image-${codeName}${index}`, {
           x: "0%",
           opacity: 1,
-          ease: "expo.out",
+        }, {
+          ease: "easeOut",
+          duration: 1,
         });
       }
     }
   };
 
-  const goToImageIndexVertical = (index, direction = null) => {
-    const imageToGo = document.querySelector("#image-" + codeName + index);
+  const goToImageIndexVertical = async (index, direction = null) => {
     setNewZIndexLevel(newZIndexLevel + 1);
     if (index != currentIndex) {
       setCurrentIndex(index);
@@ -370,28 +357,38 @@ function Carousel({
           (index > currentIndex ||
             (currentIndex === images.length - 1 && index === 0)))
       ) {
-        tl.to(imageToGo, {
-          duration: 0,
+        await animate(`#image-${codeName + index}`, {
           y: "100%",
           zIndex: newZIndexLevel,
           opacity: 1,
-        }).to(imageToGo, {
-          duration: 1,
+        }, {
+
+          duration: 0,
+        });
+        await animate(`#image-${codeName + index}`, {
           y: "0%",
           opacity: 1,
-          ease: "expo.out",
+        }, {
+
+          ease: "easeOut",
+          duration: 1,
         });
       } else {
-        tl.to(imageToGo, {
-          duration: 0,
+        await animate(`#image-${codeName + index}`, {
           y: "-100%",
           zIndex: newZIndexLevel,
           opacity: 1,
-        }).to(imageToGo, {
-          duration: 1,
+        }, {
+
+          duration: 0,
+        });
+        await animate(`#image-${codeName + index}`, {
           y: "0%",
           opacity: 1,
-          ease: "expo.out",
+        }, {
+
+          ease: "easeOut",
+          duration: 1,
         });
       }
     }
@@ -410,7 +407,8 @@ function Carousel({
         </div>
 
         <div
-          className={styles.expandCarouselWrapper + " expandCarouselWrapper"}
+          id="expandCarouselWrapper"
+          className={styles.expandCarouselWrapper}
           onMouseOver={() => expandBtnMouseOver()}
           onMouseLeave={() => expandBtnMouseLeave()}
           onClick={() => expandBtnClick()}
