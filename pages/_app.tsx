@@ -10,9 +10,7 @@ import { colorApplicator, generateColors } from "../utils/colorFunctions";
 export default function MyApp({ Component, pageProps, router }) {
   const [cursorText, setCursorText] = useState<string | null>(null);
   const [cursorHover, setCursorHover] = useState<boolean>(false);
-  const [preferredTheme, setPreferredTheme] = useState<themeMode>(
-    themeMode.dark,
-  );
+  const [preferredTheme, setPreferredTheme] = useState<themeMode>(themeMode.dark);
   const [lightColor, setLightColor] = useState<string>("");
   const [darkColor, setDarkColor] = useState<string>("");
   const [SSAnimFinished, setSSAnimFinished] = useState<boolean>(false);

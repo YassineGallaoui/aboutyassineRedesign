@@ -1,6 +1,6 @@
 @import "../../styles/scss/variables.scss";
 
-#SSContainer {
+.SSContainer {
   position: fixed;
   width: 100dvw;
   height: 150vh;
@@ -16,7 +16,7 @@
     transform: translateX(-25%);
   }
 
-  #SSWrapper {
+  .SSWrapper {
     position: fixed;
     width: 100dvw;
     height: 150vh;
@@ -73,7 +73,7 @@
 }
 
 html[data-theme="dark"] {
-  #SSContainer {
+  .SSContainer {
     .textCursor {
       background-color: $black;
     }

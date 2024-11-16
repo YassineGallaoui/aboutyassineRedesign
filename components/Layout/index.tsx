@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import useScreenInfo from "../../hooks/useScreenInfo";
-import { themeMode } from "../../pages/_app";
+import { themeMode } from "../../store/themeStore";
 import { breakpoints } from "../../utils/breakpoints";
 import CRTScreen from "../CRTScreen";
 import Cursor from "../Cursor";
@@ -45,7 +45,6 @@ const Layout = ({
       {!(screenInfo?.isTouchOnly) && screenInfo?.hasMouse && <Cursor hovered={cursorHover} txt={cursorText} />}
       <SplashScreen
         setSSAnimFinished={setSSAnimFinished}
-        deviceType={deviceType}
       />
       <Frame
         updateCursorText={updateCursorText}

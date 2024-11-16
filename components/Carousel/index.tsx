@@ -44,7 +44,6 @@ function Carousel({
   const nextBtnRef = useRef(null);
   const prevBtnVerticalRef = useRef(null);
   const nextBtnVerticalRef = useRef(null);
-  const expandBtnRef = useRef(null);
 
   useEffect(() => {
     let imagesNumber = document.querySelectorAll(".indexWrapperToAnimate");
@@ -73,15 +72,15 @@ function Carousel({
 
   const expandBtnMouseOver = () => {
     expandedCarousel
-      ? animate(expandBtnRef.current, { duration: 0.3, scale: 1 })
-      : animate(expandBtnRef.current, { duration: 0.3, scale: 1.2 });
+      ? animate("#arrExpand", { scale: 1 }, { duration: 0.3, })
+      : animate("#arrExpand", { scale: 1.2 }, { duration: 0.3, });
     cursorIsHover(true);
   };
 
   const expandBtnMouseLeave = () => {
     expandedCarousel
-      ? animate(expandBtnRef.current, { duration: 0.3, scale: 1.2 })
-      : animate(expandBtnRef.current, { duration: 0.3, scale: 1 });
+      ? animate("#arrExpand", { scale: 1.2 }, { duration: 0.3, })
+      : animate("#arrExpand", { scale: 1 }, { duration: 0.3, });
     cursorIsHover(false);
   };
 
@@ -93,7 +92,7 @@ function Carousel({
     await animate("#expandCarouselWrapper", {
       right: "3rem",
     }, { duration: 0.4, })
-    await animate(expandBtnRef.current, { duration: 0, scale: 1.2 })
+    await animate("#arrExpand", { scale: 1.2 }, { duration: 0, })
     await animate(
       ".upperControls",
       {
@@ -149,7 +148,7 @@ function Carousel({
 
       right: "0rem",
     }, { duration: 0.6, })
-    animate(expandBtnRef.current, { duration: 0, scale: 1 })
+    animate("#arrExpand", { scale: 1 }, { duration: 0, })
     animate(
       ".thumbnailControlsVertical",
       {
@@ -415,7 +414,6 @@ function Carousel({
         >
           <Image
             id="arrExpand"
-            ref={expandBtnRef}
             className={styles.arrExpand}
             src={arrExpand}
             alt={"expand"}

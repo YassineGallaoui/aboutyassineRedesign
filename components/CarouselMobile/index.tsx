@@ -44,7 +44,6 @@ function CarouselMobile({
   const nextBtnRef = useRef(null);
   const prevBtnVerticalRef = useRef(null);
   const nextBtnVerticalRef = useRef(null);
-  const expandBtnRef = useRef(null);
 
   useEffect(() => {
     let imagesNumber = document.querySelectorAll(".indexWrapperToAnimate");
@@ -66,9 +65,9 @@ function CarouselMobile({
   const expandBtnClick = () => {
     setExpandedCarousel(!expandedCarousel);
     if (expandedCarousel) {
-      animate(expandBtnRef.current, { duration: 0, scale: 1 });
+      animate("#arrExpand", { scale: 1 }, { duration: 0, });
     } else {
-      animate(expandBtnRef.current, { duration: 0, scale: 1.4 });
+      animate("#arrExpand", { scale: 1.4 }, { duration: 0, });
     }
   };
 
@@ -258,7 +257,6 @@ function CarouselMobile({
         >
           <Image
             id="arrExpand"
-            ref={expandBtnRef}
             className={styles.arrExpand}
             src={arrExpand}
             alt={"expand"}

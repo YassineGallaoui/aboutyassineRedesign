@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useEffect } from "react";
 import cvIcon from "../../public/icons/CV.svg";
 import linkedinIcon from "../../public/icons/linkedin.svg";
@@ -31,8 +30,6 @@ export default function Frame({
   darkColor,
   deviceType,
 }: FrameType) {
-  const router = useRouter();
-
   useEffect(() => {
     const body = document.querySelector("body");
     const liTagsRB = body.querySelectorAll(".contactsSocialDiv");
