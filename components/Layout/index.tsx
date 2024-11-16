@@ -10,7 +10,6 @@ import SplashScreen from "../SplashScreen";
 import StatsComponent from "../StatsComponent";
 
 type Props = {
-  updateCursorText: Function;
   updateCursorStatus: Function;
   cursorHover: boolean;
   cursorText: string | null;
@@ -23,7 +22,6 @@ type Props = {
 };
 
 const Layout = ({
-  updateCursorText,
   updateCursorStatus,
   cursorHover,
   cursorText,
@@ -47,12 +45,7 @@ const Layout = ({
         setSSAnimFinished={setSSAnimFinished}
       />
       <Frame
-        updateCursorText={updateCursorText}
         updateCursorStatus={updateCursorStatus}
-        preferredTheme={preferredTheme}
-        lightColor={lightColor}
-        darkColor={darkColor}
-        deviceType={deviceType}
       />
       {children}
     </main>

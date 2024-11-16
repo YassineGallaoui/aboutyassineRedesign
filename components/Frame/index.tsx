@@ -6,29 +6,17 @@ import linkedinIcon from "../../public/icons/linkedin.svg";
 import mailIcon from "../../public/icons/mail.svg";
 import xIcon from "../../public/icons/x.svg";
 import logoY from "../../public/logo/logo-Y.svg";
-import { themeMode } from "../../store/themeStore";
-import { breakpoints } from "../../utils/breakpoints";
 import { createSpanStructureV2 } from "../../utils/utility";
 import Nav from "../Nav";
 import ThemeSwitcher from "../ThemeSwitcher";
 import styles from "./Frame.module.scss";
 
 type FrameType = {
-  updateCursorText: Function;
   updateCursorStatus: Function;
-  preferredTheme: themeMode;
-  lightColor: string;
-  darkColor: string;
-  deviceType: breakpoints;
 };
 
 export default function Frame({
-  updateCursorText,
   updateCursorStatus,
-  preferredTheme,
-  lightColor,
-  darkColor,
-  deviceType,
 }: FrameType) {
   useEffect(() => {
     const body = document.querySelector("body");

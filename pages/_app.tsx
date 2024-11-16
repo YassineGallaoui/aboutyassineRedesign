@@ -84,7 +84,6 @@ export default function MyApp({ Component, pageProps, router }) {
         />
       </Head>
       <Layout
-        updateCursorText={setCursorText}
         updateCursorStatus={setCursorHover}
         cursorText={cursorText}
         cursorHover={cursorHover}
@@ -97,7 +96,6 @@ export default function MyApp({ Component, pageProps, router }) {
         <AnimatePresence mode="sync" initial={false}>
           <Component
             {...pageProps}
-            updateCursorText={setCursorText}
             cursorIsHover={setCursorHover}
             lightColor={lightColor}
             darkColor={darkColor}

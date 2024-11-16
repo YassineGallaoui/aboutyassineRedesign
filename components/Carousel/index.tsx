@@ -15,7 +15,6 @@ import styles from "./Carousel.module.scss";
 interface CarouselProps {
   content: Project;
   open: boolean;
-  updateCursorText: Function;
   cursorIsHover: Function;
   expandedCarousel: boolean;
   setExpandedCarousel: Function;
@@ -24,7 +23,6 @@ interface CarouselProps {
 function Carousel({
   content,
   open,
-  updateCursorText,
   cursorIsHover,
   expandedCarousel,
   setExpandedCarousel,

@@ -17,7 +17,6 @@ import { Project, projectsDataset } from "../utils/dataset";
 import { hideFrame, unhideFrame } from "../utils/utility";
 
 type NewProjectsProps = {
-  updateCursorText: Function;
   cursorIsHover: Function;
   lightColor: string;
   darkColor: string;
@@ -29,7 +28,6 @@ type NewProjectsProps = {
 export default function NewProjects({
   lightColor,
   darkColor,
-  updateCursorText,
   cursorIsHover,
   SSAnimFinished,
   deviceType,
@@ -222,7 +220,6 @@ export default function NewProjects({
             content={projectOpened}
             open={projectOpenedBoolean}
             updateOpen={setProjectOpenedBoolean}
-            updateCursorText={updateCursorText}
             cursorIsHover={cursorIsHover}
           />
         ) : (
@@ -230,7 +227,6 @@ export default function NewProjects({
             content={projectOpened}
             open={projectOpenedBoolean}
             updateOpen={setProjectOpenedBoolean}
-            updateCursorText={updateCursorText}
             cursorIsHover={cursorIsHover}
           />
         )}

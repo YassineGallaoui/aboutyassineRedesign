@@ -12,7 +12,6 @@ type ModalProps = {
   content: Project;
   open: boolean;
   updateOpen: Function;
-  updateCursorText: Function;
   cursorIsHover: Function;
 };
 
@@ -20,7 +19,6 @@ export default function ProjectModalVertical({
   content,
   open,
   updateOpen,
-  updateCursorText,
   cursorIsHover,
 }: ModalProps) {
   const [expandedCarousel, setExpandedCarousel] = useState<boolean>(false);
@@ -90,8 +88,6 @@ export default function ProjectModalVertical({
         <CarouselMobile
           content={content}
           open={open}
-          updateCursorText={updateCursorText}
-          cursorIsHover={cursorIsHover}
           expandedCarousel={expandedCarousel}
           setExpandedCarousel={setExpandedCarousel}
         ></CarouselMobile>
