@@ -6,6 +6,9 @@
   justify-content: flex-start;
   align-items: flex-start;
   width: 90dvw;
+  height: 90dvh;
+  top: 50%;
+  left: 50%;
   opacity: 0;
   overflow: hidden;
   z-index: 20;
@@ -20,9 +23,11 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    background-color: transparent;
     align-items: center;
     border-radius: 2rem;
-    transition: border $carousel-duration;
+    z-index: 2;
+    transition: border $close-modal-duration;
 
     &:before,
     &:after {
@@ -32,9 +37,9 @@
       height: 24px;
       background-color: $semitransparentDark1;
       transition:
-        width $carousel-duration,
-        height $carousel-duration,
-        background-color $carousel-duration;
+        width $close-modal-duration,
+        height $close-modal-duration,
+        background-color $close-modal-duration;
     }
 
     &:before {
@@ -46,7 +51,7 @@
     }
 
     &.light {
-      transition: border $carousel-duration;
+      transition: border $close-modal-duration;
       border: 1px solid $semitransparentDark1;
 
       &:before,
@@ -54,31 +59,33 @@
         width: 1px;
         height: 14px;
         transition:
-          width $carousel-duration,
-          height $carousel-duration;
+          width $close-modal-duration,
+          height $close-modal-duration;
       }
     }
   }
 
   .projectCarouselWrapper {
-    width: 50%;
-    height: 100%;
     position: relative;
+    display: flex;
+    height: 100%;
+    width: 100%;
     padding: 1rem;
-    flex: 1;
+    max-width: 50%;
     border-right: 3px dashed $semitransparentDark4;
   }
 
   .projectModalDescriptionWrapper {
-    position: relative;
+    position: absolute;
+    left: 50%;
+    display: flex;
     height: 100%;
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
     padding: 1rem;
     overflow-y: hidden;
-    box-sizing: border-box;
-    flex: 1;
+    z-index: -1;
 
     .projectDescriptionComponent {
       height: 100%;
@@ -122,6 +129,7 @@
       right: 1rem;
 
       img {
+        height: 30%;
         filter: invert(0);
         transition: $change-theme-duration filter;
       }
@@ -177,13 +185,13 @@ html[data-theme="dark"] {
     &:after {
       background-color: $semitransparentLight1;
       transition:
-        width $carousel-duration,
-        height $carousel-duration,
-        background-color $carousel-duration;
+        width $close-modal-duration,
+        height $close-modal-duration,
+        background-color $close-modal-duration;
     }
 
     &.light {
-      transition: border $carousel-duration;
+      transition: border $close-modal-duration;
       border: 1px solid $semitransparentLight1;
       filter: invert(0) !important;
 
@@ -192,8 +200,8 @@ html[data-theme="dark"] {
         width: 1px;
         height: 14px;
         transition:
-          width $carousel-duration,
-          height $carousel-duration;
+          width $close-modal-duration,
+          height $close-modal-duration;
       }
     }
   }

@@ -1,4 +1,4 @@
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { useEffect } from "react";
 import cvIcon from "../../public/icons/CV.svg";
@@ -49,11 +49,10 @@ export default function Frame({
         >
           <Link href="/" aria-label="Click here to go to the homepage">
             <div className={styles.frameContainer__left__logoWrapper__logo}>
-              <Image
-                src={logoY}
+              <img
+                src={logoY.src}
                 alt={`YAS`}
                 className={styles.letterY + " invertImg"}
-                fill
               />
             </div>
           </Link>
@@ -100,9 +99,8 @@ export default function Frame({
                 <div className={"contactsSocialDiv"}></div>
               </div>
             </a>
-            <Image
-              src={xIcon}
-              fill
+            <img
+              src={xIcon.src}
               alt="twitter X"
               className="invertImg"
             />
@@ -129,9 +127,8 @@ export default function Frame({
                 <div className={"contactsSocialDiv"}></div>
               </div>
             </a>
-            <Image
-              src={linkedinIcon}
-              fill
+            <img
+              src={linkedinIcon.src}
               alt="linkedin"
               className="invertImg"
             />
@@ -156,7 +153,7 @@ export default function Frame({
                 <div className={"contactsSocialDiv"}></div>
               </div>
             </a>
-            <Image src={mailIcon} fill alt="mail" className="invertImg" />
+            <img src={mailIcon.src} alt="mail" className="invertImg" />
           </div>
 
           {/* CV */}
@@ -180,9 +177,8 @@ export default function Frame({
                 <div className={"contactsSocialDiv"}></div>
               </div>
             </a>
-            <Image
-              src={cvIcon}
-              fill
+            <img
+              src={cvIcon.src}
               alt="my curriculum vitae"
               className="invertImg"
             />

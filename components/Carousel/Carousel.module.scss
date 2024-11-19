@@ -1,21 +1,25 @@
 @import "../../styles/scss/variables.scss";
 
-.component {
+.carouselComponent {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   height: 100%;
+  width: 100%;
   overflow: hidden;
   padding: 1rem;
+  gap: 1rem;
   border-radius: 1.5rem;
 
   .upperControls {
+    position: absolute;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-    width: 100%;
+    width: calc(100% - 4rem);
+    z-index: 2;
 
     .indexWrapper {
       position: relative;
@@ -32,7 +36,7 @@
       }
     }
 
-    #expandCarouselWrapper {
+    .expandCarouselWrapper {
       position: relative;
       width: 2rem;
       height: 2rem;
@@ -45,6 +49,10 @@
       align-items: center;
       z-index: 1;
       user-select: none;
+
+      img {
+        height: 40%;
+      }
     }
   }
 
@@ -55,8 +63,10 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 90%;
+    height: 100%;
+    max-height: calc(90% - 1rem);
     border-radius: 0.8rem;
+    z-index: 0;
 
     .imageStackContainer {
       position: relative;
@@ -64,12 +74,12 @@
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      width: 100%;
       height: 100%;
-      flex: 1 0 100%;
       overflow: hidden;
       border-radius: 0.8rem;
       user-select: none;
+      max-width: 100%;
+      width: 100%;
 
       .imageDiv {
         position: absolute;
@@ -78,6 +88,9 @@
         overflow: hidden;
         opacity: 0;
         border-radius: 0.8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         &:first-of-type {
           opacity: 1;
@@ -85,8 +98,9 @@
 
         img {
           position: relative;
-          object-fit: contain;
+          object-fit: cover;
           border-radius: 0.8rem;
+          width: 100%;
         }
       }
     }
@@ -96,10 +110,9 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      flex: 0;
       opacity: 0;
       height: calc(100% - 3rem);
-      width: 0;
+      width: 100%;
       align-self: flex-end;
       margin-left: 0rem;
       gap: 1rem;
@@ -135,6 +148,11 @@
         }
 
         .singleThumbnailVertical {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+          border-radius: 8px;
           position: relative;
           width: 100%;
           height: 100%;
@@ -164,6 +182,9 @@
 
           img {
             border-radius: 7px;
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
           }
         }
       }
@@ -213,14 +234,10 @@
             align-items: center;
             overflow: hidden;
             user-select: none;
-          }
 
-          .arrLeftVertical {
-            transform: rotate(-90deg);
-          }
-
-          .arrRightVertical {
-            transform: rotate(90deg);
+            img {
+              height: 40%
+            }
           }
         }
       }
@@ -229,7 +246,8 @@
 
   .thumbnailControls {
     width: 100%;
-    height: 10%;
+    height: 100%;
+    max-height: 10%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -273,6 +291,11 @@
         filter: grayscale(1);
         opacity: 0.3;
         transition: all 0.6s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        border-radius: 8px;
 
         &:hover {
           transform: translateZ(0);
@@ -296,6 +319,8 @@
         img {
           border-radius: 7px;
           object-fit: cover;
+          height: 100%;
+          width: 100%;
         }
       }
     }
@@ -322,6 +347,14 @@
         align-items: center;
         overflow: hidden;
         user-select: none;
+
+        img {
+          height: 40%;
+        }
+      }
+
+      .arrLeft {
+        transform: rotate(180deg);
       }
 
       .arrLeft {

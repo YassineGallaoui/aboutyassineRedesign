@@ -1,7 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 import { animate } from "motion";
 import { motion } from "motion/react";
 import Head from "next/head";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import ProjectModal from "../components/ProjectModal";
 import ProjectModalVertical from "../components/ProjectModalVertical";
@@ -103,11 +103,15 @@ export default function NewProjects({
       animate(`.modalMatteBkgrd`, {
         background: "rgba(0,0,0,0.8)",
         zIndex: zIndexMatteBKGOpen,
+      }, {
+        delay: 0.2
       });
     } else {
       animate(`.modalMatteBkgrd`, {
         background: "rgba(0,0,0,0)",
         zIndex: zIndexMatteBKGClosed,
+      }, {
+        delay: 0
       });
     }
 
@@ -172,13 +176,11 @@ export default function NewProjects({
           }
         >
           {projectsDataset.map((proj) => (
-            <Image
+            <img
               key={proj.id}
               id={`bigBackgroundImage-${proj.id}`}
               className={`bigBackgroundImage`}
-              priority={true}
-              src={proj.media[0]}
-              fill
+              src={proj.media[0].src}
               alt="project"
             />
           ))}
@@ -228,6 +230,7 @@ export default function NewProjects({
             open={projectOpenedBoolean}
             updateOpen={setProjectOpenedBoolean}
             cursorIsHover={cursorIsHover}
+            deviceType={deviceType}
           />
         )}
       </motion.div>

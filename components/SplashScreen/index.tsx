@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
 import { animate } from "motion";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import logoY from "../../public/logo/logo-Y.svg";
@@ -39,34 +39,34 @@ export default function SplashScreen({
     if (text5Completed) {
       setTimeout(async () => {
         await animate("#SSWrapper", {
-          top: "-200",
-          opacity: "0",
+          top: -200,
+          opacity: 0,
         }, {
           duration: 0.6,
         });
         await animate("#SSContainer", {
-          opacity: "0",
+          opacity: 0,
         }, {
           duration: 0.5,
           delay: 0.1,
         })
         await animate("#SSContainer", {
-          height: "0vh",
+          height: 0,
         }, {
           duration: 0
         })
         await animate("#SSWrapper", {
-          height: "0vh",
+          height: 0,
         }, {
           duration: 0,
         })
         await animate("#SSContainer", {
-          zIndex: "-1",
+          zIndex: -1,
         }, {
           duration: 0,
         })
         await animate("#SSWrapper", {
-          zIndex: "-1",
+          zIndex: -1,
         }, {
           duration: 0,
         })
@@ -77,12 +77,11 @@ export default function SplashScreen({
 
   return displaySS ? (
     <div id={"SSContainer"} className={styles.SSContainer}>
-      <Image
+      <img
         id={styles.logoImageSS}
-        src={logoY}
+        src={logoY.src}
         alt={`Yassine's Portfolio logo`}
-        fill
-      ></Image>
+      />
       <div id={"SSWrapper"} className={styles.SSWrapper}>
         <div className={styles.codeText}>
           <span>{baseStrings.s1}</span>

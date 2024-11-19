@@ -1,8 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 import { animate } from "motion";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import arrRight from "../../public/icons/arr.svg";
 import arrExpand from "../../public/icons/expand.svg";
+import arrRight from "../../public/icons/right-arrow.svg";
 import { Project } from "../../utils/dataset";
 import {
   textAnimationBackward,
@@ -217,7 +217,7 @@ function CarouselMobile({
         });
       } else {
         animate(`#image-${codeName + index}`, {
-          y: "-100%",
+          x: "-100%",
           zIndex: newZIndexLevel,
           opacity: 1,
         }, {
@@ -235,7 +235,7 @@ function CarouselMobile({
   };
 
   return (
-    <div className={styles.component + " carouselComponent"}>
+    <div className={styles.carouselComponent + " carouselComponent"}>
       <div className={styles.upperControls + " upperControls"}>
         <div className={styles.indexWrapper + " indexWrapper"}>
           <span>
@@ -251,12 +251,12 @@ function CarouselMobile({
           className={styles.expandCarouselWrapper}
           onClick={() => expandBtnClick()}
         >
-          <Image
+          <img
             id="arrExpand"
             className={styles.arrExpand}
-            src={arrExpand}
+            src={arrExpand.src}
             alt={"expand"}
-          ></Image>
+          ></img>
         </div>
       </div>
 
@@ -270,7 +270,7 @@ function CarouselMobile({
                 key={index}
                 style={{ zIndex: 5 - index }}
               >
-                <Image src={el} alt={altText} fill sizes="100dvw" />
+                <img src={el.src} alt={altText} sizes="100dvw" />
               </div>
             );
           })}
@@ -299,7 +299,7 @@ function CarouselMobile({
                 } as React.CSSProperties}
                 onClick={() => thumbnailClickHandle(index, true)}
               >
-                <Image src={el} alt={altText} fill sizes="20dvh"></Image>
+                <img src={el.src} alt={altText} sizes="20dvh"></img>
               </div>
             ))}
           </div>
@@ -322,25 +322,25 @@ function CarouselMobile({
                 className={styles.prevButtonVertical}
                 onClick={() => prevBtnClick(true)}
               >
-                <Image
+                <img
                   id="arrLeft"
                   ref={prevBtnVerticalRef}
-                  className={styles.arrLeftVertical}
-                  src={arrRight}
+                  className={styles.arrTop}
+                  src={arrRight.src}
                   alt={"previous"}
-                ></Image>
+                ></img>
               </div>
               <div
                 className={styles.nextButtonVertical}
                 onClick={() => nextBtnClick(true)}
               >
-                <Image
+                <img
                   id="arrRight"
                   ref={nextBtnVerticalRef}
-                  className={styles.arrRightVertical}
-                  src={arrRight}
+                  className={styles.arrBottom}
+                  src={arrRight.src}
                   alt={"previous"}
-                ></Image>
+                ></img>
               </div>
             </div>
           </div>
@@ -365,28 +365,26 @@ function CarouselMobile({
               }
               onClick={() => thumbnailClickHandle(index)}
             >
-              <Image src={el} alt={altText} fill sizes="20dvh"></Image>
+              <img src={el.src} alt={altText} sizes="20dvh"></img>
             </div>
           ))}
         </div>
         <div className={styles.controls}>
           <div className={styles.prevButton} onClick={() => prevBtnClick()}>
-            <Image
+            <img
               id="arrLeft"
-              ref={prevBtnRef}
               className={styles.arrLeft}
-              src={arrRight}
+              src={arrRight.src}
               alt={"previous"}
-            ></Image>
+            ></img>
           </div>
           <div className={styles.nextButton} onClick={() => nextBtnClick()}>
-            <Image
+            <img
               id="arrRight"
-              ref={nextBtnRef}
               className={styles.arrRight}
-              src={arrRight}
+              src={arrRight.src}
               alt={"previous"}
-            ></Image>
+            ></img>
           </div>
         </div>
       </div>

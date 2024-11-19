@@ -1,6 +1,6 @@
 @import "../../styles/scss/variables.scss";
 
-.component {
+.carouselComponent {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -8,6 +8,7 @@
   height: 100%;
   overflow: hidden;
   padding: 1rem;
+  gap: 1rem;
   border-radius: 1.5rem;
 
   .upperControls {
@@ -36,7 +37,7 @@
       }
     }
 
-    #expandCarouselWrapper {
+    .expandCarouselWrapper {
       position: relative;
       width: 2rem;
       height: 2rem;
@@ -58,8 +59,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    height: 90%;
+    width: calc(90% - 1rem);
     border-radius: 0.8rem;
 
     .imageStackContainer {
@@ -68,9 +68,7 @@
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      width: 100%;
       height: 100%;
-      flex: 1 0 100%;
       overflow: hidden;
       border-radius: 0.8rem;
       user-select: none;
@@ -82,6 +80,9 @@
         overflow: hidden;
         opacity: 0;
         border-radius: 0.8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         &:first-of-type {
           opacity: 1;
@@ -100,7 +101,6 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      flex: 0;
       opacity: 0;
       height: calc(100% - 3rem);
       width: 0;
@@ -154,6 +154,9 @@
 
           img {
             border-radius: 5px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
           }
         }
       }
@@ -203,14 +206,10 @@
             align-items: center;
             overflow: hidden;
             user-select: none;
-          }
 
-          .arrLeftVertical {
-            transform: rotate(-90deg);
-          }
-
-          .arrRightVertical {
-            transform: rotate(90deg);
+            img {
+              height: 40%;
+            }
           }
         }
       }
@@ -219,7 +218,6 @@
 
   .thumbnailControls {
     width: 100%;
-    height: 10%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -255,7 +253,6 @@
       }
 
       .singleThumbnail {
-        width: calc(20% - 3px);
         height: 100%;
         transform: translateZ(0);
         filter: grayscale(1);
@@ -283,6 +280,9 @@
 
         img {
           border-radius: 3px;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
       }
     }
@@ -309,10 +309,6 @@
         align-items: center;
         overflow: hidden;
         user-select: none;
-      }
-
-      .arrLeft {
-        transform: rotate(180deg);
       }
     }
   }

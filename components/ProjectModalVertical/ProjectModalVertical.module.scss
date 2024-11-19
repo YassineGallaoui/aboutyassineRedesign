@@ -6,6 +6,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   width: 90dvw;
+  top: 50%;
   opacity: 0;
   overflow: hidden;
   z-index: 20;
@@ -22,7 +23,8 @@
     justify-content: center;
     align-items: center;
     border-radius: 2rem;
-    transition: border $carousel-duration;
+    background-color: transparent;
+    transition: border $close-modal-duration;
 
     &:before,
     &:after {
@@ -32,9 +34,9 @@
       height: 24px;
       background-color: $semitransparentLight1;
       transition:
-        width $carousel-duration,
-        height $carousel-duration,
-        background-color $carousel-duration;
+        width $close-modal-duration,
+        height $close-modal-duration,
+        background-color $close-modal-duration;
     }
 
     &:before {
@@ -46,7 +48,7 @@
     }
 
     &.light {
-      transition: border $carousel-duration;
+      transition: border $close-modal-duration;
       border: 1px solid $semitransparentDark1;
 
       &:before,
@@ -54,18 +56,14 @@
         width: 1px;
         height: 14px;
         transition:
-          width $carousel-duration,
-          height $carousel-duration;
+          width $close-modal-duration,
+          height $close-modal-duration;
       }
     }
   }
 
   .projectCarouselWrapper {
     width: 100%;
-    height: 50%;
-    position: relative;
-    padding: 1rem;
-    flex: 1;
     border-bottom: 1px dashed $semitransparentDark4;
   }
 
@@ -78,7 +76,6 @@
     padding: 1rem;
     overflow-y: hidden;
     box-sizing: border-box;
-    flex: 1;
 
     .projectDescriptionComponent {
       height: 100%;
@@ -122,6 +119,7 @@
       right: 1rem;
 
       img {
+        height: 30%;
         filter: invert(0);
         transition: $change-theme-duration filter;
       }
@@ -177,13 +175,13 @@ html[data-theme="dark"] {
     &:after {
       background-color: $semitransparentLight1;
       transition:
-        width $carousel-duration,
-        height $carousel-duration,
-        background-color $carousel-duration;
+        width $close-modal-duration,
+        height $close-modal-duration,
+        background-color $close-modal-duration;
     }
 
     &.light {
-      transition: border $carousel-duration;
+      transition: border $close-modal-duration;
       border: 1px solid $semitransparentLight1;
       filter: invert(0) !important;
 
@@ -192,8 +190,8 @@ html[data-theme="dark"] {
         width: 1px;
         height: 14px;
         transition:
-          width $carousel-duration,
-          height $carousel-duration;
+          width $close-modal-duration,
+          height $close-modal-duration;
       }
     }
   }

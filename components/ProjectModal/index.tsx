@@ -1,6 +1,6 @@
-import { animate } from "motion";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+/* eslint-disable @next/next/no-img-element */
+import { animate, easeInOut, easeOut } from "motion";
+import { useEffect, useState } from "react";
 import linkArrow from "../../public/icons/linkArrow.svg";
 import { breakpoints, getDeviceType } from "../../utils/breakpoints";
 import { Project } from "../../utils/dataset";
@@ -22,7 +22,6 @@ export default function ProjectModal({
 }: ModalProps) {
   const [expandedCarousel, setExpandedCarousel] = useState<boolean>(false);
   const [deviceType, setDeviceType] = useState(breakpoints.desktop);
-  const arrowLinkRef = useRef(null);
 
   useEffect(() => {
     const changeDeviceType = () => {
@@ -39,24 +38,26 @@ export default function ProjectModal({
     if (open) {
       animate(`.projectModalContainer`, {
         position: "fixed",
-        height: "90vh",
         borderRadius: "2.5rem",
-        left: "50%",
-        top: "50%",
         x: "-50%",
         y: "-50%",
+        scaleY: 1,
         opacity: 1,
+      }, {
+        duration: 0.6,
+        ease: easeInOut,
       });
     } else {
       animate(`.projectModalContainer`, {
         position: "fixed",
-        height: "0vh",
         borderRadius: "0rem",
-        left: "50%",
-        top: "-50%",
         x: "-50%",
-        y: "0%",
+        y: "-200%",
+        scaleY: 0,
         opacity: 0,
+      }, {
+        duration: 0.6,
+        ease: easeOut,
       });
     }
   }, [open]);
@@ -70,68 +71,60 @@ export default function ProjectModal({
 
   const hoverCloseBtn = () => {
     cursorIsHover(true);
-    animate(`.closeModalBtn`, { transform: "rotate(-90deg)" });
+    animate(`#closeModalBtn`, { transform: "rotate(-90deg)" });
   };
 
   const notHoverCloseBtn = () => {
     cursorIsHover(false);
-    animate(`.closeModalBtn`, { transform: "rotate(0deg)" });
+    animate(`#closeModalBtn`, { transform: "rotate(0deg)" });
   };
 
   const arrowLinkMouseOver = async () => {
-    await animate([arrowLinkRef.current, { duration: 0.2, x: 20, y: -20 }],)
-    await animate([arrowLinkRef.current, { duration: 0, x: -20, y: 20 }])
-    await animate([arrowLinkRef.current, { x: 0, y: 0 }])
+    await animate('#arrLink', {
+      x: 25,
+      y: -25
+    }, {
+      duration: 0.2,
+    })
+    await animate('#arrLink', {
+      x: -25,
+      y: 25
+    }, {
+      duration: 0,
+    })
+    await animate('#arrLink', {
+      x: 0,
+      y: 0
+    }, {
+      duration: 0.2,
+    })
     cursorIsHover(true);
   };
 
   useEffect(() => {
-    const projectCarouselWrapper = document.querySelector(
-      ".projectCarouselWrapper",
-    );
-    const descriptionWrapper = document.querySelector(
-      ".projectModalDescriptionWrapper",
-    );
-    const closeModalBtn = document.querySelector(".closeModalBtn");
-
     if (expandedCarousel) {
-      animate(descriptionWrapper, {
-        opacity: 0,
-        x: 100,
-        flex: 0,
-        padding: 0,
-      }, {
-        duration: 0.6
-      });
-      animate(projectCarouselWrapper, {
+      animate("#projectCarouselWrapper", {
         borderRightWidth: 0,
+        maxWidth: "100%",
       }, {
-        duration: 0.3
+        duration: 0.4
       });
-      animate(closeModalBtn, {
+      animate("#closeModalBtn", {
         filter: "invert(1)",
       }, {
-        duration: 0.3,
-        delay: 0.3
+        duration: 0.2,
       });
     } else {
-      animate(descriptionWrapper, {
-        opacity: 1,
-        x: 0,
-        flex: 1,
-        padding: "1rem",
-      }, {
-        duration: 0.6,
-      });
-      animate(projectCarouselWrapper, {
+      animate("#projectCarouselWrapper", {
         borderWidth: "1px",
+        maxWidth: "50%",
       }, {
-        duration: 0.3,
+        duration: 0.4,
       });
-      animate(closeModalBtn, {
+      animate("#closeModalBtn", {
         filter: "invert(0)",
       }, {
-        duration: 0.3,
+        duration: 0.2,
       });
     }
   }, [expandedCarousel]);
@@ -151,6 +144,7 @@ export default function ProjectModal({
         ></Carousel>
       </div>
       <div
+        id={"projectModalDescriptionWrapper"}
         className={
           styles.projectModalDescriptionWrapper +
           " projectModalDescriptionWrapper"
@@ -220,19 +214,19 @@ export default function ProjectModal({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Image
-                id="arrRight"
-                ref={arrowLinkRef}
+              <img
+                id="arrLink"
                 className={styles.linkArrow}
-                src={linkArrow}
+                src={linkArrow.src}
                 alt={""}
                 role="presentation"
-              ></Image>
+              ></img>
             </a>
           )}
         </div>
       </div>
       <div
+        id={"closeModalBtn"}
         className={
           styles.closeModalBtn +
           (expandedCarousel ? " " + styles.light : "") +

@@ -1,8 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 import { animate } from "motion";
-import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
-import arrRight from "../../public/icons/arr.svg";
+import React, { useEffect, useState } from "react";
+import arrBottom from "../../public/icons/arrow-bottom.svg";
+import arrTop from "../../public/icons/arrow-top.svg";
 import arrExpand from "../../public/icons/expand.svg";
+import arrLeft from "../../public/icons/left-arrow.svg";
+import arrRight from "../../public/icons/right-arrow.svg";
 import { Project } from "../../utils/dataset";
 import {
   textAnimationBackward,
@@ -37,11 +40,6 @@ function Carousel({
     useState<NodeListOf<Element>>();
 
   const [newZIndexLevel, setNewZIndexLevel] = useState(5);
-
-  const prevBtnRef = useRef(null);
-  const nextBtnRef = useRef(null);
-  const prevBtnVerticalRef = useRef(null);
-  const nextBtnVerticalRef = useRef(null);
 
   useEffect(() => {
     let imagesNumber = document.querySelectorAll(".indexWrapperToAnimate");
@@ -87,27 +85,26 @@ function Carousel({
   };
 
   const expandCarousel = async () => {
-    await animate("#expandCarouselWrapper", {
-      right: "3rem",
-    }, { duration: 0.4, })
-    await animate("#arrExpand", { scale: 1.2 }, { duration: 0, })
-    await animate(
-      ".upperControls",
-      {
-        height: "0rem",
-      },
-      { duration: 0.4, }
-    )
-    await animate(
+    animate("#expandCarouselWrapper", {
+      x: "-3rem"
+    }, {
+      duration: 0.4
+    })
+    animate("#arrExpand", {
+      scale: 1.2
+    }, {
+      duration: 0
+    })
+    animate(
       ".thumbnailControls",
       {
-        y: 100,
+        y: "110%",
         opacity: 0,
-        height: 0,
+        maxHeight: 0,
       },
       { duration: 0.4, }
     )
-    await animate(
+    animate(
       ".indexWrapper",
       {
         x: -40,
@@ -115,66 +112,58 @@ function Carousel({
       },
       { duration: 0.4, }
     )
-    await animate(
+    animate(
       ".imageContainer",
       {
-        height: "100%",
         gap: "1rem",
+        maxHeight: "100%",
       },
       { duration: 0.4, }
     )
-    await animate(
+    animate(
       ".imageStackContainer",
       {
-        flex: "1 0 calc(90% - 1rem)",
+        maxWidth: "90%",
       },
-      { duration: 0.6, }
+      { duration: 0.4, }
     )
-    await animate(
+    animate(
       ".thumbnailControlsVertical",
       {
-        opacity: 1,
         x: 0,
-        flex: "1 0 10%",
+        opacity: 1,
+        maxWidth: "10%",
       },
-      { duration: 0.6, }
+      { duration: 0.4, }
     );
   };
 
   const compressCarousel = async () => {
-    await animate("#expandCarouselWrapper", {
-
-      right: "0rem",
-    }, { duration: 0.6, })
+    animate("#expandCarouselWrapper", {
+      x: "0rem",
+    }, { duration: 0.4, })
     animate("#arrExpand", { scale: 1 }, { duration: 0, })
     animate(
       ".thumbnailControlsVertical",
       {
-        x: 100,
+        x: "105%",
         opacity: 0,
-        flex: "0 0 0",
+        maxWidth: "0%",
       },
-      { duration: 0.6, }
+      { duration: 0.4, }
     )
     animate(
-      ".upperControls",
+      ".imageContainer",
       {
-        height: "2rem",
+        gap: "0rem",
+        maxHeight: "calc(90% - 1rem)",
       },
       { duration: 0.4, }
     )
     animate(
       ".imageStackContainer",
       {
-        flex: "1 0 100%",
-      },
-      { duration: 0.6, }
-    )
-    animate(
-      ".imageContainer",
-      {
-        height: "90%",
-        gap: "0rem",
+        maxWidth: "100%",
       },
       { duration: 0.4, }
     )
@@ -189,34 +178,34 @@ function Carousel({
     animate(
       ".thumbnailControls",
       {
-        y: 0,
+        y: "0%",
         opacity: 1,
-        height: "10%",
+        maxHeight: "10%",
       },
       { duration: 0.4, }
     );
   };
 
-  const prevBtnMouseOver = () => {
-    animate(prevBtnRef.current, { x: -20 }, { duration: 0.2 });
-    animate(prevBtnRef.current, { x: 20, y: 0 }, { duration: 0 });
-    animate(prevBtnRef.current, { x: 0 });
-
-    animate(prevBtnVerticalRef.current, { y: -20 }, { duration: 0.2 });
-    animate(prevBtnVerticalRef.current, { y: 20, x: 0 }, { duration: 0 });
-    animate(prevBtnVerticalRef.current, { y: 0 });
+  const prevBtnMouseOver = async () => {
     cursorIsHover(true);
+    await animate("#arrLeft", { x: -40 }, { duration: 0.2 });
+    await animate("#arrLeft", { x: 40 }, { duration: 0 });
+    await animate("#arrLeft", { x: 0 }, { duration: 0.2 });
+
+    await animate("#arrTop", { y: -40 }, { duration: 0.2 });
+    await animate("#arrTop", { y: 40 }, { duration: 0 });
+    await animate("#arrTop", { y: 0 }, { duration: 0.2 });
   };
 
   const nextBtnMouseOver = async () => {
-    await animate(nextBtnRef.current, { x: 20 }, { duration: 0.2 });
-    await animate(nextBtnRef.current, { x: -20, y: 0 }, { duration: 0 });
-    await animate(nextBtnRef.current, { x: 0 });
-
-    await animate(nextBtnVerticalRef.current, { y: 20 }, { duration: 0.2 });
-    await animate(nextBtnVerticalRef.current, { y: -20, x: 0 }, { duration: 0 });
-    await animate(nextBtnVerticalRef.current, { y: 0 });
     cursorIsHover(true);
+    await animate("#arrRight", { x: 40 }, { duration: 0.2 });
+    await animate("#arrRight", { x: -40 }, { duration: 0 });
+    await animate("#arrRight", { x: 0 }, { duration: 0.2 });
+
+    await animate("#arrBottom", { y: 40 }, { duration: 0.2 });
+    await animate("#arrBottom", { y: -40 }, { duration: 0 });
+    await animate("#arrBottom", { y: 0 }, { duration: 0.2 });
   };
 
   const prevBtnClick = async (vertical = null) => {
@@ -242,11 +231,11 @@ function Carousel({
     }, 200);
 
     if (vertical) {
-      await animate(prevBtnVerticalRef.current, { y: -3 }, { duration: 0.2 });
-      await animate(prevBtnVerticalRef.current, { y: 0 });
+      animate("#arrTop", { y: -3 }, { duration: 0.2 });
+      animate("#arrTop", { y: 0 });
     } else {
-      await animate(prevBtnRef.current, { x: -3 }, { duration: 0.2 });
-      await animate(prevBtnRef.current, { x: 0 });
+      animate("#arrLeft", { x: -3 }, { duration: 0.2 });
+      animate("#arrLeft", { x: 0 });
     }
   };
 
@@ -272,11 +261,11 @@ function Carousel({
         );
     }, 200);
     if (vertical) {
-      await animate(nextBtnVerticalRef.current, { y: 3 }, { duration: 0.2 });
-      await animate(nextBtnVerticalRef.current, { y: 0 });
+      animate("#arrBottom", { y: 3 }, { duration: 0.2 });
+      animate("#arrBottom", { y: 0 }, { duration: 0.2 });
     } else {
-      await animate(nextBtnRef.current, { x: 3 }, { duration: 0.2 });
-      await animate(nextBtnRef.current, { x: 0 });
+      await animate("#arrRight", { x: 3 }, { duration: 0.2 });
+      await animate("#arrRight", { x: 0 }, { duration: 0.2 });
     }
   };
 
@@ -372,7 +361,7 @@ function Carousel({
         });
       } else {
         await animate(`#image-${codeName + index}`, {
-          y: "-100%",
+          x: "-100%",
           zIndex: newZIndexLevel,
           opacity: 1,
         }, {
@@ -392,7 +381,7 @@ function Carousel({
   };
 
   return (
-    <div className={styles.component + " carouselComponent"}>
+    <div className={styles.carouselComponent + " carouselComponent"}>
       <div className={styles.upperControls + " upperControls"}>
         <div className={styles.indexWrapper + " indexWrapper"}>
           <span>
@@ -410,12 +399,12 @@ function Carousel({
           onMouseLeave={() => expandBtnMouseLeave()}
           onClick={() => expandBtnClick()}
         >
-          <Image
+          <img
             id="arrExpand"
             className={styles.arrExpand}
-            src={arrExpand}
+            src={arrExpand.src}
             alt={"expand"}
-          ></Image>
+          ></img>
         </div>
       </div>
 
@@ -429,7 +418,7 @@ function Carousel({
                 key={index}
                 style={{ zIndex: 5 - index }}
               >
-                <Image src={el} alt={altText} fill sizes="50dvw" />
+                <img src={el.src} alt={altText} />
               </div>
             );
           })}
@@ -459,7 +448,7 @@ function Carousel({
                 style={{ "--h": `${100 / images.length}%` } as React.CSSProperties}
                 onClick={() => thumbnailClickHandle(index, true)}
               >
-                <Image src={el} alt={altText} fill sizes="20dvh"></Image>
+                <img src={el.src} alt={altText} />
               </div>
             ))}
           </div>
@@ -484,13 +473,12 @@ function Carousel({
                 onMouseLeave={() => cursorIsHover(false)}
                 onClick={() => prevBtnClick(true)}
               >
-                <Image
-                  id="arrLeft"
-                  ref={prevBtnVerticalRef}
-                  className={styles.arrLeftVertical}
-                  src={arrRight}
+                <img
+                  id="arrTop"
+                  className={styles.arrTop}
+                  src={arrTop.src}
                   alt={"previous"}
-                ></Image>
+                ></img>
               </div>
               <div
                 className={styles.nextButtonVertical}
@@ -498,13 +486,12 @@ function Carousel({
                 onMouseLeave={() => cursorIsHover(false)}
                 onClick={() => nextBtnClick(true)}
               >
-                <Image
-                  id="arrRight"
-                  ref={nextBtnVerticalRef}
-                  className={styles.arrRightVertical}
-                  src={arrRight}
+                <img
+                  id="arrBottom"
+                  className={styles.arrBottom}
+                  src={arrBottom.src}
                   alt={"previous"}
-                ></Image>
+                ></img>
               </div>
             </div>
           </div>
@@ -512,6 +499,7 @@ function Carousel({
 
       </div>
 
+      {/* horizontal controls */}
       <div className={styles.thumbnailControls + " thumbnailControls"}>
         <div className={styles.thumbnails}>
           <div className={styles.thumbnailBorder}
@@ -531,12 +519,10 @@ function Carousel({
               onMouseLeave={() => cursorIsHover(false)}
               onClick={() => thumbnailClickHandle(index)}
             >
-              <Image
-                src={el}
+              <img
+                src={el.src}
                 alt={altText}
-                fill={true}
-                sizes="20dvh"
-              ></Image>
+              />
             </div>
           ))}
         </div>
@@ -547,13 +533,12 @@ function Carousel({
             onMouseLeave={() => cursorIsHover(false)}
             onClick={() => prevBtnClick()}
           >
-            <Image
+            <img
               id="arrLeft"
-              ref={prevBtnRef}
               className={styles.arrLeft}
-              src={arrRight}
+              src={arrLeft.src}
               alt={"previous"}
-            ></Image>
+            ></img>
           </div>
           <div
             className={styles.nextButton}
@@ -561,13 +546,12 @@ function Carousel({
             onMouseLeave={() => cursorIsHover(false)}
             onClick={() => nextBtnClick()}
           >
-            <Image
+            <img
               id="arrRight"
-              ref={nextBtnRef}
               className={styles.arrRight}
-              src={arrRight}
+              src={arrRight.src}
               alt={"previous"}
-            ></Image>
+            ></img>
           </div>
         </div>
       </div>

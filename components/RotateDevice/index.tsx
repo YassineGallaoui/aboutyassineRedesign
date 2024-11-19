@@ -55,7 +55,6 @@ export const RotateDevice = ({ showComponent, animationFinished }) => {
   return (
     <div className={styles.rotateDeviceContainer + " rotateDeviceContainer"}>
       <div className={styles.imageContainer}>
-        {/* <Image src={rotateImage} alt={"Please rotate the device"} fill /> */}
         <RotateDeviceIcon></RotateDeviceIcon>
       </div>
     </div>

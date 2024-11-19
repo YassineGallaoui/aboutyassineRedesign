@@ -24,22 +24,28 @@ export default function Nav<NavProps>({ updateCursorStatus }) {
         }, 800);
     }, [pathname]);
 
-    const singleNavItemAnimation = () => {
-        animate('#singleNavItem', {
-            x: "15rem",
+    const singleNavItemAnimation = async () => {
+        await animate('#singleNavItem', {
+            x: "3rem",
         }, {
             duration: 0.8,
         });
+        await animate('#singleNavItem', {
+            x: 0
+        }, {
+            duration: 0.8,
+            delay: 0.8,
+        });
     };
 
-    useEffect(() => {
+    /* useEffect(() => {
         animate('#singleNavItem', {
             x: 0
         }, {
             duration: 0.8,
             delay: 0.85,
         });
-    }, [pathname]);
+    }, [pathname]); */
 
     return (
         <div className={styles.nav + " sectionsNav"}>

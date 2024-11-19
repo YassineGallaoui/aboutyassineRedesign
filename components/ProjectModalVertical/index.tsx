@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
 import { animate } from "motion";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import linkArrow from "../../public/icons/linkArrow.svg";
 import { Project } from "../../utils/dataset";
@@ -162,14 +162,13 @@ export default function ProjectModalVertical({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Image
+              <img
                 id="arrRight"
-                ref={arrowLinkRef}
                 className={styles.linkArrow}
-                src={linkArrow}
+                src={linkArrow.src}
                 alt={""}
                 role="presentation"
-              ></Image>
+              />
             </a>
           )}
         </div>
