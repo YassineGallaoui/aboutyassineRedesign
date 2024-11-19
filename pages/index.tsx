@@ -230,7 +230,6 @@ export default function NewProjects({
             open={projectOpenedBoolean}
             updateOpen={setProjectOpenedBoolean}
             cursorIsHover={cursorIsHover}
-            deviceType={deviceType}
           />
         )}
       </motion.div>
