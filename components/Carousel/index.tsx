@@ -18,9 +18,10 @@ import styles from "./Carousel.module.scss";
 interface CarouselProps {
   content: Project;
   open: boolean;
-  cursorIsHover: Function;
+  cursorIsHover: Function | null;
   expandedCarousel: boolean;
   setExpandedCarousel: Function;
+  isMobile: boolean;
 }
 
 function Carousel({
@@ -29,6 +30,7 @@ function Carousel({
   cursorIsHover,
   expandedCarousel,
   setExpandedCarousel,
+  isMobile
 }: CarouselProps) {
   const codeName = content.codeName;
   const images = content.media;
@@ -64,20 +66,20 @@ function Carousel({
     } else {
       compressCarousel();
     }
-  }, [expandedCarousel])
+  }, [expandedCarousel, isMobile])
 
   const expandBtnMouseOver = () => {
     expandedCarousel
       ? animate("#arrExpand", { scale: 1 }, { duration: 0.3, })
       : animate("#arrExpand", { scale: 1.2 }, { duration: 0.3, });
-    cursorIsHover(true);
+    if (cursorIsHover != null) cursorIsHover(true);
   };
 
   const expandBtnMouseLeave = () => {
     expandedCarousel
       ? animate("#arrExpand", { scale: 1.2 }, { duration: 0.3, })
       : animate("#arrExpand", { scale: 1 }, { duration: 0.3, });
-    cursorIsHover(false);
+    if (cursorIsHover != null) cursorIsHover(false);
   };
 
   const expandBtnClick = () => {
@@ -85,109 +87,196 @@ function Carousel({
   };
 
   const expandCarousel = async () => {
-    animate("#expandCarouselWrapper", {
-      x: "-3rem"
-    }, {
-      duration: 0.4
-    })
-    animate("#arrExpand", {
-      scale: 1.2
-    }, {
-      duration: 0
-    })
-    animate(
-      ".thumbnailControls",
-      {
-        y: "110%",
-        opacity: 0,
-        maxHeight: 0,
-      },
-      { duration: 0.4, }
-    )
-    animate(
-      ".indexWrapper",
-      {
-        x: -40,
-        opacity: 0,
-      },
-      { duration: 0.4, }
-    )
-    animate(
-      ".imageContainer",
-      {
-        gap: "1rem",
-        maxHeight: "100%",
-      },
-      { duration: 0.4, }
-    )
-    animate(
-      ".imageStackContainer",
-      {
-        maxWidth: "90%",
-      },
-      { duration: 0.4, }
-    )
-    animate(
-      ".thumbnailControlsVertical",
-      {
-        x: 0,
-        opacity: 1,
-        maxWidth: "10%",
-      },
-      { duration: 0.4, }
-    );
+    if (isMobile) {
+      animate("#expandCarouselWrapper", {
+        x: "-3rem"
+      }, {
+        duration: 0.4
+      })
+      animate("#arrExpand", {
+        scale: 1.2
+      }, {
+        duration: 0
+      })
+      animate(
+        ".imageStackContainer",
+        {
+          maxWidth: "100%",
+        },
+        { duration: 0.4, }
+      )
+      animate(
+        ".thumbnailControlsVertical",
+        {
+          x: 110,
+          opacity: 0,
+          maxWidth: "0%",
+        },
+        { duration: 0.4, }
+      );
+    } else {
+      animate("#carouselComponent", {
+        gap: 0
+      }, {
+        duration: 0.4,
+      })
+      animate("#expandCarouselWrapper", {
+        x: "-3rem"
+      }, {
+        duration: 0.4
+      })
+      animate("#arrExpand", {
+        scale: 1.2
+      }, {
+        duration: 0
+      })
+      animate(
+        ".thumbnailControls",
+        {
+          y: "110%",
+          opacity: 0,
+          maxHeight: 0,
+        },
+        { duration: 0.4, }
+      )
+      animate(
+        ".indexWrapper",
+        {
+          x: -40,
+          opacity: 0,
+        },
+        { duration: 0.4, }
+      )
+      animate(
+        ".imageContainer",
+        {
+          gap: "1rem",
+          maxHeight: "100%",
+        },
+        { duration: 0.4, }
+      )
+      animate(
+        ".imageStackContainer",
+        {
+          maxWidth: "90%",
+        },
+        { duration: 0.4, }
+      )
+      animate(
+        ".thumbnailControlsVertical",
+        {
+          x: 0,
+          opacity: 1,
+          maxWidth: "10%",
+        },
+        { duration: 0.4, }
+      );
+    }
   };
 
   const compressCarousel = async () => {
-    animate("#expandCarouselWrapper", {
-      x: "0rem",
-    }, { duration: 0.4, })
-    animate("#arrExpand", { scale: 1 }, { duration: 0, })
-    animate(
-      ".thumbnailControlsVertical",
-      {
-        x: "105%",
-        opacity: 0,
-        maxWidth: "0%",
-      },
-      { duration: 0.4, }
-    )
-    animate(
-      ".imageContainer",
-      {
-        gap: "0rem",
-        maxHeight: "calc(90% - 1rem)",
-      },
-      { duration: 0.4, }
-    )
-    animate(
-      ".imageStackContainer",
-      {
-        maxWidth: "100%",
-      },
-      { duration: 0.4, }
-    )
-    animate(
-      ".indexWrapper",
-      {
-        x: 0,
-        opacity: 1,
-      },
-      { duration: 0.4, }
-    )
-    animate(
-      ".thumbnailControls",
-      {
-        y: "0%",
-        opacity: 1,
-        maxHeight: "10%",
-      },
-      { duration: 0.4, }
-    );
+    if (isMobile) {
+      animate("#expandCarouselWrapper", {
+        x: "-3rem",
+      }, { duration: 0.4, })
+      animate("#arrExpand", { scale: 1 }, { duration: 0, })
+      animate(
+        ".thumbnailControlsVertical",
+        {
+          x: "105%",
+          opacity: 0,
+          maxWidth: "0%",
+        },
+        { duration: 0.4, }
+      )
+      animate(
+        ".imageContainer",
+        {
+          gap: "0rem",
+          maxHeight: "calc(90% - 1rem)",
+        },
+        { duration: 0.4, }
+      )
+      animate(
+        ".imageStackContainer",
+        {
+          maxWidth: "100%",
+        },
+        { duration: 0.4, }
+      )
+      animate(
+        ".indexWrapper",
+        {
+          x: 0,
+          opacity: 1,
+        },
+        { duration: 0.4, }
+      )
+      animate(
+        ".thumbnailControls",
+        {
+          y: "0%",
+          opacity: 1,
+          maxHeight: "10%",
+        },
+        { duration: 0.4, }
+      );
+    } else {
+      animate("#carouselComponent", {
+        gap: "1rem"
+      }, {
+        duration: 0.4,
+      })
+      animate("#expandCarouselWrapper", {
+        x: "0rem",
+      }, { duration: 0.4, })
+      animate("#arrExpand", { scale: 1 }, { duration: 0, })
+      animate(
+        ".thumbnailControlsVertical",
+        {
+          x: "105%",
+          opacity: 0,
+          maxWidth: "0%",
+        },
+        { duration: 0.4, }
+      )
+      animate(
+        ".imageContainer",
+        {
+          gap: "0rem",
+          maxHeight: "calc(90% - 1rem)",
+        },
+        { duration: 0.4, }
+      )
+      animate(
+        ".imageStackContainer",
+        {
+          maxWidth: "100%",
+        },
+        { duration: 0.4, }
+      )
+      animate(
+        ".indexWrapper",
+        {
+          x: 0,
+          opacity: 1,
+        },
+        { duration: 0.4, }
+      )
+      animate(
+        ".thumbnailControls",
+        {
+          y: "0%",
+          opacity: 1,
+          maxHeight: "10%",
+        },
+        { duration: 0.4, }
+      );
+    }
   };
 
   const prevBtnMouseOver = async () => {
-    cursorIsHover(true);
+    if (cursorIsHover != null) cursorIsHover(true);
     await animate("#arrLeft", { x: -40 }, { duration: 0.2 });
     await animate("#arrLeft", { x: 40 }, { duration: 0 });
     await animate("#arrLeft", { x: 0 }, { duration: 0.2 });
@@ -198,7 +287,7 @@ function Carousel({
   };
 
   const nextBtnMouseOver = async () => {
-    cursorIsHover(true);
+    if (cursorIsHover != null) cursorIsHover(true);
     await animate("#arrRight", { x: 40 }, { duration: 0.2 });
     await animate("#arrRight", { x: -40 }, { duration: 0 });
     await animate("#arrRight", { x: 0 }, { duration: 0.2 });
@@ -381,7 +470,7 @@ function Carousel({
   };
 
   return (
-    <div className={styles.carouselComponent + " carouselComponent"}>
+    <div id="carouselComponent" className={styles.carouselComponent + " carouselComponent"}>
       <div className={styles.upperControls + " upperControls"}>
         <div className={styles.indexWrapper + " indexWrapper"}>
           <span>
@@ -470,7 +559,7 @@ function Carousel({
               <div
                 className={styles.prevButtonVertical}
                 onMouseOver={() => prevBtnMouseOver()}
-                onMouseLeave={() => cursorIsHover(false)}
+                onMouseLeave={() => { if (cursorIsHover != null) cursorIsHover(false) }}
                 onClick={() => prevBtnClick(true)}
               >
                 <img
@@ -483,7 +572,7 @@ function Carousel({
               <div
                 className={styles.nextButtonVertical}
                 onMouseOver={() => nextBtnMouseOver()}
-                onMouseLeave={() => cursorIsHover(false)}
+                onMouseLeave={() => { if (cursorIsHover != null) cursorIsHover(false) }}
                 onClick={() => nextBtnClick(true)}
               >
                 <img
@@ -504,8 +593,12 @@ function Carousel({
         <div className={styles.thumbnails}>
           <div className={styles.thumbnailBorder}
             style={{
-              "--w": `calc((100% - ${images.length - 1}rem) / ${images.length})`,
-              "--ty": `calc(${currentIndex * 100}% + (${currentIndex} * 1rem) - (${currentIndex} * 8px) - 4px)`,
+              "--w": isMobile ?
+                `calc((100% - ${images.length - 4.6}rem) / ${images.length})` :
+                `calc((100% - ${images.length - 1}rem) / ${images.length})`,
+              "--ty": isMobile ?
+                `calc(${currentIndex * 100}% + (${currentIndex} * 0.2rem) - (${currentIndex} * 4px) - 2px)` :
+                `calc(${currentIndex * 100}% + (${currentIndex} * 1rem) - (${currentIndex} * 8px) - 4px)`,
             } as React.CSSProperties}></div>
           {images.map((el, index) => (
             <div
@@ -515,8 +608,8 @@ function Carousel({
                 " " +
                 (index === currentIndex ? styles.currentImg : "")
               }
-              onMouseOver={() => cursorIsHover(true)}
-              onMouseLeave={() => cursorIsHover(false)}
+              onMouseOver={() => { if (cursorIsHover != null) cursorIsHover(true) }}
+              onMouseLeave={() => { if (cursorIsHover != null) cursorIsHover(false) }}
               onClick={() => thumbnailClickHandle(index)}
             >
               <img
@@ -530,7 +623,7 @@ function Carousel({
           <div
             className={styles.prevButton}
             onMouseOver={() => prevBtnMouseOver()}
-            onMouseLeave={() => cursorIsHover(false)}
+            onMouseLeave={() => { if (cursorIsHover != null) cursorIsHover(false) }}
             onClick={() => prevBtnClick()}
           >
             <img
@@ -543,7 +636,7 @@ function Carousel({
           <div
             className={styles.nextButton}
             onMouseOver={() => nextBtnMouseOver()}
-            onMouseLeave={() => cursorIsHover(false)}
+            onMouseLeave={() => { if (cursorIsHover != null) cursorIsHover(false) }}
             onClick={() => nextBtnClick()}
           >
             <img

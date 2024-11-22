@@ -100,7 +100,7 @@ export const calculateScrollPercentage = (pageContent) => {
 
 export const hideFrame = () => {
   animate(`#frameContainer`, {
-    scale: 1.2,
+    scale: 1.4,
   }, {
     duration: 0.5
   });

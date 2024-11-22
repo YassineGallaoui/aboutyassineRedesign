@@ -14,6 +14,10 @@
   z-index: 20;
   background-color: inherit;
 
+  &.isMobile {
+    flex-direction: column;
+  }
+
   .closeModalBtn {
     position: absolute;
     top: 2rem;
@@ -27,7 +31,7 @@
     align-items: center;
     border-radius: 2rem;
     z-index: 2;
-    transition: border $close-modal-duration;
+    transition: all $close-modal-duration;
 
     &:before,
     &:after {
@@ -36,10 +40,7 @@
       width: 3px;
       height: 24px;
       background-color: $semitransparentDark1;
-      transition:
-        width $close-modal-duration,
-        height $close-modal-duration,
-        background-color $close-modal-duration;
+      transition: all $close-modal-duration;
     }
 
     &:before {
@@ -50,18 +51,21 @@
       transform: rotate(-45deg);
     }
 
-    &.light {
-      transition: border $close-modal-duration;
-      border: 1px solid $semitransparentDark1;
+    &.expanded {
+      transition-delay: 0.2s;
+      border: 1px solid $semitransparentLight1;
 
       &:before,
       &:after {
+        transition-delay: 0.2s;
         width: 1px;
         height: 14px;
-        transition:
-          width $close-modal-duration,
-          height $close-modal-duration;
+        background-color: $semitransparentLight1;
       }
+    }
+
+    &.isMobile {
+      filter: invert(1) !important;
     }
   }
 
@@ -73,6 +77,12 @@
     padding: 1rem;
     max-width: 50%;
     border-right: 3px dashed $semitransparentDark4;
+
+    &.isMobile {
+      max-width: 100%;
+      border-right: none;
+      border-bottom: 1px dashed $semitransparentDark4;
+    }
   }
 
   .projectModalDescriptionWrapper {
@@ -87,6 +97,11 @@
     overflow-y: hidden;
     z-index: -1;
 
+    &.isMobile {
+      left: 0;
+      top: 50%;
+    }
+
     .projectDescriptionComponent {
       height: 100%;
       border-top-right-radius: 1.5rem;
@@ -99,6 +114,11 @@
       &::-webkit-scrollbar {
         display: none;
         width: 0;
+      }
+
+      .isMobile {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 1.5rem;
       }
     }
 
@@ -132,6 +152,13 @@
         height: 30%;
         filter: invert(0);
         transition: $change-theme-duration filter;
+      }
+
+      &.isMobile {
+        height: 3rem;
+        width: 3rem;
+        bottom: none;
+        top: 1rem;
       }
     }
 
@@ -180,18 +207,15 @@
 
 html[data-theme="dark"] {
   .closeModalBtn {
+    transition-delay: 0s;
 
     &:before,
     &:after {
+      transition-delay: 0s;
       background-color: $semitransparentLight1;
-      transition:
-        width $close-modal-duration,
-        height $close-modal-duration,
-        background-color $close-modal-duration;
     }
 
-    &.light {
-      transition: border $close-modal-duration;
+    &.expanded {
       border: 1px solid $semitransparentLight1;
       filter: invert(0) !important;
 
@@ -199,15 +223,21 @@ html[data-theme="dark"] {
       &:after {
         width: 1px;
         height: 14px;
-        transition:
-          width $close-modal-duration,
-          height $close-modal-duration;
       }
+    }
+
+    &.isMobile {
+      filter: invert(0) !important;
     }
   }
 
   .projectCarouselWrapper {
     border-right-color: $semitransparentLight4;
+
+    &.isMobile {
+      border-right: none;
+      border-bottom-color: $semitransparentLight4;
+    }
   }
 
   .projectModalLink {

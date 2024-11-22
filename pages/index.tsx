@@ -4,7 +4,6 @@ import { motion } from "motion/react";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import ProjectModal from "../components/ProjectModal";
-import ProjectModalVertical from "../components/ProjectModalVertical";
 import ProjectsCanvas from "../components/ProjectsCanvas";
 import ProjectsCanvasVertical from "../components/ProjectsCanvasVertical";
 import SlideinText from "../components/SlideinText";
@@ -216,7 +215,7 @@ export default function NewProjects({
             />
           }
         </div>
-        {deviceType === breakpoints.mobileSmall ||
+        {/* {deviceType === breakpoints.mobileSmall ||
           deviceType === breakpoints.mobile ? (
           <ProjectModalVertical
             content={projectOpened}
@@ -230,8 +229,16 @@ export default function NewProjects({
             open={projectOpenedBoolean}
             updateOpen={setProjectOpenedBoolean}
             cursorIsHover={cursorIsHover}
+            deviceType={deviceType}
           />
-        )}
+        )} */}
+        <ProjectModal
+          content={projectOpened}
+          open={projectOpenedBoolean}
+          updateOpen={setProjectOpenedBoolean}
+          cursorIsHover={cursorIsHover}
+          deviceType={deviceType}
+        />
       </motion.div>
     </>
   );

@@ -2,9 +2,10 @@
 import { animate, easeInOut, easeOut } from "motion";
 import { useEffect, useState } from "react";
 import linkArrow from "../../public/icons/linkArrow.svg";
-import { breakpoints, getDeviceType } from "../../utils/breakpoints";
+import { breakpoints } from "../../utils/breakpoints";
 import { Project } from "../../utils/dataset";
 import Carousel from "../Carousel";
+import { RotateDevice } from "../RotateDevice";
 import styles from "./ProjectModal.module.scss";
 
 type ModalProps = {
@@ -12,6 +13,7 @@ type ModalProps = {
   open: boolean;
   updateOpen: Function;
   cursorIsHover: Function;
+  deviceType: breakpoints;
 };
 
 export default function ProjectModal({
@@ -19,20 +21,14 @@ export default function ProjectModal({
   open,
   updateOpen,
   cursorIsHover,
+  deviceType,
 }: ModalProps) {
   const [expandedCarousel, setExpandedCarousel] = useState<boolean>(false);
-  const [deviceType, setDeviceType] = useState(breakpoints.desktop);
+  const [isMobile, setIsMobile] = useState<boolean>(deviceType === breakpoints.mobileSmall || deviceType === breakpoints.mobile);
 
   useEffect(() => {
-    const changeDeviceType = () => {
-      setDeviceType(getDeviceType())
-    }
-    window.addEventListener("resize", changeDeviceType);
-
-    return () => {
-      window.removeEventListener("resize", changeDeviceType)
-    }
-  }, []);
+    setIsMobile(deviceType === breakpoints.mobileSmall || deviceType === breakpoints.mobile);
+  }, [deviceType])
 
   useEffect(() => {
     if (open) {
@@ -102,55 +98,70 @@ export default function ProjectModal({
   };
 
   useEffect(() => {
-    if (expandedCarousel) {
-      animate("#projectCarouselWrapper", {
-        borderRightWidth: 0,
-        maxWidth: "100%",
-      }, {
-        duration: 0.4
-      });
-      animate("#closeModalBtn", {
-        filter: "invert(1)",
-      }, {
-        duration: 0.2,
-      });
+    if (isMobile) {
+      if (expandedCarousel) {
+        animate("#projectCarouselWrapper", {
+          borderRightWidth: 0,
+          borderBottomWidth: 0,
+          maxWidth: "100%",
+          maxHeight: "50%",
+        }, {
+          duration: 0.4
+        });
+      } else {
+        animate("#projectCarouselWrapper", {
+          borderRightWidth: 0,
+          borderBottomWidth: 1,
+          maxWidth: "100%",
+          maxHeight: "50%",
+        }, {
+          duration: 0.4,
+        });
+      }
     } else {
-      animate("#projectCarouselWrapper", {
-        borderWidth: "1px",
-        maxWidth: "50%",
-      }, {
-        duration: 0.4,
-      });
-      animate("#closeModalBtn", {
-        filter: "invert(0)",
-      }, {
-        duration: 0.2,
-      });
+      if (expandedCarousel) {
+        animate("#projectCarouselWrapper", {
+          borderRightWidth: 0,
+          maxWidth: "100%",
+          maxHeight: "100%",
+        }, {
+          duration: 0.4
+        });
+      } else {
+        animate("#projectCarouselWrapper", {
+          borderWidth: "1px",
+          maxWidth: "50%",
+          maxHeight: "100%",
+        }, {
+          duration: 0.4,
+        });
+      }
     }
-  }, [expandedCarousel]);
+  }, [expandedCarousel, isMobile]);
 
   return (
-    <div className={styles.projectModalContainer + " projectModalContainer"}>
+    <div className={styles.projectModalContainer + " " + (isMobile ? styles.isMobile : '') + " projectModalContainer"}>
       <div
         id="projectCarouselWrapper"
-        className={styles.projectCarouselWrapper + " projectCarouselWrapper"}
+        className={styles.projectCarouselWrapper + " " + (isMobile ? styles.isMobile : '') + " projectCarouselWrapper"}
       >
         <Carousel
           content={content}
           open={open}
-          cursorIsHover={cursorIsHover}
+          cursorIsHover={isMobile ? cursorIsHover : null}
           expandedCarousel={expandedCarousel}
           setExpandedCarousel={setExpandedCarousel}
+          isMobile={isMobile}
         ></Carousel>
       </div>
       <div
         id={"projectModalDescriptionWrapper"}
         className={
-          styles.projectModalDescriptionWrapper +
-          " projectModalDescriptionWrapper"
+          styles.projectModalDescriptionWrapper + " " + (isMobile ? styles.isMobile : '') +
+          " projectModalDescriptionWrapper " + (isMobile ? " projectModalVerticalDescriptionWrapper " : '')
         }
       >
-        <div className={styles.projectDescriptionComponent}>
+        <div className={styles.projectDescriptionComponent + " " + (isMobile ? styles.isMobile : '')}>
           <div className={styles.projectModalName}>{content.name}</div>
           <table>
             <tbody>
@@ -228,14 +239,19 @@ export default function ProjectModal({
       <div
         id={"closeModalBtn"}
         className={
-          styles.closeModalBtn +
-          (expandedCarousel ? " " + styles.light : "") +
-          " closeModalBtn"
+          `${styles.closeModalBtn} 
+          ${expandedCarousel ? styles.expanded : ""} 
+          ${isMobile ? styles.isMobile : ""} `
         }
         onMouseOver={() => hoverCloseBtn()}
         onMouseLeave={() => notHoverCloseBtn()}
         onClick={() => closeModal()}
       />
+      {isMobile &&
+        <RotateDevice
+          showComponent={expandedCarousel}
+          animationFinished={setExpandedCarousel}
+        ></RotateDevice>}
     </div>
   );
 }
