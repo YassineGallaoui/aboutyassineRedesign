@@ -24,7 +24,7 @@ type NewProjectsProps = {
   lastEditDate: string
 };
 
-export default function NewProjects({
+export default function Projects({
   lightColor,
   darkColor,
   cursorIsHover,
@@ -44,6 +44,10 @@ export default function NewProjects({
   const zIndexMatteBKGOpen: number = 5;
   const zIndexMatteBKGClosed: number = -1;
   const [hasComponentMounted, setHasComponentMounted] = useState(false);
+
+  const expandDurTime = 0.5;
+  const buttonsDurTime = 0.3;
+  const buttonsClickDurTime = 0.3;
 
   const triangleMouseOver = (elementId: number) => {
     const elementData = projectsDataset.find(
@@ -215,29 +219,15 @@ export default function NewProjects({
             />
           }
         </div>
-        {/* {deviceType === breakpoints.mobileSmall ||
-          deviceType === breakpoints.mobile ? (
-          <ProjectModalVertical
-            content={projectOpened}
-            open={projectOpenedBoolean}
-            updateOpen={setProjectOpenedBoolean}
-            cursorIsHover={cursorIsHover}
-          />
-        ) : (
-          <ProjectModal
-            content={projectOpened}
-            open={projectOpenedBoolean}
-            updateOpen={setProjectOpenedBoolean}
-            cursorIsHover={cursorIsHover}
-            deviceType={deviceType}
-          />
-        )} */}
         <ProjectModal
           content={projectOpened}
           open={projectOpenedBoolean}
           updateOpen={setProjectOpenedBoolean}
           cursorIsHover={cursorIsHover}
           deviceType={deviceType}
+          expandDurTime={expandDurTime}
+          buttonsDurTime={buttonsDurTime}
+          buttonsClickDurTime={buttonsClickDurTime}
         />
       </motion.div>
     </>

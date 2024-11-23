@@ -104,7 +104,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                 }
               >
                 <h2>
-                  <span style={{ "--i": 0 } as React.CSSProperties}>1/&nbsp;&nbsp;...whooo am I?</span>
+                  <span style={{ "--i": 0 } as React.CSSProperties}>1/&nbsp;&nbsp;...who am I?</span>
                 </h2>
                 <p>
                   <span
@@ -154,7 +154,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                   ><b>{` developing high-quality websites`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`, with particular attention to performance, responsiveness, motion, and accessibility.`}</span>
+                  >{`, with particular care for performance, responsiveness, motion, and accessibility.`}</span>
 
                   <br />
 

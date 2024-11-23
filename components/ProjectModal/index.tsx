@@ -14,6 +14,9 @@ type ModalProps = {
   updateOpen: Function;
   cursorIsHover: Function;
   deviceType: breakpoints;
+  expandDurTime: number;
+  buttonsDurTime: number;
+  buttonsClickDurTime: number;
 };
 
 export default function ProjectModal({
@@ -22,6 +25,9 @@ export default function ProjectModal({
   updateOpen,
   cursorIsHover,
   deviceType,
+  expandDurTime,
+  buttonsDurTime,
+  buttonsClickDurTime,
 }: ModalProps) {
   const [expandedCarousel, setExpandedCarousel] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(deviceType === breakpoints.mobileSmall || deviceType === breakpoints.mobile);
@@ -40,7 +46,7 @@ export default function ProjectModal({
         scaleY: 1,
         opacity: 1,
       }, {
-        duration: 0.6,
+        duration: expandDurTime,
         ease: easeInOut,
       });
     } else {
@@ -52,7 +58,7 @@ export default function ProjectModal({
         scaleY: 0,
         opacity: 0,
       }, {
-        duration: 0.6,
+        duration: expandDurTime,
         ease: easeOut,
       });
     }
@@ -67,34 +73,29 @@ export default function ProjectModal({
 
   const hoverCloseBtn = () => {
     cursorIsHover(true);
-    animate(`#closeModalBtn`, { transform: "rotate(-90deg)" });
+    animate(`#closeModalBtn`, { transform: "rotate(-90deg)" }, { duration: buttonsDurTime });
   };
 
   const notHoverCloseBtn = () => {
     cursorIsHover(false);
-    animate(`#closeModalBtn`, { transform: "rotate(0deg)" });
+    animate(`#closeModalBtn`, { transform: "rotate(0deg)" }, { duration: buttonsDurTime });
   };
 
   const arrowLinkMouseOver = async () => {
-    await animate('#arrLink', {
-      x: 25,
-      y: -25
-    }, {
-      duration: 0.2,
-    })
-    await animate('#arrLink', {
-      x: -25,
-      y: 25
-    }, {
-      duration: 0,
-    })
-    await animate('#arrLink', {
-      x: 0,
-      y: 0
-    }, {
-      duration: 0.2,
-    })
     cursorIsHover(true);
+    await animate('#arrLink', {
+      x: [0, 25],
+      y: [0, -25],
+    }, {
+      duration: buttonsDurTime,
+    })
+
+    animate('#arrLink', {
+      x: [-25, 0],
+      y: [25, 0],
+    }, {
+      duration: buttonsDurTime,
+    })
   };
 
   useEffect(() => {
@@ -106,7 +107,7 @@ export default function ProjectModal({
           maxWidth: "100%",
           maxHeight: "50%",
         }, {
-          duration: 0.4
+          duration: expandDurTime
         });
       } else {
         animate("#projectCarouselWrapper", {
@@ -115,7 +116,7 @@ export default function ProjectModal({
           maxWidth: "100%",
           maxHeight: "50%",
         }, {
-          duration: 0.4,
+          duration: expandDurTime,
         });
       }
     } else {
@@ -125,7 +126,7 @@ export default function ProjectModal({
           maxWidth: "100%",
           maxHeight: "100%",
         }, {
-          duration: 0.4
+          duration: expandDurTime
         });
       } else {
         animate("#projectCarouselWrapper", {
@@ -133,7 +134,7 @@ export default function ProjectModal({
           maxWidth: "50%",
           maxHeight: "100%",
         }, {
-          duration: 0.4,
+          duration: expandDurTime,
         });
       }
     }
@@ -148,10 +149,13 @@ export default function ProjectModal({
         <Carousel
           content={content}
           open={open}
-          cursorIsHover={isMobile ? cursorIsHover : null}
+          cursorIsHover={cursorIsHover}
           expandedCarousel={expandedCarousel}
           setExpandedCarousel={setExpandedCarousel}
           isMobile={isMobile}
+          expandDurTime={expandDurTime}
+          buttonsDurTime={buttonsDurTime}
+          buttonsClickDurTime={buttonsClickDurTime}
         ></Carousel>
       </div>
       <div

@@ -6,14 +6,14 @@ import { RotateDeviceIcon } from "./RotateDeviceIcon";
 export const RotateDevice = ({ showComponent, animationFinished }) => {
   useEffect(() => {
     const anim = async () => {
-      if (document.querySelector(".rotateDeviceContainer") != null &&
+      if (document.querySelector("#rotateDeviceContainer") != null &&
         document.querySelector("#rotateDeviceSvg") != null) {
         await animate("#rotateDeviceSvg", {
           rotate: 0,
           transformOrigin: "50% 50%",
         });
 
-        await animate(".rotateDeviceContainer", {
+        await animate("#rotateDeviceContainer", {
           zIndex: 25,
           opacity: 1,
         }, { duration: 0.3 },);
@@ -42,24 +42,30 @@ export const RotateDevice = ({ showComponent, animationFinished }) => {
           delay: 0.6,
         });
 
-        await animate(".rotateDeviceContainer", {
-          zIndex: -1,
+        await animate("#rotateDeviceContainer", {
           opacity: 0,
         }, {
           duration: 0.3,
           delay: 0.9,
         });
+
+        await animate("#rotateDeviceContainer", {
+          zIndex: -2,
+        }, {
+          duration: 0,
+          delay: 1.2,
+        });
       }
     }
-    anim();
+    if (showComponent) anim();
     animationFinished(false);
   }, [showComponent]);
 
   return (
-    <div className={styles.rotateDeviceContainer + " rotateDeviceContainer"}>
+    <div id="rotateDeviceContainer" className={styles.rotateDeviceContainer}>
       <div className={styles.imageContainer}>
         <RotateDeviceIcon></RotateDeviceIcon>
       </div>
-    </div>
-  );
-};
+    </div >
+  )
+}
