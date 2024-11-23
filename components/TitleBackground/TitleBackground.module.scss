@@ -37,7 +37,7 @@
     margin-inline-end: 0px;
     font-weight: bold;
     unicode-bidi: isolate;
-    transition: color $change-theme-duration linear, transform 0.3s linear !important;
+    transition: color $change-theme-duration linear !important;
 }
 
 @keyframes anim1 {
