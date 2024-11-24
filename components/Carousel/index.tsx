@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { animate } from "motion";
 import React, { useEffect, useState } from "react";
+import { buttonsClickDurTime, buttonsDurTime, expandDurTime, nextSlideDurTime } from "../../pages";
 import arrBottom from "../../public/icons/arrow-bottom.svg";
 import arrTop from "../../public/icons/arrow-top.svg";
 import arrExpand from "../../public/icons/expand.svg";
@@ -22,9 +23,6 @@ interface CarouselProps {
   expandedCarousel: boolean;
   setExpandedCarousel: Function;
   isMobile: boolean;
-  expandDurTime: number;
-  buttonsDurTime: number;
-  buttonsClickDurTime: number;
 }
 
 function Carousel({
@@ -34,9 +32,6 @@ function Carousel({
   expandedCarousel,
   setExpandedCarousel,
   isMobile,
-  expandDurTime,
-  buttonsDurTime,
-  buttonsClickDurTime,
 }: CarouselProps) {
   const codeName = content.codeName;
   const images = content.media;
@@ -307,24 +302,22 @@ function Carousel({
       verticalTextAnimationForward(el, index + 1);
     });
 
-    setTimeout(() => {
-      if (vertical)
-        goToImageIndexVertical(
-          currentIndex === 0 ? images.length - 1 : currentIndex - 1,
-          "left",
-        );
-      else
-        goToImageIndex(
-          currentIndex === 0 ? images.length - 1 : currentIndex - 1,
-          "left",
-        );
-    }, 200);
+    if (vertical)
+      goToImageIndexVertical(
+        currentIndex === 0 ? images.length - 1 : currentIndex - 1,
+        "left",
+      );
+    else
+      goToImageIndex(
+        currentIndex === 0 ? images.length - 1 : currentIndex - 1,
+        "left",
+      );
 
     if (vertical) {
-      animate("#arrTop", { y: -3 }, { duration: buttonsClickDurTime });
+      await animate("#arrTop", { y: "-3px" }, { duration: buttonsClickDurTime });
       animate("#arrTop", { y: 0 });
     } else {
-      animate("#arrLeft", { x: -3 }, { duration: buttonsClickDurTime });
+      await animate("#arrLeft", { x: "-3px" }, { duration: buttonsClickDurTime });
       animate("#arrLeft", { x: 0 });
     }
   };
@@ -338,23 +331,22 @@ function Carousel({
       verticalTextAnimationBackward(el, index + 1);
     });
 
-    setTimeout(() => {
-      if (vertical)
-        goToImageIndexVertical(
-          currentIndex === images.length - 1 ? 0 : currentIndex + 1,
-          "right",
-        );
-      else
-        goToImageIndex(
-          currentIndex === images.length - 1 ? 0 : currentIndex + 1,
-          "right",
-        );
-    }, 200);
+    if (vertical)
+      goToImageIndexVertical(
+        currentIndex === images.length - 1 ? 0 : currentIndex + 1,
+        "right",
+      );
+    else
+      goToImageIndex(
+        currentIndex === images.length - 1 ? 0 : currentIndex + 1,
+        "right",
+      );
+
     if (vertical) {
-      animate("#arrBottom", { y: 3 }, { duration: buttonsClickDurTime });
+      await animate("#arrBottom", { y: "3px" }, { duration: buttonsClickDurTime });
       animate("#arrBottom", { y: 0 }, { duration: buttonsClickDurTime });
     } else {
-      animate("#arrRight", { x: 3 }, { duration: buttonsClickDurTime });
+      await animate("#arrRight", { x: "3px" }, { duration: buttonsClickDurTime });
       animate("#arrRight", { x: 0 }, { duration: buttonsClickDurTime });
     }
   };
@@ -372,15 +364,15 @@ function Carousel({
           : verticalTextAnimationForward(el, index + 1);
       });
 
-      setTimeout(() => {
-        if (vertical) goToImageIndexVertical(imageIndex);
-        else goToImageIndex(imageIndex);
-      }, 200);
+      if (vertical)
+        goToImageIndexVertical(imageIndex);
+      else
+        goToImageIndex(imageIndex);
     }
   };
 
   const goToImageIndex = async (index: number, direction: string | null = null) => {
-    setNewZIndexLevel(newZIndexLevel + 1);
+    setNewZIndexLevel((newZIndexLevel) => newZIndexLevel + 1);
 
     if (index !== currentIndex) {
       setCurrentIndex(index);
@@ -392,39 +384,30 @@ function Carousel({
 
       if (isRight) {
         animate(`#image-${codeName}${index}`, {
-          x: "100%",
+          x: ["100%", "0%"],
+          y: 0,
+          scale: [1.2, 1],
           zIndex: newZIndexLevel,
           opacity: 1,
-
-        }, { duration: 0, });
-        animate(`#image-${codeName}${index}`, {
-          x: "0%",
-          opacity: 1,
         }, {
-          ease: "easeOut",
-          duration: 1,
+          duration: nextSlideDurTime,
         });
       } else {
         animate(`#image-${codeName}${index}`, {
-          x: "-100%",
+          x: ["-100%", "0%"],
+          y: 0,
+          scale: [1.2, 1],
           zIndex: newZIndexLevel,
           opacity: 1,
         }, {
-          duration: 0,
-        });
-        animate(`#image-${codeName}${index}`, {
-          x: "0%",
-          opacity: 1,
-        }, {
-          ease: "easeOut",
-          duration: 1,
+          duration: nextSlideDurTime,
         });
       }
     }
   };
 
   const goToImageIndexVertical = async (index, direction = null) => {
-    setNewZIndexLevel(newZIndexLevel + 1);
+    setNewZIndexLevel((newZIndexLevel) => newZIndexLevel + 1);
     if (index != currentIndex) {
       setCurrentIndex(index);
       if (
@@ -434,37 +417,23 @@ function Carousel({
             (currentIndex === images.length - 1 && index === 0)))
       ) {
         animate(`#image-${codeName + index}`, {
-          y: "100%",
+          y: ["100%", "0%"],
+          x: 0,
+          scale: [1.2, 1],
           zIndex: newZIndexLevel,
           opacity: 1,
         }, {
-
-          duration: 0,
-        });
-        animate(`#image-${codeName + index}`, {
-          y: "0%",
-          opacity: 1,
-        }, {
-
-          ease: "easeOut",
-          duration: 1,
+          duration: nextSlideDurTime,
         });
       } else {
         animate(`#image-${codeName + index}`, {
-          x: "-100%",
+          y: ["-100%", "0%"],
+          x: 0,
+          scale: [1.2, 1],
           zIndex: newZIndexLevel,
           opacity: 1,
         }, {
-
-          duration: 0,
-        });
-        animate(`#image-${codeName + index}`, {
-          y: "0%",
-          opacity: 1,
-        }, {
-
-          ease: "easeOut",
-          duration: 1,
+          duration: nextSlideDurTime,
         });
       }
     }

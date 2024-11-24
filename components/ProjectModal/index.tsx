@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { animate, easeInOut, easeOut } from "motion";
 import { useEffect, useState } from "react";
+import { buttonsDurTime, expandDurTime } from "../../pages";
 import linkArrow from "../../public/icons/linkArrow.svg";
 import { breakpoints } from "../../utils/breakpoints";
 import { Project } from "../../utils/dataset";
@@ -14,9 +15,6 @@ type ModalProps = {
   updateOpen: Function;
   cursorIsHover: Function;
   deviceType: breakpoints;
-  expandDurTime: number;
-  buttonsDurTime: number;
-  buttonsClickDurTime: number;
 };
 
 export default function ProjectModal({
@@ -25,9 +23,6 @@ export default function ProjectModal({
   updateOpen,
   cursorIsHover,
   deviceType,
-  expandDurTime,
-  buttonsDurTime,
-  buttonsClickDurTime,
 }: ModalProps) {
   const [expandedCarousel, setExpandedCarousel] = useState<boolean>(false);
   const [isMobile, setIsMobile] = useState<boolean>(deviceType === breakpoints.mobileSmall || deviceType === breakpoints.mobile);
@@ -153,9 +148,6 @@ export default function ProjectModal({
           expandedCarousel={expandedCarousel}
           setExpandedCarousel={setExpandedCarousel}
           isMobile={isMobile}
-          expandDurTime={expandDurTime}
-          buttonsDurTime={buttonsDurTime}
-          buttonsClickDurTime={buttonsClickDurTime}
         ></Carousel>
       </div>
       <div

@@ -24,6 +24,11 @@ type NewProjectsProps = {
   lastEditDate: string
 };
 
+export const expandDurTime = 0.5;
+export const nextSlideDurTime = 0.4;
+export const buttonsDurTime = 0.3;
+export const buttonsClickDurTime = 0.3;
+
 export default function Projects({
   lightColor,
   darkColor,
@@ -44,10 +49,6 @@ export default function Projects({
   const zIndexMatteBKGOpen: number = 5;
   const zIndexMatteBKGClosed: number = -1;
   const [hasComponentMounted, setHasComponentMounted] = useState(false);
-
-  const expandDurTime = 0.5;
-  const buttonsDurTime = 0.3;
-  const buttonsClickDurTime = 0.3;
 
   const triangleMouseOver = (elementId: number) => {
     const elementData = projectsDataset.find(
@@ -225,9 +226,6 @@ export default function Projects({
           updateOpen={setProjectOpenedBoolean}
           cursorIsHover={cursorIsHover}
           deviceType={deviceType}
-          expandDurTime={expandDurTime}
-          buttonsDurTime={buttonsDurTime}
-          buttonsClickDurTime={buttonsClickDurTime}
         />
       </motion.div>
     </>

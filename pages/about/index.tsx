@@ -33,7 +33,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
     return () => {
       pageContent?.removeEventListener("scroll", scrollPercentageFunction);
     };
-  }, [SSAnimFinished]);
+  }, [SSAnimFinished, welcomeArray]);
 
   const scrollPercentageFunction = (pageContent) => {
     const percentageBar = document.querySelector(

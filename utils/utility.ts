@@ -30,7 +30,7 @@ export function verticalTextAnimationForward(el, index) {
   animate([
     [el, { y: "1.5rem" }, { delay: 0.05 * index, duration: 0.25 }],
     [el, { y: "-1.5rem" }, { duration: 0, }],
-    [el, { y: -3 }, { duration: 0.25, }]
+    [el, { y: "-3px" }, { duration: 0.25, }]
   ])
 }
 
@@ -38,7 +38,7 @@ export function verticalTextAnimationBackward(el, index) {
   animate([
     [el, { y: "-1.5rem" }, { delay: 0.05 * index, duration: 0.25 }],
     [el, { y: "1.5rem" }, { duration: 0, }],
-    [el, { y: -3 }, { duration: 0.25, }]
+    [el, { y: "-3px" }, { duration: 0.25, }]
   ])
 }
 
