@@ -8,12 +8,6 @@ import arrExpand from "../../public/icons/expand.svg";
 import arrLeft from "../../public/icons/left-arrow.svg";
 import arrRight from "../../public/icons/right-arrow.svg";
 import { Project } from "../../utils/dataset";
-import {
-  textAnimationBackward,
-  textAnimationForward,
-  verticalTextAnimationBackward,
-  verticalTextAnimationForward,
-} from "../../utils/utility";
 import styles from "./Carousel.module.scss";
 
 interface CarouselProps {
@@ -23,6 +17,39 @@ interface CarouselProps {
   expandedCarousel: boolean;
   setExpandedCarousel: Function;
   isMobile: boolean;
+}
+
+
+export function textAnimationForward(el) {
+  animate([
+    [el, { x: "0.8rem" }, { duration: 0.25, delay: 0.05 }],
+    [el, { x: "-0.8rem" }, { duration: 0 }],
+    [el, { x: 0 }, { duration: 0.25 }]
+  ])
+}
+
+export function textAnimationBackward(el) {
+  animate([
+    [el, { x: "-0.8rem" }, { duration: 0.25, delay: 0.05 }],
+    [el, { x: "0.8rem" }, { duration: 0, }],
+    [el, { x: 0 }, { duration: 0.25, }]
+  ])
+}
+
+export function verticalTextAnimationForward(el) {
+  animate([
+    [el, { y: "1.5rem" }, { duration: 0.25 }],
+    [el, { y: "-1.5rem" }, { duration: 0, }],
+    [el, { y: "0px" }, { duration: 0.25, }]
+  ])
+}
+
+export function verticalTextAnimationBackward(el) {
+  animate([
+    [el, { y: "-1.5rem" }, { duration: 0.25 }],
+    [el, { y: "1.5rem" }, { duration: 0, }],
+    [el, { y: "0px" }, { duration: 0.25, }]
+  ])
 }
 
 function Carousel({
@@ -295,11 +322,13 @@ function Carousel({
 
   const prevBtnClick = async (vertical = null) => {
     imageNumberSpanTags.forEach((el, index) => {
-      textAnimationForward(el, index + 1);
+      if (index > 0)
+        textAnimationForward(el);
     });
 
     verticalImageNumberSpanTags.forEach((el, index) => {
-      verticalTextAnimationForward(el, index + 1);
+      if (index > 0)
+        verticalTextAnimationBackward(el);
     });
 
     if (vertical)
@@ -324,11 +353,13 @@ function Carousel({
 
   const nextBtnClick = async (vertical = null) => {
     imageNumberSpanTags.forEach((el, index) => {
-      textAnimationBackward(el, index + 1);
+      if (index > 0)
+        textAnimationBackward(el);
     });
 
     verticalImageNumberSpanTags.forEach((el, index) => {
-      verticalTextAnimationBackward(el, index + 1);
+      if (index > 0)
+        verticalTextAnimationForward(el);
     });
 
     if (vertical)
@@ -351,17 +382,19 @@ function Carousel({
     }
   };
 
-  const thumbnailClickHandle = (imageIndex: number, vertical = null) => {
+  const thumbnailClickHandle = (imageIndex: number, vertical) => {
     if (imageIndex != currentIndex) {
       imageNumberSpanTags.forEach((el, index) => {
-        imageIndex > currentIndex
-          ? textAnimationBackward(el, index + 1)
-          : textAnimationForward(el, index + 1);
+        if (index > 0)
+          imageIndex > currentIndex
+            ? textAnimationBackward(el)
+            : textAnimationForward(el);
       });
       verticalImageNumberSpanTags.forEach((el, index) => {
-        imageIndex > currentIndex
-          ? verticalTextAnimationBackward(el, index + 1)
-          : verticalTextAnimationForward(el, index + 1);
+        if (index > 0)
+          imageIndex > currentIndex
+            ? verticalTextAnimationBackward(el)
+            : verticalTextAnimationForward(el);
       });
 
       if (vertical)
@@ -580,7 +613,7 @@ function Carousel({
               }
               onMouseOver={() => cursorIsHover(true)}
               onMouseLeave={() => cursorIsHover(false)}
-              onClick={() => thumbnailClickHandle(index)}
+              onClick={() => thumbnailClickHandle(index, false)}
             >
               <img
                 src={el.src}

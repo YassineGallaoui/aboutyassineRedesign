@@ -10,38 +10,6 @@ export function createSpanStructureV2(w) {
   return returnString;
 }
 
-export function textAnimationForward(el, index) {
-  animate([
-    [el, { x: "0.8rem" }, { duration: 0.25, delay: 0.05 * index }],
-    [el, { x: "-0.8rem" }, { duration: 0 }],
-    [el, { x: 0 }, { duration: 0.25 }]
-  ])
-}
-
-export function textAnimationBackward(el, index) {
-  animate([
-    [el, { x: "-0.8rem" }, { duration: 0.25, delay: 0.05 * index }],
-    [el, { x: "0.8rem" }, { duration: 0, }],
-    [el, { x: 0 }, { duration: 0.25, }]
-  ])
-}
-
-export function verticalTextAnimationForward(el, index) {
-  animate([
-    [el, { y: "1.5rem" }, { delay: 0.05 * index, duration: 0.25 }],
-    [el, { y: "-1.5rem" }, { duration: 0, }],
-    [el, { y: "-3px" }, { duration: 0.25, }]
-  ])
-}
-
-export function verticalTextAnimationBackward(el, index) {
-  animate([
-    [el, { y: "-1.5rem" }, { delay: 0.05 * index, duration: 0.25 }],
-    [el, { y: "1.5rem" }, { duration: 0, }],
-    [el, { y: "-3px" }, { duration: 0.25, }]
-  ])
-}
-
 export function parallax(event, elements) {
   elements.forEach((el, i) => {
     let mf = 0;
