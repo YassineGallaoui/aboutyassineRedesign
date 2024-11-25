@@ -178,7 +178,7 @@ function Carousel({
         ".imageContainer",
         {
           gap: "1rem",
-          maxHeight: "100%",
+          maxHeight: "95%",
         },
         { duration: expandDurTime, }
       )
@@ -186,6 +186,7 @@ function Carousel({
         ".imageStackContainer",
         {
           maxWidth: "90%",
+          maxHeight: "100%",
         },
         { duration: expandDurTime, }
       )
@@ -279,6 +280,7 @@ function Carousel({
         ".imageStackContainer",
         {
           maxWidth: "100%",
+          maxHeight: "90%",
         },
         { duration: expandDurTime, }
       )
@@ -320,7 +322,7 @@ function Carousel({
     animate('#arrBottom', { y: [-25, 0] }, { duration: buttonsDurTime, ease: "easeOut" })
   };
 
-  const prevBtnClick = async (vertical = null) => {
+  const prevBtnClick = async (vertical) => {
     imageNumberSpanTags.forEach((el, index) => {
       if (index > 0)
         textAnimationForward(el);
@@ -351,7 +353,7 @@ function Carousel({
     }
   };
 
-  const nextBtnClick = async (vertical = null) => {
+  const nextBtnClick = async (vertical) => {
     imageNumberSpanTags.forEach((el, index) => {
       if (index > 0)
         textAnimationBackward(el);
@@ -510,13 +512,13 @@ function Carousel({
                 key={index}
                 style={{ zIndex: 5 - index }}
               >
-                <img src={el.src} alt={altText} />
+                <img className={styles.imageDiv__image} src={el.src} alt={altText} />
               </div>
             );
           })}
         </div>
 
-        {/* THIS ACTIVATES ONLY WHEN THE CAROUSEL IS EXPANDED */}
+        {/* VERTICAL CONTORLS */}
         <div
           className={
             styles.thumbnailControlsVertical + " thumbnailControlsVertical"
@@ -564,6 +566,7 @@ function Carousel({
                 onMouseOver={() => prevBtnMouseOver()}
                 onMouseLeave={() => cursorIsHover(false)}
                 onClick={() => prevBtnClick(true)}
+                style={{ pointerEvents: expandedCarousel ? "all" : "none" }}
               >
                 <img
                   id="arrTop"
@@ -577,6 +580,7 @@ function Carousel({
                 onMouseOver={() => nextBtnMouseOver()}
                 onMouseLeave={() => cursorIsHover(false)}
                 onClick={() => nextBtnClick(true)}
+                style={{ pointerEvents: expandedCarousel ? "all" : "none" }}
               >
                 <img
                   id="arrBottom"
@@ -591,7 +595,7 @@ function Carousel({
 
       </div>
 
-      {/* horizontal controls */}
+      {/* HORIZONTAL CONTROLS */}
       <div className={styles.thumbnailControls + " thumbnailControls"}>
         <div className={styles.thumbnails}>
           <div className={styles.thumbnailBorder}
@@ -627,7 +631,8 @@ function Carousel({
             className={styles.prevButton}
             onMouseOver={() => prevBtnMouseOver()}
             onMouseLeave={() => cursorIsHover(false)}
-            onClick={() => prevBtnClick()}
+            onClick={() => prevBtnClick(false)}
+            style={{ pointerEvents: expandedCarousel ? "none" : "all" }}
           >
             <img
               id="arrLeft"
@@ -640,7 +645,8 @@ function Carousel({
             className={styles.nextButton}
             onMouseOver={() => nextBtnMouseOver()}
             onMouseLeave={() => cursorIsHover(false)}
-            onClick={() => nextBtnClick()}
+            onClick={() => nextBtnClick(false)}
+            style={{ pointerEvents: expandedCarousel ? "none" : "all" }}
           >
             <img
               id="arrRight"
