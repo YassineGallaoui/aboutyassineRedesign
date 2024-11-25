@@ -191,6 +191,12 @@ html[data-theme="dark"] {
       scrollbar-width: none;
       scroll-behavior: smooth;
 
+      sup {
+        font-size: $sm-fs;
+        line-height: 0;
+        opacity: 0.5;
+      }
+
       @media screen and (max-width: $breakpointSmallDesktop) {
         padding-top: calc($l-fs * 2);
         margin-top: 20vh;

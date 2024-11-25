@@ -142,46 +142,62 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                 <p>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`My`}</span>
+                  >{`I craft`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  ><b>{` main services`}</b></span>
+                  ><b>{` high-quality websites`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` focus on`}</span>
+                  >{` with a laser focus on `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  ><b>{` developing high-quality websites`}</b></span>
+                  ><b>
+                      {<sup>{`1/`}</sup>}{`responsive design, `}
+                      {<sup>{`2/`}</sup>}{`high performance and `}
+                      {<sup>{`3/`}</sup>}{`smooth engaging motion`}
+                    </b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`, with particular care for performance, responsiveness, motion, and accessibility.`}</span>
+                  >{`.`}</span>
+
+                  <br />
+
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{`As a`}</span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  ><b>{` freelancer`}</b></span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  ><b>{`, I collaborate with `}</b></span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  ><b>
+                      {<sup>{`1/`}</sup>}{`startups, `}
+                      {<sup>{`2/`}</sup>}{`agencies, `}
+                      {<sup>{`3/`}</sup>}{`studios, and `}
+                      {<sup>{`4/`}</sup>}{`professionals worldwide`}
+                    </b>
+                  </span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{`. `}</span>
 
                   <br />
 
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  ><b>{` As a freelancer, I work with startups, agencies, studios, and other professionals `}</b></span>
+                  ><b>{` No design yet? I've got you covered`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` worldwide, even though`}</span>
+                  >{` — I partner with skillful designers to transform your vision into a `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  ><b>{` I'm still open to full-time employment`}</b></span>
+                  ><b>{` stunning digital reality`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` if the right opportunity arises — never say never!`}</span>
-
-                  <br />
-
-                  <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  ><b>{` Don't have a design for your website yet?`}</b></span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                  >{` Feel free to reach out anyways, `}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  ><b>{` I know some excellent designers who can help us with that.`}</b></span>
+                  >{`.`}</span>
                 </p>
 
                 <h2>
@@ -190,13 +206,10 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                 <p>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  ><b>{`In case you want to work together`}</b></span>
+                  ><b>{`Ready to bring your project to life?`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` or you have some great project and you want some help on it,`}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  ><b>{` you can reach out via `}</b></span>
+                  >{` Connect with me via `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   >
@@ -258,6 +271,27 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
                   >{`.`}</span>
+                  <br></br>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{`Alternatively, you can simply `}</span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  >
+                    <b><a
+                      className={" underlineLineWithAnim"}
+                      href={"https://cal.com/yassine-gallaoui"}
+                      onMouseOver={() => cursorIsHover(true)}
+                      onMouseLeave={() => cursorIsHover(false)}
+                      rel="noreferrer noopener"
+                      target="_blank"
+                    >
+                      {`book a call`}
+                    </a></b>
+                  </span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{`!`}</span>
                 </p>
               </div>
             )}
