@@ -181,7 +181,7 @@ html[data-theme="dark"] {
       position: fixed;
       padding-left: calc(33dvw + 1.4rem);
       padding-top: 40dvh;
-      padding-bottom: calc(100dvh - (40dvh + $l-fs * 14));
+      padding-bottom: calc(100dvh - (40dvh + $l-fs * 10));
       overflow: visible;
       overflow-y: scroll;
       z-index: 2;
@@ -191,20 +191,20 @@ html[data-theme="dark"] {
       scrollbar-width: none;
       scroll-behavior: smooth;
 
-      sup {
-        font-size: $sm-fs;
-        line-height: 0;
-        opacity: 0.5;
-      }
-
       @media screen and (max-width: $breakpointSmallDesktop) {
         padding-top: calc($l-fs * 2);
         margin-top: 20vh;
         height: calc(100dvh - 15vh);
-        padding-bottom: calc(100dvh - (20dvh + $l-fs * 24));
+        padding-bottom: calc(100dvh - (20dvh + $l-fs * 14));
         margin-left: 4rem;
         padding-left: 0;
         max-width: calc(100dvw - 8rem);
+      }
+
+      sup {
+        font-size: $sm-fs;
+        line-height: 0;
+        opacity: 0.5;
       }
 
       &::-webkit-scrollbar-track {
