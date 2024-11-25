@@ -21,7 +21,7 @@ export default function GenericTriangle({ vertices, position, materialType, colo
     const vert = useMemo(() => {
         const p = new Array(vertices.length)
             .fill(0)
-            .flatMap((item, index) => vertices[index].toArray())
+            .flatMap((_item, index) => vertices[index].toArray())
         return new THREE.BufferAttribute(new Float32Array(p), 3);
     }, [vertices]);
     

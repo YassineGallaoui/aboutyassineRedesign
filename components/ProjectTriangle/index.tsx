@@ -37,8 +37,9 @@ export default function ProjectTriangle({
     useEffect(() => {
         if (hovered) {
             triangleMouseOver(projectData.id)
-        } else
+        } else {
             triangleMouseOut(projectData.id)
+        }
     }, [hovered])
 
     const texture = useLoader(THREE.TextureLoader, imageUrl?.src || '');

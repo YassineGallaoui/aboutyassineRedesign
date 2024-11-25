@@ -1,6 +1,9 @@
 @import "./variables.scss";
 
 .currentPrjHovered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: -2.5vh;
   left: -2.5dvw;
@@ -9,6 +12,8 @@
   transform: translate(0) !important;
 
   img {
+    position: absolute;
+    inset: 0;
     object-fit: cover;
     filter: brightness(0.7);
     mix-blend-mode: difference;

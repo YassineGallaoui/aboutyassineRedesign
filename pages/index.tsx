@@ -51,6 +51,7 @@ export default function Projects({
   const [hasComponentMounted, setHasComponentMounted] = useState(false);
 
   const triangleMouseOver = (elementId: number) => {
+    cursorIsHover(true);
     const elementData = projectsDataset.find(
       (proj) => proj.id === elementId
     );
@@ -73,11 +74,11 @@ export default function Projects({
         ease: "easeOut",
       }
       );
-      cursorIsHover(true);
     }
   }
 
   const triangleMouseOut = (elementId: number) => {
+    cursorIsHover(false);
     const elementData = projectsDataset.find(
       (proj) => proj.id === elementId
     );
@@ -92,7 +93,6 @@ export default function Projects({
         duration: 0.5,
         delay: 0,
       });
-      cursorIsHover(false);
     }
   }
 
