@@ -196,13 +196,13 @@ html[data-theme="dark"] {
       padding-left: calc(33dvw + 1.4rem);
       padding-top: 40dvh;
       padding-bottom: calc(100dvh - (40dvh + $l-fs * 10));
-      padding-right: calc(100dvw - (33dvw + 1.4rem) - ($l-fs * 26));
+      padding-right: calc(95dvw - (33dvw + 1.4rem) - ($l-fs * 26));
       overflow: visible;
       overflow-y: scroll;
       z-index: 2;
       height: 100dvh;
       width: 100%;
-      max-width: 100dvw;
+      max-width: 95dvw;
       scrollbar-width: none;
       scroll-behavior: smooth;
 
