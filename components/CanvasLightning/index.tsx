@@ -3,7 +3,7 @@ import { LightPointer } from "../LightPointer";
 
 export const CanvasLightning = () => {
     const screenInfo = useScreenInfo();
-    
+
     return (
         <>
             {screenInfo?.isTouchOnly && <ambientLight intensity={Math.PI * 0.4} />}

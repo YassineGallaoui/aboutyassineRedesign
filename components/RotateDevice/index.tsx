@@ -1,71 +1,38 @@
-import { animate } from "motion";
+import { motion } from "framer-motion";
 import { useEffect } from "react";
 import styles from "./RotateDevice.module.scss";
 import { RotateDeviceIcon } from "./RotateDeviceIcon";
 
+export const rotateDeviceDuration = 0.3;
 export const RotateDevice = ({ showComponent, animationFinished }) => {
   useEffect(() => {
-    const anim = async () => {
-      if (document.querySelector("#rotateDeviceContainer") != null &&
-        document.querySelector("#rotateDeviceSvg") != null) {
-        await animate("#rotateDeviceSvg", {
-          rotate: 0,
-          transformOrigin: "50% 50%",
-        });
-
-        await animate("#rotateDeviceContainer", {
-          zIndex: 25,
-          opacity: 1,
-        }, { duration: 0.3 },);
-
-        await animate("#arrowOneSvg", {
-          y: 250,
-          opacity: 1,
-        }, {
-          duration: 0.3,
-          delay: 0,
-        });
-
-        await animate("#arrowTwoSvg", {
-          y: 500,
-          opacity: 1,
-        }, {
-          duration: 0.3,
-          delay: 0,
-        });
-
-        await animate("#rotateDeviceSvg", {
-          rotate: 90,
-          transformOrigin: "50% 50%",
-        }, {
-          duration: 0.3,
-          delay: 0.6,
-        });
-
-        await animate("#rotateDeviceContainer", {
-          opacity: 0,
-        }, {
-          duration: 0.3,
-          delay: 0.9,
-        });
-
-        await animate("#rotateDeviceContainer", {
-          zIndex: -2,
-        }, {
-          duration: 0,
-          delay: 1.2,
-        });
-      }
-    }
-    if (showComponent) anim();
-    animationFinished(false);
+    const timer = setTimeout(() => { animationFinished(false) }, rotateDeviceDuration * 1000 * 6);
+    return () => clearTimeout(timer);
   }, [showComponent]);
 
+  const dcVariants = {
+    animate: {
+      zIndex: [-2, 3],
+      opacity: [0, 1],
+      transition: {
+        duration: rotateDeviceDuration
+      }
+    },
+    initial: {
+      zIndex: [-2],
+      opacity: [0],
+    }
+  }
+
   return (
-    <div id="rotateDeviceContainer" className={styles.rotateDeviceContainer}>
-      <div className={styles.imageContainer}>
-        <RotateDeviceIcon></RotateDeviceIcon>
-      </div>
-    </div >
+    <motion.div
+      id="rotateDeviceContainer"
+      className={styles.rotateDeviceContainer}
+      variants={dcVariants}
+      initial={"initial"}
+      animate={showComponent ? "animate" : "initial"}
+    >
+      {showComponent && <RotateDeviceIcon showComponent={showComponent}></RotateDeviceIcon>}
+    </motion.div >
   )
 }

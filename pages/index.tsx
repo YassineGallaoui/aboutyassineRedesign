@@ -63,7 +63,7 @@ export default function Projects({
         scale: 1.02,
       }, {
         duration: 5,
-        ease: "easeOut",
+        ease: [0, 0.25, 0.5, 1],
       });
       animate(
         `#bigBackgroundImage-${elementId}`,
@@ -71,7 +71,7 @@ export default function Projects({
           opacity: 1,
         }, {
         duration: 2,
-        ease: "easeOut",
+        ease: [0, 0.24, 0.49, 1],
       }
       );
     }
@@ -84,14 +84,12 @@ export default function Projects({
     );
     if (elementId != null && elementData != null) {
       setProjectIsHovered(false);
-      /* .killTweensOf(`#bigBackgroundImage-${elementId}`); */
       animate(`#bigBackgroundImage-${elementId}`, {
         scale: 1.1,
         opacity: 0,
       }, {
         ease: "easeOut",
         duration: 0.5,
-        delay: 0,
       });
     }
   }
@@ -114,8 +112,6 @@ export default function Projects({
       animate(`.modalMatteBkgrd`, {
         background: "rgba(0,0,0,0)",
         zIndex: zIndexMatteBKGClosed,
-      }, {
-        delay: 0
       });
     }
 

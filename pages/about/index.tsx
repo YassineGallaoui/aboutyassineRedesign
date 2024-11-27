@@ -109,10 +109,10 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                 <p>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`I'm`} </span>
+                  >{`I'm `} </span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  ><b>Yassine</b></span>
+                  ><b>{`Yassine`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
                   >{`, Italian-Tunisian `}</span>
@@ -127,10 +127,10 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                   ><b>{` frontend`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` and trying to go all-in with`}</span>
+                  >{` development and with a passion for`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  ><b>{` creative development`}</b></span>
+                  ><b>{` building creative digital experiences`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
                   >{`.`}</span>
@@ -148,7 +148,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                   ><b>{` high-quality websites`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` with a laser focus on `}</span>
+                  >{` with great focus on `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   ><b>
@@ -176,7 +176,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                   ><b>
                       {<sup>{`1/`}</sup>}{`startups, `}
                       {<sup>{`2/`}</sup>}{`agencies, `}
-                      {<sup>{`3/`}</sup>}{`studios, and `}
+                      {<sup>{`3/`}</sup>}{`studios and `}
                       {<sup>{`4/`}</sup>}{`professionals worldwide`}
                     </b>
                   </span>

@@ -49,7 +49,7 @@ export default function ProjectModal({
         position: "fixed",
         borderRadius: "0rem",
         x: "-50%",
-        y: "-200%",
+        y: "-150%",
         scaleY: 0,
         opacity: 0,
       }, {
@@ -98,7 +98,7 @@ export default function ProjectModal({
       if (expandedCarousel) {
         animate("#projectCarouselWrapper", {
           borderRightWidth: 0,
-          borderBottomWidth: 0,
+          borderBottomWidth: "0px",
           maxWidth: "100%",
           maxHeight: "50%",
         }, {
@@ -107,7 +107,7 @@ export default function ProjectModal({
       } else {
         animate("#projectCarouselWrapper", {
           borderRightWidth: 0,
-          borderBottomWidth: 1,
+          borderBottomWidth: "1px",
           maxWidth: "100%",
           maxHeight: "50%",
         }, {

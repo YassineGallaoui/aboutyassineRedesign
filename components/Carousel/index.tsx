@@ -162,7 +162,7 @@ function Carousel({
         {
           y: "110%",
           opacity: 0,
-          maxHeight: 0,
+          maxHeight: "0%",
         },
         { duration: expandDurTime, }
       )
@@ -175,10 +175,17 @@ function Carousel({
         { duration: expandDurTime, }
       )
       animate(
+        ".upperControls",
+        {
+          maxHeight: "0rem",
+        },
+        { duration: expandDurTime, }
+      )
+      animate(
         ".imageContainer",
         {
           gap: "1rem",
-          maxHeight: "95%",
+          maxHeight: "100%",
         },
         { duration: expandDurTime, }
       )
@@ -265,6 +272,13 @@ function Carousel({
           x: "105%",
           opacity: 0,
           maxWidth: "0%",
+        },
+        { duration: expandDurTime, }
+      )
+      animate(
+        ".upperControls",
+        {
+          maxHeight: "2rem",
         },
         { duration: expandDurTime, }
       )

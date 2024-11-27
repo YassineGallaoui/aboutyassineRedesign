@@ -79,6 +79,8 @@ html[data-theme="dark"] {
   box-sizing: border-box;
 
   &__txt {
+    position: relative;
+
     &__big__welcome {
       position: fixed;
       top: calc(40dvh - ($xxl-fs * 1.4));

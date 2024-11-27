@@ -142,6 +142,7 @@
 
     table {
       flex: 1;
+      left: -3px;
       display: table-row-group;
       color: $dark-color;
       font-size: $sm-fs;
@@ -186,6 +187,8 @@
     .projectModalLink {
       height: 3.5rem;
       width: 3.5rem;
+      min-height: 3.5rem;
+      min-width: 3.5rem;
       right: 1px;
       bottom: 1px;
       background-color: transparent;

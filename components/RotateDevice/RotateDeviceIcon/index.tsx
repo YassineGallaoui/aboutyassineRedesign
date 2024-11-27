@@ -1,64 +1,113 @@
-export const RotateDeviceIcon = () => {
-    return (
-      <svg
-        id="rotateDeviceSvg"
-        width="100%"
-        height="100%"
-        viewBox="0 0 712 881"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
-        style={{
-          overflow: "visible",
-          fillRule: "evenodd",
-          clipRule: "evenodd",
-          strokeLinecap: "round",
-          strokeLinejoin: "round",
-          strokeMiterlimit: "1.5",
-        }}
-      >
-        <g transform="matrix(1,0,0,1,-206.531,-777.546)">
-          <g
-            id="phoneSvg"
-            transform="matrix(0.439632,-0.000151109,0.000151109,0.439632,319.273,902.922)"
-          >
-            <path
-              d="M777.357,382.794C777.357,354.261 754.191,331.095 725.658,331.095L380.353,331.095C351.82,331.095 328.655,354.261 328.655,382.794L328.655,1050.96C328.655,1079.49 351.82,1102.66 380.353,1102.66L725.658,1102.66C754.191,1102.66 777.357,1079.49 777.357,1050.96L777.357,382.794Z"
-              style={{ fill: "none", stroke: "white", strokeWidth: "13px" }}
-            />
-          </g>
-          <g
-            id="arrowOneSvg"
-            transform="matrix(0.73871,-0.000253907,0.000253907,0.73871,85.0421,488.017)"
-            style={{ opacity: "0" }}
-          >
-            <g transform="matrix(1.35371,0.000465293,-0.000465293,1.35371,164.326,391.995)">
-              <path
-                d="M637.698,280.249L610.056,355.852L566.158,288.377L637.698,280.249Z"
-                style={{ fill: "white" }}
-              />
-              <path
-                d="M101.823,356.027C101.775,215.776 215.602,101.872 355.852,101.823C476.425,101.782 577.526,185.902 603.554,298.621"
-                style={{ fill: "none", stroke: "white", strokeWidth: "6px" }}
-              />
-            </g>
-          </g>
-          <g
-            id="arrowTwoSvg"
-            transform="matrix(0.73871,-0.000253907,0.000253907,0.73871,85.1002,657.046)"
-            style={{ opacity: "0" }}
-          >
-            <g transform="matrix(1.35371,0.000465293,-0.000465293,1.35371,164.326,163.178)">
-              <path
-                d="M74.24,600.66L101.881,525.056L145.78,592.532L74.24,600.66Z"
-                style={{ fill: "white" }}
-              />
-              <path
-                d="M610.114,524.882C610.162,665.132 496.336,779.037 356.085,779.085C235.513,779.127 134.411,695.006 108.384,582.288"
-                style={{ fill: "none", stroke: "white", strokeWidth: "6px" }}
-              />
-            </g>
-          </g>
-        </g>
-      </svg>
-    );
+import { motion } from "framer-motion";
+import { rotateDeviceDuration } from "..";
+
+export const RotateDeviceIcon = (showComponent) => {
+  const svgVariants = {
+    animate: {
+      rotate: [0, 90, 90],
+      opacity: [1, 1, 0],
+      transition: {
+        duration: rotateDeviceDuration * 4,
+        times: [0, 0.3, 1],
+        delay: 0.9,
+      }
+    },
+    initial: {
+      rotate: 0,
+    }
+  };
+
+  const arrOneVariants = {
+    animate: {
+      y: ["-100%", "0%", "0%", "-100%"],
+      opacity: [0, 1, 1, 0],
+      transition: {
+        duration: rotateDeviceDuration * 5,
+        time: [0, 0.3, 0.6, 1],
+        delay: 0.3
+      }
+    },
+    initial: {
+      y: "-100%",
+      opacity: 0,
+    }
+  };
+
+  const arrTwoVariants = {
+    animate: {
+      y: ["100%", "0%", "0%", "100%"],
+      opacity: [0, 1, 1, 0],
+      transition: {
+        duration: rotateDeviceDuration * 5,
+        time: [0, 0.3, 0.6, 1],
+        delay: 0.3
+      }
+    },
+    initial: {
+      y: "100%",
+      opacity: 0,
+    }
+  };
+
+  return (
+    <motion.svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlSpace="preserve"
+      id="rotateDeviceSvg"
+      fillRule="evenodd"
+      strokeLinejoin="round"
+      strokeMiterlimit="2"
+      clipRule="evenodd"
+      viewBox="0 0 2534 3075"
+      width="50%"
+      overflow="visible"
+      variants={svgVariants}
+      initial={"initial"}
+      animate={showComponent ? "animate" : "initial"}
+    >
+      <g>
+        <path
+          id="phoneSvg"
+          fill="#fff"
+          fillOpacity="0"
+          fillRule="nonzero"
+          stroke="#fff"
+          strokeWidth="30"
+          d="M1660.76 889.975c-.018-52.267-42.468-94.688-94.735-94.67l-632.53.218c-52.266.018-94.686 42.468-94.668 94.735l.421 1223.95c.018 52.261 42.466 94.69 94.733 94.672l632.53-.218c52.266-.018 94.687-42.475 94.669-94.736l-.42-1223.95Z"
+        ></path>
+        <motion.g
+          id="arrowOneSvg"
+          fill="#fff"
+          fillRule="nonzero"
+          stroke="#fff"
+          strokeWidth="30"
+          variants={arrOneVariants}
+          initial={"initial"}
+          animate={showComponent ? "animate" : "initial"}
+        >
+          <path d="m2423.87 834.565-115.175 315.013-182.908-281.146z"></path>
+          <path
+            fillOpacity="0"
+            d="M191.058 1150.31c-.2-584.379 474.079-1058.98 1058.45-1059.18 502.387-.171 923.641 350.328 1032.09 819.99"
+          ></path>
+        </motion.g>
+        <motion.g
+          id="arrowTwoSvg"
+          fill="#fff"
+          fillRule="nonzero"
+          stroke="#fff"
+          strokeWidth="30"
+          variants={arrTwoVariants}
+          initial={"initial"}
+          animate={showComponent ? "animate" : "initial"}
+        >
+          <path d="M76.129 2169.61 191.3 1854.593l182.912 281.15z"></path>
+          <path
+            fillOpacity="0"
+            d="M2308.93 1853.86c.2 584.375-474.075 1058.98-1058.45 1059.18-502.383.175-923.641-350.329-1032.09-819.987"
+          ></path>
+        </motion.g>
+      </g>
+    </motion.svg>
+  );
 }

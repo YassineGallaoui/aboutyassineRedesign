@@ -2,7 +2,7 @@ import { useFrame } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from 'three';
 
-export const LightPointer = () => {
+export const LightPointer = ({ decay = null, intensity = null }) => {
     const lightRef = useRef<THREE.PointLight>(null);
     const targetRef = useRef(new THREE.Object3D());
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -21,7 +21,7 @@ export const LightPointer = () => {
             window.removeEventListener('mousemove', handleMouseMove);
         };
     }, []);
-    
+
     useFrame(() => {
         if (lightRef.current) {
             lightRef.current.position.set(-mousePosition.x, mousePosition.y, zPos);
@@ -30,10 +30,10 @@ export const LightPointer = () => {
 
     return (
         <>
-            <pointLight ref={lightRef} 
+            <pointLight ref={lightRef}
                 position={[0, 0, zPos]}
-                decay={2.5}
-                intensity={Math.PI * 10}
+                decay={decay ?? 2.5}
+                intensity={intensity ?? Math.PI * 10}
             />
             {/* {lightRef.current && (
                 <pointLightHelper args={[lightRef.current, 1, "red"]} />
