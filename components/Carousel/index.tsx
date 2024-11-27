@@ -215,6 +215,11 @@ function Carousel({
         x: "1rem",
       }, { duration: expandDurTime, })
       animate("#arrExpand", { scale: 1 }, { duration: 0, })
+      animate("#carouselComponent", {
+        gap: "0rem"
+      }, {
+        duration: expandDurTime,
+      })
       animate(
         ".thumbnailControlsVertical",
         {
@@ -489,7 +494,7 @@ function Carousel({
   };
 
   return (
-    <div id="carouselComponent" className={styles.carouselComponent + " carouselComponent"}>
+    <div id="carouselComponent" className={`${styles.carouselComponent} carouselComponent ${isMobile ? styles.isMobile : ""}`}>
       <div className={`${styles.upperControls} upperControls ${isMobile ? styles.isMobile : ""}`}>
         <div className={styles.indexWrapper + " indexWrapper"}>
           <span>
