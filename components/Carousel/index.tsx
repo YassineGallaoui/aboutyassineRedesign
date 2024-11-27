@@ -22,7 +22,7 @@ interface CarouselProps {
 
 export function textAnimationForward(el) {
   animate([
-    [el, { x: "0.8rem" }, { duration: 0.25, delay: 0.05 }],
+    [el, { x: "0.8rem" }, { duration: 0.25 }],
     [el, { x: "-0.8rem" }, { duration: 0 }],
     [el, { x: 0 }, { duration: 0.25 }]
   ])
@@ -30,9 +30,9 @@ export function textAnimationForward(el) {
 
 export function textAnimationBackward(el) {
   animate([
-    [el, { x: "-0.8rem" }, { duration: 0.25, delay: 0.05 }],
-    [el, { x: "0.8rem" }, { duration: 0, }],
-    [el, { x: 0 }, { duration: 0.25, }]
+    [el, { x: "-0.8rem" }, { duration: 0.25 }],
+    [el, { x: "0.8rem" }, { duration: 0 }],
+    [el, { x: 0 }, { duration: 0.25 }]
   ])
 }
 
@@ -497,12 +497,17 @@ function Carousel({
     <div id="carouselComponent" className={`${styles.carouselComponent} carouselComponent ${isMobile ? styles.isMobile : ""}`}>
       <div className={`${styles.upperControls} upperControls ${isMobile ? styles.isMobile : ""}`}>
         <div className={styles.indexWrapper + " indexWrapper"}>
-          <span>
-            <span className={"indexWrapperToAnimate"}>{"0"}</span>
-          </span>
-          <span>
-            <span className={"indexWrapperToAnimate"}>{currentIndex + 1}</span>
-          </span>
+          <div>
+            <span>
+              <span className={"indexWrapperToAnimate"}>{"0"}</span>
+            </span>
+            <span>
+              <span className={"indexWrapperToAnimate"}>{currentIndex + 1}</span>
+            </span>
+          </div>
+          <div>
+            <span>0{content.media.length}</span>
+          </div>
         </div>
 
         <div
@@ -570,14 +575,19 @@ function Carousel({
             <div
               className={styles.verticalIndexWrapper + " verticalIndexWrapper"}
             >
-              <span>
-                <span className={"verticalIndexWrapperToAnimate"}>{"0"}</span>
-              </span>
-              <span>
-                <span className={"verticalIndexWrapperToAnimate"}>
-                  {currentIndex + 1}
+              <div>
+                <span>
+                  <span className={"verticalIndexWrapperToAnimate"}>{"0"}</span>
                 </span>
-              </span>
+                <span>
+                  <span className={"verticalIndexWrapperToAnimate"}>
+                    {currentIndex + 1}
+                  </span>
+                </span>
+              </div>
+              <div>
+                <span>0{content.media.length}</span>
+              </div>
             </div>
             <div className={styles.controlsVertical}>
               <div

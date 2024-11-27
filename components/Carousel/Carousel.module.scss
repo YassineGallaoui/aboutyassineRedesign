@@ -39,6 +39,7 @@
     .indexWrapper {
       position: relative;
       overflow: hidden;
+      line-height: 0.8rem;
 
       span {
         display: inline-block;
@@ -217,7 +218,7 @@
 
         .verticalIndexWrapper {
           position: relative;
-          line-height: 1.2rem;
+          line-height: 0.8rem;
           user-select: none;
 
           span {
