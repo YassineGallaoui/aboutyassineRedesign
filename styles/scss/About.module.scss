@@ -204,7 +204,6 @@ html[data-theme="dark"] {
       max-width: 94dvw;
       scrollbar-width: none;
       scroll-behavior: smooth;
-      border: 1px solid red;
 
       @media screen and (max-width: $breakpointSmallDesktop) {
         padding-top: calc($l-fs * 2);
