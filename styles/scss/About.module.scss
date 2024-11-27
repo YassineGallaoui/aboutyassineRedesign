@@ -33,6 +33,10 @@
   @media screen and (max-width: $breakpointSmallDesktop) {
     top: 20dvh;
   }
+
+  @media screen and (max-height: 400px) {
+    top: 38dvh;
+  }
 }
 
 html[data-theme="dark"] {
@@ -97,6 +101,14 @@ html[data-theme="dark"] {
       @media screen and (max-width: $breakpointSmallDesktop) {
         line-height: calc($xxl-fs * 1.4);
         top: calc(20dvh - ($xxl-fs * 1.4));
+        left: 0;
+        right: 3rem;
+        overflow: hidden;
+      }
+
+      @media screen and (max-height: 400px) {
+        line-height: calc($xxl-fs * 1.4);
+        top: calc(38dvh - ($xxl-fs * 1.4));
         left: 0;
         right: 3rem;
         overflow: hidden;
@@ -192,12 +204,23 @@ html[data-theme="dark"] {
       max-width: 94dvw;
       scrollbar-width: none;
       scroll-behavior: smooth;
+      border: 1px solid red;
 
       @media screen and (max-width: $breakpointSmallDesktop) {
         padding-top: calc($l-fs * 2);
-        margin-top: 20vh;
-        height: calc(100dvh - 15vh);
+        margin-top: 20dvh;
+        height: calc(100dvh - 20dvh);
         padding-bottom: calc(100dvh - (20dvh + $l-fs * 14));
+        margin-left: 4rem;
+        padding-left: 0;
+        max-width: calc(100dvw - 8rem);
+      }
+
+      @media screen and (max-height: 400px) {
+        padding-top: calc($l-fs * 2);
+        margin-top: 38dvh;
+        height: calc(100dvh - 38dvh);
+        padding-bottom: calc(100dvh - (38dvh + $l-fs * 14));
         margin-left: 4rem;
         padding-left: 0;
         max-width: calc(100dvw - 8rem);

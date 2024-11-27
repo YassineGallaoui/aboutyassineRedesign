@@ -33,6 +33,10 @@
     @media screen and (max-width: $breakpointSmallDesktop) {
       bottom: calc(80dvh - var(--i) * $l-fs * 2);
     }
+
+    @media screen and (max-height: 400px) {
+      bottom: calc(62dvh - var(--i) * $l-fs * 2);
+    }
   }
 
   .line__after {
@@ -41,6 +45,10 @@
 
     @media screen and (max-width: $breakpointSmallDesktop) {
       top: calc(20dvh + var(--i) * $l-fs * 2);
+    }
+
+    @media screen and (max-height: 400px) {
+      top: calc(38dvh + var(--i) * $l-fs * 2);
     }
   }
 
