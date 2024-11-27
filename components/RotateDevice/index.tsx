@@ -19,8 +19,12 @@ export const RotateDevice = ({ showComponent, animationFinished }) => {
       }
     },
     initial: {
-      zIndex: [-2],
-      opacity: [0],
+      zIndex: [3, 3, -1],
+      opacity: [1, 0, 0],
+      transition: {
+        duration: 0.3,
+        times: [0, 0.99, 1],
+      }
     }
   }
 
