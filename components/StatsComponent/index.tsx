@@ -6,7 +6,7 @@ import styles from "./StatsComponent.module.scss";
 
 export default function StatsComponent() {
   const screenInfo = useScreenInfo();
-  const [visibile, setVisibile] = useState<boolean>(false);
+  const [visibile, setVisibile] = useState<boolean>(true);
   const [x, setX] = useState({ w1: null, w2: null, w3: null, w4: null, w5: null, w6: null, w7: null, w8: null });
 
   useEffect(() => {

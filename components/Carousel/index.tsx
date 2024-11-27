@@ -163,6 +163,7 @@ function Carousel({
           y: "110%",
           opacity: 0,
           maxHeight: "0%",
+          minHeight: "0rem",
         },
         { duration: expandDurTime, }
       )
@@ -192,7 +193,7 @@ function Carousel({
       animate(
         ".imageStackContainer",
         {
-          maxWidth: "90%",
+          maxWidth: "85%",
           maxHeight: "100%",
         },
         { duration: expandDurTime, }
@@ -202,7 +203,7 @@ function Carousel({
         {
           x: 0,
           opacity: 1,
-          maxWidth: "10%",
+          maxWidth: "15%",
         },
         { duration: expandDurTime, }
       );
@@ -258,6 +259,7 @@ function Carousel({
           y: "0%",
           opacity: 1,
           maxHeight: "10%",
+          minHeight: "2rem",
         },
         { duration: expandDurTime, }
       );
@@ -317,6 +319,7 @@ function Carousel({
           y: "0%",
           opacity: 1,
           maxHeight: "10%",
+          minHeight: "2rem",
         },
         { duration: expandDurTime, }
       );
@@ -549,7 +552,7 @@ function Carousel({
           }
         >
           {/* immagini verticali */}
-          <div className={styles.thumbnailsVertical + " thumbnailVertical"}>
+          <div className={styles.thumbnailsVertical}>
             <div className={styles.thumbnailBorder}
               style={{
                 "--h": `calc((100% - ${images.length - 1}rem) / ${images.length})`,

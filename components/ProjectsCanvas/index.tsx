@@ -45,17 +45,23 @@ function ProjectCanvas({
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
+      const height = window.innerHeight;
+      const ar = width / height;
+
       let scale = 1;
 
-      const minW = 400;
-      const maxW = 1600;
+      const minAr = 1.2;
+      const maxAr = 4;
 
-      if (width <= minW) {
-        scale = 0.6;
-      } else if (width >= maxW) {
-        scale = 1;
+      const minScale = 0.9;
+      const maxScale = 2;
+
+      if (ar <= minAr) {
+        scale = minScale;
+      } else if (ar >= maxAr) {
+        scale = maxScale;
       } else {
-        scale = 0.6 + ((width - minW) / (maxW - minW)) * (1 - 0.6);
+        scale = minScale + ((ar - minAr) / (maxAr - minAr)) * (maxScale - minScale);
       }
 
       setDimensionsScale(scale);

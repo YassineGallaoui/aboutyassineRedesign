@@ -12,6 +12,12 @@
   gap: 1rem;
   border-radius: 1.5rem;
 
+  @media screen and (max-width: 768px) {
+    border-radius: 1rem;
+    padding: 0.5rem;
+    gap: 0rem;
+  }
+
   &.isMobile {
     gap: 0rem;
   }
@@ -40,6 +46,7 @@
       position: relative;
       overflow: hidden;
       line-height: 0.8rem;
+      color: $light-color;
 
       span {
         display: inline-block;
@@ -48,7 +55,6 @@
         span {
           position: relative;
           display: block;
-          color: $light-color;
         }
       }
     }
@@ -127,7 +133,7 @@
     .thumbnailControlsVertical {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
       opacity: 0;
       height: calc(100% - 3rem);
@@ -208,6 +214,12 @@
         }
       }
 
+      @media screen and (max-height: 450px) {
+        .thumbnailsVertical {
+          display: none;
+        }
+      }
+
       .verticalNumberAndArrows {
         display: flex;
         flex-direction: row;
@@ -220,6 +232,7 @@
           position: relative;
           line-height: 0.8rem;
           user-select: none;
+          color: $light-color;
 
           span {
             display: inline-block;
@@ -228,7 +241,6 @@
             span {
               position: relative;
               display: block;
-              color: $light-color;
             }
           }
         }
@@ -379,6 +391,10 @@
 
       .thumbnails {
         display: none;
+      }
+
+      .controls {
+        align-items: flex-end;
       }
     }
   }

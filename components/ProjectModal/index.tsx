@@ -35,7 +35,6 @@ export default function ProjectModal({
     if (open) {
       animate(`.projectModalContainer`, {
         position: "fixed",
-        borderRadius: "2.5rem",
         x: "-50%",
         y: "-50%",
         scaleY: 1,
@@ -47,7 +46,6 @@ export default function ProjectModal({
     } else {
       animate(`.projectModalContainer`, {
         position: "fixed",
-        borderRadius: "0rem",
         x: "-50%",
         y: "-150%",
         scaleY: 0,
