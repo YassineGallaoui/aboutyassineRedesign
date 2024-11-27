@@ -26,16 +26,6 @@ $semitransparentLight3: hsla(0, 0%, 100%, 0.5);
 $semitransparentLight4: hsla(0, 0%, 100%, 0.3);
 $semitransparentLight5: hsla(0, 0%, 100%, 0.1);
 
-.light {
-  background-color: $light-color;
-  color: $dark-color;
-}
-
-.dark {
-  background-color: $dark-color;
-  color: $light-color;
-}
-
 $breakpointMobileSmall: 456px;
 $breakpointMobile: 567px;
 $breakpointTablet: 768px;

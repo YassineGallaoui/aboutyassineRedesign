@@ -2,7 +2,7 @@ import { animate } from "motion";
 import { useEffect, useState } from "react";
 import styles from "./Cursor.module.scss";
 
-export default function Cursor({ hovered, txt }) {
+export default function Cursor({ hovered }) {
   const [isTouchOnlyDevice, setIsTouchOnlyDevice] = useState(false);
   const [movedPointer, setMovedPointer] = useState<boolean>(false);
 
@@ -82,7 +82,6 @@ export default function Cursor({ hovered, txt }) {
         <div className={styles.cursorDecoration1 + " cursorDecoration1 "}></div>
         <div className={styles.cursorDecoration2 + " cursorDecoration2 "}></div>
       </div>
-      {hovered && <div className={styles.customCursorText}>{txt}</div>}
     </div>
   );
 }

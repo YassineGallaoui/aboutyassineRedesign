@@ -8,44 +8,15 @@ import { breakpoints, getDeviceType } from "../utils/breakpoints";
 import { colorApplicator, generateColors } from "../utils/colorFunctions";
 
 export default function MyApp({ Component, pageProps, router }) {
-  const [cursorText, setCursorText] = useState<string | null>(null);
   const [cursorHover, setCursorHover] = useState<boolean>(false);
-  const [preferredTheme, setPreferredTheme] = useState<themeMode>(themeMode.dark);
+
   const [lightColor, setLightColor] = useState<string>("");
   const [darkColor, setDarkColor] = useState<string>("");
+
   const [SSAnimFinished, setSSAnimFinished] = useState<boolean>(false);
   const [deviceType, setDeviceType] = useState<breakpoints>();
 
   useEffect(() => {
-    const prefersdark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
-    const preferslight = window.matchMedia(
-      "(prefers-color-scheme: light)",
-    ).matches;
-
-    const storedThemePreference: themeMode | null =
-      themeMode[localStorage.getItem("yas-theme-preference")];
-    const themePreferenceSelection = (): themeMode => {
-      return storedThemePreference != null
-        ? storedThemePreference
-        : preferslight
-          ? themeMode.light
-          : themeMode.dark;
-    };
-
-    let themePreference: themeMode = themePreferenceSelection();
-
-    themePreference === themeMode.dark
-      ? document.documentElement.setAttribute("data-theme", "dark")
-      : document.documentElement.setAttribute("data-theme", "light");
-
-    const body = document.querySelector("body");
-    body.className = "";
-
-    body.classList.add(themeMode[themePreference]);
-    setPreferredTheme(themePreference);
-
     const intervalColor = setInterval(() => {
       let newColors = generateColors();
       setLightColor(newColors[0]);
@@ -53,24 +24,36 @@ export default function MyApp({ Component, pageProps, router }) {
       colorApplicator(newColors[0], newColors[1]);
     }, 10000);
 
-    let portrait = window.matchMedia("(orientation: portrait)");
-    setDeviceType(getDeviceType());
-    const changeDeviceType = () => {
+    const updateTheme = () => {
+      const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.body.className = "";
+      document.body.classList.add(prefersDarkMode ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", themeMode[themeMode.dark]);
+    };
+    const resizeDevice = () => {
       setDeviceType(getDeviceType())
     }
     const portraitChange = (e) => {
-      //changing display orientation
       if (e.matches) {
         setDeviceType(getDeviceType());
       }
     }
-    window.addEventListener("resize", changeDeviceType);
+
+    updateTheme();
+    setDeviceType(getDeviceType());
+
+    const portrait = window.matchMedia("(orientation: portrait)");
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+
+    window.addEventListener("resize", resizeDevice);
     portrait.addEventListener("change", portraitChange);
+    mediaQuery.addEventListener("change", updateTheme);
 
 
     return () => {
       clearInterval(intervalColor); // Clear the interval when component unmounts or effect re-runs
-      window.removeEventListener("resize", changeDeviceType)
+      window.removeEventListener("resize", resizeDevice)
       portrait.removeEventListener("change", portraitChange);
     };
   }, []);
@@ -85,13 +68,8 @@ export default function MyApp({ Component, pageProps, router }) {
       </Head>
       <Layout
         updateCursorStatus={setCursorHover}
-        cursorText={cursorText}
         cursorHover={cursorHover}
-        preferredTheme={preferredTheme}
-        lightColor={lightColor}
-        darkColor={darkColor}
         setSSAnimFinished={setSSAnimFinished}
-        deviceType={deviceType}
       >
         <AnimatePresence mode="sync" initial={false}>
           <Component
