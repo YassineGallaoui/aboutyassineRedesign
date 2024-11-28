@@ -1,24 +1,49 @@
 @import "../../styles/scss/variables.scss";
 
-.component {
+.carouselComponent {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   height: 100%;
+  width: 100%;
   overflow: hidden;
   padding: 1rem;
+  gap: 1rem;
   border-radius: 1.5rem;
 
+  @media screen and (max-width: 768px) {
+    border-radius: 1rem;
+    padding: 0.5rem;
+    gap: 0rem;
+  }
+
+  &.isMobile {
+    gap: 0rem;
+  }
+
   .upperControls {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
+    height: 100%;
+    max-height: 2rem;
+    z-index: 2;
+
+    &.isMobile {
+      justify-content: flex-start;
+      align-items: center;
+    }
 
     .indexWrapper {
       position: relative;
+      overflow: hidden;
+      line-height: 0.8rem;
+      transition: color $change-theme-duration;
+      color: var(--light-color);
 
       span {
         display: inline-block;
@@ -27,7 +52,6 @@
         span {
           position: relative;
           display: block;
-          color: $light-color;
         }
       }
     }
@@ -44,6 +68,11 @@
       justify-content: center;
       align-items: center;
       z-index: 1;
+      user-select: none;
+
+      img {
+        height: 40%;
+      }
     }
   }
 
@@ -54,74 +83,105 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 90%;
+    height: 100%;
+    max-height: 90%;
     border-radius: 0.8rem;
+    z-index: 0;
+
     .imageStackContainer {
       position: relative;
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      width: 100%;
+      border: 1px dashed rgb(50, 50, 50);
       height: 100%;
-      flex: 1 0 100%;
+      max-height: 90%;
       overflow: hidden;
       border-radius: 0.8rem;
+      user-select: none;
+      max-width: 100%;
+      width: 100%;
 
       .imageDiv {
         position: absolute;
         width: 100%;
+        height: 100%;
         aspect-ratio: 4/3;
         overflow: hidden;
-        opacity: 0;
-        border-radius: 0.8rem;
+        opacity: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         &:first-of-type {
           opacity: 1;
         }
 
-        img {
+        &__image {
           position: relative;
-          object-fit: contain;
-          border-radius: 0.8rem;
+          object-fit: cover;
+          max-width: 100%;
+          max-height: 100%;
         }
       }
     }
+
     .thumbnailControlsVertical {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
-      flex: 0;
       opacity: 0;
       height: calc(100% - 3rem);
-      width: 0;
+      width: 100%;
       align-self: flex-end;
       margin-left: 0rem;
       gap: 1rem;
+      overflow: visible;
 
       img {
         object-fit: cover;
       }
 
       .thumbnailsVertical {
+        position: relative;
         width: 100%;
         height: calc(100% - 6rem);
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         gap: 1rem;
+        overflow: visible;
+        user-select: none;
+
+        .thumbnailBorder {
+          position: absolute;
+          background-color: transparent;
+          border: 1px solid white;
+          transform: translate(0, var(--ty));
+          transition: transform 0.6s ease-in-out;
+          height: calc(var(--h) + 10px);
+          width: calc(100% + 8px);
+          z-index: 1;
+          border-radius: 12px;
+          pointer-events: none;
+        }
 
         .singleThumbnailVertical {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+          border-radius: 8px;
           position: relative;
           width: 100%;
           height: 100%;
-          aspect-ratio: 1.6;
           transform: translateZ(0);
           filter: grayscale(1);
           opacity: 0.3;
-          transition: all 0.3s;
+          transition: all 0.6s;
 
           &:hover {
             transform: translateZ(0);
@@ -143,10 +203,14 @@
           }
 
           img {
-            border-radius: 5px;
+            border-radius: 7px;
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
           }
         }
       }
+
       .verticalNumberAndArrows {
         display: flex;
         flex-direction: row;
@@ -154,17 +218,22 @@
         align-items: center;
         width: 100%;
         height: 5rem;
+        gap: 1rem;
 
         .verticalIndexWrapper {
           position: relative;
-          line-height: 1.2rem;
+          line-height: 0.8rem;
+          user-select: none;
+          transition: color $change-theme-duration;
+          color: var(--light-color);
+
           span {
             display: inline-block;
             overflow: hidden;
+
             span {
               position: relative;
               display: block;
-              color: $light-color;
             }
           }
         }
@@ -188,15 +257,23 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-          }
+            user-select: none;
 
-          .arrLeftVertical {
-            transform: rotate(-90deg);
+            img {
+              height: 40%
+            }
           }
+        }
+      }
 
-          .arrRightVertical {
-            transform: rotate(90deg);
-          }
+      @media screen and (max-height: 450px) {
+        .thumbnailsVertical {
+          display: none;
+        }
+
+        .verticalNumberAndArrows {
+          justify-content: flex-end;
+          gap: 1.3rem;
         }
       }
     }
@@ -204,24 +281,44 @@
 
   .thumbnailControls {
     width: 100%;
-    height: 10%;
+    height: 100%;
+    min-height: 2rem;
+    max-height: 10%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
+    gap: 1rem;
+    user-select: none;
 
-    img {
+    overflow: visible img {
       object-fit: cover;
     }
 
     .thumbnails {
+      position: relative;
       width: calc(100% - 110px);
       height: 100%;
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
       align-items: center;
-      gap: 0.7rem;
+      gap: 1rem;
+      overflow: visible;
+      user-select: none;
+
+      .thumbnailBorder {
+        position: absolute;
+        background-color: transparent;
+        border: 1px solid white;
+        transform: translate(var(--ty), 0);
+        transition: transform 0.6s ease-in-out;
+        height: calc(100% + 10px);
+        width: calc(var(--w) + 8px);
+        z-index: 1;
+        border-radius: 12px;
+        pointer-events: none;
+      }
 
       .singleThumbnail {
         position: relative;
@@ -230,7 +327,12 @@
         transform: translateZ(0);
         filter: grayscale(1);
         opacity: 0.3;
-        transition: all 0.3s;
+        transition: all 0.6s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        border-radius: 8px;
 
         &:hover {
           transform: translateZ(0);
@@ -252,19 +354,21 @@
         }
 
         img {
-          border-radius: 5px;
+          border-radius: 7px;
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
         }
       }
     }
 
     .controls {
-      width: 110px;
       height: 100%;
       display: flex;
       flex-direction: row;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
-      gap: 15px;
+      gap: 1rem;
 
       .prevButton,
       .nextButton {
@@ -278,10 +382,23 @@
         justify-content: center;
         align-items: center;
         overflow: hidden;
+        user-select: none;
+
+        img {
+          height: 40%;
+        }
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      justify-content: flex-end;
+
+      .thumbnails {
+        display: none;
       }
 
-      .arrLeft {
-        transform: rotate(180deg);
+      .controls {
+        align-items: flex-end;
       }
     }
   }

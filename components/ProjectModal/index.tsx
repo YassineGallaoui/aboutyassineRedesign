@@ -1,167 +1,167 @@
-import gsap from "gsap";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+/* eslint-disable @next/next/no-img-element */
+import { animate, easeInOut, easeOut } from "motion";
+import { useEffect, useState } from "react";
+import { buttonsDurTime, expandDurTime } from "../../pages";
 import linkArrow from "../../public/icons/linkArrow.svg";
-import { breakpoints, getDeviceType } from "../../utils/breakpoints";
+import { breakpoints } from "../../utils/breakpoints";
 import { Project } from "../../utils/dataset";
 import Carousel from "../Carousel";
+import { RotateDevice } from "../RotateDevice";
 import styles from "./ProjectModal.module.scss";
 
 type ModalProps = {
   content: Project;
   open: boolean;
   updateOpen: Function;
-  updateCursorText: Function;
   cursorIsHover: Function;
+  deviceType: breakpoints;
 };
 
 export default function ProjectModal({
   content,
   open,
   updateOpen,
-  updateCursorText,
   cursorIsHover,
+  deviceType,
 }: ModalProps) {
   const [expandedCarousel, setExpandedCarousel] = useState<boolean>(false);
-  const [deviceType, setDeviceType] = useState(breakpoints.desktop);
-  const arrowLinkRef = useRef(null);
-  const tl = gsap.timeline({});
+  const [isMobile, setIsMobile] = useState<boolean>(deviceType === breakpoints.mobileSmall || deviceType === breakpoints.mobile);
 
   useEffect(() => {
-    const changeDeviceType = () => {
-      setDeviceType(getDeviceType())
-    }
-    window.addEventListener("resize", changeDeviceType);
-
-    return()=> {
-      window.removeEventListener("resize", changeDeviceType)
-    }
-  }, []);
+    setIsMobile(deviceType === breakpoints.mobileSmall || deviceType === breakpoints.mobile);
+  }, [deviceType])
 
   useEffect(() => {
-    const themeContainer = document.querySelector(".themeContainer") as HTMLElement;
     if (open) {
-      gsap.to(`.projectModalContainer`, {
+      animate(`.projectModalContainer`, {
         position: "fixed",
-        width: "90vw",
-        height: "90vh",
-        borderRadius: "2.5rem",
-        left: "50%",
-        top: "50%",
-        xPercent: -50,
-        yPercent: -50,
-        zIndex: "20",
+        x: "-50%",
+        y: "-50%",
+        scaleY: 1,
         opacity: 1,
+      }, {
+        duration: expandDurTime,
+        ease: easeInOut,
       });
     } else {
-      gsap.to(`.projectModalContainer`, {
+      animate(`.projectModalContainer`, {
         position: "fixed",
-        height: "0vh",
-        borderRadius: "0rem",
-        left: "50%",
-        top: "-50%",
-        xPercent: -50,
-        yPercent: 0,
-        zIndex: "20",
+        x: "-50%",
+        y: "-150%",
+        scaleY: 0,
         opacity: 0,
+      }, {
+        duration: expandDurTime,
+        ease: easeOut,
       });
     }
   }, [open]);
 
   const closeModal = () => {
     updateOpen(false);
+    setTimeout(() => {
+      setExpandedCarousel(false);
+    }, 200);
   };
 
   const hoverCloseBtn = () => {
     cursorIsHover(true);
-    gsap.to(`.closeModalBtn`, { transform: "rotate(-90deg)" });
+    animate(`#closeModalBtn`, { transform: "rotate(-90deg)" }, { duration: buttonsDurTime });
   };
 
   const notHoverCloseBtn = () => {
     cursorIsHover(false);
-    gsap.to(`.closeModalBtn`, { transform: "rotate(0deg)" });
+    animate(`#closeModalBtn`, { transform: "rotate(0deg)" }, { duration: buttonsDurTime });
   };
 
-  const arrowLinkMouseOver = () => {
-    tl.to(arrowLinkRef.current, { duration: 0.2, x: 20, y: -20 })
-      .to(arrowLinkRef.current, { duration: 0, x: -20, y: 20 })
-      .to(arrowLinkRef.current, { x: 0, y: 0 });
+  const arrowLinkMouseOver = async () => {
     cursorIsHover(true);
+    await animate('#arrLink', {
+      x: [0, 25],
+      y: [0, -25],
+    }, {
+      duration: buttonsDurTime,
+    })
+
+    animate('#arrLink', {
+      x: [-25, 0],
+      y: [25, 0],
+    }, {
+      duration: buttonsDurTime,
+    })
   };
 
   useEffect(() => {
-    const projectCarouselWrapper = document.querySelector(
-      ".projectCarouselWrapper",
-    );
-    const descriptionWrapper = document.querySelector(
-      ".projectModalDescriptionWrapper",
-    );
-    const closeModalBtn = document.querySelector(".closeModalBtn");
-
-    if (expandedCarousel) {
-      gsap.to(descriptionWrapper, {
-        duration: 0.6,
-        opacity: 0,
-        x: 100,
-        flex: 0,
-        padding: 0,
-      });
-      gsap.to(projectCarouselWrapper, {
-        duration: 0.3,
-        borderRightWidth: 0,
-      });
-      gsap.to(closeModalBtn, {
-        delay: 0.3,
-        duration: 0.3,
-        filter: "invert(1)",
-      });
+    if (isMobile) {
+      if (expandedCarousel) {
+        animate("#projectCarouselWrapper", {
+          borderRightWidth: 0,
+          borderBottomWidth: "0px",
+          maxWidth: "100%",
+          maxHeight: "50%",
+        }, {
+          duration: expandDurTime
+        });
+      } else {
+        animate("#projectCarouselWrapper", {
+          borderRightWidth: 0,
+          borderBottomWidth: "1px",
+          maxWidth: "100%",
+          maxHeight: "50%",
+        }, {
+          duration: expandDurTime,
+        });
+      }
     } else {
-      gsap.to(descriptionWrapper, {
-        duration: 0.6,
-        opacity: 1,
-        x: 0,
-        flex: 1,
-        padding: "1rem",
-      });
-      gsap.to(projectCarouselWrapper, {
-        duration: 0.3,
-        borderWidth: "1px",
-      });
-      gsap.to(closeModalBtn, {
-        duration: 0.3,
-        filter: "invert(0)",
-      });
+      if (expandedCarousel) {
+        animate("#projectCarouselWrapper", {
+          borderRightWidth: 0,
+          maxWidth: "100%",
+          maxHeight: "100%",
+        }, {
+          duration: expandDurTime
+        });
+      } else {
+        animate("#projectCarouselWrapper", {
+          borderWidth: "1px",
+          maxWidth: "50%",
+          maxHeight: "100%",
+        }, {
+          duration: expandDurTime,
+        });
+      }
     }
-  }, [expandedCarousel]);
+  }, [expandedCarousel, isMobile]);
 
   return (
-    <div className={styles.projectModalContainer + " projectModalContainer"}>
+    <div className={styles.projectModalContainer + " " + (isMobile ? styles.isMobile : '') + " projectModalContainer"}>
       <div
         id="projectCarouselWrapper"
-        className={styles.projectCarouselWrapper + " projectCarouselWrapper"}
+        className={styles.projectCarouselWrapper + " " + (isMobile ? styles.isMobile : '') + " projectCarouselWrapper"}
       >
         <Carousel
           content={content}
           open={open}
-          updateCursorText={updateCursorText}
           cursorIsHover={cursorIsHover}
           expandedCarousel={expandedCarousel}
           setExpandedCarousel={setExpandedCarousel}
+          isMobile={isMobile}
         ></Carousel>
       </div>
       <div
+        id={"projectModalDescriptionWrapper"}
         className={
-          styles.projectModalDescriptionWrapper +
-          " projectModalDescriptionWrapper"
+          styles.projectModalDescriptionWrapper + " " + (isMobile ? styles.isMobile : '') +
+          " projectModalDescriptionWrapper " + (isMobile ? " projectModalVerticalDescriptionWrapper " : '')
         }
       >
-        <div className={styles.projectDescriptionComponent}>
+        <div className={styles.projectDescriptionComponent + " " + (isMobile ? styles.isMobile : '')}>
           <div className={styles.projectModalName}>{content.name}</div>
           <table>
             <tbody>
               <tr className={styles.bottomBorder + " bottomBorder"}>
                 <th className={styles.characteristic + " characteristic"}>
-                  <span>{"Working for"}</span>
+                  <span>{"Employer"}</span>
                 </th>
                 <td>{content.workingFor}</td>
               </tr>
@@ -219,28 +219,33 @@ export default function ProjectModal({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Image
-                id="arrRight"
-                ref={arrowLinkRef}
+              <img
+                id="arrLink"
                 className={styles.linkArrow}
-                src={linkArrow}
+                src={linkArrow.src}
                 alt={""}
                 role="presentation"
-              ></Image>
+              ></img>
             </a>
           )}
         </div>
       </div>
       <div
+        id={"closeModalBtn"}
         className={
-          styles.closeModalBtn +
-          (expandedCarousel ? " " + styles.light : "") +
-          " closeModalBtn"
+          `${styles.closeModalBtn} 
+          ${expandedCarousel ? styles.expanded : ""} 
+          ${isMobile ? styles.isMobile : ""} `
         }
         onMouseOver={() => hoverCloseBtn()}
         onMouseLeave={() => notHoverCloseBtn()}
         onClick={() => closeModal()}
       />
+      {isMobile &&
+        <RotateDevice
+          showComponent={expandedCarousel}
+          animationFinished={setExpandedCarousel}
+        ></RotateDevice>}
     </div>
   );
 }

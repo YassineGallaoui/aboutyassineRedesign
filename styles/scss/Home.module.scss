@@ -1,38 +1,25 @@
 @import "./variables.scss";
 
-.expBkgrdTxt {
-  position: fixed;
-  height: 100dvh;
-  width: 100dvw;
-  top: 17dvh;
+.currentPrjHovered {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  pointer-events: none;
-  user-select: none;
-  span {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20dvw;
-    line-height: 0;
-  }
-}
-.currentPrjHovered {
   position: fixed;
   top: -2.5vh;
-  left: -2.5vw;
+  left: -2.5dvw;
   height: 105vh;
-  width: 105vw;
+  width: 105dvw;
   transform: translate(0) !important;
+
   img {
-    object-fit: cover;
+    position: absolute;
     filter: brightness(0.7);
     mix-blend-mode: difference;
     opacity: 0;
+    min-height: 100dvh;
+    min-width: 100dvw;
   }
+
   &.hover:after {
     content: " ";
     width: 100%;
@@ -43,6 +30,20 @@
     background-image: url("../../public/imgs/filter.webp");
   }
 }
+
+.currentPrjHoveredText {
+  position: absolute;
+  font-size: 10dvw;
+  letter-spacing: 1dvw;
+  opacity: 0;
+  transition: 0s opacity 0.5s;
+
+  &.show {
+    transition: 0s opacity 0s;
+    opacity: 1;
+  }
+}
+
 .modalMatteBkgrd {
   position: fixed;
   height: 100dvh;
@@ -50,9 +51,11 @@
   background-color: rgba(0, 0, 0, 0);
   z-index: -1;
 }
+
 .mainMotionDiv {
   overflow: hidden;
 }
+
 .expContainer {
   position: relative;
   display: flex;
@@ -61,32 +64,34 @@
   align-items: center;
   height: 100dvh;
   width: 100dvw;
-  &.even{
-    left: -5.5dvw;
-  }
+
   .triangleProjectRow {
     position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin: 11vw;
-    .horizontalLineL, .horizontalLineR {
+    margin: 11dvw;
+
+    .horizontalLineL,
+    .horizontalLineR {
       position: absolute;
-      width: max(200vh, 200vw);
+      width: max(200vh, 200dvw);
       height: 1px;
       opacity: 0.3;
       background-color: $semitransparentDark5;
       transition: background-color $change-theme-duration;
-      animation: drawOrizLine cubic-bezier(.34,.65,.46,.76) 5s;
+      animation: drawOrizLine cubic-bezier(.34, .65, .46, .76) 5s;
       animation-iteration-count: 1;
       animation-fill-mode: forwards;
-      margin-top: 22vw;
-      transform: translateX(max(200vh, 200vw));
+      margin-top: 22dvw;
+      transform: translateX(max(200vh, 200dvw));
     }
+
     .horizontalLineL {
-      transform: translateX(calc(max(200vh, 200vw) * -1));
+      transform: translateX(calc(max(200vh, 200dvw) * -1));
     }
+
     @keyframes drawOrizLine {
       100% {
         transform: translateX(0);
@@ -94,18 +99,19 @@
     }
 
 
-    .obliqueLineP, .obliqueLineN {
+    .obliqueLineP,
+    .obliqueLineN {
       position: absolute;
       top: 0vh;
-      margin-top: -44vw;
-      margin-left: 0vw;
+      margin-top: -44dvw;
+      margin-left: 0dvw;
       width: 1px;
-      height: 0vw;
+      height: 0dvw;
       background-color: $semitransparentDark5;
       transition: background-color $change-theme-duration;
       transform: rotate(26.55deg);
       transform-origin: top;
-      animation: drawObliqueLine cubic-bezier(.7,.3,.7,.5) 5s;
+      animation: drawObliqueLine cubic-bezier(.7, .3, .7, .5) 5s;
       animation-iteration-count: 1;
       animation-fill-mode: forwards;
       animation-delay: calc(0.2s * var(--j));
@@ -118,8 +124,9 @@
 
     @keyframes drawObliqueLine {
       0% {
-        height: 0vw;
+        height: 0dvw;
       }
+
       100% {
         height: max(330vh, 330vw);
       }
@@ -130,50 +137,56 @@
       position: absolute;
       background: transparent;
       padding: 0px;
-      border: 11vw solid transparent;
+      border: 11dvw solid transparent;
       border-top: 0;
-      border-bottom: 22vw solid transparent;
+      border-bottom: 22dvw solid transparent;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
       pointer-events: none;
 
-      > div.triangleProjectContent {
+      >div.triangleProjectContent {
         position: absolute;
-        height: 21vw;
-        width: 21vw;
+        height: 21dvw;
+        width: 21dvw;
         background-color: rgba(0, 0, 0, 0.1);
+
         img {
           object-fit: cover;
           pointer-events: auto;
         }
       }
-      &:nth-child(odd) {
-        border-top: 22vw solid transparent;
-        border-bottom: 0px solid transparent;
-        left: calc(-11vw * var(--index) - 11vw);
 
-        > div.triangleProjectContent {
-          bottom: 0.7vw;
+      &:nth-child(odd) {
+        border-top: 22dvw solid transparent;
+        border-bottom: 0px solid transparent;
+        left: calc(-11dvw * var(--index) - 11dvw);
+
+        >div.triangleProjectContent {
+          bottom: 0.7dvw;
           clip-path: polygon(0 0, 100% 0, 50% 100%, 50% 100%);
         }
       }
-      &:nth-child(even) {
-        left: calc(-11vw * var(--index) - 11vw);
 
-        > div.triangleProjectContent {
-          top: 0.7vw;
+      &:nth-child(even) {
+        left: calc(-11dvw * var(--index) - 11dvw);
+
+        >div.triangleProjectContent {
+          top: 0.7dvw;
           clip-path: polygon(50% 0, 50% 0, 100% 100%, 0% 100%);
         }
       }
     }
+
     .triangleProjectWrapper {
       z-index: 10;
+
       img {
         filter: grayscale(1);
         transition: filter $change-theme-duration;
       }
+
       .triangleProjectContent {
         &:hover {
           img {
@@ -182,19 +195,23 @@
         }
       }
     }
+
     .triangleProjectWrapper__NoProj {
       &:nth-child(odd) {
-        border-top: 22vw solid transparent;
+        border-top: 22dvw solid transparent;
       }
+
       &:nth-child(even) {
-        border-bottom: 22vw solid transparent;
+        border-bottom: 22dvw solid transparent;
       }
     }
   }
+
   .noProjRow:nth-child(even) {
-    transform: translateX(11vw);
+    transform: translateX(11dvw);
   }
-  .seeMoreText{
+
+  .seeMoreText {
     width: 100%;
     height: 100%;
     display: flex;
@@ -205,16 +222,19 @@
 }
 
 html[data-theme="dark"] {
+
   .horizontalLineL,
-    .horizontalLineR{
-      transition: background-color $change-theme-duration !important;
+  .horizontalLineR {
+    transition: background-color $change-theme-duration !important;
     background-color: $semitransparentLight5 !important;
-    }
+  }
+
   .triangleProjectWrapper,
-  .triangleProjectWrapper__NoProj  {
+  .triangleProjectWrapper__NoProj {
+
     .obliqueLineP,
     .obliqueLineN {
-      transition: background-color $change-theme-duration!important;
+      transition: background-color $change-theme-duration !important;
       background-color: $semitransparentLight5 !important;
     }
   }

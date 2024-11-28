@@ -10,11 +10,13 @@
   color: lime;
   z-index: 20;
   user-select: none;
+
   #logoImageSS {
     opacity: 0.6;
     transform: translateX(-25%);
   }
-  .SSWrapper{
+
+  .SSWrapper {
     position: fixed;
     width: 100dvw;
     height: 150vh;
@@ -30,34 +32,41 @@
       height: 2rem;
       top: 2px;
       background-color: lime !important;
+
       @media screen and (max-width: $breakpointMobileSmall) {
         height: 0.8rem;
       }
     }
+
     @keyframes blinkCursor {
       0% {
         opacity: 1;
       }
+
       25% {
         opacity: 0;
       }
+
       50% {
         opacity: 1;
       }
     }
+
     .codeText {
       position: relative;
-      top: 5rem;
-      left: 5rem;
+      top: 3rem;
+      left: 3rem;
       font-family: "Courier New", Courier, monospace;
-      font-size: 2rem;
+      font-size: $l-fs;
+      line-height: CALC($l-fs * 1.5);
+
       @media screen and (max-width: $breakpointMobileSmall) {
         top: 1.5rem;
         left: 1.5rem;
-        font-size: 0.8rem;
       }
     }
-    pre{
+
+    pre {
       overflow: hidden;
     }
   }

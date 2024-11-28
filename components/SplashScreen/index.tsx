@@ -1,25 +1,33 @@
-import styles from "./SplashScreen.module.scss";
-import logoY from "../../public/logo/logo-Y.svg";
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
+import { animate } from "motion";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import TypingText from "../TypingText";
-import gsap from "gsap";
+import logoY from "../../public/logo/logo-Y.svg";
 import ProgressBarCMD from "../ProgressBarCMD";
+import TypingText from "../TypingText";
+import styles from "./SplashScreen.module.scss";
 
 export default function SplashScreen({
   setSSAnimFinished,
-  deviceType
 }) {
-  const tl = gsap.timeline({});
+  const router = useRouter();
+  const { pathname } = router;
+  const sectionNamesRC = ["about", "projects"];
+
   const displaySS = true;
-  const baseDirectory = `C:\\Users\\yas> `;
-  const directoryProjects = `C:\\Users\\yas\\projects> `;
-  const directoryYassineRedesign = `C:\\Users\\yas\\projects\\yasRedesign> `;
-  const technicalText1 = `cd projects`;
-  const technicalText2 = `cd yasRedesign`;
-  const technicalText3 = `code .`;
-  const technicalText4 = `npm run dev`;
-  const technicalText5 = `[··············································]`;
+  const baseStrings = {
+    s1: `C:\\Users\\yas> `,
+    s2: `C:\\Users\\yas\\${sectionNamesRC[pathname === "/about" ? 0 : 1]}> `,
+    s3: `C:\\Users\\yas\\${sectionNamesRC[pathname === "/about" ? 0 : 1]}\\yasRedesign> `,
+  };
+
+  const toTypeStrings = {
+    s1: `cd ${sectionNamesRC[pathname === "/about" ? 0 : 1]}`,
+    s2: `cd yasRedesign`,
+    s3: `code .`,
+    s4: `npm run dev`,
+    s5: `[··············································]`,
+  };
 
   const [text1Completed, setText1Completed] = useState(false);
   const [text2Completed, setText2Completed] = useState(false);
@@ -29,99 +37,112 @@ export default function SplashScreen({
 
   useEffect(() => {
     if (text5Completed) {
-      const SSContainer = document.querySelector(".SSContainer");
-      const SSWrapper = document.querySelector(".SSWrapper");
-      setTimeout(() => {
-        tl.to(SSWrapper, {
-          top: "-200",
-          opacity: "0",
+      setTimeout(async () => {
+        await animate("#SSWrapper", {
+          top: -200,
+          opacity: 0,
+        }, {
           duration: 0.6,
-        }, 0).to(SSContainer, {
-          opacity: "0",
+        });
+        await animate("#SSContainer", {
+          opacity: 0,
+        }, {
           duration: 0.5,
-        }, 0.1).to(SSContainer, {
-          height: "0vh",
+          delay: 0.1,
+        })
+        await animate("#SSContainer", {
+          height: 0,
+        }, {
+          duration: 0
+        })
+        await animate("#SSWrapper", {
+          height: 0,
+        }, {
           duration: 0,
-        }, '>').to(SSWrapper, {
-          height: "0vh",
+        })
+        await animate("#SSContainer", {
+          zIndex: -1,
+        }, {
           duration: 0,
-        }, '>').to(SSContainer, {
-          zIndex: "-1",
+        })
+        await animate("#SSWrapper", {
+          zIndex: -1,
+        }, {
           duration: 0,
-        }, '>').to(SSWrapper, {
-          zIndex: "-1",
-          duration: 0,
-        }, '>');;
+        })
       }, 200);
       setSSAnimFinished(true);
     }
   }, [text5Completed]);
 
   return displaySS ? (
-    <div className={styles.SSContainer + " SSContainer"}>
-      <Image
-          id={styles.logoImageSS}
-          src={logoY}
-          alt={`Yassine's Portfolio logo`}
-          fill
-      ></Image>
-      <div className={styles.SSWrapper + " SSWrapper"}>
+    <div id={"SSContainer"} className={styles.SSContainer}>
+      <img
+        id={styles.logoImageSS}
+        src={logoY.src}
+        alt={`Yassine's Portfolio logo`}
+      />
+      <div id={"SSWrapper"} className={styles.SSWrapper}>
         <div className={styles.codeText}>
-          <span>{baseDirectory}</span>
+          <span>{baseStrings.s1}</span>
           <span>
             <TypingText
-              text={technicalText1}
+              text={toTypeStrings.s1}
               updateCompletion={setText1Completed}
             />
           </span>
+
           {text1Completed && (
             <>
               <br />
-              <span>{directoryProjects}</span>
+              <span>{baseStrings.s2}</span>
             </>
           )}
           <span>
             {text1Completed && (
               <TypingText
-                text={technicalText2}
+                text={toTypeStrings.s2}
                 updateCompletion={setText2Completed}
               />
             )}
           </span>
+
           {text2Completed && (
             <>
               <br />
-              <span>{directoryYassineRedesign}</span>
+              <span>{baseStrings.s3}</span>
             </>
           )}
           <span>
             {text2Completed && (
               <TypingText
-                text={technicalText3}
+                text={toTypeStrings.s3}
                 updateCompletion={setText3Completed}
               />
             )}
           </span>
+
           {text3Completed && (
             <>
               <br />
-              <span>{directoryYassineRedesign}</span>
+              <span>{baseStrings.s3}</span>
             </>
           )}
           <span>
             {text3Completed && (
               <TypingText
-                text={technicalText4}
+                text={toTypeStrings.s4}
                 updateCompletion={setText4Completed}
               />
             )}
           </span>
+
           <span>
             {text4Completed && (
               <>
                 <br />
                 <ProgressBarCMD
-                  text={technicalText5}
+                  text={toTypeStrings.s5}
                   updateCompletion={setText5Completed}
                 />
               </>

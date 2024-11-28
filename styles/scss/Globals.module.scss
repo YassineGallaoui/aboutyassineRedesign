@@ -3,31 +3,33 @@
 @font-face {
     font-family: "Playfair--Display";
     src: url("../../public/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf") format("ttf");
-    src: url("../../public/fonts/Playfair_Display/static/PlayfairDisplay-Regular.ttf") format("ttf");
+}
+
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("../../public/fonts/JetBrainsMono/JetBrainsMono-VariableFont_wght.ttf") format("ttf");
 }
 
 * {
     box-sizing: border-box;
 }
 
-:root {
-    --underline-color-light: hsl(69, 90%, 90%);
-    --underline-color-dark: hsl(237, 30%, 15%);
+html {
+    font-size: 16px;
 }
 
-html,
 body {
     padding: 0;
     margin: 0;
-    font-family: "Playfair--Display", serif;
-    font-size: 14px;
+    font-family: 'Tahoma',
+        'Arial',
+        sans-serif;
     -ms-overflow-style: none;
     scrollbar-width: none;
     max-height: 100dvh;
     max-width: 100dvw;
     overflow: hidden;
     cursor: auto;
-    transition: transform $parallax-duration;
 
     .slideRight,
     .slideLeft {
@@ -45,6 +47,7 @@ body {
 
     .underlineLineWithAnim {
         display: inline-block;
+
         &::before {
             display: inline;
             position: absolute;
@@ -64,7 +67,7 @@ body {
             height: 1px;
             left: 0;
             top: 100%;
-            background-color: var(--underline-color-light);
+            background-color: $semitransparentLight3;
             animation: underlineAnimation 4s linear infinite;
         }
     }
@@ -110,16 +113,16 @@ body {
         transition: all 0.1s !important;
     }
 
-    &.lightMode {
-        background-color: $light-color;
+    &.light {
+        background-color: var(--light-color);
         color: $semitransparentDark1;
         transition:
             background-color $change-theme-duration,
             color $change-theme-duration;
     }
 
-    &.darkMode {
-        background-color: $dark-color;
+    &.dark {
+        background-color: var(--dark-color);
         color: $semitransparentLight1;
         transition:
             background-color $change-theme-duration,
@@ -133,7 +136,6 @@ body {
 
     box-sizing: border-box;
     transition: all $change-theme-duration;
-    user-select: none;
 
     img {
         pointer-events: none;
@@ -141,14 +143,14 @@ body {
         -webkit-user-drag: none;
     }
 
-    &.lightMode>* {
+    &.light>* {
         background-color: inherit;
         color: inherit;
         transition: all $change-theme-duration;
         transition: background-color $change-theme-duration linear;
 
         .sectionBkgrdTxt {
-            color: $semitransparentDark5;
+            color: rgba($semitransparentDark5, 0.05);
             transition: color $change-theme-duration;
         }
 
@@ -157,15 +159,11 @@ body {
             transition: background-color $change-theme-duration linear;
 
             .carouselComponent {
-                background-color: $semitransparentDark1;
+                background-color: $black;
             }
 
             table {
                 color: $semitransparentDark1;
-
-                .bottomBorder {
-                    border-bottom: 1px solid $semitransparentDark4;
-                }
 
                 tr {
                     .characteristic {
@@ -176,12 +174,6 @@ body {
                             display: inline-block;
 
                             &:after {
-                                content: "";
-                                position: absolute;
-                                display: block;
-                                width: 100%;
-                                height: 1rem;
-                                top: 1.2rem;
                                 background-color: $semitransparentDark5;
                             }
                         }
@@ -201,14 +193,14 @@ body {
         }
     }
 
-    &.darkMode>* {
+    &.dark>* {
         background-color: inherit;
         color: inherit;
         transition: all $change-theme-duration;
         transition: background-color $change-theme-duration linear;
 
         .sectionBkgrdTxt {
-            color: $semitransparentLight5;
+            color: rgba($semitransparentLight5, 0.05);
             transition: color $change-theme-duration linear;
         }
 
@@ -217,15 +209,11 @@ body {
             transition: background-color $change-theme-duration linear;
 
             .carouselComponent {
-                background-color: $semitransparentDark1;
+                background-color: $black;
             }
 
             table {
                 color: $semitransparentLight1;
-
-                .bottomBorder {
-                    border-bottom: 1px solid $semitransparentLight5;
-                }
 
                 tr {
                     .characteristic {
@@ -236,12 +224,6 @@ body {
                             display: inline-block;
 
                             &:after {
-                                content: "";
-                                position: absolute;
-                                display: block;
-                                width: 100%;
-                                height: 1rem;
-                                top: 1.2rem;
                                 background-color: $semitransparentLight5;
                             }
                         }
@@ -291,12 +273,12 @@ html[data-theme="dark"] {
 
         &::after {
             transition: background-color $change-theme-duration;
-            background-color: var(--underline-color-dark);
+            background-color: $semitransparentDark5;
         }
     }
 }
 
-#guidelines{
+#guidelines {
     position: absolute;
     height: 100dvh;
     width: 100dvw;
@@ -305,12 +287,29 @@ html[data-theme="dark"] {
     justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
-    div {
-        opacity: 0;
-        height: 50dvh;
-        width: 50dvw;
-        border: 1px solid red;
-        z-index: 1;
-        pointer-events: none;
+
+    &.show {
+        div {
+            opacity: 1;
+            height: 50dvh;
+            width: 50dvw;
+            border: 1px solid rgba(255, 0, 0, 0.571);
+            z-index: 1;
+            pointer-events: none;
+        }
     }
+}
+
+a,
+button {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+a:focus,
+a:active,
+button:focus,
+button:active {
+    outline: none;
+    background-color: transparent;
 }

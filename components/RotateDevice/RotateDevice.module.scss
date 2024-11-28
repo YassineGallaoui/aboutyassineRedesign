@@ -1,4 +1,4 @@
-.rotateDeviceContainer{
+.rotateDeviceContainer {
     background-color: transparent;
     position: fixed;
     background-color: rgba(0, 0, 0, 0.9);
@@ -11,11 +11,5 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    z-index: -1;
-    .imageContainer{
-        position: relative;
-        width: 60%;
-        height: 60%;
-        overflow: visible;
-    }
+    z-index: -2;
 }

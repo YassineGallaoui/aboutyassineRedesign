@@ -1,0 +1,29 @@
+.nav {
+    position: absolute;
+    writing-mode: vertical-lr;
+    top: 50%;
+    transform: rotateZ(0deg) translate(0, -50%);
+    box-sizing: content-box;
+    pointer-events: auto;
+    display: flex;
+    column-gap: 2rem;
+
+    a {
+        padding: 3rem 2rem;
+
+        >div {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+        }
+    }
+
+    &__navItem {
+        &__singleNavItem {
+            position: relative;
+            transform-origin: right;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+}

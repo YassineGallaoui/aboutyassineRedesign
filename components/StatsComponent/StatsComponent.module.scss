@@ -1,0 +1,23 @@
+@import "../../styles/scss/variables.scss";
+
+.statsContainer {
+  position: fixed;
+  display: none;
+  z-index: 10;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+
+  p {
+    display: block;
+    color: red;
+    font-size: $m-fs;
+  }
+
+  &.show {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+}

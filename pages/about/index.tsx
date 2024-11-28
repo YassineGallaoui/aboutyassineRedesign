@@ -1,66 +1,28 @@
-import { motion } from "framer-motion";
-import gsap from "gsap";
+import { motion } from "motion/react";
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import HorizontalLines from "../../components/HorizontalLines";
+import { TitleBackground } from "../../components/TitleBackground";
 import stylesAbout from "../../styles/scss/General.module.scss";
 import {
   calculateScrollPercentage,
-  createSpanStructure,
-  distanceLevels,
-  parallax,
+  createSpanStructureV2
 } from "../../utils/utility";
 
 export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
-  const [hasComponentMounted, setHasComponentMounted] = useState(false);
+  const welcomeArray = ["Hi!", "Hallo!", "¡Hola!", "Salut!", "Ciao!"];
+  const words = ["software engineer", "frontend expert", "proactive nerd", "a bit workaholic", "teamworker"];
 
   useEffect(() => {
-    const lastEditTag = document.querySelector("#lastUpdateDate");
-    if (lastEditTag && lastEditDate != null)
-      lastEditTag.innerHTML = lastEditDate;
-  }, []);
-
-  useEffect(() => {
-    if (SSAnimFinished && hasComponentMounted) {
-      const tlInitial = gsap.timeline({ delay: 0.2 });
-      tlInitial
-        .to(".mainMotionDiv", {
-          duration: 0,
-          top: 80,
-          scale: 1,
-          opacity: 0.8,
-        })
-        .to(".mainMotionDiv", {
-          duration: 1.8,
-          top: 0,
-          scale: 1,
-          opacity: 1,
-        });
-    } else {
-      setHasComponentMounted(true);
-    }
-  }, [SSAnimFinished]);
-
-  useEffect(() => {
-    const welcomeArray = ["Hi!", "Hallo!", "¡Hola!", "Salut!", "Ciao!"];
     const welcomeWord = document.querySelector(".welcomeWord");
     let i = 1;
     const startWelcomeAnimation = function (i) {
       setTimeout(function () {
-        welcomeWord.innerHTML = createSpanStructure(welcomeArray[i]);
+        welcomeWord.innerHTML = createSpanStructureV2(welcomeArray[i]);
         startWelcomeAnimation(++i < welcomeArray.length ? i : 0);
       }, 5000);
     };
     startWelcomeAnimation(i);
-    const documentMouseMove = (event) => {
-      parallax(
-        event,
-        document.querySelector(".sectionBkgrdTxt"),
-        distanceLevels.Second
-      );
-    };
-
-    document.addEventListener("mousemove", documentMouseMove);
 
     const pageContent = document.querySelector(".aboutContent");
 
@@ -70,9 +32,8 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
       );
     return () => {
       pageContent?.removeEventListener("scroll", scrollPercentageFunction);
-      document.removeEventListener("mousemove", documentMouseMove);
     };
-  }, [SSAnimFinished]);
+  }, [SSAnimFinished, welcomeArray]);
 
   const scrollPercentageFunction = (pageContent) => {
     const percentageBar = document.querySelector(
@@ -93,67 +54,45 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
       </Head>
       <motion.div
         className={stylesAbout.mainMotionDiv + " mainMotionDiv"}
-        initial={{ x: "50vw", opacity: 0 }}
-        animate={{ x: "0vw", opacity: 1 }}
-        exit={{ x: "50vw", opacity: 0 }}
+        initial={{ x: "50dvw", opacity: 0 }}
+        animate={{ x: "0dvw", opacity: 1 }}
+        exit={{ x: "50dvw", opacity: 0 }}
         transition={{ duration: 1, ease: [0.8, 0.28, 0, 1] }}
       >
-        <div className={stylesAbout.meBkgrdTxt + " sectionBkgrdTxt"}>
-          <span>A</span>
-          <span>b</span>
-          <span>o</span>
-          <span>u</span>
-          <span>t</span>
-        </div>
+        {SSAnimFinished && <TitleBackground text={"About"} />}
         {SSAnimFinished && <div className={stylesAbout.verticalLine}></div>}
         {SSAnimFinished && <div className={stylesAbout.horizontalLine}></div>}
         {SSAnimFinished && <HorizontalLines />}
         <div className={stylesAbout.meContainer + " meContainer"}>
           <div
             className={
-              stylesAbout.meContainer__txt + " meContainerRow row gx-5"
+              stylesAbout.meContainer__txt + " meContainerRow"
             }
           >
             <div
               className={
                 stylesAbout.meContainer__txt__big__welcome +
-                " col-10 col-sm-2 offset-1 offset-sm-1 welcomeWord"
+                " welcomeWord"
               }
             >
               <span style={{ "--i": 1 } as React.CSSProperties}>H</span>
               <span style={{ "--i": 2 } as React.CSSProperties}>i</span>
               <span style={{ "--i": 3 } as React.CSSProperties}>!</span>
             </div>
-            <div className="w-100"></div>
             {SSAnimFinished && (
               <div
                 className={
-                  stylesAbout.meContainer__txt__words + " col-2 offset-1"
+                  stylesAbout.meContainer__txt__words
                 }
               >
-                <p>
-                  <span
-                    className={stylesAbout.singleWord}
-                  >{`software engineer`}</span>
-                </p>
-                <p>
-                  <span
-                    className={stylesAbout.singleWord}
-                  >{`frontend expert`}</span>
-                </p>
-                <p>
-                  <span
-                    className={stylesAbout.singleWord}
-                  >{`proactive nerd`}</span>
-                </p>
-                <p>
-                  <span
-                    className={stylesAbout.singleWord}
-                  >{`a bit workaholic`}</span>
-                </p>
-                <p>
-                  <span className={stylesAbout.singleWord}>{`teamworker`}</span>
-                </p>
+                {words.map((el, index) => (
+                  <p key={index}>
+                    <span
+                      className={stylesAbout.singleWord}
+                      style={{ "--i": index } as React.CSSProperties}
+                    >{el}</span>
+                  </p>
+                ))}
               </div>
             )}
 
@@ -161,107 +100,120 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
               <div
                 className={
                   stylesAbout.meContainer__txt__description +
-                  " aboutContent col-10 col-sm-8 offset-1 offset-sm-3"
+                  " aboutContent"
                 }
               >
+                <h2>
+                  <span style={{ "--i": 0 } as React.CSSProperties}>1/&nbsp;&nbsp;...who am I?</span>
+                </h2>
                 <p>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`1/ I'm `}</span>
+                  >{`I'm `} </span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` Yassine, `}</span>
+                  ><b>{`Yassine`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`a`}</span>
+                  >{`, Italian-Tunisian `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` software engineer `}</span>
+                  ><b>{` software engineer `}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
                   >{`specialized in`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` frontend development. `}</span>
+                  ><b>{` frontend`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`The majority of my`}</span>
+                  >{` development and with a passion for`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` interests gravitate around IT and CS`}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                  >
-                    {`, going from digital ethics to digital law and from UX/UI design to software development. `}
-                  </span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                  >{`My focus is always on `}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  >{`creating software `}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                  >{`which`}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  >{` works flawlessly `}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                  >{`and, whenever possible, `}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  >{`is aesthetically captivating. `}</span>
-                </p>
-                <p>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                  >{`2/ My`}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  >{` native language `}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                  >{`is`}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  >{` italian `}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                  >{`but I also speak`}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  >{` fluent english, `}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                  >{`a bit of`}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  >{` french, `}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__small}
-                  >{`as well as an informal`}</span>
-                  <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  >{` arabic`}</span>
+                  ><b>{` building creative digital experiences`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
                   >{`.`}</span>
                 </p>
+
+                <h2>
+                  <span style={{ "--i": 1 } as React.CSSProperties}>2/&nbsp;&nbsp;{"Services"}</span>
+                </h2>
                 <p>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`3/ I am always interested in`}</span>
+                  >{`I craft`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  >{` new stimulating projects, `}</span>
+                  ><b>{` high-quality websites`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` so if you think we can do something great together please reach me thru `}</span>
+                  >{` with great focus on `}</span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  ><b>
+                      {<sup>{`1/`}</sup>}{`responsive design, `}
+                      {<sup>{`2/`}</sup>}{`high performance and `}
+                      {<sup>{`3/`}</sup>}{`smooth engaging motion`}
+                    </b></span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{`.`}</span>
+
+                  <br />
+
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{`As a`}</span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  ><b>{` freelancer`}</b></span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  ><b>{`, I collaborate with `}</b></span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  ><b>
+                      {<sup>{`1/`}</sup>}{`startups, `}
+                      {<sup>{`2/`}</sup>}{`agencies, `}
+                      {<sup>{`3/`}</sup>}{`studios and `}
+                      {<sup>{`4/`}</sup>}{`professionals worldwide`}
+                    </b>
+                  </span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{`. `}</span>
+
+                  <br />
+
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  ><b>{` No design yet? I've got you covered`}</b></span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{` — I partner with skillful designers to transform your vision into a `}</span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  ><b>{` stunning digital reality`}</b></span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{`.`}</span>
+                </p>
+
+                <h2>
+                  <span style={{ "--i": 2 } as React.CSSProperties}>3/&nbsp;&nbsp;{`Contacts`}</span>
+                </h2>
+                <p>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  ><b>{`Ready to bring your project to life?`}</b></span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{` Connect with me via `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   >
-                    <a
+                    <b><a
                       className={" underlineLineWithAnim"}
                       href={"mailto:myassine.gallaoui@gmail.com"}
                       onMouseOver={() => cursorIsHover(true)}
@@ -270,15 +222,15 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                       target="_blank"
                     >
                       {`email`}
-                    </a>
+                    </a></b>
                   </span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` or `}</span>
+                  >{`, `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   >
-                    <a
+                    <b><a
                       className={
                         stylesAbout.underlineLineWithAnimTwo +
                         " underlineLineWithAnim"
@@ -292,11 +244,54 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                       target="_blank"
                     >
                       {`LinkedIn`}
-                    </a>
+                    </a></b>
+                  </span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{` or `}</span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  >
+                    <b><a
+                      className={
+                        stylesAbout.underlineLineWithAnimTwo +
+                        " underlineLineWithAnim"
+                      }
+                      href={
+                        "https://x.com/Yassine__G"
+                      }
+                      onMouseOver={() => cursorIsHover(true)}
+                      onMouseLeave={() => cursorIsHover(false)}
+                      rel="noreferrer noopener"
+                      target="_blank"
+                    >
+                      {`X`}
+                    </a></b>
                   </span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
                   >{`.`}</span>
+                  <br></br>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{`Alternatively, you can simply `}</span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  >
+                    <b><a
+                      className={" underlineLineWithAnim"}
+                      href={"https://cal.com/yassine-gallaoui"}
+                      onMouseOver={() => cursorIsHover(true)}
+                      onMouseLeave={() => cursorIsHover(false)}
+                      rel="noreferrer noopener"
+                      target="_blank"
+                    >
+                      {`book a call`}
+                    </a></b>
+                  </span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{`!`}</span>
                 </p>
               </div>
             )}

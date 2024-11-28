@@ -1,119 +1,90 @@
-import "bootstrap/dist/css/bootstrap.css";
-import "../styles/css/Globals.module.min.css";
-import {colorApplicator, generateColors} from "../utils/colorFunctions";
-import {useEffect, useState} from "react";
+import { AnimatePresence } from "motion/react";
+import Head from 'next/head';
+import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import {AnimatePresence} from "framer-motion";
-import {breakpoints, getDeviceType} from "../utils/breakpoints";
-import Head from 'next/head'
+import useThemeStore, { themeMode } from "../store/themeStore";
+import "../styles/css/Globals.module.min.css";
+import { breakpoints, getDeviceType } from "../utils/breakpoints";
+import { colorApplicator, generateColors } from "../utils/colorFunctions";
 
-export enum themeMode {
-    lightMode,
-    darkMode,
-}
+export default function MyApp({ Component, pageProps, router }) {
+  const { setColors } = useThemeStore();
+  const [cursorHover, setCursorHover] = useState<boolean>(false);
 
-export default function MyApp({Component, pageProps, router}) {
-    const [cursorText, setCursorText] = useState<string | null>(null);
-    const [cursorHover, setCursorHover] = useState<boolean>(false);
-    const [preferredTheme, setPreferredTheme] = useState<themeMode>(
-        themeMode.darkMode,
-    );
-    const [lightColor, setLightColor] = useState<string>("");
-    const [darkColor, setDarkColor] = useState<string>("");
-    const [SSAnimFinished, setSSAnimFinished] = useState<boolean>(false);
-    const [deviceType, setDeviceType] = useState<breakpoints>();
+  const [lightColor, setLightColor] = useState<string>("");
+  const [darkColor, setDarkColor] = useState<string>("");
 
-    useEffect(() => {
-        const prefersDarkMode = window.matchMedia(
-            "(prefers-color-scheme: dark)",
-        ).matches;
-        const prefersLightMode = window.matchMedia(
-            "(prefers-color-scheme: light)",
-        ).matches;
+  const [SSAnimFinished, setSSAnimFinished] = useState<boolean>(false);
+  const [deviceType, setDeviceType] = useState<breakpoints>();
 
-        const storedThemePreference: themeMode | null =
-            themeMode[localStorage.getItem("yas-theme-preference")];
-        const themePreferenceSelection = (): themeMode => {
-            return storedThemePreference != null
-                ? storedThemePreference
-                : prefersLightMode
-                    ? themeMode.lightMode
-                    : themeMode.darkMode;
-        };
+  useEffect(() => {
+    const intervalColor = setInterval(() => {
+      let newColors = generateColors();
+      setLightColor(newColors[0]);
+      setDarkColor(newColors[1]);
+      colorApplicator(newColors[0], newColors[1]);
+      setColors(newColors[0], newColors[1])
+    }, 5000);
 
-        let themePreference: themeMode = themePreferenceSelection();
-
-        themePreference === themeMode.darkMode
-            ? document.documentElement.setAttribute("data-theme", "dark")
-            : document.documentElement.setAttribute("data-theme", "light");
-
-        const body = document.querySelector("body");
-        body.className = "";
-
-        body.classList.add(themeMode[themePreference]);
-        setPreferredTheme(themePreference);
-
-        const intervalColor = setInterval(() => {
-            let newColors = generateColors();
-            setLightColor(newColors[0]);
-            setDarkColor(newColors[1]);
-            colorApplicator(newColors[0], newColors[1]);
-        }, 10000);
-
-        let portrait = window.matchMedia("(orientation: portrait)");
+    const updateTheme = () => {
+      const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.body.className = "";
+      document.body.classList.add(prefersDarkMode ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", themeMode[themeMode.dark]);
+    };
+    const resizeDevice = () => {
+      setDeviceType(getDeviceType())
+    }
+    const portraitChange = (e) => {
+      if (e.matches) {
         setDeviceType(getDeviceType());
-        const changeDeviceType = () => {
-            setDeviceType(getDeviceType())
-        }
-        const portraitChange = (e) => {
-            //changing display orientation
-            if (e.matches) {
-                setDeviceType(getDeviceType());
-            }
-        }
-        window.addEventListener("resize", changeDeviceType);
-        portrait.addEventListener("change",  portraitChange);
+      }
+    }
+
+    updateTheme();
+    setDeviceType(getDeviceType());
+
+    const portrait = window.matchMedia("(orientation: portrait)");
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
 
-        return () => {
-            clearInterval(intervalColor); // Clear the interval when component unmounts or effect re-runs
-            window.removeEventListener("resize", changeDeviceType)
-            portrait.removeEventListener("change", portraitChange);
-        };
-    }, []);
+    window.addEventListener("resize", resizeDevice);
+    portrait.addEventListener("change", portraitChange);
+    mediaQuery.addEventListener("change", updateTheme);
 
-    return (
-      <>
-        <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, maximum-scale=5"
+
+    return () => {
+      clearInterval(intervalColor); // Clear the interval when component unmounts or effect re-runs
+      window.removeEventListener("resize", resizeDevice)
+      portrait.removeEventListener("change", portraitChange);
+    };
+  }, []);
+
+  return (
+    <>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=5"
+        />
+      </Head>
+      <Layout
+        updateCursorStatus={setCursorHover}
+        cursorHover={cursorHover}
+        setSSAnimFinished={setSSAnimFinished}
+      >
+        <AnimatePresence mode="sync" initial={false}>
+          <Component
+            {...pageProps}
+            cursorIsHover={setCursorHover}
+            lightColor={lightColor}
+            darkColor={darkColor}
+            SSAnimFinished={SSAnimFinished}
+            deviceType={deviceType}
+            key={router.pathname}
           />
-        </Head>
-        <Layout
-          updateCursorText={setCursorText}
-          updateCursorStatus={setCursorHover}
-          cursorText={cursorText}
-          cursorHover={cursorHover}
-          preferredTheme={preferredTheme}
-          lightColor={lightColor}
-          darkColor={darkColor}
-          setSSAnimFinished={setSSAnimFinished}
-          deviceType={deviceType}
-        >
-          <AnimatePresence mode="sync" initial={false}>
-            <Component
-              {...pageProps}
-              updateCursorText={setCursorText}
-              cursorIsHover={setCursorHover}
-              lightColor={lightColor}
-              darkColor={darkColor}
-              SSAnimFinished={SSAnimFinished}
-              deviceType={deviceType}
-              key={router.pathname}
-            />
-          </AnimatePresence>
-        </Layout>
-      </>
-    );
+        </AnimatePresence>
+      </Layout>
+    </>
+  );
 }

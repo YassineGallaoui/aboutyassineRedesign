@@ -1,18 +1,24 @@
 .centerGuidelines {
     position: fixed;
-    height: 100vh;
-    width: 100vw;
+    height: 100dvh;
+    width: 100dvw;
     z-index: 10000;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    pointer-events: none;
+    user-select: none;
+    display: none;
+
+    &.show {
+        display: block;
+    }
 }
 
 .horizontalLine,
 .verticalLine {
     position: absolute;
     background-color: greenyellow;
-    /* Change the color to your preference */
 }
 
 .horizontalLine {

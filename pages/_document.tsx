@@ -13,8 +13,6 @@ export default function Document() {
         ></script>
       </Head>
       <body id={"pageBody"}>
-        <div className={"lightMode"}></div>
-        <div className={"darkMode"}></div>
         <Main />
         <NextScript />
       </body>

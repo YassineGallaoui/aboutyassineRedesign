@@ -1,0 +1,104 @@
+.slideinContainer {
+  position: fixed;
+  width: 100dvw;
+  height: 150vh;
+  top: 0;
+  opacity: 1;
+  background-color: transparent;
+  color: white;
+  z-index: 20;
+  user-select: none;
+  pointer-events: none;
+  font-weight: 900;
+  text-transform: uppercase;
+  bottom: 0;
+  mix-blend-mode: difference;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .charContainer {
+    position: relative;
+    display: inline-flex;
+    overflow: hidden;
+    animation: 0.5s extHideTextAnim ease-in-out forwards, 0.01s flickerTextAnim infinite alternate;
+
+    .char {
+      display: flex;
+      position: relative;
+      text-shadow: 0.06rem 0 0.06rem #ea36af, -0.125rem 0 0.06rem hsl(115, 94%, 70%);
+      animation: 0.5s intHideTextAnim ease-in-out forwards, 0.01s flickerTextAnim infinite alternate;
+    }
+  }
+
+  &.isHovered {
+    .charContainer {
+      animation: 0.5s extShowTextAnim ease-in-out forwards;
+
+      .char {
+        animation: 0.5s intShowTextAnim ease-in-out forwards;
+      }
+    }
+  }
+}
+
+
+@keyframes flickerTextAnim {
+  from {
+    text-shadow: 1px 0 0 #ea36af, -2px 0 0 #75fa69;
+  }
+
+  to {
+    text-shadow: 2px 0.5px 2px #ea36af, -1px -0.5px 2px #75fa69;
+  }
+}
+
+
+
+@keyframes extHideTextAnim {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes intHideTextAnim {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-110%);
+  }
+}
+
+
+
+
+
+@keyframes extShowTextAnim {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes intShowTextAnim {
+  0% {
+    transform: translateX(110%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}

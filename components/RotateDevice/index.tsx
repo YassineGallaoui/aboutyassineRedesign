@@ -1,80 +1,52 @@
+import { motion } from "framer-motion";
 import { useEffect } from "react";
-import gsap from "gsap";
 import styles from "./RotateDevice.module.scss";
 import { RotateDeviceIcon } from "./RotateDeviceIcon";
 
+export const rotateDeviceDuration = 0.3;
 export const RotateDevice = ({ showComponent, animationFinished }) => {
-  const tl = gsap.timeline({});
 
   useEffect(() => {
-    if (showComponent)
-      tl.to("#rotateDeviceSvg", {
-        rotate: 0,
-        transformOrigin: "50% 50%",
-        duration: 0,
-      })
-        .to(".rotateDeviceContainer", {
-          zIndex: 25,
-          opacity: 1,
-          duration: 0.3,
-        })
-        .fromTo(
-          "#arrowOneSvg",
-          {
-            y: -500,
-            opacity: 0,
-            duration: 0,
-            delay: 0,
-          },
-          {
-            y: 250,
-            opacity: 1,
-            duration: 0.3,
-          }
-        )
-        .fromTo(
-          "#arrowTwoSvg",
-          {
-            y: 1250,
-            opacity: 0,
-            duration: 0,
-            delay: 0,
-          },
-          {
-            y: 500,
-            opacity: 1,
-            duration: 0.3,
-          },
-          "<"
-        )
-        .to(
-          "#rotateDeviceSvg",
-          {
-            rotate: 90,
-            transformOrigin: "50% 50%",
-            duration: 0.3,
-          },
-          "+=0.3"
-        )
-        .to(
-          ".rotateDeviceContainer",
-          {
-            zIndex: -1,
-            opacity: 0,
-            duration: 0.3,
-          },
-          "+=0.6"
-        );
-
-        animationFinished(false);
+    if (showComponent) {
+      const timer = setTimeout(() => { animationFinished(false) }, rotateDeviceDuration * 1000 * 6);
+      return () => clearTimeout(timer);
+    }
   }, [showComponent]);
 
+  const dcVariants = {
+    animate: {
+      zIndex: [-2, 3],
+      opacity: [0, 1],
+      transition: {
+        duration: rotateDeviceDuration
+      }
+    },
+    initial: {
+      zIndex: [-1],
+      opacity: [0],
+      transition: {
+        duration: 0.3,
+      }
+    }
+    /* initial: {
+      zIndex: [3, 3, -1],
+      opacity: [1, 0, 0],
+      transition: {
+        duration: 0.3,
+        times: [0, 0.99, 1],
+      }
+    } */
+  }
+
   return (
-    <div className={styles.rotateDeviceContainer + " rotateDeviceContainer"}>
-      <div className={styles.imageContainer}>
-        {/* <Image src={rotateImage} alt={"Please rotate the device"} fill /> */}
-        <RotateDeviceIcon></RotateDeviceIcon>
-      </div>
-    </div>
-  );
-};
+    <motion.div
+      id="rotateDeviceContainer"
+      className={styles.rotateDeviceContainer}
+      variants={dcVariants}
+      initial={"initial"}
+      animate={showComponent ? "animate" : "initial"}
+    >
+      {showComponent && <RotateDeviceIcon showComponent={showComponent}></RotateDeviceIcon>}
+    </motion.div >
+  )
+}

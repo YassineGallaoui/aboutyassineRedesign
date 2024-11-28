@@ -5,10 +5,24 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
+  width: 90dvw;
+  height: 90dvh;
+  top: 50%;
+  left: 50%;
   opacity: 0;
-  width: 90vw;
   overflow: hidden;
+  z-index: 20;
   background-color: inherit;
+  border-radius: 2.5rem;
+
+  @media screen and (max-width: 768px) {
+    border-radius: 1.5rem,
+  }
+
+  &.isMobile {
+    flex-direction: column;
+  }
+
   .closeModalBtn {
     position: absolute;
     top: 2rem;
@@ -18,9 +32,12 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    background-color: transparent;
     align-items: center;
     border-radius: 2rem;
-    transition: border $carousel-duration;
+    z-index: 2;
+    transition: all $close-modal-duration;
+
     &:before,
     &:after {
       content: "";
@@ -28,10 +45,7 @@
       width: 3px;
       height: 24px;
       background-color: $semitransparentDark1;
-      transition:
-        width $carousel-duration,
-        height $carousel-duration,
-        background-color $carousel-duration;
+      transition: all $close-modal-duration;
     }
 
     &:before {
@@ -41,64 +55,169 @@
     &:after {
       transform: rotate(-45deg);
     }
-    &.light {
-      transition: border $carousel-duration;
-      border: 1px solid $semitransparentDark1;
+
+    &.expanded {
+      transition-delay: 0.2s;
+      border: 1px solid $semitransparentLight1;
 
       &:before,
       &:after {
+        transition-delay: 0.2s;
         width: 1px;
         height: 14px;
-        transition:
-          width $carousel-duration,
-          height $carousel-duration;
+        background-color: $semitransparentLight1;
       }
+    }
+
+    &.isMobile {
+      filter: invert(1) !important;
+    }
+
+    @media screen and (max-width: 768px) {
+      top: 1rem;
+      right: 1rem;
     }
   }
 
   .projectCarouselWrapper {
-    width: 50%;
-    height: 100%;
     position: relative;
+    display: flex;
+    height: 100%;
+    width: 100%;
     padding: 1rem;
-    flex: 1;
+    max-width: 50%;
     border-right: 3px dashed $semitransparentDark4;
+
+    &.isMobile {
+      max-width: 100%;
+      border-right: none;
+      border-bottom: 1px dashed $semitransparentDark4;
+    }
+
+    @media screen and (max-width: 768px) {
+      padding: 0.5rem;
+    }
   }
 
   .projectModalDescriptionWrapper {
-    position: relative;
+    position: absolute;
+    left: 50%;
+    display: flex;
     height: 100%;
     overflow-y: scroll;
-    -ms-overflow-style: none; // Hide for IE and Edge
-    scrollbar-width: none; //firefox
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     padding: 1rem;
     overflow-y: hidden;
-    box-sizing: border-box;
-    flex: 1;
+    z-index: -1;
+
+    &.isMobile {
+      left: 0;
+      top: 50%;
+      max-height: 50%;
+    }
+
+    @media screen and (max-width: 768px) {
+      .projectModalDescriptionWrapper {
+        padding: 0.3rem;
+      }
+    }
+
     .projectDescriptionComponent {
+      display: flex;
+      flex-direction: column;
+      position: relative;
       height: 100%;
       border-top-right-radius: 1.5rem;
       border-bottom-right-radius: 1.5rem;
       overflow-y: scroll;
       overflow-x: hidden;
-      -ms-overflow-style: none; // Hide for IE and Edge
-      scrollbar-width: none; //firefox
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+
       &::-webkit-scrollbar {
-        display: none; //chrome and safari
+        display: none;
         width: 0;
       }
+
+      .isMobile {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 1.5rem;
+      }
+
+      >* {
+        position: relative;
+      }
     }
+
     &::-webkit-scrollbar {
-      display: none; //chrome and safari
+      display: none;
       width: 0;
     }
+
     .projectModalName {
-      font-size: 3rem;
+      font-size: $l-fs;
       font-weight: bold;
     }
-    .projectModalLink{
+
+    table {
+      flex: 1;
+      left: -3px;
+      color: var(--dark-color);
+      font-size: $sm-fs;
+
+      tbody {
+        display: grid;
+
+        th {
+          padding: 1rem 0;
+        }
+      }
+
+      .bottomBorder {
+        border-bottom: 1px dashed $semitransparentDark4;
+      }
+
+      tr {
+        td:last-of-type {
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+        }
+
+        .characteristic {
+          text-align: left;
+
+          >span {
+            width: max-content;
+
+            &:after {
+              content: "";
+              position: absolute;
+              display: block;
+              width: 100%;
+              height: calc($xs-fs * 0.5);
+              top: calc($xs-fs * 0.8);
+            }
+          }
+        }
+
+        &.descriptionTitle>td {
+          padding-bottom: 0rem;
+        }
+
+        &.description>td {
+          padding-top: 0rem;
+        }
+      }
+    }
+
+    .projectModalLink {
       height: 3.5rem;
       width: 3.5rem;
+      min-height: 3.5rem;
+      min-width: 3.5rem;
+      right: 1px;
+      bottom: 1px;
       background-color: transparent;
       border: 1px solid $semitransparentDark1;
       transition: $change-theme-duration border;
@@ -108,34 +227,20 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      position: absolute;
-      bottom: 1rem;
-      right: 1rem;
-      img{
+      margin-top: 2rem;
+      align-self: flex-end;
+
+      img {
+        height: 30%;
         filter: invert(0);
         transition: $change-theme-duration filter;
       }
-    }
-    table {
-      color: $dark-color;
-      font-size: 1.5rem;
-      .bottomBorder {
-        border-bottom: 1px solid $semitransparentDark2;
-      }
-      tr {
-        td:last-of-type {
-          padding-top: 1rem;
-          padding-bottom: 1rem;
-        }
-        .characteristic > span {
-          width: max-content;
-        }
-        &.descriptionTitle > td {
-          padding-bottom: 0rem;
-        }
-        &.description > td {
-          padding-top: 0rem;
-        }
+
+      &.isMobile {
+        height: 3rem;
+        width: 3rem;
+        bottom: none;
+        top: 1rem;
       }
     }
   }
@@ -143,33 +248,46 @@
 
 html[data-theme="dark"] {
   .closeModalBtn {
+    transition-delay: 0s;
+
     &:before,
     &:after {
+      transition-delay: 0s;
       background-color: $semitransparentLight1;
-      transition:
-        width $carousel-duration,
-        height $carousel-duration,
-        background-color $carousel-duration;
     }
-    &.light {
-      transition: border $carousel-duration;
+
+    &.expanded {
       border: 1px solid $semitransparentLight1;
       filter: invert(0) !important;
+
       &:before,
       &:after {
         width: 1px;
         height: 14px;
-        transition:
-          width $carousel-duration,
-          height $carousel-duration;
       }
     }
+
+    &.isMobile {
+      filter: invert(0) !important;
+    }
   }
+
+  table .bottomBorder {
+    border-bottom: 1px dashed $semitransparentLight4 !important;
+  }
+
   .projectCarouselWrapper {
     border-right-color: $semitransparentLight4;
+
+    &.isMobile {
+      border-right: none;
+      border-bottom-color: $semitransparentLight4;
+    }
   }
+
   .projectModalLink {
     border: 1px solid $semitransparentLight1 !important;
+
     img {
       filter: invert(1) !important;
     }

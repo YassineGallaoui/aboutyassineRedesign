@@ -1,0 +1,25 @@
+@import "../../styles/scss/variables.scss";
+
+.crtContainer {
+  background: linear-gradient(1deg, rgba(0, 0, 0, 0.8), rgba(40, 40, 40, 0), rgba(40, 40, 40, 0));
+  background-size: 2px 2px;
+  background-position: center;
+
+  position: fixed;
+  width: 100dvw;
+  height: 150vh;
+  z-index: 30;
+  /* animation: scanlines infinite 5s linear; */
+  pointer-events: none;
+  user-select: none;
+}
+
+@keyframes scanlines {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 0 1px;
+  }
+}
