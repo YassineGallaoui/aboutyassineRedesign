@@ -77,12 +77,6 @@
       }
     }
 
-    @media screen and (max-height: 600px) {
-      &__booking {
-        display: none;
-      }
-    }
-
     &__available {
       position: relative;
       writing-mode: vertical-lr;
@@ -91,7 +85,7 @@
       white-space: nowrap;
     }
 
-    @media screen and (max-height: 400px) {
+    @media screen and (max-height: 600px) {
       &__available {
         display: none;
       }
