@@ -163,12 +163,19 @@
     table {
       flex: 1;
       left: -3px;
-      display: table-row-group;
       color: var(--dark-color);
       font-size: $sm-fs;
 
+      tbody {
+        display: grid;
+
+        th {
+          padding: 1rem 0;
+        }
+      }
+
       .bottomBorder {
-        border-bottom: 1px solid $semitransparentDark2;
+        border-bottom: 1px dashed $semitransparentDark4;
       }
 
       tr {
@@ -263,6 +270,10 @@ html[data-theme="dark"] {
     &.isMobile {
       filter: invert(0) !important;
     }
+  }
+
+  table .bottomBorder {
+    border-bottom: 1px dashed $semitransparentLight4 !important;
   }
 
   .projectCarouselWrapper {

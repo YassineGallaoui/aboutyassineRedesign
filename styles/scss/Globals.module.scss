@@ -165,10 +165,6 @@ body {
             table {
                 color: $semitransparentDark1;
 
-                .bottomBorder {
-                    border-bottom: 1px solid $semitransparentDark4;
-                }
-
                 tr {
                     .characteristic {
                         color: $semitransparentDark1;
@@ -218,10 +214,6 @@ body {
 
             table {
                 color: $semitransparentLight1;
-
-                .bottomBorder {
-                    border-bottom: 1px solid $semitransparentLight5;
-                }
 
                 tr {
                     .characteristic {
