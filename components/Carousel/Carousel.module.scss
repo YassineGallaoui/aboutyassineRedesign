@@ -42,7 +42,8 @@
       position: relative;
       overflow: hidden;
       line-height: 0.8rem;
-      color: $light-color;
+      transition: color $change-theme-duration;
+      color: var(--light-color);
 
       span {
         display: inline-block;
@@ -223,7 +224,8 @@
           position: relative;
           line-height: 0.8rem;
           user-select: none;
-          color: $light-color;
+          transition: color $change-theme-duration;
+          color: var(--light-color);
 
           span {
             display: inline-block;

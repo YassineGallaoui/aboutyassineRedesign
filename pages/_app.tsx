@@ -2,12 +2,13 @@ import { AnimatePresence } from "motion/react";
 import Head from 'next/head';
 import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
-import { themeMode } from "../store/themeStore";
+import useThemeStore, { themeMode } from "../store/themeStore";
 import "../styles/css/Globals.module.min.css";
 import { breakpoints, getDeviceType } from "../utils/breakpoints";
 import { colorApplicator, generateColors } from "../utils/colorFunctions";
 
 export default function MyApp({ Component, pageProps, router }) {
+  const { setColors } = useThemeStore();
   const [cursorHover, setCursorHover] = useState<boolean>(false);
 
   const [lightColor, setLightColor] = useState<string>("");
@@ -22,7 +23,8 @@ export default function MyApp({ Component, pageProps, router }) {
       setLightColor(newColors[0]);
       setDarkColor(newColors[1]);
       colorApplicator(newColors[0], newColors[1]);
-    }, 10000);
+      setColors(newColors[0], newColors[1])
+    }, 5000);
 
     const updateTheme = () => {
       const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;

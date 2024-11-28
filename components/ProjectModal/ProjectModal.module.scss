@@ -164,7 +164,7 @@
       flex: 1;
       left: -3px;
       display: table-row-group;
-      color: $dark-color;
+      color: var(--dark-color);
       font-size: $sm-fs;
 
       .bottomBorder {

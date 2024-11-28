@@ -1,4 +1,3 @@
-import { themeMode } from "../store/themeStore";
 
 export function generateColors(): string[] {
   const brightnessLight = 90;
@@ -16,11 +15,7 @@ export function generateColors(): string[] {
 }
 
 export function colorApplicator(lightColor: string, darkColor: string): void {
-  const body = document.querySelector("body") as HTMLElement;
-
-  if (body.classList.contains(themeMode[themeMode.light])) {
-    body.style.setProperty("background-color", lightColor);
-  } else {
-    body.style.setProperty("background-color", darkColor);
-  }
+  const root = document.documentElement;
+  root.style.setProperty("--light-color", lightColor);
+  root.style.setProperty("--dark-color", darkColor);
 }
