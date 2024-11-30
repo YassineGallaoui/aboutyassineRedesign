@@ -9,6 +9,7 @@ import SplashScreen from "../SplashScreen";
 type Props = {
   updateCursorStatus: Function;
   cursorHover: boolean;
+  SSAnimFinished: boolean;
   setSSAnimFinished: Function;
   children?: ReactNode;
   deviceType?: breakpoints;
@@ -17,6 +18,7 @@ type Props = {
 const Layout = ({
   updateCursorStatus,
   cursorHover,
+  SSAnimFinished,
   setSSAnimFinished,
   children,
   deviceType
@@ -34,9 +36,9 @@ const Layout = ({
         setSSAnimFinished={setSSAnimFinished}
         deviceType={deviceType}
       />
-      <Frame
+      {SSAnimFinished && <Frame
         updateCursorStatus={updateCursorStatus}
-      />
+      />}
       {children}
     </main>
   );

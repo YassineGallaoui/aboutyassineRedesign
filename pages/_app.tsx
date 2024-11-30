@@ -71,6 +71,7 @@ export default function MyApp({ Component, pageProps, router }) {
       <Layout
         updateCursorStatus={setCursorHover}
         cursorHover={cursorHover}
+        SSAnimFinished={SSAnimFinished}
         setSSAnimFinished={setSSAnimFinished}
         deviceType={deviceType}
       >
