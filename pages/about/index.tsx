@@ -171,7 +171,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                   ><b>{` freelancer`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  ><b>{`, I collaborate with `}</b></span>
+                  >{`, I collaborate with `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   ><b>
