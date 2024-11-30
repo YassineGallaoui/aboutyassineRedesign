@@ -22,7 +22,7 @@ export const RotateDevice = ({ showComponent, animationFinished }) => {
       }
     },
     initial: {
-      zIndex: [-1],
+      zIndex: [-2],
       opacity: [0],
       transition: {
         duration: 0.3,

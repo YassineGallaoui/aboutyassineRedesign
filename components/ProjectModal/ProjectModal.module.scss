@@ -174,8 +174,13 @@
         }
       }
 
-      .bottomBorder {
+      .bottomBorder:not(:last-of-type) {
         border-bottom: 1px dashed $semitransparentDark4;
+      }
+
+      .bottomBorder:not(.description) {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
       }
 
       tr {
@@ -272,7 +277,7 @@ html[data-theme="dark"] {
     }
   }
 
-  table .bottomBorder {
+  table .bottomBorder:not(:last-of-type) {
     border-bottom: 1px dashed $semitransparentLight4 !important;
   }
 

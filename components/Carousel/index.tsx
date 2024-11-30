@@ -222,6 +222,13 @@ function Carousel({
         duration: expandDurTime,
       })
       animate(
+        ".upperControls",
+        {
+          maxHeight: "2rem",
+        },
+        { duration: expandDurTime, }
+      )
+      animate(
         ".thumbnailControlsVertical",
         {
           x: "105%",
@@ -242,6 +249,7 @@ function Carousel({
         ".imageStackContainer",
         {
           maxWidth: "100%",
+          maxHeight: "90%",
         },
         { duration: expandDurTime, }
       )
