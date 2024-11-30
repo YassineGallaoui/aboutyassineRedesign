@@ -68,16 +68,16 @@ export const calculateScrollPercentage = (pageContent) => {
 
 export const hideFrame = () => {
   animate(`#frameContainer`, {
-    scale: 1.4,
+    scale: [1, 1.4],
   }, {
     duration: 0.5
   });
 }
 
-export const unhideFrame = () => {
+export const unhideFrame = (duration = null) => {
   animate(`#frameContainer`, {
-    scale: 1,
+    scale: [1.4, 1],
   }, {
-    duration: 0.5
+    duration: duration ?? 0.5
   });
 }

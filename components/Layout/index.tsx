@@ -24,7 +24,6 @@ const Layout = ({
   deviceType
 }: Props) => {
   const screenInfo = useScreenInfo();
-  const showGuideline = false;
 
   return (
     <main>
@@ -38,6 +37,7 @@ const Layout = ({
       />
       {SSAnimFinished && <Frame
         updateCursorStatus={updateCursorStatus}
+        SSAnimFinished={SSAnimFinished}
       />}
       {children}
     </main>

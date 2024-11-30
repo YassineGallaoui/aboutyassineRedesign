@@ -6,17 +6,19 @@ import linkedinIcon from "../../public/icons/linkedin.svg";
 import mailIcon from "../../public/icons/mail.svg";
 import xIcon from "../../public/icons/x.svg";
 import logoY from "../../public/logo/logo-Y.svg";
-import { createSpanStructureV2 } from "../../utils/utility";
+import { createSpanStructureV2, unhideFrame } from "../../utils/utility";
 import Nav from "../Nav";
 import ThemeSwitcher from "../ThemeSwitcher";
 import styles from "./Frame.module.scss";
 
 type FrameType = {
   updateCursorStatus: Function;
+  SSAnimFinished: boolean;
 };
 
 export default function Frame({
   updateCursorStatus,
+  SSAnimFinished
 }: FrameType) {
   useEffect(() => {
     const body = document.querySelector("body");
@@ -26,6 +28,12 @@ export default function Frame({
       element.innerHTML = createSpanStructureV2(sectionNamesRB[index]);
     });
   }, []);
+
+  useEffect(() => {
+    if (SSAnimFinished) {
+      unhideFrame(2);
+    }
+  }, [SSAnimFinished])
 
   const hoverSocialButtons = (e) => {
     updateCursorStatus(true);
