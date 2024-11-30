@@ -41,7 +41,7 @@
     .indexWrapper {
       position: relative;
       overflow: hidden;
-      line-height: 0.8rem;
+      line-height: 0.9rem;
       transition: color $change-theme-duration;
       color: var(--light-color);
 
@@ -222,7 +222,7 @@
 
         .verticalIndexWrapper {
           position: relative;
-          line-height: 0.8rem;
+          line-height: 0.9rem;
           user-select: none;
           transition: color $change-theme-duration;
           color: var(--light-color);

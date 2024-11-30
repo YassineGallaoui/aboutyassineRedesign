@@ -98,7 +98,7 @@ export default function SplashScreen({
   useEffect(() => {
     if (displaySS && baseStrings && toTypeStrings) {
       animate("#SSWrapper", {
-        y: ["50%", "-20%"],
+        y: ["50%", "-30%"],
       }, {
         duration: 6.7,
         ease: [0, 0.7, 1, 0.3]
