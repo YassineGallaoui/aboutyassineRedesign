@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import Head from "next/head";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import HorizontalLines from "../../components/HorizontalLines";
 import { TitleBackground } from "../../components/TitleBackground";
 import stylesAbout from "../../styles/scss/General.module.scss";
@@ -10,22 +10,23 @@ import {
 } from "../../utils/utility";
 
 export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
-  const welcomeArray = ["Hi!", "Hallo!", "¡Hola!", "Salut!", "Ciao!"];
+  const welcomeArray = useMemo(() => ["Hi!", "Hallo!", "¡Hola!", "Salut!", "Ciao!"], []);
   const words = ["software engineer", "frontend expert", "proactive nerd", "a bit workaholic", "teamworker"];
 
   useEffect(() => {
-    const welcomeWord = document.querySelector(".welcomeWord");
-    let i = 1;
-    const startWelcomeAnimation = function (i) {
-      setTimeout(function () {
-        welcomeWord.innerHTML = createSpanStructureV2(welcomeArray[i]);
-        startWelcomeAnimation(++i < welcomeArray.length ? i : 0);
-      }, 5000);
-    };
-    startWelcomeAnimation(i);
+    if (SSAnimFinished) {
+      const welcomeWord = document.querySelector(".welcomeWord");
+      let i = 1;
+      const startWelcomeAnimation = function (i) {
+        setTimeout(function () {
+          welcomeWord.innerHTML = createSpanStructureV2(welcomeArray[i]);
+          startWelcomeAnimation(++i < welcomeArray.length ? i : 0);
+        }, 5000);
+      };
+      startWelcomeAnimation(i);
+    }
 
     const pageContent = document.querySelector(".aboutContent");
-
     pageContent != null &&
       pageContent.addEventListener("scroll", () =>
         scrollPercentageFunction(pageContent)
@@ -69,7 +70,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
               stylesAbout.meContainer__txt + " meContainerRow"
             }
           >
-            <div
+            {SSAnimFinished && <div
               className={
                 stylesAbout.meContainer__txt__big__welcome +
                 " welcomeWord"
@@ -78,7 +79,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
               <span style={{ "--i": 1 } as React.CSSProperties}>H</span>
               <span style={{ "--i": 2 } as React.CSSProperties}>i</span>
               <span style={{ "--i": 3 } as React.CSSProperties}>!</span>
-            </div>
+            </div>}
             {SSAnimFinished && (
               <div
                 className={
@@ -104,7 +105,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                 }
               >
                 <h2>
-                  <span style={{ "--i": 0 } as React.CSSProperties}>1/&nbsp;&nbsp;...who am I?</span>
+                  <span style={{ "--i": 0 } as React.CSSProperties}>1/&nbsp;&nbsp;<span>...Who am I?</span></span>
                 </h2>
                 <p>
                   <span
@@ -137,7 +138,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                 </p>
 
                 <h2>
-                  <span style={{ "--i": 1 } as React.CSSProperties}>2/&nbsp;&nbsp;{"Services"}</span>
+                  <span style={{ "--i": 1 } as React.CSSProperties}>2/&nbsp;&nbsp;<span>{"Services"}</span></span>
                 </h2>
                 <p>
                   <span
@@ -201,7 +202,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
                 </p>
 
                 <h2>
-                  <span style={{ "--i": 2 } as React.CSSProperties}>3/&nbsp;&nbsp;{`Contacts`}</span>
+                  <span style={{ "--i": 2 } as React.CSSProperties}>3/&nbsp;&nbsp;<span>{`Contacts`}</span></span>
                 </h2>
                 <p>
                   <span

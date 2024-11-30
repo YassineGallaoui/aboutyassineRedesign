@@ -3,31 +3,37 @@ import { animate } from "motion";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import logoY from "../../public/logo/logo-Y.svg";
+import { breakpoints } from "../../utils/breakpoints";
 import ProgressBarCMD from "../ProgressBarCMD";
 import TypingText from "../TypingText";
 import styles from "./SplashScreen.module.scss";
 
+type baseStringsType = {
+  s1: string,
+  s2: string,
+  s3: string
+}
+
+type toTypeStringsType = {
+  s1: string,
+  s2: string,
+  s3: string,
+  s4: string,
+  s5: string
+}
+
 export default function SplashScreen({
   setSSAnimFinished,
+  deviceType
 }) {
   const router = useRouter();
   const { pathname } = router;
   const sectionNamesRC = ["about", "projects"];
 
   const displaySS = true;
-  const baseStrings = {
-    s1: `C:\\Users\\yas> `,
-    s2: `C:\\Users\\yas\\${sectionNamesRC[pathname === "/about" ? 0 : 1]}> `,
-    s3: `C:\\Users\\yas\\${sectionNamesRC[pathname === "/about" ? 0 : 1]}\\yasRedesign> `,
-  };
+  const [baseStrings, setBaseStrings] = useState<baseStringsType | null>(null);
 
-  const toTypeStrings = {
-    s1: `cd ${sectionNamesRC[pathname === "/about" ? 0 : 1]}`,
-    s2: `cd yasRedesign`,
-    s3: `code .`,
-    s4: `npm run dev`,
-    s5: `[··············································]`,
-  };
+  const [toTypeStrings, setToTypeStrings] = useState<toTypeStringsType | null>(null);
 
   const [text1Completed, setText1Completed] = useState(false);
   const [text2Completed, setText2Completed] = useState(false);
@@ -36,46 +42,77 @@ export default function SplashScreen({
   const [text5Completed, setText5Completed] = useState(false);
 
   useEffect(() => {
+    let bs: baseStringsType;
+    let tts: toTypeStringsType;
+    if (deviceType === breakpoints.tablet || deviceType === breakpoints.mobile || deviceType === breakpoints.mobileSmall) {
+      bs = {
+        s1: `C:\\Users\\yas> `,
+        s2: `...\\${sectionNamesRC[pathname === "/about" ? 0 : 1]}> `,
+        s3: `...\\yasRedesign> `,
+      }
+      tts = {
+        s1: `cd ${sectionNamesRC[pathname === "/about" ? 0 : 1]}`,
+        s2: `cd yasRedesign`,
+        s3: `code .`,
+        s4: `npm run dev`,
+        s5: `[···················]`,
+      }
+    } else {
+      bs = {
+        s1: `C:\\Users\\yas> `,
+        s2: `C:\\Users\\yas\\${sectionNamesRC[pathname === "/about" ? 0 : 1]}> `,
+        s3: `C:\\Users\\yas\\${sectionNamesRC[pathname === "/about" ? 0 : 1]}\\yasRedesign> `,
+      }
+      tts = {
+        s1: `cd ${sectionNamesRC[pathname === "/about" ? 0 : 1]}`,
+        s2: `cd yasRedesign`,
+        s3: `code .`,
+        s4: `npm run dev`,
+        s5: `[··············································]`,
+      }
+    }
+    setBaseStrings(bs);
+    setToTypeStrings(tts);
+  }, [deviceType])
+
+  useEffect(() => {
     if (text5Completed) {
       setTimeout(async () => {
-        await animate("#SSWrapper", {
-          top: -200,
-          opacity: 0,
+        await animate("#SSContainer", {
+          opacity: [1, 0],
         }, {
-          duration: 0.6,
+          duration: 0.2,
+          ease: "easeIn",
         });
         await animate("#SSContainer", {
-          opacity: 0,
-        }, {
-          duration: 0.5,
-          delay: 0.1,
-        })
-        await animate("#SSContainer", {
-          height: 0,
-        }, {
-          duration: 0
-        })
-        await animate("#SSWrapper", {
-          height: 0,
-        }, {
-          duration: 0,
-        })
-        await animate("#SSContainer", {
+          maxHeight: 0,
           zIndex: -1,
         }, {
           duration: 0,
         })
-        await animate("#SSWrapper", {
-          zIndex: -1,
-        }, {
-          duration: 0,
-        })
-      }, 200);
+      }, 550);
       setSSAnimFinished(true);
     }
   }, [text5Completed]);
 
-  return displaySS ? (
+  useEffect(() => {
+    if (displaySS && baseStrings && toTypeStrings) {
+      animate("#SSWrapper", {
+        y: ["50%", "-20%"],
+      }, {
+        duration: 6.7,
+        ease: [0, 0.7, 1, 0.3]
+      })
+      animate("#SSWrapper", {
+        opacity: [0, 1]
+      }, {
+        duration: 0.1,
+        ease: "easeOut"
+      })
+    }
+  }, [displaySS, baseStrings, toTypeStrings])
+
+  return displaySS && baseStrings && toTypeStrings ? (
     <div id={"SSContainer"} className={styles.SSContainer}>
       <img
         id={styles.logoImageSS}

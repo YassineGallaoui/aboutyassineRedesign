@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import useScreenInfo from "../../hooks/useScreenInfo";
+import { breakpoints } from "../../utils/breakpoints";
 import CRTScreen from "../CRTScreen";
 import Cursor from "../Cursor";
 import Frame from "../Frame";
@@ -10,6 +11,7 @@ type Props = {
   cursorHover: boolean;
   setSSAnimFinished: Function;
   children?: ReactNode;
+  deviceType?: breakpoints;
 };
 
 const Layout = ({
@@ -17,6 +19,7 @@ const Layout = ({
   cursorHover,
   setSSAnimFinished,
   children,
+  deviceType
 }: Props) => {
   const screenInfo = useScreenInfo();
   const showGuideline = false;
@@ -29,6 +32,7 @@ const Layout = ({
       {!(screenInfo?.isTouchOnly) && screenInfo?.hasMouse && <Cursor hovered={cursorHover} />}
       <SplashScreen
         setSSAnimFinished={setSSAnimFinished}
+        deviceType={deviceType}
       />
       <Frame
         updateCursorStatus={updateCursorStatus}

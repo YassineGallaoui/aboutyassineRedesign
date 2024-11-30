@@ -180,7 +180,6 @@ html[data-theme="dark"] {
         .singleWord {
           display: block;
           opacity: 0;
-          top: 3rem;
           animation:
             animText cubic-bezier(0.87, 0, 0.13, 1) 2s,
             animOpacity cubic-bezier(1, 0, 0.5, 1) 2s;
@@ -249,12 +248,29 @@ html[data-theme="dark"] {
         line-height: calc($l-fs * 2);
         overflow: hidden;
 
-        span {
+        &>span {
+          position: relative;
           display: inline-block;
           transform: translate(0, 100%);
           transition: all .5s;
           animation:
             animTitle cubic-bezier(0.87, 0, 0.13, 1) 2s forwards calc(0.4s + var(--i) * 0.2s);
+
+          span {
+            position: relative;
+
+            &:after {
+              content: "";
+              display: block;
+              position: absolute;
+              bottom: 0%;
+              left: -5%;
+              width: 110%;
+              height: calc($xl-fs * 1.2);
+              background-color: $semitransparentDark4;
+              transition: background-color $change-theme-duration;
+            }
+          }
         }
       }
 
@@ -265,6 +281,18 @@ html[data-theme="dark"] {
         margin-bottom: calc($l-fs * 4);
         font-size: $l-fs;
         line-height: calc($l-fs * 2);
+
+        animation: animText cubic-bezier(0.87, 0, 0.13, 1) 1.6s;
+        animation-delay: 0.7s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+
+        @media screen and (max-width: $breakpointSmallDesktop) {
+          animation: animTextMobile cubic-bezier(0.87, 0, 0.13, 1) 1.6s;
+          animation-delay: 0.7s;
+          animation-iteration-count: 1;
+          animation-fill-mode: forwards;
+        }
 
         &:last-of-type {
           margin-bottom: 0;
@@ -282,18 +310,14 @@ html[data-theme="dark"] {
       }
 
       &__small {
-        animation:
-          animText cubic-bezier(0.87, 0, 0.13, 1) 1.6s,
-          animOpacitySmall cubic-bezier(0.87, 0, 0.13, 1) 1.6s;
+        animation: animOpacitySmall cubic-bezier(0.87, 0, 0.13, 1) 1.6s;
         animation-delay: 0.7s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
       }
 
       &__big {
-        animation:
-          animText cubic-bezier(0.87, 0, 0.13, 1) 1.6s,
-          animOpacity cubic-bezier(0.87, 0, 0.13, 1) 1.6s;
+        animation: animOpacity cubic-bezier(0.87, 0, 0.13, 1) 1.6s;
         animation-delay: 0.7s;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
@@ -324,13 +348,21 @@ html[data-theme="dark"] {
 
 @keyframes animText {
   0% {
-    transform: translate(0, 105%);
-    top: 3rem;
+    transform: translate(0, 50%);
   }
 
   100% {
     transform: translate(0, 0%);
-    top: 0rem;
+  }
+}
+
+@keyframes animTextMobile {
+  0% {
+    transform: translate(0, 10%);
+  }
+
+  100% {
+    transform: translate(0, 0%);
   }
 }
 
@@ -389,6 +421,12 @@ html[data-theme="dark"] {
 }
 
 html[data-theme="dark"] {
+  .meContainer__txt__description {
+    h2 span span:after {
+      background-color: $semitransparentLight4;
+    }
+  }
+
   .percentageBarBar {
     color: $semitransparentDark1;
     background-color: $semitransparentLight1;

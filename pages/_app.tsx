@@ -72,6 +72,7 @@ export default function MyApp({ Component, pageProps, router }) {
         updateCursorStatus={setCursorHover}
         cursorHover={cursorHover}
         setSSAnimFinished={setSSAnimFinished}
+        deviceType={deviceType}
       >
         <AnimatePresence mode="sync" initial={false}>
           <Component
