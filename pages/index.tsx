@@ -123,10 +123,6 @@ export default function Projects({
 
   useEffect(() => {
     colorApplicator(lightColor, darkColor);
-
-    const lastEditTag = document.querySelector("#lastUpdateDate");
-    if (lastEditTag && lastEditDate != null)
-      lastEditTag.innerHTML = lastEditDate;
   }, []);
 
   useEffect(() => {
@@ -166,7 +162,6 @@ export default function Projects({
         exit={{ x: "-50dvw", opacity: 0 }}
         transition={{ duration: 1, ease: [0.8, 0.28, 0, 1] }}
       >
-        {/* <TestComp projsNumber={projsNumber} setProjsNumber={setProjsNumber} /> */}
         {SSAnimFinished && <TitleBackground text={"Projects"} />}
         <div
           className={
