@@ -13,6 +13,7 @@
   color: lime;
   z-index: 20;
   user-select: none;
+  max-height: 150dvh;
 
   #logoImageSS {
     opacity: 0.6;
@@ -26,7 +27,7 @@
     top: 0;
     opacity: 0;
     background-color: transparent;
-
+    transform: translate(0, 50%);
 
     .textCursor {
       position: relative;
@@ -57,11 +58,17 @@
 
     .codeText {
       position: relative;
-      top: 3rem;
-      left: 3rem;
+      display: block;
+      top: 2rem;
+      left: 2rem;
       font-family: "Courier New", Courier, monospace;
       font-size: $l-fs;
-      line-height: CALC($l-fs * 1.5);
+      line-height: calc($l-fs * 1.5);
+
+      p {
+        padding: 0;
+        margin: 0;
+      }
 
       @media screen and (max-width: $breakpointMobileSmall) {
         top: 1.5rem;

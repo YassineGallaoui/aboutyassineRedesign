@@ -32,8 +32,8 @@ export default function ProgressBarCMD({ text, updateCompletion }) {
   }, [text]);
 
   return (
-    <div>
-      <pre>{progressText}</pre>
-    </div>
+    <span>
+      <span>{progressText}</span>
+    </span>
   );
 };
