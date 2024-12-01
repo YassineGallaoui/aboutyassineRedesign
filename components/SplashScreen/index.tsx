@@ -30,10 +30,19 @@ export default function SplashScreen({
   const { pathname } = router;
   const sectionNamesRC = ["about", "projects"];
 
-  const displaySS = true;
-  const [baseStrings, setBaseStrings] = useState<baseStringsType | null>(null);
+  const [baseStrings, setBaseStrings] = useState<baseStringsType>({
+    s1: `C:\\Users\\yas> `,
+    s2: `C:\\Users\\yas\\${sectionNamesRC[pathname === "/about" ? 0 : 1]}> `,
+    s3: `C:\\Users\\yas\\${sectionNamesRC[pathname === "/about" ? 0 : 1]}\\yasRedesign> `,
+  });
 
-  const [toTypeStrings, setToTypeStrings] = useState<toTypeStringsType | null>(null);
+  const [toTypeStrings, setToTypeStrings] = useState<toTypeStringsType>({
+    s1: `cd ${sectionNamesRC[pathname === "/about" ? 0 : 1]}`,
+    s2: `cd yasRedesign`,
+    s3: `code .`,
+    s4: `npm run dev`,
+    s5: `[··············································]`,
+  });
 
   const [text1Completed, setText1Completed] = useState(false);
   const [text2Completed, setText2Completed] = useState(false);
@@ -42,37 +51,43 @@ export default function SplashScreen({
   const [text5Completed, setText5Completed] = useState(false);
 
   useEffect(() => {
-    let bs: baseStringsType;
-    let tts: toTypeStringsType;
-    if (deviceType === breakpoints.tablet || deviceType === breakpoints.mobile || deviceType === breakpoints.mobileSmall) {
-      bs = {
-        s1: `C:\\Users\\yas> `,
-        s2: `...\\${sectionNamesRC[pathname === "/about" ? 0 : 1]}> `,
-        s3: `...\\yasRedesign> `,
+    if (deviceType != undefined) {
+      let bs: baseStringsType;
+      let tts: toTypeStringsType;
+      if (deviceType === breakpoints.tablet || deviceType === breakpoints.mobile || deviceType === breakpoints.mobileSmall) {
+        bs = {
+          s1: `C:\\Users\\yas> `,
+          s2: `...\\${sectionNamesRC[pathname === "/about" ? 0 : 1]}> `,
+          s3: `...\\yasRedesign> `,
+        }
+        tts = {
+          s1: `cd ${sectionNamesRC[pathname === "/about" ? 0 : 1]}`,
+          s2: `cd yasRedesign`,
+          s3: `code .`,
+          s4: `npm run dev`,
+          s5: `[···················]`,
+        }
+      } else {
+        bs = {
+          s1: `C:\\Users\\yas> `,
+          s2: `C:\\Users\\yas\\${sectionNamesRC[pathname === "/about" ? 0 : 1]}> `,
+          s3: `C:\\Users\\yas\\${sectionNamesRC[pathname === "/about" ? 0 : 1]}\\yasRedesign> `,
+        }
+        tts = {
+          s1: `cd ${sectionNamesRC[pathname === "/about" ? 0 : 1]}`,
+          s2: `cd yasRedesign`,
+          s3: `code .`,
+          s4: `npm run dev`,
+          s5: `[··············································]`,
+        }
       }
-      tts = {
-        s1: `cd ${sectionNamesRC[pathname === "/about" ? 0 : 1]}`,
-        s2: `cd yasRedesign`,
-        s3: `code .`,
-        s4: `npm run dev`,
-        s5: `[···················]`,
+      if (bs !== baseStrings) {
+        setBaseStrings(bs)
       }
-    } else {
-      bs = {
-        s1: `C:\\Users\\yas> `,
-        s2: `C:\\Users\\yas\\${sectionNamesRC[pathname === "/about" ? 0 : 1]}> `,
-        s3: `C:\\Users\\yas\\${sectionNamesRC[pathname === "/about" ? 0 : 1]}\\yasRedesign> `,
-      }
-      tts = {
-        s1: `cd ${sectionNamesRC[pathname === "/about" ? 0 : 1]}`,
-        s2: `cd yasRedesign`,
-        s3: `code .`,
-        s4: `npm run dev`,
-        s5: `[··············································]`,
+      if (tts !== toTypeStrings) {
+        setToTypeStrings(tts)
       }
     }
-    setBaseStrings(bs);
-    setToTypeStrings(tts);
   }, [deviceType])
 
   useEffect(() => {
@@ -96,23 +111,22 @@ export default function SplashScreen({
   }, [text5Completed]);
 
   useEffect(() => {
-    if (displaySS && baseStrings && toTypeStrings) {
-      animate("#SSWrapper", {
-        y: ["50%", "-30%"],
-      }, {
-        duration: 6.7,
-        ease: [0, 0.7, 1, 0.3]
-      })
-      animate("#SSWrapper", {
-        opacity: [0, 1]
-      }, {
-        duration: 0.1,
-        ease: "easeOut"
-      })
-    }
-  }, [displaySS, baseStrings, toTypeStrings])
+    console.log('c')
+    animate("#SSWrapper", {
+      y: ["50%", "-30%"],
+    }, {
+      duration: 6.7,
+      ease: [0, 0.7, 1, 0.3]
+    })
+    animate("#SSWrapper", {
+      opacity: [0, 1]
+    }, {
+      duration: 0.1,
+      ease: "easeOut"
+    })
+  }, [])
 
-  return displaySS && baseStrings && toTypeStrings ? (
+  return baseStrings && toTypeStrings ? (
     <div id={"SSContainer"} className={styles.SSContainer}>
       <img
         id={styles.logoImageSS}

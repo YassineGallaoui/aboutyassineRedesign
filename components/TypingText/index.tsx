@@ -1,15 +1,16 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface TypingTextProps {
   text: string;
   updateCompletion: (isComplete: boolean) => void;
+  delay?: number;
 }
 
 const getRandomInt = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-const TypingText: React.FC<TypingTextProps> = ({ text, updateCompletion }) => {
+const TypingText: React.FC<TypingTextProps> = ({ text, updateCompletion, delay = 0 }) => {
   const [displayText, setDisplayText] = useState("");
   const currentIndexRef = useRef(0);
 
@@ -37,7 +38,9 @@ const TypingText: React.FC<TypingTextProps> = ({ text, updateCompletion }) => {
       }
     };
 
-    typeNextCharacter();
+    setTimeout(() => {
+      typeNextCharacter();
+    }, delay);
 
     return () => {
       isMounted = false;
