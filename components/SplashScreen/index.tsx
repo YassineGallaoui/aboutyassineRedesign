@@ -96,7 +96,7 @@ export default function SplashScreen({
         await animate("#SSContainer", {
           opacity: [1, 0],
         }, {
-          duration: 0.2,
+          duration: 0.4,
           ease: "easeIn",
         });
         await animate("#SSContainer", {
@@ -111,17 +111,16 @@ export default function SplashScreen({
   }, [text5Completed]);
 
   useEffect(() => {
-    console.log('c')
     animate("#SSWrapper", {
       y: ["50%", "-30%"],
     }, {
-      duration: 6.7,
-      ease: [0, 0.7, 1, 0.3]
+      duration: 6.9,
+      ease: [0, 0.6, 1, 0.2]
     })
     animate("#SSWrapper", {
       opacity: [0, 1]
     }, {
-      duration: 0.1,
+      duration: 1,
       ease: "easeOut"
     })
   }, [])
@@ -135,71 +134,70 @@ export default function SplashScreen({
       />
       <div id={"SSWrapper"} className={styles.SSWrapper}>
         <div className={styles.codeText}>
-          <span>{baseStrings.s1}</span>
-          <span>
-            <TypingText
-              text={toTypeStrings.s1}
-              updateCompletion={setText1Completed}
-            />
-          </span>
+          <p>
+            <span>{baseStrings.s1}</span>
+            <span>
+              <TypingText
+                text={toTypeStrings.s1}
+                updateCompletion={setText1Completed}
+              />
+            </span>
+            {!text1Completed && <span className={styles.textCursor}></span>}
+          </p>
 
           {text1Completed && (
-            <>
-              <br />
+            <p>
               <span>{baseStrings.s2}</span>
-            </>
+              <span>
+                {text1Completed && (
+                  <TypingText
+                    text={toTypeStrings.s2}
+                    updateCompletion={setText2Completed}
+                  />
+                )}
+                {!text2Completed && <span className={styles.textCursor}></span>}
+              </span>
+            </p>
           )}
-          <span>
-            {text1Completed && (
-              <TypingText
-                text={toTypeStrings.s2}
-                updateCompletion={setText2Completed}
-              />
-            )}
-          </span>
 
           {text2Completed && (
-            <>
-              <br />
+            <p>
               <span>{baseStrings.s3}</span>
-            </>
+              <span>
+                {text2Completed && (
+                  <TypingText
+                    text={toTypeStrings.s3}
+                    updateCompletion={setText3Completed}
+                  />
+                )}
+              </span>
+              {!text3Completed && <span className={styles.textCursor}></span>}
+            </p>
           )}
-          <span>
-            {text2Completed && (
-              <TypingText
-                text={toTypeStrings.s3}
-                updateCompletion={setText3Completed}
-              />
-            )}
-          </span>
 
           {text3Completed && (
-            <>
-              <br />
+            <p>
               <span>{baseStrings.s3}</span>
-            </>
+              <span>
+                {text3Completed && (
+                  <TypingText
+                    text={toTypeStrings.s4}
+                    updateCompletion={setText4Completed}
+                  />
+                )}
+              </span>
+              {!text4Completed && <span className={styles.textCursor}></span>}
+            </p>
           )}
-          <span>
-            {text3Completed && (
-              <TypingText
-                text={toTypeStrings.s4}
-                updateCompletion={setText4Completed}
-              />
-            )}
-          </span>
 
-          <span>
-            {text4Completed && (
-              <>
-                <br />
-                <ProgressBarCMD
-                  text={toTypeStrings.s5}
-                  updateCompletion={setText5Completed}
-                />
-              </>
-            )}
-          </span>
-          {!text4Completed && <div className={styles.textCursor}></div>}
+          {text4Completed && (
+            <p>
+              <ProgressBarCMD
+                text={toTypeStrings.s5}
+                updateCompletion={setText5Completed}
+              />
+            </p>
+          )}
         </div>
       </div>
     </div>
