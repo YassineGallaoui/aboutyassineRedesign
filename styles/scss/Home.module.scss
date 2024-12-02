@@ -66,6 +66,11 @@
   height: 100dvh;
   width: 100dvw;
 
+  button {
+    height: 0 !important;
+    width: 0 !important;
+  }
+
   .triangleProjectRow {
     position: relative;
     display: flex;

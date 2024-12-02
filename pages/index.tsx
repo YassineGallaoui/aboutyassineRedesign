@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { A11yAnnouncer } from "@react-three/a11y";
 import { animate } from "motion";
 import { motion } from "motion/react";
 import Head from "next/head";
@@ -210,6 +211,7 @@ export default function Projects({
               projsNumber={projsNumber}
             />
           }
+          <A11yAnnouncer />
         </div>
         <ProjectModal
           content={projectOpened}

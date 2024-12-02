@@ -46,7 +46,7 @@ export default function Frame({
   };
 
   return (
-    <div id={"frameContainer"} className={styles.frameContainer}>
+    <nav id={"frameContainer"} className={styles.frameContainer}>
       <div className={styles.frameContainer__left}>
         <div
           className={
@@ -194,6 +194,6 @@ export default function Frame({
 
         </div>
       </div>
-    </div>
+    </nav>
   );
 }

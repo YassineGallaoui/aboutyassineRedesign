@@ -154,7 +154,7 @@ body {
             transition: color $change-theme-duration;
         }
 
-        .projectModalContainer {
+        #projectModalContainer {
             color: $semitransparentDark1;
             transition: background-color $change-theme-duration linear;
 
@@ -204,7 +204,7 @@ body {
             transition: color $change-theme-duration linear;
         }
 
-        .projectModalContainer {
+        #projectModalContainer {
             color: $semitransparentLight1;
             transition: background-color $change-theme-duration linear;
 

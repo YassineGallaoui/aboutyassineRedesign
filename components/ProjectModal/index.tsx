@@ -33,7 +33,7 @@ export default function ProjectModal({
 
   useEffect(() => {
     if (open) {
-      animate(`.projectModalContainer`, {
+      animate(`#projectModalContainer`, {
         position: "fixed",
         x: "-50%",
         y: "-50%",
@@ -44,7 +44,7 @@ export default function ProjectModal({
         ease: easeInOut,
       });
     } else {
-      animate(`.projectModalContainer`, {
+      animate(`#projectModalContainer`, {
         position: "fixed",
         x: "-50%",
         y: "-150%",
@@ -134,7 +134,10 @@ export default function ProjectModal({
   }, [expandedCarousel, isMobile]);
 
   return (
-    <div className={styles.projectModalContainer + " " + (isMobile ? styles.isMobile : '') + " projectModalContainer"}>
+    <div
+      id="projectModalContainer"
+      className={styles.projectModalContainer + " " + (isMobile ? styles.isMobile : '')}
+    >
       <div
         id="projectCarouselWrapper"
         className={styles.projectCarouselWrapper + " " + (isMobile ? styles.isMobile : '') + " projectCarouselWrapper"}
@@ -218,6 +221,7 @@ export default function ProjectModal({
               onMouseLeave={() => cursorIsHover(false)}
               target="_blank"
               rel="noopener noreferrer"
+              tabIndex={expandedCarousel || !open ? -1 : 0}
             >
               <img
                 id="arrLink"
@@ -230,13 +234,15 @@ export default function ProjectModal({
           )}
         </div>
       </div>
-      <div
+      <button
         id={"closeModalBtn"}
         className={
           `${styles.closeModalBtn} 
           ${expandedCarousel ? styles.expanded : ""} 
           ${isMobile ? styles.isMobile : ""} `
         }
+        tabIndex={open ? 0 : -1}
+        aria-label="close project modal"
         onMouseOver={() => hoverCloseBtn()}
         onMouseLeave={() => notHoverCloseBtn()}
         onClick={() => closeModal()}

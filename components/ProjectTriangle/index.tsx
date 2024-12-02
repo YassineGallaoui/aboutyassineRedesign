@@ -1,3 +1,4 @@
+import { A11y } from "@react-three/a11y";
 import { useFrame, useLoader } from "@react-three/fiber";
 import { StaticImageData } from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -105,36 +106,43 @@ export default function ProjectTriangle({
 
 
     return (
-        <mesh
-            castShadow
-            receiveShadow
-            ref={meshRef}
-            position={position}
-            scale={[scale, scale, 1]}
-            onPointerOver={() => setHovered(true)}
-            onPointerOut={() => setHovered(false)}
-            onPointerMove={() => setHovered(true)}
-            onPointerDown={() => triangleMouseClick(projectData.id)}
+        <A11y
+            role="button"
+            description={`Open ${projectData.name} project`}
+            /* focusCall={() => console.log("focus " + projectData.id)} */
+            actionCall={() => triangleMouseClick(projectData.id)}
         >
-            <bufferGeometry>
-                <bufferAttribute
-                    attach="attributes-position"
-                    {...vert}
-                />
-                {imageUrl && (
+            <mesh
+                castShadow
+                receiveShadow
+                ref={meshRef}
+                position={position}
+                scale={[scale, scale, 1]}
+                onPointerOver={() => setHovered(true)}
+                onPointerOut={() => setHovered(false)}
+                onPointerMove={() => setHovered(true)}
+                onPointerDown={() => triangleMouseClick(projectData.id)}
+            >
+                <bufferGeometry>
                     <bufferAttribute
-                        attach="attributes-uv"
-                        {...uvs}
+                        attach="attributes-position"
+                        {...vert}
                     />
-                )}
-            </bufferGeometry>
-            <meshStandardMaterial
-                attach="material"
-                {...materialProps}
-                wireframe={false}
-                side={THREE.DoubleSide}
-                flatShading={true}
-            />
-        </mesh>
+                    {imageUrl && (
+                        <bufferAttribute
+                            attach="attributes-uv"
+                            {...uvs}
+                        />
+                    )}
+                </bufferGeometry>
+                <meshStandardMaterial
+                    attach="material"
+                    {...materialProps}
+                    wireframe={false}
+                    side={THREE.DoubleSide}
+                    flatShading={true}
+                />
+            </mesh>
+        </A11y>
     );
 }

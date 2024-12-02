@@ -521,12 +521,13 @@ function Carousel({
           </div>
         </div>
 
-        <div
+        <button
           id="expandCarouselWrapper"
           className={styles.expandCarouselWrapper}
           onMouseOver={() => expandBtnMouseOver()}
           onMouseLeave={() => expandBtnMouseLeave()}
           onClick={() => expandBtnClick()}
+          tabIndex={open ? 0 : -1}
         >
           <img
             id="arrExpand"
@@ -534,7 +535,7 @@ function Carousel({
             src={arrExpand.src}
             alt={"expand"}
           ></img>
-        </div>
+        </button>
       </div>
 
       <div className={styles.imageContainer + " imageContainer"}>
@@ -560,15 +561,17 @@ function Carousel({
           }
         >
           {/* immagini verticali */}
-          <div className={styles.thumbnailsVertical}>
+          <ul className={styles.thumbnailsVertical}>
             <div className={styles.thumbnailBorder}
               style={{
                 "--h": `calc((100% - ${images.length - 1}rem) / ${images.length})`,
                 "--ty": `calc(${currentIndex * 100}% + (${currentIndex} * 1rem) - (${currentIndex} * 10px) - 5px)`,
               } as React.CSSProperties}></div>
             {images.map((el, index) => (
-              <div
+              <li
                 key={index}
+                tabIndex={expandedCarousel && open ? 0 : -1}
+                aria-label={`image ${index + 1}`}
                 className={
                   styles.singleThumbnailVertical +
                   " " +
@@ -576,11 +579,17 @@ function Carousel({
                 }
                 style={{ "--h": `${100 / images.length}%` } as React.CSSProperties}
                 onClick={() => thumbnailClickHandle(index, true)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    thumbnailClickHandle(index, false);
+                  }
+                }}
               >
                 <img src={el.src} alt={altText} />
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
           {/* numero slide e frecce */}
           <div className={styles.verticalNumberAndArrows}>
             <div
@@ -601,7 +610,9 @@ function Carousel({
               </div>
             </div>
             <div className={styles.controlsVertical}>
-              <div
+              <button
+                tabIndex={expandedCarousel && open ? 0 : -1}
+                aria-label="go to previous carousel image"
                 className={styles.prevButtonVertical}
                 onMouseOver={() => prevBtnMouseOver()}
                 onMouseLeave={() => cursorIsHover(false)}
@@ -614,8 +625,10 @@ function Carousel({
                   src={arrTop.src}
                   alt={"previous"}
                 ></img>
-              </div>
-              <div
+              </button>
+              <button
+                tabIndex={expandedCarousel && open ? 0 : -1}
+                aria-label="go to next carousel image"
                 className={styles.nextButtonVertical}
                 onMouseOver={() => nextBtnMouseOver()}
                 onMouseLeave={() => cursorIsHover(false)}
@@ -628,7 +641,7 @@ function Carousel({
                   src={arrBottom.src}
                   alt={"previous"}
                 ></img>
-              </div>
+              </button>
             </div>
           </div>
         </div>
@@ -637,7 +650,7 @@ function Carousel({
 
       {/* HORIZONTAL CONTROLS */}
       <div className={styles.thumbnailControls + " thumbnailControls"}>
-        <div className={styles.thumbnails}>
+        <ul className={styles.thumbnails}>
           <div className={styles.thumbnailBorder}
             style={{
               "--w": isMobile ?
@@ -648,8 +661,10 @@ function Carousel({
                 `calc(${currentIndex * 100}% + (${currentIndex} * 1rem) - (${currentIndex} * 8px) - 4px)`,
             } as React.CSSProperties}></div>
           {images.map((el, index) => (
-            <div
+            <li
               key={index}
+              tabIndex={!expandedCarousel && open ? 0 : -1}
+              aria-label={`image ${index + 1}`}
               className={
                 styles.singleThumbnail +
                 " " +
@@ -658,16 +673,24 @@ function Carousel({
               onMouseOver={() => cursorIsHover(true)}
               onMouseLeave={() => cursorIsHover(false)}
               onClick={() => thumbnailClickHandle(index, false)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  thumbnailClickHandle(index, false);
+                }
+              }}
             >
               <img
                 src={el.src}
                 alt={altText}
               />
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
         <div className={styles.controls}>
-          <div
+          <button
+            tabIndex={!expandedCarousel && open ? 0 : -1}
+            aria-label="go to previous carousel image"
             className={styles.prevButton}
             onMouseOver={() => prevBtnMouseOver()}
             onMouseLeave={() => cursorIsHover(false)}
@@ -680,8 +703,10 @@ function Carousel({
               src={arrLeft.src}
               alt={"previous"}
             ></img>
-          </div>
-          <div
+          </button>
+          <button
+            tabIndex={!expandedCarousel && open ? 0 : -1}
+            aria-label="go to next carousel image"
             className={styles.nextButton}
             onMouseOver={() => nextBtnMouseOver()}
             onMouseLeave={() => cursorIsHover(false)}
@@ -694,7 +719,7 @@ function Carousel({
               src={arrRight.src}
               alt={"previous"}
             ></img>
-          </div>
+          </button>
         </div>
       </div>
     </div>

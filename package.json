@@ -10,6 +10,7 @@
     "scan": "next dev & npx react-scan@latest localhost:3000"
   },
   "dependencies": {
+    "@react-three/a11y": "^3.0.0",
     "@react-three/drei": "^9.114.3",
     "@react-three/fiber": "^8.17.10",
     "@types/three": "^0.169.0",
@@ -26,9 +27,9 @@
   "devDependencies": {
     "@types/node": "^22.2.0",
     "@types/react": "^18.3.3",
-    "r3f-perf": "^7.2.3",
     "eslint": "^8.38.0",
     "eslint-config-next": "^14.2.5",
-    "next-transpile-modules": "^10.0.1"
+    "next-transpile-modules": "^10.0.1",
+    "r3f-perf": "^7.2.3"
   }
 }
