@@ -128,7 +128,7 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                   ><b>{` frontend`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` development and with a passion for`}</span>
+                  >{` development, with a great passion for`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   ><b>{` building creative digital experiences`}</b></span>
