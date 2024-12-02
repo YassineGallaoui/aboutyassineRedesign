@@ -44,12 +44,15 @@ export default function Projects({
 
   const [projectIsHovered, setProjectIsHovered] = useState<boolean>(false);
   const [projectIsHoveredID, setProjectIsHoveredID] = useState<number | null>(null);
+  const hoveredTriangles = new Set<number>();
 
   const zIndexMatteBKGOpen: number = 5;
   const zIndexMatteBKGClosed: number = -1;
   const [hasComponentMounted, setHasComponentMounted] = useState(false);
 
   const triangleMouseOver = (elementId: number) => {
+    hoveredTriangles.add(elementId);
+
     cursorIsHover(true);
     const elementData = projectsDataset.find(
       (proj) => proj.id === elementId
@@ -77,12 +80,18 @@ export default function Projects({
   }
 
   const triangleMouseOut = (elementId: number) => {
-    cursorIsHover(false);
+
+    hoveredTriangles.delete(elementId);
+
+    if (hoveredTriangles.size === 0) {
+      cursorIsHover(false);
+      setProjectIsHovered(false);
+    }
+
     const elementData = projectsDataset.find(
       (proj) => proj.id === elementId
     );
     if (elementId != null && elementData != null) {
-      setProjectIsHovered(false);
       animate(`#bigBackgroundImage-${elementId}`, {
         scale: 1.1,
         opacity: 0,

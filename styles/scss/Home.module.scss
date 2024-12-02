@@ -67,8 +67,7 @@
   width: 100dvw;
 
   button {
-    height: 0 !important;
-    width: 0 !important;
+    pointer-events: none;
   }
 
   .triangleProjectRow {
