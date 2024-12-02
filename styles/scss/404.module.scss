@@ -46,6 +46,8 @@
       z-index: 1;
       max-width: 70dvw;
       max-height: 70dvh;
+      transform: translateZ(0px);
+      filter: grayscale(1);
     }
 
     span {

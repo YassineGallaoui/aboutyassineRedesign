@@ -9,7 +9,7 @@ import {
   createSpanStructureV2
 } from "../../utils/utility";
 
-export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
+export default function About({ SSAnimFinished, cursorIsHover }) {
   const welcomeArray = useMemo(() => ["Hi!", "Hallo!", "¡Hola!", "Salut!", "Ciao!"], []);
   const words = ["software engineer", "frontend expert", "proactive nerd", "a bit workaholic", "teamworker"];
 
@@ -308,7 +308,7 @@ export default function About({ SSAnimFinished, cursorIsHover, lastEditDate }) {
   );
 }
 
-export async function getStaticProps() {
+/* export async function getStaticProps() {
   const lastEditDate = new Date().toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -320,4 +320,4 @@ export async function getStaticProps() {
       lastEditDate,
     },
   };
-}
+} */

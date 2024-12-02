@@ -22,7 +22,6 @@ type NewProjectsProps = {
   darkColor: string;
   SSAnimFinished: Function;
   deviceType: breakpoints;
-  lastEditDate: string
 };
 
 export const expandDurTime = 0.5;
@@ -36,7 +35,6 @@ export default function Projects({
   cursorIsHover,
   SSAnimFinished,
   deviceType,
-  lastEditDate,
 }: NewProjectsProps) {
   const screenSize = useScreenInfo();
   const [projsNumber, setProjsNumber] = useState(projectsDataset.length);
@@ -225,7 +223,7 @@ export default function Projects({
   );
 }
 
-export async function getStaticProps() {
+/* export async function getStaticProps() {
   const lastEditDate = new Date().toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -237,4 +235,4 @@ export async function getStaticProps() {
       lastEditDate,
     },
   };
-}
+} */
