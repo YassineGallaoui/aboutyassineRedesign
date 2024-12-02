@@ -34,7 +34,7 @@ export default function Custom404({ cursorIsHover, SSAnimFinished }) {
                     onMouseEnter={() => cursorIsHover(true)}
                     onMouseOut={() => cursorIsHover(false)}
                 >
-                    Return to Homepage
+                    Go to Homepage
                 </Link>
             </motion.div>
         </>
