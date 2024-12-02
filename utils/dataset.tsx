@@ -101,7 +101,7 @@ export const projectsDatasetArray: Project[] = [
     year: 2024,
     media: [imgPong1, imgPong2, imgPong3, imgPong4, imgPong5],
     workingFor: "Freelance",
-    description: `Originally a small experiment, this solo project was undertaken to deepen my expertise with the canvas element and later evolved into a complete game—a tribute to the classic ATARI Pong game from 1972.`,
+    description: `Originally a small experiment to work on my canvas-related knowledge, ended up evolving into a complete game. This project pays tribute to one of the most iconic games in gaming history.`,
     frontend: "HTML + SCSS + TypeScript",
     backend: "Node.js + Express.js + ws + MongoDB",
     link: "https://po-ng.netlify.app/",
