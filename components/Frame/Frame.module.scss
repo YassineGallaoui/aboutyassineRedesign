@@ -11,6 +11,7 @@
   z-index: 5;
   font-size: $xs-fs;
   transform: scale(1.4);
+  user-select: none;
 
   @media screen and (max-width: $breakpointMobile) {
     padding: 1rem;

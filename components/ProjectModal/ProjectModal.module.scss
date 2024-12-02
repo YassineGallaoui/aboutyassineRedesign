@@ -14,6 +14,7 @@
   z-index: 20;
   background-color: inherit;
   border-radius: 2.5rem;
+  user-select: none;
 
   @media screen and (max-width: 768px) {
     border-radius: 1.5rem,
@@ -37,7 +38,7 @@
     align-items: center;
     border-radius: 2rem;
     z-index: 2;
-    transition: all $close-modal-duration;
+    transition: all $close-modal-duration, border calc($close-modal-duration * 0.5);
 
     &:before,
     &:after {
