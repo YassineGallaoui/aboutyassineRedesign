@@ -46,20 +46,19 @@ export default function MyApp({ Component, pageProps, router }) {
     setDeviceType(getDeviceType());
 
     const portrait = window.matchMedia("(orientation: portrait)");
-    const mediaQuery1 = window.matchMedia("(prefers-color-scheme: dark)");
-    const mediaQuery2 = window.matchMedia("(prefers-color-scheme: light)");
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
 
     window.addEventListener("resize", resizeDevice);
     portrait.addEventListener("change", portraitChange);
-    mediaQuery1.addEventListener("change", updateTheme);
-    mediaQuery2.addEventListener("change", updateTheme);
+    mediaQuery.addEventListener("change", updateTheme);
 
 
     return () => {
       clearInterval(intervalColor); // Clear the interval when component unmounts or effect re-runs
       window.removeEventListener("resize", resizeDevice)
       portrait.removeEventListener("change", portraitChange);
+      mediaQuery.removeEventListener("change", updateTheme);
     };
   }, []);
 

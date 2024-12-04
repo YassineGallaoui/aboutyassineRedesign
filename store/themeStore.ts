@@ -24,12 +24,13 @@ const useThemeStore = create<ThemeStore>((set) => ({
         darkColor: ''
     },
     setTheme: (newTheme) => set((state) => {
-        let newRotation = state.iconRotation + 180;
-        if (newTheme === themeMode.dark && (newRotation / 180) % 2 === 0)
-            newRotation += 180;
+        let nr = state.iconRotation
+        if ((newTheme === themeMode.dark && (nr / 180) % 2 === 0) || (newTheme === themeMode.light && (nr / 180) % 2 === 1)) {
+            nr = state.iconRotation + 180;
+        }
         return {
             theme: newTheme,
-            iconRotation: newRotation
+            iconRotation: nr
         };
     }),
 
