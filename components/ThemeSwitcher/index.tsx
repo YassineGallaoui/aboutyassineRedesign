@@ -11,16 +11,11 @@ import styles from "./ThemeSwitcher.module.scss";
 import useThemeStore, { themeMode } from "../../store/themeStore";
 import { colorApplicator } from "../../utils/colorFunctions";
 
-interface ThemeSwitcherProps {
-    updateCursorStatus: Function;
-}
-
-export default function ThemeSwitcher<ThemeSwitcherProps>({ updateCursorStatus }) {
-    const { theme, iconRotation, colors, setTheme, setIconRotation } = useThemeStore();
+export default function ThemeSwitcher({ updateCursorStatus }) {
+    const { theme, iconRotation, colors, setTheme, } = useThemeStore();
 
     const toggleTheme = () => {
         setTheme(theme === themeMode.light ? themeMode.dark : themeMode.light);
-        setIconRotation(iconRotation + 180);
 
         const body = document.querySelector("body");
         if (theme === themeMode.light) {

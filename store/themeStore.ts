@@ -13,7 +13,6 @@ interface ThemeStore {
         darkColor: string,
     }
     setTheme: (newTheme: themeMode) => void;
-    setIconRotation: (newRotation: number) => void;
     setColors: (lightColor: string, darkColor: string) => void;
 }
 
@@ -24,8 +23,16 @@ const useThemeStore = create<ThemeStore>((set) => ({
         lightColor: '',
         darkColor: ''
     },
-    setTheme: (newTheme) => set({ theme: newTheme }),
-    setIconRotation: (newRotation) => set({ iconRotation: newRotation }),
+    setTheme: (newTheme) => set((state) => {
+        let newRotation = state.iconRotation + 180;
+        if (newTheme === themeMode.dark && (newRotation / 180) % 2 === 0)
+            newRotation += 180;
+        return {
+            theme: newTheme,
+            iconRotation: newRotation
+        };
+    }),
+
     setColors: (lightColor, darkColor) => set({
         colors: {
             lightColor: lightColor,

@@ -8,7 +8,7 @@ import { breakpoints, getDeviceType } from "../utils/breakpoints";
 import { colorApplicator, generateColors } from "../utils/colorFunctions";
 
 export default function MyApp({ Component, pageProps, router }) {
-  const { setColors } = useThemeStore();
+  const { setColors, setTheme } = useThemeStore();
   const [cursorHover, setCursorHover] = useState<boolean>(false);
 
   const [lightColor, setLightColor] = useState<string>("");
@@ -28,9 +28,10 @@ export default function MyApp({ Component, pageProps, router }) {
 
     const updateTheme = () => {
       const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      setTheme(prefersDarkMode ? themeMode.dark : themeMode.light)
       document.body.className = "";
       document.body.classList.add(prefersDarkMode ? "dark" : "light");
-      document.documentElement.setAttribute("data-theme", themeMode[themeMode.dark]);
+      document.documentElement.setAttribute("data-theme", prefersDarkMode ? themeMode[themeMode.dark] : themeMode[themeMode.light]);
     };
     const resizeDevice = () => {
       setDeviceType(getDeviceType())
@@ -45,12 +46,14 @@ export default function MyApp({ Component, pageProps, router }) {
     setDeviceType(getDeviceType());
 
     const portrait = window.matchMedia("(orientation: portrait)");
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const mediaQuery1 = window.matchMedia("(prefers-color-scheme: dark)");
+    const mediaQuery2 = window.matchMedia("(prefers-color-scheme: light)");
 
 
     window.addEventListener("resize", resizeDevice);
     portrait.addEventListener("change", portraitChange);
-    mediaQuery.addEventListener("change", updateTheme);
+    mediaQuery1.addEventListener("change", updateTheme);
+    mediaQuery2.addEventListener("change", updateTheme);
 
 
     return () => {
