@@ -11,8 +11,7 @@ export default function Cursor({ hovered }) {
     const cc: HTMLElement = document.querySelector(".customCursor");
     const handleMouseMove = (event: MouseEvent) => {
       setMovedPointer(true);
-      ccc.style.left = event.clientX + "px";
-      ccc.style.top = event.clientY + "px";
+      ccc.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
     };
     document.addEventListener("mousemove", handleMouseMove);
 
