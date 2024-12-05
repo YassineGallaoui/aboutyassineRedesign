@@ -50,7 +50,7 @@ export const projectsDatasetArray: Project[] = [
       imgBeeTickets5,
       imgBeeTickets6,
     ],
-    workingFor: "Once Upon A Time SA",
+    workingFor: "Once Upon A Time SA - Switzerland",
     description:
       "Collaborated with a team of over seven people to develop a new internal ticketing platform. Responsible for implementing the entire frontend and contributed to the design process on select occasions.",
     frontend: "Javascript + SCSS",
@@ -69,7 +69,7 @@ export const projectsDatasetArray: Project[] = [
       imgMaserati5,
     ],
     recognitions: ["Awwwards Honorable Mention"],
-    workingFor: "Deloitte Digital",
+    workingFor: "Deloitte Digital - Italy",
     description:
       "Joined the project during the UAT phase as part of a 30+ person team. Initially focused on bug fixing and analytics integration. Post-launch, joined a team of five to develop the Owner Area section from scratch, managing analytics integration and later overseeing bug fixes.",
     frontend: "AEM + Javascript + jQuery + gsap",
@@ -88,7 +88,7 @@ export const projectsDatasetArray: Project[] = [
       imgAutotorino5,
       imgAutotorino6,
     ],
-    workingFor: "Deloitte Digital",
+    workingFor: "Deloitte Digital - Italy",
     description:
       "Worked with a team of over 15 on the redesign and implementation of a car auction platform, handling both back-office and front-office components.",
     frontend: "Next.js + MUI",
@@ -100,7 +100,7 @@ export const projectsDatasetArray: Project[] = [
     name: "PO-NG",
     year: 2024,
     media: [imgPong1, imgPong2, imgPong3, imgPong4, imgPong5],
-    workingFor: "Freelance",
+    workingFor: "Freelance - Italy",
     description: `Originally a small experiment to work on my canvas-related knowledge, ended up evolving into a complete game. This project pays tribute to one of the most iconic games in gaming history.`,
     frontend: "HTML + SCSS + TypeScript",
     backend: "Node.js + Express.js + ws + MongoDB",
