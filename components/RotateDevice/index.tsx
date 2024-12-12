@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react"
 import { useEffect } from "react";
 import styles from "./RotateDevice.module.scss";
 import { RotateDeviceIcon } from "./RotateDeviceIcon";
@@ -28,14 +28,6 @@ export const RotateDevice = ({ showComponent, animationFinished }) => {
         duration: 0.3,
       }
     }
-    /* initial: {
-      zIndex: [3, 3, -1],
-      opacity: [1, 0, 0],
-      transition: {
-        duration: 0.3,
-        times: [0, 0.99, 1],
-      }
-    } */
   }
 
   return (

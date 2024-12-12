@@ -2,8 +2,9 @@
 
 .verticalLine {
   position: fixed;
-  height: 0dvh;
+  height: 100dvh;
   width: 2px;
+  transform: translate(0%, -100%);
   background-color: $semitransparentDark1;
   transition: background-color $change-theme-duration;
   border: none;
@@ -20,7 +21,8 @@
 
 .horizontalLine {
   height: 2px;
-  width: 0dvw;
+  width: 100dvw;
+  transform: translate(-100%, 0%);
   background-color: $semitransparentDark1;
   transition: background-color $change-theme-duration;
   border: none;
@@ -48,23 +50,13 @@ html[data-theme="dark"] {
   }
 }
 
-@keyframes drawHLine {
-  0% {
-    width: 0dvw;
-  }
-
-  100% {
-    width: 100dvw;
-  }
-}
-
 @keyframes drawVLine {
   0% {
-    height: 0dvw;
+    transform: translate(0, -100%);
   }
 
   100% {
-    height: 100dvh;
+    transform: translate(0, 0%);
   }
 }
 
@@ -430,5 +422,80 @@ html[data-theme="dark"] {
   .percentageBarBar {
     color: $semitransparentDark1;
     background-color: $semitransparentLight1;
+  }
+}
+
+
+
+
+.horizontalLinesContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  pointer-events: none;
+  user-select: none;
+
+  .line__before,
+  .line__after {
+    position: absolute;
+    height: 1px;
+    width: 100dvw;
+    left: 0;
+    transform: translate(-100%, 0);
+    background-color: rgba($semitransparentDark5, 0.2);
+    transition: background-color $change-theme-duration;
+    animation: drawHLine cubic-bezier(0.7, 0, 0.3, 1) 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+
+  .line__before {
+    bottom: calc(60dvh - var(--i) * $l-fs * 2);
+    animation-delay: calc(-0.15s * var(--i));
+
+    @media screen and (max-width: $breakpointSmallDesktop) {
+      bottom: calc(80dvh - var(--i) * $l-fs * 2);
+    }
+
+    @media screen and (max-height: 400px) {
+      bottom: calc(62dvh - var(--i) * $l-fs * 2);
+    }
+  }
+
+  .line__after {
+    top: calc(40dvh + var(--i) * $l-fs * 2);
+    animation-delay: calc(0.15s * var(--i));
+
+    @media screen and (max-width: $breakpointSmallDesktop) {
+      top: calc(20dvh + var(--i) * $l-fs * 2);
+    }
+
+    @media screen and (max-height: 400px) {
+      top: calc(38dvh + var(--i) * $l-fs * 2);
+    }
+  }
+}
+
+html[data-theme="dark"] {
+
+  .line__before,
+  .line__after {
+    transition: background-color $change-theme-duration;
+    background-color: $semitransparentLight4;
+  }
+}
+
+@keyframes drawHLine {
+  0% {
+    transform: translate(-100%, 0);
+  }
+
+  100% {
+    transform: translate(0%, 0);
   }
 }

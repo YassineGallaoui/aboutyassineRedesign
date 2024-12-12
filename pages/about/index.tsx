@@ -1,7 +1,6 @@
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import Head from "next/head";
 import React, { useEffect, useMemo } from "react";
-import HorizontalLines from "../../components/HorizontalLines";
 import { TitleBackground } from "../../components/TitleBackground";
 import stylesAbout from "../../styles/scss/General.module.scss";
 import {
@@ -63,7 +62,29 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
         {SSAnimFinished && <TitleBackground text={"About"} />}
         {SSAnimFinished && <div className={stylesAbout.verticalLine}></div>}
         {SSAnimFinished && <div className={stylesAbout.horizontalLine}></div>}
-        {SSAnimFinished && <HorizontalLines />}
+        {SSAnimFinished && <div 
+              className={stylesAbout.horizontalLinesContainer}
+            >
+              {([...Array(30)])?.map(
+                (_, index) => (
+                  <div
+                    key={`before-${index}`}
+                    className={stylesAbout.line__before}
+                    style={{ "--i": -(index + 1) } as React.CSSProperties}
+                  />
+                ),
+              )}
+              {([...Array(30)])?.map(
+                (_, index) => (
+                  <div
+                    key={`before-${index}`}
+                    className={stylesAbout.line__after}
+                    style={{ "--i": index + 1 } as React.CSSProperties}
+                  />
+                ),
+              )}
+            </div>
+        }
         <div className={stylesAbout.meContainer + " meContainer"}>
           <div
             className={

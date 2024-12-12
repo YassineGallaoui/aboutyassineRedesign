@@ -1,4 +1,4 @@
-import { AnimatePresence } from "motion/react";
+import { AnimatePresence } from "motion/react"
 import Head from 'next/head';
 import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
@@ -77,7 +77,7 @@ export default function MyApp({ Component, pageProps, router }) {
         setSSAnimFinished={setSSAnimFinished}
         deviceType={deviceType}
       >
-        <AnimatePresence mode="sync" initial={false}>
+        <AnimatePresence>
           <Component
             {...pageProps}
             cursorIsHover={setCursorHover}
@@ -85,7 +85,7 @@ export default function MyApp({ Component, pageProps, router }) {
             darkColor={darkColor}
             SSAnimFinished={SSAnimFinished}
             deviceType={deviceType}
-            key={router.pathname}
+            key={router.route}
           />
         </AnimatePresence>
       </Layout>
