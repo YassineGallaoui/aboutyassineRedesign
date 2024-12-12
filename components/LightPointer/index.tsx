@@ -4,22 +4,25 @@ import * as THREE from 'three';
 
 export const LightPointer = ({ decay = null, intensity = null }) => {
     const lightRef = useRef<THREE.PointLight>(null);
-    const targetRef = useRef(new THREE.Object3D());
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const zPos = 3;
 
     // Update mouse position
     useEffect(() => {
-        const handleMouseMove = (event: MouseEvent) => {
-            const x = ((event.clientX / window.innerWidth) * 2 - 1) * 6;
-            const y = (-(event.clientY / window.innerHeight) * 2 + 1) * 6;
+        const updatePosition = () => {
+            const x = ((window.mouseX || 0) / window.innerWidth * 2 - 1) * 6;
+            const y = (-(window.mouseY || 0) / window.innerHeight * 2 + 1) * 6;
             setMousePosition({ x, y });
+            requestAnimationFrame(updatePosition);
         };
 
-        window.addEventListener('mousemove', handleMouseMove);
-        return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-        };
+        window.addEventListener('mousemove', (e) => {
+            window.mouseX = e.clientX;
+            window.mouseY = e.clientY;
+        });
+
+        const animFrame = requestAnimationFrame(updatePosition);
+        return () => cancelAnimationFrame(animFrame);
     }, []);
 
     useFrame(() => {
