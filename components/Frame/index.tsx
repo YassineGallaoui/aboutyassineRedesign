@@ -78,7 +78,7 @@ export default function Frame({
           </a>
         </div>
         <div className={styles.frameContainer__left__available + " available"}>
-          Available: 15th December 2024
+          Available: February 1st, 2025
         </div>
       </div>
       <div className={styles.frameContainer__right}>
