@@ -149,7 +149,7 @@ export default function Frame({
             onMouseLeave={(e) => unhoverSocialButtons(e)}
           >
             <a
-              href="mailto:myassine.gallaoui@gmail.com"
+              href="mailto:yassine.gallaoui.dev@gmail.com"
               aria-label="Click here to send me an email"
             >
               <div
