@@ -104,6 +104,7 @@ export const projectsDatasetArray: Project[] = [
     description: `Originally a small experiment to work on my canvas-related knowledge, ended up evolving into a complete game. This project pays tribute to one of the most iconic games in gaming history.`,
     frontend: "HTML + SCSS + TypeScript",
     backend: "Node.js + Express.js + ws + MongoDB",
+    link: "https://po-ng.netlify.app/",
   },
 ];
 
