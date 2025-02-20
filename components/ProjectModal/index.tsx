@@ -8,6 +8,7 @@ import { Project } from "../../utils/dataset";
 import Carousel from "../Carousel";
 import { RotateDevice } from "../RotateDevice";
 import styles from "./ProjectModal.module.scss";
+import Link from "next/link";
 
 type ModalProps = {
   content: Project;
@@ -202,7 +203,7 @@ export default function ProjectModal({
                 <td>{content.backend}</td>
               </tr>
               {content.recognitions != null && (
-                <tr>
+                <tr className={styles.bottomBorder + " bottomBorder"}>
                   <th className={styles.characteristic + " characteristic"}>
                     <span>{"Recognitions"}</span>
                   </th>
@@ -212,7 +213,7 @@ export default function ProjectModal({
             </tbody>
           </table>
           {content.link != null && (
-            <a
+            <Link
               type="button"
               className={styles.projectModalLink}
               aria-label="Click this link to go to the project's website"
@@ -230,7 +231,7 @@ export default function ProjectModal({
                 alt={""}
                 role="presentation"
               ></img>
-            </a>
+            </Link>
           )}
         </div>
       </div>

@@ -55,7 +55,9 @@ export default function Frame({
           onMouseOver={() => updateCursorStatus(true)}
           onMouseLeave={() => updateCursorStatus(false)}
         >
-          <Link href="/" aria-label="Click here to go to the homepage">
+          <Link
+            href="/"
+            aria-label="Click here to go to the homepage">
             <div className={styles.frameContainer__left__logoWrapper__logo}>
               <img
                 src={logoY.src}
@@ -66,7 +68,7 @@ export default function Frame({
           </Link>
         </div>
         <div className={styles.frameContainer__left__booking + " booking"}>
-          <a
+          <Link
             href="https://cal.com/yassine-gallaoui"
             rel="noreferrer noopener"
             target="_blank"
@@ -75,10 +77,10 @@ export default function Frame({
             onMouseLeave={() => updateCursorStatus(false)}
           >
             Book a call
-          </a>
+          </Link>
         </div>
         <div className={styles.frameContainer__left__available + " available"}>
-          Available: February 1st, 2025
+          Available: March 1st, 2025
         </div>
       </div>
       <div className={styles.frameContainer__right}>
@@ -92,7 +94,7 @@ export default function Frame({
             onMouseOver={(e) => hoverSocialButtons(e)}
             onMouseLeave={(e) => unhoverSocialButtons(e)}
           >
-            <a
+            <Link
               href="https://x.com/Yassine__G"
               rel="noreferrer noopener"
               target="_blank"
@@ -106,7 +108,7 @@ export default function Frame({
               >
                 <div className={"contactsSocialDiv"}></div>
               </div>
-            </a>
+            </Link>
             <img
               src={xIcon.src}
               alt="twitter X"
@@ -120,7 +122,7 @@ export default function Frame({
             onMouseOver={(e) => hoverSocialButtons(e)}
             onMouseLeave={(e) => unhoverSocialButtons(e)}
           >
-            <a
+            <Link
               href="https://www.linkedin.com/in/mohamed-yassine-gallaoui/"
               rel="noreferrer noopener"
               target="_blank"
@@ -134,7 +136,7 @@ export default function Frame({
               >
                 <div className={"contactsSocialDiv"}></div>
               </div>
-            </a>
+            </Link>
             <img
               src={linkedinIcon.src}
               alt="linkedin"
@@ -148,7 +150,9 @@ export default function Frame({
             onMouseOver={(e) => hoverSocialButtons(e)}
             onMouseLeave={(e) => unhoverSocialButtons(e)}
           >
-            <a
+            <Link
+              target="_blank"
+              rel="noopener noreferrer"
               href="mailto:yassine.gallaoui.dev@gmail.com"
               aria-label="Click here to send me an email"
             >
@@ -160,7 +164,7 @@ export default function Frame({
               >
                 <div className={"contactsSocialDiv"}></div>
               </div>
-            </a>
+            </Link>
             <img src={mailIcon.src} alt="mail" className="invertImg" />
           </div>
 
@@ -170,7 +174,7 @@ export default function Frame({
             onMouseOver={(e) => hoverSocialButtons(e)}
             onMouseLeave={(e) => unhoverSocialButtons(e)}
           >
-            <a
+            <Link
               href="/cv-gallaoui.pdf"
               rel="noreferrer noopener"
               target="_blank"
@@ -184,7 +188,7 @@ export default function Frame({
               >
                 <div className={"contactsSocialDiv"}></div>
               </div>
-            </a>
+            </Link>
             <img
               src={cvIcon.src}
               alt="my curriculum vitae"

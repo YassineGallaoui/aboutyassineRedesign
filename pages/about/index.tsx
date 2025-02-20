@@ -7,6 +7,7 @@ import {
   calculateScrollPercentage,
   createSpanStructureV2
 } from "../../utils/utility";
+import Link from "next/link";
 
 export default function About({ SSAnimFinished, cursorIsHover }) {
   const welcomeArray = useMemo(() => ["Hi!", "Hallo!", "¡Hola!", "Salut!", "Ciao!"], []);
@@ -62,28 +63,28 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
         {SSAnimFinished && <TitleBackground text={"About"} />}
         {SSAnimFinished && <div className={stylesAbout.verticalLine}></div>}
         {SSAnimFinished && <div className={stylesAbout.horizontalLine}></div>}
-        {SSAnimFinished && <div 
-              className={stylesAbout.horizontalLinesContainer}
-            >
-              {([...Array(30)])?.map(
-                (_, index) => (
-                  <div
-                    key={`before-${index}`}
-                    className={stylesAbout.line__before}
-                    style={{ "--i": -(index + 1) } as React.CSSProperties}
-                  />
-                ),
-              )}
-              {([...Array(30)])?.map(
-                (_, index) => (
-                  <div
-                    key={`before-${index}`}
-                    className={stylesAbout.line__after}
-                    style={{ "--i": index + 1 } as React.CSSProperties}
-                  />
-                ),
-              )}
-            </div>
+        {SSAnimFinished && <div
+          className={stylesAbout.horizontalLinesContainer}
+        >
+          {([...Array(30)])?.map(
+            (_, index) => (
+              <div
+                key={`before-${index}`}
+                className={stylesAbout.line__before}
+                style={{ "--i": -(index + 1) } as React.CSSProperties}
+              />
+            ),
+          )}
+          {([...Array(30)])?.map(
+            (_, index) => (
+              <div
+                key={`before-${index}`}
+                className={stylesAbout.line__after}
+                style={{ "--i": index + 1 } as React.CSSProperties}
+              />
+            ),
+          )}
+        </div>
         }
         <div className={stylesAbout.meContainer + " meContainer"}>
           <div
@@ -235,7 +236,7 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   >
-                    <b><a
+                    <b><Link
                       className={" underlineLineWithAnim"}
                       href={"mailto:myassine.gallaoui@gmail.com"}
                       onMouseOver={() => cursorIsHover(true)}
@@ -244,7 +245,7 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                       target="_blank"
                     >
                       {`email`}
-                    </a></b>
+                    </Link></b>
                   </span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
@@ -252,7 +253,7 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   >
-                    <b><a
+                    <b><Link
                       className={
                         stylesAbout.underlineLineWithAnimTwo +
                         " underlineLineWithAnim"
@@ -266,7 +267,7 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                       target="_blank"
                     >
                       {`LinkedIn`}
-                    </a></b>
+                    </Link></b>
                   </span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
@@ -274,7 +275,7 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   >
-                    <b><a
+                    <b><Link
                       className={
                         stylesAbout.underlineLineWithAnimTwo +
                         " underlineLineWithAnim"
@@ -288,7 +289,7 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                       target="_blank"
                     >
                       {`X`}
-                    </a></b>
+                    </Link></b>
                   </span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
@@ -300,7 +301,7 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   >
-                    <b><a
+                    <b><Link
                       className={" underlineLineWithAnim"}
                       href={"https://cal.com/yassine-gallaoui"}
                       onMouseOver={() => cursorIsHover(true)}
@@ -309,7 +310,7 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                       target="_blank"
                     >
                       {`book a call`}
-                    </a></b>
+                    </Link></b>
                   </span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}

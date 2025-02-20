@@ -3,7 +3,7 @@
 import { animate } from "motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { createSpanStructureV2 } from "../../utils/utility";
 import styles from "./Nav.module.scss";
 
@@ -11,64 +11,102 @@ interface NavProps {
     updateCursorStatus: Function;
 }
 
+type pagesType = {
+    url: string,
+    label: string,
+}
+
 export default function Nav<NavProps>({ updateCursorStatus }) {
     const router = useRouter();
     const { pathname } = router;
-    const sectionNamesRC = ["About", "Projects"];
+
+    const toShowNavItems = useRef<pagesType[]>([{
+        url: '/about',
+        label: "About",
+    }, {
+        url: '/lab',
+        label: "Lab",
+    }]);
 
     useEffect(() => {
+        const sectionNamesRC: pagesType[] = [{
+            url: '/',
+            label: "Projects",
+        }, {
+            url: '/about',
+            label: "About",
+        }, {
+            url: '/lab',
+            label: "Lab",
+        }];
+
         setTimeout(() => {
-            document.querySelector('#singleNavItemText').innerHTML = createSpanStructureV2(
-                sectionNamesRC[pathname === "/about" ? 1 : 0]
-            );
+            toShowNavItems.current = sectionNamesRC.filter(el => el.url != pathname);
+
+            Array.from(document.querySelectorAll('.singleNavText')).map((el, index) => {
+                const l = toShowNavItems.current[index].label;
+                el.innerHTML = createSpanStructureV2(l)
+            });
         }, 800);
     }, [pathname]);
 
-    const singleNavItemAnimation = async () => {
-        await animate('#singleNavItem', {
-            x: "3rem",
-        }, {
-            duration: 0.8,
-        });
-        await animate('#singleNavItem', {
-            x: 0
-        }, {
-            duration: 0.8,
-            delay: 0.8,
-        });
-    };
+    const loadPageAnimation = async () => {
+        document.querySelectorAll('.navItem').forEach(async el => {
+            await animate(el, {
+                x: "5rem",
+            }, {
+                duration: 0.8,
+            });
+            await animate(el, {
+                x: "0rem",
+            }, {
+                duration: 0.9,
+            });
+        })
+    }
 
-    /* useEffect(() => {
-        animate('#singleNavItem', {
-            x: 0
+    const mouseOverLink = async (e) => {
+        console.log(e);
+        let el = e.currentTarget.firstElementChild as HTMLElement;
+        await animate(el, {
+            x: "0.3rem",
         }, {
-            duration: 0.8,
-            delay: 0.85,
+            duration: 0.3,
         });
-    }, [pathname]); */
+    }
+
+    const mouseLeaveLink = async (e) => {
+        let el = e.currentTarget.firstElementChild as HTMLElement;
+        await animate(el, {
+            x: "0rem",
+        }, {
+            duration: 0.3,
+        });
+    }
 
     return (
-        <div className={styles.nav + " sectionsNav"}>
-            <Link
-                href={pathname === "/about" ? "/" : "/about"}
-                className={styles.nav__navItem}
-                onMouseOver={() => updateCursorStatus(true)}
-                onMouseLeave={() => updateCursorStatus(false)}
-            >
-                <div
-                    id={"singleNavItem"}
-                    className={styles.nav__navItem__singleNavItem}
-                    onClick={() => singleNavItemAnimation()}
+        <div className={styles.nav + " sectionsNav"} onClick={() => loadPageAnimation()}>
+            {toShowNavItems.current.map((el, index) => (
+                <Link
+                    key={index}
+                    href={el.url}
+                    className={styles.nav__navItem + " navItem"}
+                    onMouseOver={(e) => { mouseOverLink(e); updateCursorStatus(true) }}
+                    onMouseLeave={(e) => { mouseLeaveLink(e); updateCursorStatus(false) }}
                 >
                     <div
-                        id={"singleNavItemText"}
-                        className={
-                            styles.nav__navItem__singleNavItemText +
-                            " singleNavItemText"
-                        }
-                    ></div>
-                </div>
-            </Link>
+                        className={styles.nav__navItem__singleNavItem + " singleNavItem"}
+                    >
+                        <div
+                            data-label={el.label}
+                            className={
+                                styles.nav__navItem__singleNavText +
+                                " singleNavText"
+                            }
+                        ></div>
+                    </div>
+                </Link>
+            ))}
         </div>
     )
 };
