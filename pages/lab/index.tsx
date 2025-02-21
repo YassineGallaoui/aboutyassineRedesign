@@ -10,6 +10,9 @@ import {
 } from "../../utils/utility";
 import { labDataset } from "../../utils/labDataset";
 import Link from "next/link";
+import enterArrow from '../../public/icons/enter-arrow.svg'
+import horizontalLine from '../../public/icons/horizontalLine.svg'
+import Image from 'next/image'
 
 export default function Lab({ SSAnimFinished, cursorIsHover }) {
   const words = ["experiments", "ideas", "helpers", "boilerplates", "a bit creative", "+/- useful stuff", "reausable"];
@@ -139,7 +142,20 @@ export default function Lab({ SSAnimFinished, cursorIsHover }) {
                           rel="noreferrer noopener"
                           target="_blank">
                           <div className={stylesLab.projectBox}>
+                            {/* <Image className={stylesLab.categoryArrow} src={enterArrow} alt="Enter Arrow" /> */}
+                            <svg className={stylesLab.svgEnterArrow} width="100%" height="100%" viewBox="0 0 48 48" >
+                              <g transform="matrix(1,0,0,1,2.5,-2.54614)">
+                                <path d="M8,7L8,37L35,37L25.979,27.979L35,37L25.908,46.092" style={{ fill: 'none', stroke: 'white', strokeWidth: '4px' }} />
+                              </g>
+                            </svg>
                             <h3 className={stylesLab.projectTitle}>{proj.title}</h3>
+                            <div className={stylesLab.svghorizontalLineContainer}>
+                              <svg className={stylesLab.svghorizontalLine} width="100%" height="100%" viewBox="0 0 192 48" preserveAspectRatio="none">
+                                <g transform="matrix(1,0,0,1,0.5,2)">
+                                  <path d="M6,22L185,22" style={{ fill: 'none', stroke: 'white', strokeWidth: '4px' }} />
+                                </g>
+                              </svg>
+                            </div>
                             <span className={stylesLab.projectYear}>{proj.year}</span>
                           </div>
                         </Link>

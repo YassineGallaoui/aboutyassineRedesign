@@ -235,10 +235,11 @@ html[data-theme="dark"] {
         display: block;
         width: 100%;
         padding: 0 2rem;
-        display: grid;
+        padding-left: 2.4rem;
+        display: flex;
+        flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        grid-template-columns: 1fr 1fr;
         font-size: $l-fs;
         line-height: calc($l-fs * 2);
         opacity: 0;
@@ -264,7 +265,7 @@ html[data-theme="dark"] {
           padding: 0 1rem 0 2rem;
         }
 
-        &:before,
+        /* &:before,
         &:after {
           content: '';
           position: absolute;
@@ -288,6 +289,34 @@ html[data-theme="dark"] {
           &:after {
             opacity: 1;
           }
+        } */
+
+        .svgEnterArrow {
+          position: absolute;
+          left: 0rem;
+          display: block;
+          width: calc($l-fs * 0.8);
+          height: calc($l-fs * 0.8);
+          overflow: hidden;
+
+          path {
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+          }
+        }
+
+        &:hover {
+          .svgEnterArrow {
+            path {
+              animation: dash1 0.4s linear forwards 0.2s;
+            }
+          }
+
+          @keyframes dash1 {
+            to {
+              stroke-dashoffset: 0;
+            }
+          }
         }
 
         .projectTitle {
@@ -295,6 +324,45 @@ html[data-theme="dark"] {
           line-height: calc($l-fs * 2);
           margin: 0;
           font-weight: 500;
+          white-space: nowrap;
+        }
+
+        .svghorizontalLineContainer {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: $l-fs;
+          flex-grow: 1;
+          width: 100%;
+
+          .svghorizontalLine {
+            height: calc($l-fs * 0.8);
+            overflow: hidden;
+            margin-top: 8px;
+
+            @media screen and (max-width: $breakpointSmallDesktop) {
+              margin-top: 6px;
+            }
+
+            path {
+              stroke-dasharray: 200;
+              stroke-dashoffset: 200;
+            }
+          }
+        }
+
+        &:hover {
+          .svghorizontalLine {
+            path {
+              animation: dash2 0.5s ease-in-out forwards 0.4s;
+            }
+          }
+
+          @keyframes dash2 {
+            to {
+              stroke-dashoffset: 0;
+            }
+          }
         }
 
         .projectYear {
