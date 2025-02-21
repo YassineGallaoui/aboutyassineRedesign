@@ -18,7 +18,7 @@ export const labDatasetArray: Categories[] = [
         projects: [
             {
                 title: "NextJS bp",
-                description: "features custom grid system and custom routing animations using NextJS, (s)css and Typescript",
+                description: "features  custom grid system and custom routing animations using NextJS, (s)css and Typescript",
                 year: "2024",
                 link: "https://vanilla-boilerplate.vercel.app/",
             },
