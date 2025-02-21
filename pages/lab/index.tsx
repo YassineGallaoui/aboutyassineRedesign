@@ -7,17 +7,28 @@ import linkArrow from "../../public/icons/linkArrow.svg";
 import stylesLab from "../../styles/scss/General.module.scss";
 import {
   calculateScrollPercentage,
+  createSpanStructureV2,
 } from "../../utils/utility";
 import { labDataset } from "../../utils/labDataset";
 import Link from "next/link";
-import enterArrow from '../../public/icons/enter-arrow.svg'
-import horizontalLine from '../../public/icons/horizontalLine.svg'
-import Image from 'next/image'
 
 export default function Lab({ SSAnimFinished, cursorIsHover }) {
   const words = ["experiments", "ideas", "helpers", "boilerplates", "a bit creative", "+/- useful stuff", "reausable"];
+  const labArray = ["Tests", "Audio", "WebGL", "Shaders", "3D", "SVG", "Ideas"];
 
   useEffect(() => {
+    if (SSAnimFinished) {
+      const labWord = document.querySelector(".labWord");
+      let i = 1;
+      const startWelcomeAnimation = function (i) {
+        setTimeout(function () {
+          labWord.innerHTML = createSpanStructureV2(labArray[i]);
+          startWelcomeAnimation(++i < labArray.length ? i : 0);
+        }, 5000);
+      };
+      startWelcomeAnimation(i);
+    }
+
     const pageContent = document.querySelector(".labContent");
     pageContent != null &&
       pageContent.addEventListener("scroll", () =>
@@ -88,12 +99,14 @@ export default function Lab({ SSAnimFinished, cursorIsHover }) {
 
             {SSAnimFinished && <div
               className={
-                stylesLab.labContainer__txt__big__welcome
+                stylesLab.labContainer__txt__big__lab + ' labWord'
               }
             >
-              <span style={{ "--i": 1 } as React.CSSProperties}>H</span>
-              <span style={{ "--i": 2 } as React.CSSProperties}>i</span>
-              <span style={{ "--i": 3 } as React.CSSProperties}>!</span>
+              <span style={{ "--i": 1 } as React.CSSProperties}>I</span>
+              <span style={{ "--i": 2 } as React.CSSProperties}>d</span>
+              <span style={{ "--i": 3 } as React.CSSProperties}>e</span>
+              <span style={{ "--i": 4 } as React.CSSProperties}>a</span>
+              <span style={{ "--i": 5 } as React.CSSProperties}>s</span>
             </div>}
 
 
@@ -145,14 +158,14 @@ export default function Lab({ SSAnimFinished, cursorIsHover }) {
                             {/* <Image className={stylesLab.categoryArrow} src={enterArrow} alt="Enter Arrow" /> */}
                             <svg className={stylesLab.svgEnterArrow} width="100%" height="100%" viewBox="0 0 48 48" >
                               <g transform="matrix(1,0,0,1,2.5,-2.54614)">
-                                <path d="M8,7L8,37L35,37L25.979,27.979L35,37L25.908,46.092" style={{ fill: 'none', stroke: 'white', strokeWidth: '4px' }} />
+                                <path d="M8,7L8,37L35,37L25.979,27.979L35,37L25.908,46.092" style={{ fill: 'none', strokeWidth: '4px' }} />
                               </g>
                             </svg>
                             <h3 className={stylesLab.projectTitle}>{proj.title}</h3>
                             <div className={stylesLab.svghorizontalLineContainer}>
                               <svg className={stylesLab.svghorizontalLine} width="100%" height="100%" viewBox="0 0 192 48" preserveAspectRatio="none">
                                 <g transform="matrix(1,0,0,1,0.5,2)">
-                                  <path d="M6,22L185,22" style={{ fill: 'none', stroke: 'white', strokeWidth: '4px' }} />
+                                  <path d="M6,22L185,22" style={{ fill: 'none', strokeWidth: '4px' }} />
                                 </g>
                               </svg>
                             </div>

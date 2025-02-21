@@ -75,7 +75,7 @@ html[data-theme="dark"] {
   &__txt {
     position: relative;
 
-    &__big__welcome {
+    &__big__lab {
       position: fixed;
       top: calc(40dvh - ($xxl-fs * 1.4));
       right: calc(67dvw + 1rem);
@@ -265,32 +265,6 @@ html[data-theme="dark"] {
           padding: 0 1rem 0 2rem;
         }
 
-        /* &:before,
-        &:after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          width: 100%;
-          height: 50%;
-          background: linear-gradient(0deg, rgba($semitransparentLight5, 0.08) 0%, transparent 50%);
-          opacity: 0;
-          transition: all 0.3s linear;
-        }
-
-        &:after {
-          background: linear-gradient(180deg, rgba($semitransparentLight5, 0.08) 0%, transparent 50%);
-          top: 0;
-        }
-
-        &:hover {
-          opacity: 1;
-
-          &:before,
-          &:after {
-            opacity: 1;
-          }
-        } */
-
         .svgEnterArrow {
           position: absolute;
           left: 0rem;
@@ -300,6 +274,7 @@ html[data-theme="dark"] {
           overflow: hidden;
 
           path {
+            stroke: $semitransparentDark1;
             stroke-dasharray: 200;
             stroke-dashoffset: 200;
           }
@@ -345,6 +320,7 @@ html[data-theme="dark"] {
             }
 
             path {
+              stroke: $semitransparentDark1;
               stroke-dasharray: 200;
               stroke-dashoffset: 200;
             }
@@ -414,7 +390,7 @@ html[data-theme="dark"] {
               content: "";
               display: block;
               position: absolute;
-              bottom: 0%;
+              bottom: -1%;
               left: -5%;
               width: 110%;
               height: calc($xl-fs * 1.2);
@@ -563,6 +539,13 @@ html[data-theme="dark"] {
   .percentageBarBar {
     color: $semitransparentDark1;
     background-color: $semitransparentLight1;
+  }
+
+  .svgEnterArrow,
+  .svghorizontalLine {
+    path {
+      stroke: $semitransparentLight1 !important;
+    }
   }
 }
 
