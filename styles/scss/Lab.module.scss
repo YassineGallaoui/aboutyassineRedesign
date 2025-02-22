@@ -203,17 +203,23 @@ html[data-theme="dark"] {
         padding-top: calc($l-fs * 2);
         margin-top: 20dvh;
         height: calc(100dvh - 20dvh);
-        padding-left: 10dvw;
-        padding-right: 10dvw;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 10dvw;
+        margin-right: 10dvw;
         padding-bottom: calc(100dvh - (20dvh + $l-fs * 8));
+        max-width: 80dvw;
       }
 
       @media screen and (max-height: 400px) {
         padding-top: calc($l-fs * 2);
         margin-top: 38dvh;
         height: calc(100dvh - 38dvh);
-        padding-left: 15dvw;
-        padding-right: 15dvw;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 15dvw;
+        margin-right: 15dvw;
+        max-width: 70dvw;
         padding-bottom: calc(100dvh - (38dvh + $l-fs * 14));
       }
 

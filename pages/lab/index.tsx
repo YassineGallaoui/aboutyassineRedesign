@@ -13,7 +13,7 @@ import { labDataset } from "../../utils/labDataset";
 import Link from "next/link";
 
 export default function Lab({ SSAnimFinished, cursorIsHover }) {
-  const words = ["experiments", "ideas", "helpers", "boilerplates", "a bit creative", "+/- useful stuff", "reausable"];
+  const words = ["experiments", "ideas", "helpers", "boilerplates", "creativeness", "+/- useful stuff", "reausability"];
   const labArray = ["BPs", "Utilties", "Audio", "WebGL", "GLSL", "3D", "SVG", "Ideas"];
 
   useEffect(() => {
@@ -60,7 +60,7 @@ export default function Lab({ SSAnimFinished, cursorIsHover }) {
         className={stylesLab.mainMotionDiv + " mainMotionDiv"}
         initial={{ x: "50dvw", opacity: 0 }}
         animate={{ x: "0dvw", opacity: 1 }}
-        exit={{ x: "50dvw", opacity: 0 }}
+        exit={{ x: "-50dvw", opacity: 0 }}
         transition={{ duration: 1, ease: [0.8, 0.28, 0, 1] }}
       >
         {SSAnimFinished && <TitleBackground text={"Lab"} />}
