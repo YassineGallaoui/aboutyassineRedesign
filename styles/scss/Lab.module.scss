@@ -205,10 +205,10 @@ html[data-theme="dark"] {
         height: calc(100dvh - 20dvh);
         padding-left: 0;
         padding-right: 0;
-        margin-left: 10dvw;
-        margin-right: 10dvw;
+        margin-left: 15dvw;
+        margin-right: 15dvw;
         padding-bottom: calc(100dvh - (20dvh + $l-fs * 8));
-        max-width: 80dvw;
+        max-width: 70dvw;
       }
 
       @media screen and (max-height: 400px) {
@@ -266,11 +266,6 @@ html[data-theme="dark"] {
           animation-fill-mode: forwards;
         }
 
-        @media screen and (max-height: 400px) {
-          opacity: 1;
-          padding: 0 1rem 0 2rem;
-        }
-
         .svgEnterArrow {
           position: absolute;
           left: 0rem;
@@ -306,6 +301,10 @@ html[data-theme="dark"] {
           margin: 0;
           font-weight: 500;
           white-space: nowrap;
+
+          @media screen and (max-width: $breakpointSmallDesktop) {
+            font-size: calc($l-fs * 0.8);
+          }
         }
 
         .svghorizontalLineContainer {
@@ -352,6 +351,10 @@ html[data-theme="dark"] {
           line-height: calc($l-fs * 2);
           margin: 0;
           text-align: right;
+
+          @media screen and (max-width: $breakpointSmallDesktop) {
+            font-size: calc($l-fs * 0.8);
+          }
         }
       }
 
@@ -381,6 +384,10 @@ html[data-theme="dark"] {
         line-height: calc($l-fs * 2);
         overflow: hidden;
 
+        @media screen and (max-width: $breakpointSmallDesktop) {
+          font-size: calc($xl-fs * 0.8);
+        }
+
         &>span {
           position: relative;
           display: inline-block;
@@ -402,6 +409,10 @@ html[data-theme="dark"] {
               height: calc($xl-fs * 1.2);
               background-color: $semitransparentDark4;
               transition: background-color $change-theme-duration;
+
+              @media screen and (max-width: $breakpointSmallDesktop) {
+                height: calc($xl-fs * 1);
+              }
             }
           }
         }
