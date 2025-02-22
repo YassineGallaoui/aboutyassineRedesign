@@ -14,7 +14,7 @@ import Link from "next/link";
 
 export default function Lab({ SSAnimFinished, cursorIsHover }) {
   const words = ["experiments", "ideas", "helpers", "boilerplates", "creativeness", "+/- useful stuff", "reausability"];
-  const labArray = ["BPs", "Utilties", "Audio", "WebGL", "GLSL", "3D", "SVG", "Ideas"];
+  const labArray = ["BPs", "Utilties", "Drafts", "Audio", "WebGL", "GLSL", "3D", "SVG", "Ideas"];
 
   useEffect(() => {
     if (SSAnimFinished) {
