@@ -80,7 +80,7 @@ export default function Frame({
           </Link>
         </div>
         <div className={styles.frameContainer__left__available + " available"}>
-          Available: March 1st, 2025
+          Available: July 1st, 2025
         </div>
       </div>
       <div className={styles.frameContainer__right}>
