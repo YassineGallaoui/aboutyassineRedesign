@@ -1,5 +1,6 @@
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import Head from "next/head";
+import Link from "next/link";
 import React, { useEffect, useMemo } from "react";
 import { TitleBackground } from "../../components/TitleBackground";
 import stylesAbout from "../../styles/scss/General.module.scss";
@@ -7,7 +8,6 @@ import {
   calculateScrollPercentage,
   createSpanStructureV2
 } from "../../utils/utility";
-import Link from "next/link";
 
 export default function About({ SSAnimFinished, cursorIsHover }) {
   const welcomeArray = useMemo(() => ["Hi!", "Hallo!", "¡Hola!", "Salut!", "Ciao!"], []);
@@ -150,10 +150,10 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                   ><b>{` frontend`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` development, with a great passion for`}</span>
+                  >{` development, with great interest in`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  ><b>{` building creative digital experiences`}</b></span>
+                  ><b>{` creative interfaces`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
                   >{`.`}</span>
@@ -175,9 +175,9 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   ><b>
-                      {<sup>{`1/`}</sup>}{`responsive design, `}
-                      {<sup>{`2/`}</sup>}{`high performance and `}
-                      {<sup>{`3/`}</sup>}{`smooth engaging motion`}
+                      {<sup>{`1/`}</sup>}{`responsivenes, `}
+                      {<sup>{`2/`}</sup>}{`performance and `}
+                      {<sup>{`3/`}</sup>}{`motion`}
                     </b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
@@ -211,10 +211,22 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
 
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
-                  ><b>{` No design yet? I've got you covered`}</b></span>
+                  ><b>{` No design yet?`}</b></span>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` — I partner with skillful designers to transform your vision into a `}</span>
+                  >{` I've got you covered`}</span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  ><b>{` — I partner with skillful designers`}</b></span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{` to transform`}</span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  ><b>{` your vision`}</b></span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{` into`}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   ><b>{` stunning digital reality`}</b></span>
@@ -228,11 +240,8 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                 </h2>
                 <p>
                   <span
-                    className={stylesAbout.meContainer__txt__description__big}
-                  ><b>{`Ready to bring your project to life?`}</b></span>
-                  <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{` Connect with me via `}</span>
+                  >{` Reach out via `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   >
@@ -297,7 +306,7 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                   <br></br>
                   <span
                     className={stylesAbout.meContainer__txt__description__small}
-                  >{`Alternatively, you can simply `}</span>
+                  >{`Otherwise, simply `}</span>
                   <span
                     className={stylesAbout.meContainer__txt__description__big}
                   >
