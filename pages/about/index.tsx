@@ -176,7 +176,15 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                     className={stylesAbout.meContainer__txt__description__big}
                   ><b>
                       {<sup>{`1/`}</sup>}{`responsivenes, `}
-                      {<sup>{`2/`}</sup>}{`performance and `}
+                      {<sup>{`2/`}</sup>}{`performance `}
+                    </b>
+                  </span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{` and `}</span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  ><b>
                       {<sup>{`3/`}</sup>}{`motion`}
                     </b></span>
                   <span
@@ -199,7 +207,15 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
                   ><b>
                       {<sup>{`1/`}</sup>}{`startups, `}
                       {<sup>{`2/`}</sup>}{`agencies, `}
-                      {<sup>{`3/`}</sup>}{`studios and `}
+                      {<sup>{`3/`}</sup>}{`studios `}
+                    </b>
+                  </span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__small}
+                  >{` and `}</span>
+                  <span
+                    className={stylesAbout.meContainer__txt__description__big}
+                  ><b>
                       {<sup>{`4/`}</sup>}{`professionals worldwide`}
                     </b>
                   </span>
@@ -328,13 +344,13 @@ export default function About({ SSAnimFinished, cursorIsHover }) {
               </div>
             )}
           </div>
-        </div>
+        </div >
         <div className={stylesAbout.percentageBarContainer}>
           <div className={stylesAbout.percentageBarBar + " percentageBarBar"}>
             <span></span>
           </div>
         </div>
-      </motion.div>
+      </motion.div >
     </>
   );
 }
