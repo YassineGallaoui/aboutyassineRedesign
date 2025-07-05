@@ -1,20 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
-import { motion, AnimatePresence, animate } from "motion/react";
+import { motion } from "motion/react";
 import Head from "next/head";
-import React, { useEffect, useMemo } from "react";
+import Link from "next/link";
+import React, { useEffect } from "react";
 import { TitleBackground } from "../../components/TitleBackground";
-import linkArrow from "../../public/icons/linkArrow.svg";
 import stylesLab from "../../styles/scss/General.module.scss";
+import { labDataset } from "../../utils/labDataset";
 import {
   calculateScrollPercentage,
   createSpanStructureV2,
 } from "../../utils/utility";
-import { labDataset } from "../../utils/labDataset";
-import Link from "next/link";
 
 export default function Lab({ SSAnimFinished, cursorIsHover }) {
-  const words = ["experiments", "ideas", "helpers", "boilerplates", "creativeness", "+/- useful stuff", "reausability"];
-  const labArray = ["BPs", "Utilties", "Drafts", "Audio", "WebGL", "GLSL", "3D", "SVG", "Ideas"];
+  const words = ["experiments", "ideas", "helpers", "boilerplates", "creative", "+/- useful", "reusable"];
+  const labArray = ["BPs", "Utilities", "Drafts", "Audio", "WebGL", "GLSL", "3D", "SVG", "Ideas"];
 
   useEffect(() => {
     if (SSAnimFinished) {
